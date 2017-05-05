@@ -1,0 +1,824 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="傅里叶,图像处理,信号处理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="傅里叶变换学习笔记（一） 在学习无线网络实现室内定位的过程中，发现信号强度的波动受到来自各个方面的影响以及自身的噪声影响。所以在学习图像处理的过程中，发现傅里叶变换能将时域信号转换到频域上，在频域上信号的强度实则是多个正弦波的叠加。所以在WiFi信号中应该是可以使用傅里叶变换发现一些在时域无法发现的特征，应该在处理噪声上也有一定的帮助。  学习傅里叶变化的三个层次 学习傅里叶变化可以分三步去理解：">
+<meta name="keywords" content="傅里叶,图像处理,信号处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="傅里叶变换的理解（一）">
+<meta property="og:url" content="https://nezha.github.io/课程研究/2015-11-30-傅里叶变换理解(一)/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="傅里叶变换学习笔记（一） 在学习无线网络实现室内定位的过程中，发现信号强度的波动受到来自各个方面的影响以及自身的噪声影响。所以在学习图像处理的过程中，发现傅里叶变换能将时域信号转换到频域上，在频域上信号的强度实则是多个正弦波的叠加。所以在WiFi信号中应该是可以使用傅里叶变换发现一些在时域无法发现的特征，应该在处理噪声上也有一定的帮助。  学习傅里叶变化的三个层次 学习傅里叶变化可以分三步去理解：">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1eyj4lm2sw9j20fk0p2acp.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1eyj4lmj6d0g20fk05lmxo.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/1/1a/Fourier_series_square_wave_circles_animation.gif">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4ln7zi8j20go0braad.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lnvo9tj20go07i3zk.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lokvfzj20go0a1jsr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1eyj4lp805nj20fk0gnta8.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffawl872ozj20dy03ut8y.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffawl8ue1wj20ea03saab.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eyj4lk7yfhj20go03c74i.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lld7qhj20go09it9e.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lkozogj20go08b0ty.jpg">
+<meta property="og:updated_time" content="2017-05-05T15:30:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="傅里叶变换的理解（一）">
+<meta name="twitter:description" content="傅里叶变换学习笔记（一） 在学习无线网络实现室内定位的过程中，发现信号强度的波动受到来自各个方面的影响以及自身的噪声影响。所以在学习图像处理的过程中，发现傅里叶变换能将时域信号转换到频域上，在频域上信号的强度实则是多个正弦波的叠加。所以在WiFi信号中应该是可以使用傅里叶变换发现一些在时域无法发现的特征，应该在处理噪声上也有一定的帮助。  学习傅里叶变化的三个层次 学习傅里叶变化可以分三步去理解：">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1eyj4lm2sw9j20fk0p2acp.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/课程研究/2015-11-30-傅里叶变换理解(一)/"/>
+
+
+
+
+
+  <title>傅里叶变换的理解（一） | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/课程研究/2015-11-30-傅里叶变换理解(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">傅里叶变换的理解（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-30T00:00:00+08:00">
+                2015-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程研究/" itemprop="url" rel="index">
+                    <span itemprop="name">课程研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="傅里叶变换学习笔记（一）"><a href="#傅里叶变换学习笔记（一）" class="headerlink" title="傅里叶变换学习笔记（一）"></a>傅里叶变换学习笔记（一）</h1><blockquote>
+<p>在学习无线网络实现室内定位的过程中，发现信号强度的波动受到来自各个方面的影响以及自身的噪声影响。所以在学习图像处理的过程中，发现傅里叶变换能将时域信号转换到频域上，在频域上信号的强度实则是多个正弦波的叠加。所以在WiFi信号中应该是可以使用傅里叶变换发现一些在时域无法发现的特征，应该在处理噪声上也有一定的帮助。</p>
+</blockquote>
+<h2 id="学习傅里叶变化的三个层次"><a href="#学习傅里叶变化的三个层次" class="headerlink" title="学习傅里叶变化的三个层次"></a>学习傅里叶变化的三个层次</h2><blockquote>
+<p>学习傅里叶变化可以分三步去理解：傅里叶变换（Fourier Transform，FT）-&gt; 离散傅里叶变换（Discrete Fourier Transform， DFT）-&gt; 快速傅里叶变换（Fast Fourier Transform）</p>
+</blockquote>
+<ol>
+<li>FT是理论基础，以FT为理论基础，可以完成从频率估计到求解微分方程各式各样的问题；</li>
+<li>DFT是指信号被采样之后会得到离散而非连续的信号，这个时候就需要DFT来告诉你怎样处理并告知你一些离散情况下的特殊问题</li>
+<li>FFT是一种计算DFT的算法，计算复杂度很低也就是执行起来很快的意思。</li>
+</ol>
+<h2 id="一、什么是频域"><a href="#一、什么是频域" class="headerlink" title="一、什么是频域"></a>一、什么是频域</h2><p>频域就是一个信号所具有的所有正弦分量的频率的总合，任何一个周期信号都可以分解为以不同振幅和频率或相位的正弦波为分量的级数，所有分量的频率的总合叫该信号的频域，频域和时域都是对非正弦信号的分析方法。</p>
+<p>时域（信号对时间的函数）和频域（信号对频率的函数）的变换在数学上是通过积分变换实现，对周期信号可以直接使用傅立叶变换，对非周期信号则要进行周期扩展，使用拉普拉斯变换。而傅式级数只是对信号的分解。</p>
+<h2 id="二、傅里叶级数-Fourier-Series-的频谱"><a href="#二、傅里叶级数-Fourier-Series-的频谱" class="headerlink" title="二、傅里叶级数(Fourier Series)的频谱"></a>二、傅里叶级数(Fourier Series)的频谱</h2><p>在实际环境中很多我们采集到的波形都是可以分解成很多个正弦波。正如下图所表示的。</p>
+<p><img src="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1eyj4lm2sw9j20fk0p2acp.jpg" alt="傅里叶合成图"></p>
+<p>这些正弦波按照频率从低到高从前向后排列开来，而每一个波的振幅都是不同的。每两个正弦波之间都还有一条直线，那并不 是分割线，而是振幅为 0 的正弦波！为了组成特殊的曲线，有些正弦波成分是不需要的。</p>
+<p>其实有些关于正弦波的基础知识我们在初中都已经学过了，函数f(x)=Asin(wx+β)中的A就是振幅，最小正周期T=2π/w，频率f=1/T，初始相位角是β。</p>
+<p><img src="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1eyj4lmj6d0g20fk05lmxo.gif" alt="正弦函数原理图"></p>
+<p>正弦波就是一个圆周运动在一条直线上的投影。所以频域的基本单元也可以理解为一个始终在旋转的圆</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Fourier_series_square_wave_circles_animation.gif" alt="正弦函数原理图"></p>
+<p>理解了频域的基本组成单元，继续理解上面的矩形波在频域里的另一个模样：</p>
+<p><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4ln7zi8j20go0braad.jpg" alt="正弦函数原理图"></p>
+<p>可能，只有幅值和频率的关系不是很直观，然后又找到下面的一张图：</p>
+<p><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lnvo9tj20go07i3zk.jpg" alt="正弦函数原理图"></p>
+<p>将时域和频域集合在一张图上理解就成下面这样了：</p>
+<p><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lokvfzj20go0a1jsr.jpg" alt="正弦函数原理图"></p>
+<h2 id="三、傅里叶级数（Fourier-Series）的相位谱"><a href="#三、傅里叶级数（Fourier-Series）的相位谱" class="headerlink" title="三、傅里叶级数（Fourier Series）的相位谱"></a>三、傅里叶级数（Fourier Series）的相位谱</h2><p>通过时域到频域的变换，可以得到了一个从侧面看的频谱，但是这个频谱并没有包含时域中全部的信息。因为频谱只代表每一个对应的正弦波的振幅是多少，而没 有提到相位。基础的正弦波A.sin (wt+θ)中，振幅，频率，相位缺一不可，不同相位决定了波的位置，所以对于频域分析，仅仅有频谱（振幅谱）是不够的，我们还需要一个相位谱。下面的一张图就可以比较直观的理解相位谱了。</p>
+<p><img src="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1eyj4lp805nj20fk0gnta8.jpg" alt="正弦函数原理图"></p>
+<p>鉴于正弦波是周期的，我们需要设定一个用来标记正弦波位置的东西。在图中就是那些小红点。小红点是距离频率轴最近的波峰，而这个波峰所处的位置离频率轴 有多远呢？为了看的更清楚，我们将红色的点投影到下平面，投影点我们用粉色点来表示。当然，这些粉色的点只标注了波峰距离频率轴的距离，并不是相位。</p>
+<h2 id="四、傅里叶变换（Fourier-Tranformation）"><a href="#四、傅里叶变换（Fourier-Tranformation）" class="headerlink" title="四、傅里叶变换（Fourier Tranformation）"></a>四、傅里叶变换（Fourier Tranformation）</h2><p>傅里叶变换总体来说有以下几中类型，上面已经将傅里叶级数理解了，然后继续参控维基理解傅里叶变换的公式及推导。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变换</th>
+<th style="text-align:right">时间</th>
+<th style="text-align:center">频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">连续傅里叶变换</td>
+<td style="text-align:right">连续，非周期性</td>
+<td style="text-align:center">连续，非周期性</td>
+</tr>
+<tr>
+<td style="text-align:left">傅里叶级数</td>
+<td style="text-align:right">连续，周期性</td>
+<td style="text-align:center">离散，非周期性</td>
+</tr>
+<tr>
+<td style="text-align:left">离散时间傅里叶变换</td>
+<td style="text-align:right">离散，非周期性</td>
+<td style="text-align:center">连续，周期性</td>
+</tr>
+<tr>
+<td style="text-align:left">离散傅里叶变换</td>
+<td style="text-align:right">离散，周期性</td>
+<td style="text-align:center">离散，周期性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-1-连续傅里叶变换"><a href="#4-1-连续傅里叶变换" class="headerlink" title="4.1 连续傅里叶变换"></a>4.1 连续傅里叶变换</h3><p>wiki定义：连续傅里叶变换是一个特殊的把一组函数映射为另一组函数的线性算子。 不严格地说，傅里叶变换就是把一个函数分解为组成该函数的连续频率谱。 在数学分析中，信号f(t)的傅里叶变换被认为是处在频域中的信号。 </p>
+<p>假设f是一个可积的函数。 我们定义其连续傅里叶变换F也是一个复函数:<br>对任意实数 ω (这里i是虚数单位)</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffawl872ozj20dy03ut8y.jpg" alt=""></p>
+<p>ω是角频率，F(ω)为复数，并且是信号在该频率成分处的相位和幅度。</p>
+<p>傅里叶变换是自反映射，若 F(ω)如上定义，f是连续的，则对于任意实数 t</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffawl8ue1wj20ea03saab.jpg" alt=""></p>
+<p>每个积分前的根号下2pi分之一为规范化因子。 因子的选择是主观任意的，只要满足二者的乘积为$$1 \over {2\pi}$$</p>
+<h3 id="4-2-离散时间傅里叶变换-没有看完"><a href="#4-2-离散时间傅里叶变换-没有看完" class="headerlink" title="4.2 离散时间傅里叶变换(没有看完)"></a>4.2 离散时间傅里叶变换(没有看完)</h3><h2 id="五、欧拉公式"><a href="#五、欧拉公式" class="headerlink" title="五、欧拉公式"></a>五、欧拉公式</h2><p>虚数i这个概念在高中就接触过，但那时我们只知道它是-1 的平方根，可是它真正的意义是什么呢?</p>
+<p><img src="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eyj4lk7yfhj20go03c74i.jpg" alt="正弦函数原理图"></p>
+<p>这里有一条数轴，在数轴上有一个红色的线段，它的长度是1。当它乘以 3 的时候，它的长度发生了变化，变成了蓝色的线段，而当它乘以-1 的时候，就变成了绿色的线段，或者说线段在数轴上围绕原点旋转了 180 度。</p>
+<p>知道乘-1 其实就是乘了两次 i 使线段旋转了 180 度，那么乘一次 i 呢——答案很简单——旋转了 90 度。</p>
+<p><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lld7qhj20go09it9e.jpg" alt="正弦函数原理图"></p>
+<p>同时，我们获得了一个垂直的虚数轴。实数轴与虚数轴共同构成了一个复数的平面，也称复平面。这样我们就了解到，乘虚数i的一个功能——旋转。<br>欧拉公式：</p>
+<p>$$ e^{ix} = cosx + i\cdot sinx $$</p>
+<p>当x等于 Pi 的时候:</p>
+<p>$$ e^{i\pi} + 1 = 0 $$<br>这个公式关键的作用，是将正弦波统一成了简单的指数形式。我们来看看图像上的涵义：</p>
+<p><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eyj4lkozogj20go08b0ty.jpg" alt="正弦函数原理图"></p>
+<p>欧拉公式所描绘的，是一个随着时间变化，在复平面上做圆周运动的点，随着时间的改变，在时间轴上就成了一条螺旋线。如果只看它的实数部分，也就是螺旋线在左侧的投影，就是一个最基础的余弦函数。而右侧的投影则是一个正弦函数。</p>
+<h2 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h2><p>[1] <a href="https://zh.wikipedia.org/wiki/" target="_blank" rel="external">https://zh.wikipedia.org/wiki/</a> -&gt;傅里叶变换</p>
+<p>[2] <a href="http://blog.jobbole.com/70549/" target="_blank" rel="external">http://blog.jobbole.com/70549/</a> @花生油工人 </p>
+<p>[3] <a href="http://baike.baidu.com/" target="_blank" rel="external">http://baike.baidu.com/</a> -&gt; 傅里叶变换</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/傅里叶/" rel="tag"># 傅里叶</a>
+          
+            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
+          
+            <a href="/tags/信号处理/" rel="tag"># 信号处理</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/疑难解惑/2015-11-26-Jekyll支持Latex公式/" rel="next" title="Jekyll使用MathJax来显示数学式">
+                <i class="fa fa-chevron-left"></i> Jekyll使用MathJax来显示数学式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/课程研究/2015-12-2-WIFI室内定位技术的仔细介绍/" rel="prev" title="WIFI室内定位技术的详细介绍-指纹法">
+                WIFI室内定位技术的详细介绍-指纹法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#傅里叶变换学习笔记（一）"><span class="nav-number">1.</span> <span class="nav-text">傅里叶变换学习笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习傅里叶变化的三个层次"><span class="nav-number">1.1.</span> <span class="nav-text">学习傅里叶变化的三个层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是频域"><span class="nav-number">1.2.</span> <span class="nav-text">一、什么是频域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、傅里叶级数-Fourier-Series-的频谱"><span class="nav-number">1.3.</span> <span class="nav-text">二、傅里叶级数(Fourier Series)的频谱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、傅里叶级数（Fourier-Series）的相位谱"><span class="nav-number">1.4.</span> <span class="nav-text">三、傅里叶级数（Fourier Series）的相位谱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、傅里叶变换（Fourier-Tranformation）"><span class="nav-number">1.5.</span> <span class="nav-text">四、傅里叶变换（Fourier Tranformation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-连续傅里叶变换"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 连续傅里叶变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-离散时间傅里叶变换-没有看完"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 离散时间傅里叶变换(没有看完)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、欧拉公式"><span class="nav-number">1.6.</span> <span class="nav-text">五、欧拉公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference："><span class="nav-number">1.7.</span> <span class="nav-text">Reference：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

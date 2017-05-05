@@ -1,0 +1,764 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="傅里叶,信号处理,WIFI," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="傅里叶变换学习笔记（二） 之前一篇的傅里叶变换的学习主要还是连续型的理论分析，然后这一篇文章主要从离散信号去做分析以及展示具体的代码使用。因为在现实的世界中，主要的信号都是以离散的形式采集出来的，所以最主要的是离散的去分析信号的时域数据。  一维离散傅里叶变换变换公式$$ F\left ( u \right ) = \frac{1}{N}\sum_{x=0}^{N-1}f\left ( x \ri">
+<meta name="keywords" content="傅里叶,信号处理,WIFI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="傅里叶变换的理解（二）">
+<meta property="og:url" content="https://nezha.github.io/课程研究/2015-12-30-傅里叶变换理解二/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="傅里叶变换学习笔记（二） 之前一篇的傅里叶变换的学习主要还是连续型的理论分析，然后这一篇文章主要从离散信号去做分析以及展示具体的代码使用。因为在现实的世界中，主要的信号都是以离散的形式采集出来的，所以最主要的是离散的去分析信号的时域数据。  一维离散傅里叶变换变换公式$$ F\left ( u \right ) = \frac{1}{N}\sum_{x=0}^{N-1}f\left ( x \ri">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhhfrdwj20qe01omxm.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhi0mmnj20rg060410.jpg">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?F[1]&space;=&space;\{&space;[cos(0)-jsin(0)]*1&space;+&space;[cos(\pi&space;/2)&space;-&space;jsin(\pi&space;/2)]*2&space;+&space;[cos(\pi)-jsin(\pi)]*3&space;+&space;[cos(3\pi&space;/2)-jsin(3\pi&space;/2)]*4&space;\}/4">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?={1-j*2&space;+&space;(-1)*3&space;-&space;j*(-1)*4}/4&space;=&space;{-2+2j}/4">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhisa36j206t02rq2s.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhjgbc2j20e3030dg8.jpg">
+<meta property="og:updated_time" content="2017-05-05T15:33:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="傅里叶变换的理解（二）">
+<meta name="twitter:description" content="傅里叶变换学习笔记（二） 之前一篇的傅里叶变换的学习主要还是连续型的理论分析，然后这一篇文章主要从离散信号去做分析以及展示具体的代码使用。因为在现实的世界中，主要的信号都是以离散的形式采集出来的，所以最主要的是离散的去分析信号的时域数据。  一维离散傅里叶变换变换公式$$ F\left ( u \right ) = \frac{1}{N}\sum_{x=0}^{N-1}f\left ( x \ri">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhhfrdwj20qe01omxm.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/课程研究/2015-12-30-傅里叶变换理解二/"/>
+
+
+
+
+
+  <title>傅里叶变换的理解（二） | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/课程研究/2015-12-30-傅里叶变换理解二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">傅里叶变换的理解（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-30T00:00:00+08:00">
+                2015-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程研究/" itemprop="url" rel="index">
+                    <span itemprop="name">课程研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="傅里叶变换学习笔记（二）"><a href="#傅里叶变换学习笔记（二）" class="headerlink" title="傅里叶变换学习笔记（二）"></a>傅里叶变换学习笔记（二）</h1><blockquote>
+<p>之前一篇的傅里叶变换的学习主要还是连续型的理论分析，然后这一篇文章主要从离散信号去做分析以及展示具体的代码使用。因为在现实的世界中，主要的信号都是以离散的形式采集出来的，所以最主要的是离散的去分析信号的时域数据。</p>
+</blockquote>
+<h2 id="一维离散傅里叶变换"><a href="#一维离散傅里叶变换" class="headerlink" title="一维离散傅里叶变换"></a>一维离散傅里叶变换</h2><h3 id="变换公式"><a href="#变换公式" class="headerlink" title="变换公式"></a>变换公式</h3><p>$$ F\left ( u \right ) = \frac{1}{N}\sum_{x=0}^{N-1}f\left ( x \right )e^{-j\frac{2\pi ux}{N}} (u = 0,1,…,N-1) $$</p>
+<h3 id="频谱、相位角和功率谱"><a href="#频谱、相位角和功率谱" class="headerlink" title="频谱、相位角和功率谱"></a>频谱、相位角和功率谱</h3><p>F(u)为复函数，可表示为：</p>
+<p>$$ F\left ( u \right ) = R\left ( u \right )+jI\left ( u \right )  $$</p>
+<ol>
+<li>频谱(幅值):  $$ F\left ( u \right ) = \left [  R^{2}\left ( u \right )+I^{2}\left ( u \right )\right ]^{\frac{1}{2}} $$</li>
+<li>相位角：$$ \left | \phi \left ( u \right ) \right |=arctan\left [ I\left ( u \right )/R\left ( u \right ) \right ] $$</li>
+<li>功率谱：$$ P\left ( u \right ) = \left |F\left ( u \right ) \right |^{2}= R^{2}\left ( u \right )+I^{2}\left ( u \right ) $$</li>
+</ol>
+<h3 id="一维实例"><a href="#一维实例" class="headerlink" title="一维实例"></a>一维实例</h3><p>$$ e^{-j2\pi ux}=cos(2\pi ux) - j sin(2\pi ux) $$</p>
+<p><strong>题目:</strong></p>
+<p><img src="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhhfrdwj20qe01omxm.jpg" alt="题目"></p>
+<p><strong>求解过程：</strong></p>
+<p><img src="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhi0mmnj20rg060410.jpg" alt="求解过程"></p>
+<p><strong>详细解答过程:</strong></p>
+<!-- $$  F[1] = \{ [cos(0)-jsin(0)]*1 + [cos(\pi /2) - jsin(\pi /2)]*2 + [cos(\pi)-jsin(\pi)]*3 + [cos(3\pi /2)-jsin(3\pi /2)]*4 \}/4 $$ -->
+<p><img src="http://latex.codecogs.com/gif.latex?F[1]&space;=&space;\{&space;[cos(0)-jsin(0)]*1&space;&plus;&space;[cos(\pi&space;/2)&space;-&space;jsin(\pi&space;/2)]*2&space;&plus;&space;[cos(\pi)-jsin(\pi)]*3&space;&plus;&space;[cos(3\pi&space;/2)-jsin(3\pi&space;/2)]*4&space;\}/4" title="F[1] = \{ [cos(0)-jsin(0)]*1 + [cos(\pi /2) - jsin(\pi /2)]*2 + [cos(\pi)-jsin(\pi)]*3 + [cos(3\pi /2)-jsin(3\pi /2)]*4 \}/4"></p>
+<!-- $$ ={1-j*2 + (-1)*3 - j*(-1)*4}/4 = {-2+2j}/4 $$ -->
+<p><img src="http://latex.codecogs.com/gif.latex?={1-j*2&space;&plus;&space;(-1)*3&space;-&space;j*(-1)*4}/4&space;=&space;{-2&plus;2j}/4" title="={1-j*2 + (-1)*3 - j*(-1)*4}/4 = {-2+2j}/4"></p>
+<h2 id="二位离散傅里叶变换"><a href="#二位离散傅里叶变换" class="headerlink" title="二位离散傅里叶变换"></a>二位离散傅里叶变换</h2><h3 id="变换公式-1"><a href="#变换公式-1" class="headerlink" title="变换公式"></a>变换公式</h3><p>$$ F\left ( u,v \right ) = \frac{1}{N}\sum_{x=0}^{N-1}\sum_{y=0}^{N-1}f\left ( x,y \right )e^{\left [ -j2\pi \left ( \frac{ux+vy}{N} \right ) \right ]}\left ( u,v = 0,1,…,N-1 \right ) $$</p>
+<h3 id="二维实例"><a href="#二维实例" class="headerlink" title="二维实例"></a>二维实例</h3><p><strong>题目:</strong></p>
+<p><img src="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhisa36j206t02rq2s.jpg" alt="题目"></p>
+<p><strong>求解过程：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1ezwqhjgbc2j20e3030dg8.jpg" alt="求解过程"></p>
+<h2 id="python中使用傅里叶变换公式"><a href="#python中使用傅里叶变换公式" class="headerlink" title="python中使用傅里叶变换公式"></a>python中使用傅里叶变换公式</h2><p><strong>示例代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#conding = utf-8</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">signal = []</div><div class="line"><span class="comment">#生成叠加正弦函数的数据</span></div><div class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1000</span>):</div><div class="line">    i = j/<span class="number">1000.0</span></div><div class="line">    temp = math.cos(<span class="number">2</span>*math.pi*<span class="number">10</span>*i) + math.cos(<span class="number">2</span>*math.pi*<span class="number">25</span>*i) + math.cos(<span class="number">2</span>*math.pi*<span class="number">50</span>*i) + math.cos(<span class="number">2</span>*math.pi*<span class="number">100</span>*i)</div><div class="line">    signal.append(temp)</div><div class="line"><span class="comment">#对正弦波进行傅里叶变换</span></div><div class="line">signalF = np.fft.fft(signal)</div><div class="line"><span class="comment">#计算出信号频谱</span></div><div class="line">fre = np.abs(signalF)</div><div class="line"><span class="comment">#绘制图像</span></div><div class="line"><span class="comment">#plt.plot(range(1000), signal, '-', linewidth=1)</span></div><div class="line">plt.plot(range(<span class="number">250</span>), fre[<span class="number">0</span>:<span class="number">250</span>], <span class="string">'-'</span>, linewidth=<span class="number">1</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/傅里叶/" rel="tag"># 傅里叶</a>
+          
+            <a href="/tags/信号处理/" rel="tag"># 信号处理</a>
+          
+            <a href="/tags/WIFI/" rel="tag"># WIFI</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/课程研究/2015-12-6-region_split_merging/" rel="next" title="Splitting and Merging--区域分裂与合并算法">
+                <i class="fa fa-chevron-left"></i> Splitting and Merging--区域分裂与合并算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/生活/2016-01-13-落户上海政策/" rel="prev" title="落户上海政策">
+                落户上海政策 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#傅里叶变换学习笔记（二）"><span class="nav-number">1.</span> <span class="nav-text">傅里叶变换学习笔记（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一维离散傅里叶变换"><span class="nav-number">1.1.</span> <span class="nav-text">一维离散傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变换公式"><span class="nav-number">1.1.1.</span> <span class="nav-text">变换公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#频谱、相位角和功率谱"><span class="nav-number">1.1.2.</span> <span class="nav-text">频谱、相位角和功率谱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维实例"><span class="nav-number">1.1.3.</span> <span class="nav-text">一维实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二位离散傅里叶变换"><span class="nav-number">1.2.</span> <span class="nav-text">二位离散傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变换公式-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">变换公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维实例"><span class="nav-number">1.2.2.</span> <span class="nav-text">二维实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python中使用傅里叶变换公式"><span class="nav-number">1.3.</span> <span class="nav-text">python中使用傅里叶变换公式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

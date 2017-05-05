@@ -1,0 +1,804 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="折线图,柱状图,python绘图，Matplotlib," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="python绘制基本图表 参考网址：matplotlib官网  绘制折线图  如何绘制折线图 如何在matplotlib中加入latex公式   代码 12345678910111213141516171819202122232425262728293031# coding=utf-8import numpy as npimport matplotlib.pyplot as pltfrom mat">
+<meta name="keywords" content="折线图,柱状图,python绘图，Matplotlib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python绘制基本图表全解答-持续更新中">
+<meta property="og:url" content="https://nezha.github.io/python/2016-01-13-python绘制基本图表/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="python绘制基本图表 参考网址：matplotlib官网  绘制折线图  如何绘制折线图 如何在matplotlib中加入latex公式   代码 12345678910111213141516171819202122232425262728293031# coding=utf-8import numpy as npimport matplotlib.pyplot as pltfrom mat">
+<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1f03scww4fuj20x30h1jwk.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1f03scxgdjcj20zg0lv77v.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20130714153631031?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvamtoZXJl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://matplotlib.org/_images/scatter_demo1.png">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fd1jt8a7mxj21ep0nwgm5.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fd1jt8xvpwj20vb0lrabt.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fd1jt7i9vuj21kw1cuafz.jpg">
+<meta property="og:updated_time" content="2017-05-05T11:28:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python绘制基本图表全解答-持续更新中">
+<meta name="twitter:description" content="python绘制基本图表 参考网址：matplotlib官网  绘制折线图  如何绘制折线图 如何在matplotlib中加入latex公式   代码 12345678910111213141516171819202122232425262728293031# coding=utf-8import numpy as npimport matplotlib.pyplot as pltfrom mat">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1f03scww4fuj20x30h1jwk.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/python/2016-01-13-python绘制基本图表/"/>
+
+
+
+
+
+  <title>python绘制基本图表全解答-持续更新中 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/python/2016-01-13-python绘制基本图表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python绘制基本图表全解答-持续更新中</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-13T01:00:00+08:00">
+                2016-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python绘制基本图表"><a href="#python绘制基本图表" class="headerlink" title="python绘制基本图表"></a>python绘制基本图表</h1><blockquote>
+<p>参考网址：<a href="http://matplotlib.org/" target="_blank" rel="external">matplotlib官网</a></p>
+</blockquote>
+<h2 id="绘制折线图"><a href="#绘制折线图" class="headerlink" title="绘制折线图"></a>绘制折线图</h2><blockquote>
+<ol>
+<li>如何绘制折线图</li>
+<li>如何在matplotlib中加入latex公式</li>
+</ol>
+</blockquote>
+<p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</div><div class="line"></div><div class="line"><span class="comment"># 引入Mac下的字体库</span></div><div class="line"><span class="comment"># font = FontProperties(fname=r"/System/Library/Fonts/PingFang.ttc",size=15)</span></div><div class="line"><span class="comment">#font_E = FontProperties(fname=r"/System/Library/Fonts/Times.dfont", size=15)</span></div><div class="line"></div><div class="line"><span class="comment">#引入本地的字体库</span></div><div class="line">font = FontProperties(fname=<span class="string">r"c:\windows\fonts\simsun.ttc"</span>, size=<span class="number">14</span>)</div><div class="line">font_E = FontProperties(fname=<span class="string">r"c:\windows\fonts\times.ttf"</span>, size=<span class="number">20</span>)   </div><div class="line"></div><div class="line">x = np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">1000</span>)</div><div class="line">y = np.sin(x)</div><div class="line">z = np.cos(x**<span class="number">2</span>)</div><div class="line"></div><div class="line">plt.figure(figsize = (<span class="number">8</span>,<span class="number">4</span>))</div><div class="line"></div><div class="line">plt.plot(x,y,label=<span class="string">"$sin(x)$"</span>,color=<span class="string">"red"</span>,linewidth=<span class="number">2</span>)</div><div class="line">plt.plot(x,z,<span class="string">"b--"</span>,label=<span class="string">"$cos(x^2)$"</span>)</div><div class="line"></div><div class="line">plt.xlabel(<span class="string">"Time(s)"</span>)</div><div class="line">plt.ylabel(<span class="string">"Volt"</span>)</div><div class="line">plt.title(<span class="string">"PyPlot First Example"</span>)</div><div class="line">plt.ylim(<span class="number">-1.2</span>,<span class="number">1.2</span>)</div><div class="line">plt.axhline(y=<span class="number">0.9</span>,linewidth=<span class="number">1</span>,color=<span class="string">'k'</span>,label=<span class="string">u'similatline'</span>)</div><div class="line">plt.legend()</div><div class="line"><span class="comment">#在图中加入test注释</span></div><div class="line">plt.text(x[<span class="number">100</span>],y[<span class="number">100</span>]+<span class="number">0.3</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>,fontproperties=font_E) </div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1f03scww4fuj20x30h1jwk.jpg" alt="效果图"></p>
+<p><strong>效果解释</strong></p>
+<ol>
+<li>label:给曲线一个标签名称。如果用’$’包裹起来，matplotlib会使用内嵌的LaTeX引擎将其显示为数学公式</li>
+<li>xlim,ylim：分别设置X,Y轴的显示范围</li>
+</ol>
+<blockquote>
+<ol>
+<li>使用LaTeX语法，会极大降低图表的描绘速度</li>
+<li>实际上plot()是在Axes(子图)对象上绘图</li>
+</ol>
+</blockquote>
+<ol>
+<li>axhline是绘制一条直线,x,y表示画的直线是哪个轴上的值</li>
+</ol>
+<h2 id="绘制柱状图"><a href="#绘制柱状图" class="headerlink" title="绘制柱状图"></a>绘制柱状图</h2><blockquote>
+<ol>
+<li>绘制柱状图</li>
+<li>加入中文标题</li>
+</ol>
+</blockquote>
+<p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> matplotlib</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</div><div class="line"></div><div class="line"><span class="comment">#引入本地的字体库</span></div><div class="line">font = FontProperties(fname=<span class="string">r"c:\windows\fonts\simsun.ttc"</span>, size=<span class="number">14</span>)</div><div class="line">font_E = FontProperties(fname=<span class="string">r"c:\windows\fonts\times.ttf"</span>, size=<span class="number">20</span>)     </div><div class="line"></div><div class="line"><span class="comment">#这是需要进行绘图的list，list是可变的，不要管</span></div><div class="line">root_list = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>]]</div><div class="line"></div><div class="line"><span class="comment">#对list的元素提取</span></div><div class="line">list_a = []</div><div class="line">list_b = []</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> root_list:</div><div class="line">    list_a.append(item[<span class="number">0</span>])</div><div class="line">    list_b.append(item[<span class="number">1</span>])</div><div class="line"></div><div class="line">opacity = <span class="number">0.4</span></div><div class="line">fig, ax = plt.subplots()</div><div class="line">bar_width = <span class="number">0.4</span></div><div class="line">index = np.arange(len(list_a))</div><div class="line">p1 = plt.bar(index<span class="number">-0.2</span>,list_a, bar_width,hatch=<span class="string">'//'</span>,alpha=opacity,color=<span class="string">'w'</span>)</div><div class="line">p2 = plt.bar(index+<span class="number">0.2</span>,list_b, bar_width,hatch=<span class="string">'\\'</span>,alpha=opacity,color=<span class="string">'w'</span>)</div><div class="line"></div><div class="line"><span class="comment">######这边需要手动改变下表值及个数#######</span></div><div class="line">plt.xticks(index, (<span class="string">u'一'</span>, <span class="string">u'二'</span>, <span class="string">u'三'</span>, <span class="string">u'四'</span>),fontproperties=font)</div><div class="line"><span class="comment">### 修改标题  ###</span></div><div class="line">plt.title(<span class="string">u'这是标题'</span>,fontproperties=font)</div><div class="line"><span class="comment">######修改图例###########</span></div><div class="line">plt.legend((p1[<span class="number">0</span>],p2[<span class="number">0</span>]),(<span class="string">u'均值'</span>,<span class="string">u'峰值'</span>),loc=<span class="string">'upper left'</span>,prop=font)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1f03scxgdjcj20zg0lv77v.jpg" alt="效果图"></p>
+<h2 id="绘制直方图"><a href="#绘制直方图" class="headerlink" title="绘制直方图"></a>绘制直方图</h2><p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  </div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  </div><div class="line">  </div><div class="line">mu,sigma=<span class="number">100</span>,<span class="number">15</span>  </div><div class="line">x=mu+sigma*np.random.randn(<span class="number">10000</span>)  </div><div class="line">  </div><div class="line">n,bins,patches=plt.hist(x,<span class="number">50</span>,normed=<span class="number">1</span>,facecolor=<span class="string">'g'</span>,alpha=<span class="number">0.75</span>)  </div><div class="line">plt.xlabel(<span class="string">'Smarts'</span>)  </div><div class="line">plt.ylabel(<span class="string">'Probability'</span>)  </div><div class="line">plt.title(<span class="string">'Histogram of IQ'</span>)  </div><div class="line">plt.text(<span class="number">60</span>,<span class="number">.025</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>)  </div><div class="line">plt.axis([<span class="number">40</span>,<span class="number">160</span>,<span class="number">0</span>,<span class="number">0.03</span>])  </div><div class="line">plt.grid(<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment">##不要坐标轴</span></div><div class="line"><span class="comment">#plt.tick_params(labelbottom='off', labelleft='off', left='off', right='off',bottom='off', top='off')</span></div><div class="line"><span class="comment">##使边框不显示</span></div><div class="line"><span class="comment">#ax = plt.gca()</span></div><div class="line"><span class="comment">#ax.spines['right'].set_color('none')</span></div><div class="line"><span class="comment">#ax.spines['bottom'].set_color('none')</span></div><div class="line"><span class="comment">#ax.spines['left'].set_color('none')</span></div><div class="line"><span class="comment">#ax.spines['top'].set_color('none')</span></div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://img.blog.csdn.net/20130714153631031?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvamtoZXJl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="效果图"></p>
+<h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2><p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">plt.figure(figsize(<span class="number">8</span>,<span class="number">4</span>))</div><div class="line">x = np.random.random(<span class="number">100</span>)</div><div class="line">y = np.random.random(<span class="number">100</span>)</div><div class="line">plt.scatter(x,y,s=x*<span class="number">1000</span>,c=y,marker=(<span class="number">5</span>,<span class="number">1</span>),alpha=<span class="number">0.8</span>,lw=<span class="number">2</span>,facecolors=<span class="string">"none"</span>)</div><div class="line">plt.xlim(<span class="number">0</span>,<span class="number">1</span>)</div><div class="line">plt.ylim(<span class="number">0</span>,<span class="number">1</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://matplotlib.org/_images/scatter_demo1.png" alt="效果图"></p>
+<p><strong>效果解释</strong></p>
+<ol>
+<li>scatter()的前两个参数是数组，分别指定每个点的X轴和Y轴。s参数指定点的大小，值和点的面积成正比。它可以是一个数，指定所有点的大小；也可以是数组，分别对每个点指定大小。</li>
+<li>c参数指定每个点的颜色，可以是数值或数组。这里使用一维数组为每个点指定了一个数值。通过颜色映射表，每个值都会与一个颜色相对应。</li>
+<li>marker参数设置点的形状，可以是一个表示形状的字符串，也可以是表示多边形的两个元素的元祖，第一个元素表示多边形的边数，第二个元素表示多边形的样式，取值范围是0，1，2，3.0表示多边形，1表示星形，2表示放射形，3表示圆。</li>
+<li>最后，通过alpha设置点的透明度，通过lw设置线宽，facecolor表示填充色。</li>
+</ol>
+<h2 id="箱型图"><a href="#箱型图" class="headerlink" title="箱型图"></a>箱型图</h2><p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</div><div class="line"></div><div class="line"><span class="comment">#引入本地的字体库</span></div><div class="line">font = FontProperties(fname=<span class="string">r"c:\windows\fonts\simsun.ttc"</span>, size=<span class="number">14</span>)</div><div class="line">font_E = FontProperties(fname=<span class="string">r"c:\windows\fonts\times.ttf"</span>, size=<span class="number">20</span>)</div><div class="line">np.random.seed(<span class="number">10</span>)</div><div class="line">data_to_plot = [np.random.normal(<span class="number">100</span>, <span class="number">10</span>, <span class="number">200</span>), </div><div class="line">                np.random.normal(<span class="number">80</span>, <span class="number">30</span>, <span class="number">200</span>),</div><div class="line">                np.random.normal(<span class="number">90</span>, <span class="number">20</span>, <span class="number">200</span>),</div><div class="line">                np.random.normal(<span class="number">70</span>, <span class="number">25</span>, <span class="number">200</span>)]</div><div class="line"></div><div class="line">fig = plt.figure(<span class="number">1</span>, figsize=(<span class="number">9</span>, <span class="number">6</span>))</div><div class="line"><span class="comment"># Create an axes instance</span></div><div class="line">ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line"></div><div class="line"><span class="comment">## add patch_artist=True option to ax.boxplot() </span></div><div class="line"><span class="comment">## to get fill color</span></div><div class="line">bp = ax.boxplot(data_to_plot, patch_artist=<span class="keyword">True</span>)</div><div class="line"><span class="comment">## change outline color, fill color and linewidth of the boxes</span></div><div class="line"><span class="keyword">for</span> box <span class="keyword">in</span> bp[<span class="string">'boxes'</span>]:</div><div class="line">    <span class="comment"># change outline color</span></div><div class="line">    box.set( color=<span class="string">'#7570b3'</span>, linewidth=<span class="number">2</span>)</div><div class="line">    <span class="comment"># change fill color</span></div><div class="line">    box.set( facecolor = <span class="string">'#1b9e77'</span> )</div><div class="line"></div><div class="line"><span class="comment">## change color and linewidth of the whiskers</span></div><div class="line"><span class="keyword">for</span> whisker <span class="keyword">in</span> bp[<span class="string">'whiskers'</span>]:</div><div class="line">    whisker.set(color=<span class="string">'y'</span>, linewidth=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment">## change color and linewidth of the caps</span></div><div class="line"><span class="keyword">for</span> cap <span class="keyword">in</span> bp[<span class="string">'caps'</span>]: <span class="comment"># 上下的帽子</span></div><div class="line">    cap.set(color=<span class="string">'#7570b3'</span>, linewidth=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment">## change color and linewidth of the medians</span></div><div class="line"><span class="keyword">for</span> median <span class="keyword">in</span> bp[<span class="string">'medians'</span>]: <span class="comment">#中值</span></div><div class="line">    median.set(color=<span class="string">'r'</span>, linewidth=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment">## change the style of fliers and their fill</span></div><div class="line"><span class="keyword">for</span> flier <span class="keyword">in</span> bp[<span class="string">'fliers'</span>]: <span class="comment">#异常值</span></div><div class="line">    flier.set(marker=<span class="string">'o'</span>, color=<span class="string">'k'</span>, alpha=<span class="number">0.5</span>)</div><div class="line"><span class="comment">## Custom x-axis labels</span></div><div class="line">ax.set_xticklabels([<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>],fontproperties=font_E)</div><div class="line">plt.ylabel(<span class="string">"error(m)"</span>,fontproperties=font_E)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fd1jt8a7mxj21ep0nwgm5.jpg" alt="效果图"></p>
+<h2 id="双轴图"><a href="#双轴图" class="headerlink" title="双轴图"></a>双轴图</h2><p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</div><div class="line"></div><div class="line"><span class="comment">#引入本地的字体库</span></div><div class="line">font = FontProperties(fname=<span class="string">r"c:\windows\fonts\simsun.ttc"</span>, size=<span class="number">14</span>)</div><div class="line">font_E = FontProperties(fname=<span class="string">r"c:\windows\fonts\times.ttf"</span>, size=<span class="number">20</span>)   </div><div class="line"></div><div class="line">particle_num = np.arange(<span class="number">50</span>,<span class="number">1050</span>,<span class="number">50</span>)</div><div class="line">time_comsume = [<span class="number">0.00060916718125664639</span>, <span class="number">0.0013099725676996689</span>, <span class="number">0.0016603804020226163</span>, <span class="number">0.0020053920077506421</span>, <span class="number">0.0028140191440633685</span>, <span class="number">0.003849056531798165</span>, <span class="number">0.0033719783844652199</span>, <span class="number">0.0044824858560073731</span>, <span class="number">0.0045660351807216429</span>, <span class="number">0.0055148260934012273</span>, <span class="number">0.0060431263196179166</span>, <span class="number">0.0068409764220451084</span>, <span class="number">0.0065606520824997893</span>, <span class="number">0.007911049130791924</span>, <span class="number">0.0091536443509824192</span>, <span class="number">0.0089164429276458665</span>, <span class="number">0.009954174895170885</span>, <span class="number">0.010528301614314077</span>, <span class="number">0.012064690859812611</span>, <span class="number">0.010964955281054557</span>]</div><div class="line">error_list = [<span class="number">1.2623084782819491</span>, <span class="number">1.1763773539878053</span>, <span class="number">1.1616158220269037</span>, <span class="number">1.1321476231320482</span>, <span class="number">1.13237038454</span>, <span class="number">1.1175918934736424</span>, <span class="number">1.1061712463307345</span>, <span class="number">1.13353829727</span>, <span class="number">1.13501225098</span>, <span class="number">1.12704532681</span>, <span class="number">1.1314668475</span>, <span class="number">1.1499213579690104</span>, <span class="number">1.1161069361015437</span>, <span class="number">1.1468033594361338</span>, <span class="number">1.1317538877380131</span>, <span class="number">1.1520113949657633</span>, <span class="number">1.1155484809619332</span>, <span class="number">1.133242220113426</span>, <span class="number">1.1257514347852002</span>, <span class="number">1.131728691883565</span>]</div><div class="line">fig = plt.figure()</div><div class="line">ax1 = fig.add_subplot(<span class="number">111</span>)</div><div class="line">p1,  = ax1.plot(particle_num, error_list, label=<span class="string">'Error'</span>, linewidth=<span class="number">2</span>)</div><div class="line">ax1.set_ylabel(<span class="string">'error(m)'</span>,fontproperties=font_E)</div><div class="line"></div><div class="line">ax2 = ax1.twinx()</div><div class="line">p2,  = ax2.plot(particle_num, time_comsume, label=<span class="string">'Time Consume'</span>, color = <span class="string">'r'</span>, linewidth=<span class="number">2</span>)</div><div class="line">ax2.set_ylabel(<span class="string">'time consume(s)'</span>,fontproperties=font_E)</div><div class="line">ax1.set_xlabel(<span class="string">'The number of particle'</span>,fontproperties=font_E)</div><div class="line">plt.xticks(fontproperties=font)</div><div class="line">plt.legend(handles=[p1,p2])</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fd1jt8xvpwj20vb0lrabt.jpg" alt="效果图"></p>
+<h2 id="图片背景图"><a href="#图片背景图" class="headerlink" title="图片背景图"></a>图片背景图</h2><p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</div><div class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#引入本地的字体库</span></div><div class="line">font = FontProperties(fname=<span class="string">r"c:\windows\fonts\simsun.ttc"</span>, size=<span class="number">14</span>)</div><div class="line">font_E = FontProperties(fname=<span class="string">r"c:\windows\fonts\times.ttf"</span>, size=<span class="number">20</span>)   </div><div class="line"></div><div class="line">image = mpimg.imread(<span class="string">'./map.jpg'</span>)</div><div class="line">plt.imshow(image)</div><div class="line">plt.axis(<span class="string">"off"</span>)<span class="comment">#不显示坐标轴</span></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>效果</strong></p>
+<p><img src="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fd1jt7i9vuj21kw1cuafz.jpg" alt="效果图"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="http://matplotlib.org/gallery.html" target="_blank" rel="external">http://matplotlib.org/gallery.html</a></p>
+<p>[2] <a href="http://liam0205.me/2014/09/11/matplotlib-tutorial-zh-cn/" target="_blank" rel="external">http://liam0205.me/2014/09/11/matplotlib-tutorial-zh-cn/</a></p>
+<p>[3] <a href="Python科学绘图实例附代码">http://blog.csdn.net/golden1314521/article/details/44700551</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/折线图/" rel="tag"># 折线图</a>
+          
+            <a href="/tags/柱状图/" rel="tag"># 柱状图</a>
+          
+            <a href="/tags/python绘图，Matplotlib/" rel="tag"># python绘图，Matplotlib</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/生活/2016-01-13-落户上海政策/" rel="next" title="落户上海政策">
+                <i class="fa fa-chevron-left"></i> 落户上海政策
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/笔记/2016-01-17-github如何将代码回到过去/" rel="prev" title="github如何将代码回到过去">
+                github如何将代码回到过去 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python绘制基本图表"><span class="nav-number">1.</span> <span class="nav-text">python绘制基本图表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制折线图"><span class="nav-number">1.1.</span> <span class="nav-text">绘制折线图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制柱状图"><span class="nav-number">1.2.</span> <span class="nav-text">绘制柱状图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制直方图"><span class="nav-number">1.3.</span> <span class="nav-text">绘制直方图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散点图"><span class="nav-number">1.4.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箱型图"><span class="nav-number">1.5.</span> <span class="nav-text">箱型图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双轴图"><span class="nav-number">1.6.</span> <span class="nav-text">双轴图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片背景图"><span class="nav-number">1.7.</span> <span class="nav-text">图片背景图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.8.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

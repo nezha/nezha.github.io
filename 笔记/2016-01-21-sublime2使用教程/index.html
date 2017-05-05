@@ -1,0 +1,786 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sublime,注册破解," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="sublime2的使用 本文主要参考转载的是：Sublime Text 2安装汉化破解、插件包安装教程  sublime2破解 首先要打开Sublime Text 2 help-&amp;gt;Enter License 粘贴下面代码即可  12345678910111213----- BEGIN LICENSE ----- Andrew Weber Single User License EA7E-85">
+<meta name="keywords" content="sublime,注册破解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sublime2使用教程">
+<meta property="og:url" content="https://nezha.github.io/笔记/2016-01-21-sublime2使用教程/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="sublime2的使用 本文主要参考转载的是：Sublime Text 2安装汉化破解、插件包安装教程  sublime2破解 首先要打开Sublime Text 2 help-&amp;gt;Enter License 粘贴下面代码即可  12345678910111213----- BEGIN LICENSE ----- Andrew Weber Single User License EA7E-85">
+<meta property="og:updated_time" content="2017-05-05T11:29:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sublime2使用教程">
+<meta name="twitter:description" content="sublime2的使用 本文主要参考转载的是：Sublime Text 2安装汉化破解、插件包安装教程  sublime2破解 首先要打开Sublime Text 2 help-&amp;gt;Enter License 粘贴下面代码即可  12345678910111213----- BEGIN LICENSE ----- Andrew Weber Single User License EA7E-85">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/笔记/2016-01-21-sublime2使用教程/"/>
+
+
+
+
+
+  <title>sublime2使用教程 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/笔记/2016-01-21-sublime2使用教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sublime2使用教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-21T00:00:00+08:00">
+                2016-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="sublime2的使用"><a href="#sublime2的使用" class="headerlink" title="sublime2的使用"></a>sublime2的使用</h1><blockquote>
+<p>本文主要参考转载的是：<a href="http://jingyan.baidu.com/article/ff4116259b057c12e48237b8.html" target="_blank" rel="external">Sublime Text 2安装汉化破解、插件包安装教程</a></p>
+</blockquote>
+<h2 id="sublime2破解"><a href="#sublime2破解" class="headerlink" title="sublime2破解"></a>sublime2破解</h2><ol>
+<li>首先要打开Sublime Text 2</li>
+<li>help-&gt;Enter License</li>
+<li>粘贴下面代码即可</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">----- BEGIN LICENSE ----- </div><div class="line">Andrew Weber </div><div class="line">Single User License </div><div class="line">EA7E-855605 </div><div class="line">813A03DD 5E4AD9E6 6C0EEB94 BC99798F </div><div class="line">942194A6 02396E98 E62C9979 4BB979FE </div><div class="line">91424C9D A45400BF F6747D88 2FB88078 </div><div class="line">90F5CC94 1CDC92DC 8457107A F151657B </div><div class="line">1D22E383 A997F016 42397640 33F41CFC </div><div class="line">E1D0AE85 A0BBD039 0E9C8D55 E1B89D5D </div><div class="line">5CDB7036 E56DE1C0 EFCC0840 650CD3A6 </div><div class="line">B98FC99C 8FAC73EE D2B95564 DF450523 </div><div class="line">------ END LICENSE ------</div></pre></td></tr></table></figure>
+<h2 id="安装包控制器（package-control）"><a href="#安装包控制器（package-control）" class="headerlink" title="安装包控制器（package control）"></a>安装包控制器（package control）</h2><ol>
+<li>Ctrl+~ 调出命令控制器</li>
+<li>输入下面命令，回车</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib2,os; pf=<span class="string">'Package Control.sublime-package'</span>; ipp=sublime.installed_packages_path(); os.makedirs(ipp) <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ipp) <span class="keyword">else</span> <span class="keyword">None</span>; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read()); print(<span class="string">'Please restart Sublime Text to finish installation'</span>)</div></pre></td></tr></table></figure>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"color_scheme"</span>: <span class="string">"Packages/Color Scheme - Default/Monokai.tmTheme"</span>,</div><div class="line">	<span class="attr">"font_size"</span>: <span class="number">15.0</span>,</div><div class="line">	<span class="attr">"highlight_line"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"ignored_packages"</span>:</div><div class="line">	[</div><div class="line">		<span class="string">"Vintage"</span></div><div class="line">	],</div><div class="line">	<span class="attr">"scroll_past_end"</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">"show_encoding"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"tab_size"</span>: <span class="number">4</span>,</div><div class="line">	<span class="attr">"translate_tabs_to_spaces"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"word_wrap"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"open_files_in_new_window"</span>:<span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><blockquote>
+<p>安装插件：Ctrl+Shift+p –&gt; install package<br>删除插件：Ctrl+Shift+p –&gt; remove package</p>
+</blockquote>
+<p><strong>常用插件</strong></p>
+<p>1.Sublime CodeIntel</p>
+<blockquote>
+<p>它提供了很多IDE提供的功能，例如代码自动补齐，快速跳转到变量定义，在状态栏显示函数快捷信息等</p>
+</blockquote>
+<p>2.Sublime Linter</p>
+<blockquote>
+<p>这个插件帮你找到代码中的错误</p>
+</blockquote>
+<p>3.Emmet(Zen Coding)</p>
+<blockquote>
+<p>快速生成html代码</p>
+</blockquote>
+<p>4.MarkdownEditing</p>
+<blockquote>
+<p>支持Markdown语法高亮和自动补全</p>
+</blockquote>
+<p>5.Markdown Extended + Extends Monokai</p>
+<blockquote>
+<p>不错的Markdown主题，支持对多种语言的高亮</p>
+</blockquote>
+<p>6.Sublime Alignment</p>
+<blockquote>
+<p>用于代码格式的自动对齐。</p>
+</blockquote>
+<p>7.jsFormat</p>
+<blockquote>
+<p>快速格式化javascript代码 Ctrl + Alt + F</p>
+</blockquote>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ol>
+<li>Alt+Shift+1（非小键盘）窗口分屏，恢复默认1屏</li>
+<li>Alt+tab     切换窗口</li>
+<li>Ctrl+Shift+分屏序号 将当前焦点页分配到分屏序号页</li>
+<li>Ctrl+P 查找当前项目中的文件和快速搜索；输入 @ 查找文件主标题/函数；或者输入 : 跳转到文件某行；</li>
+<li>Ctrl+K Backspace 从光标处删除至行首 Ctrl+KK 从光标处删除至行尾</li>
+<li>Ctrl+D 选词 （使用Ctrl+K是取消本次选择，反复按快捷键，即可继续向下同时选中下一个相同的文本进行同时编辑）</li>
+<li>Ctrl+G 跳转到相应的行</li>
+<li>Shift+右击 块操作</li>
+<li>Ctrl+Alt+F  快速格式化javascript代码</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]：<a href="http://jingyan.baidu.com/article/ff4116259b057c12e48237b8.html" target="_blank" rel="external">http://jingyan.baidu.com/article/ff4116259b057c12e48237b8.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sublime/" rel="tag"># sublime</a>
+          
+            <a href="/tags/注册破解/" rel="tag"># 注册破解</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/2016-01-17-github如何将代码回到过去/" rel="next" title="github如何将代码回到过去">
+                <i class="fa fa-chevron-left"></i> github如何将代码回到过去
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/科学计算/2016-03-04-scikit_learn初入门/" rel="prev" title="scikit_learn初入门">
+                scikit_learn初入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sublime2的使用"><span class="nav-number">1.</span> <span class="nav-text">sublime2的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sublime2破解"><span class="nav-number">1.1.</span> <span class="nav-text">sublime2破解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装包控制器（package-control）"><span class="nav-number">1.2.</span> <span class="nav-text">安装包控制器（package control）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本配置"><span class="nav-number">1.3.</span> <span class="nav-text">基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装插件"><span class="nav-number">1.4.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.5.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.6.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

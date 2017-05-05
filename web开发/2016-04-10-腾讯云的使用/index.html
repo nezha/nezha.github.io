@@ -1,0 +1,753 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="腾讯云,web开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="腾讯云的使用 参考网址: 主要的参考还是腾讯的官方教程: http://www.qcloud.com/wiki/ 下面的内容主要介绍怎么使用腾讯几乎是免费送给大家的免费云平台,在这里的你可以尽情的展现你自己的想法,我的想法也很简单: 1.搭建自己的CMS 2.搭建自己家的云平台实现数据的云端处理 3.将实验的服务器端放在虚拟主机(云服务器中)，方便以后的管理  为什么选择腾讯云为什么要选择腾讯云,">
+<meta name="keywords" content="腾讯云,web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="腾讯云的使用">
+<meta property="og:url" content="https://nezha.github.io/web开发/2016-04-10-腾讯云的使用/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="腾讯云的使用 参考网址: 主要的参考还是腾讯的官方教程: http://www.qcloud.com/wiki/ 下面的内容主要介绍怎么使用腾讯几乎是免费送给大家的免费云平台,在这里的你可以尽情的展现你自己的想法,我的想法也很简单: 1.搭建自己的CMS 2.搭建自己家的云平台实现数据的云端处理 3.将实验的服务器端放在虚拟主机(云服务器中)，方便以后的管理  为什么选择腾讯云为什么要选择腾讯云,">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/9d2c4511gw1f2ylojvkyoj21kw0vcdq1.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/9d2c4511gw1f2ylo21fyej21kw101ali.jpg">
+<meta property="og:updated_time" content="2017-05-05T11:35:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="腾讯云的使用">
+<meta name="twitter:description" content="腾讯云的使用 参考网址: 主要的参考还是腾讯的官方教程: http://www.qcloud.com/wiki/ 下面的内容主要介绍怎么使用腾讯几乎是免费送给大家的免费云平台,在这里的你可以尽情的展现你自己的想法,我的想法也很简单: 1.搭建自己的CMS 2.搭建自己家的云平台实现数据的云端处理 3.将实验的服务器端放在虚拟主机(云服务器中)，方便以后的管理  为什么选择腾讯云为什么要选择腾讯云,">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/mw690/9d2c4511gw1f2ylojvkyoj21kw0vcdq1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/web开发/2016-04-10-腾讯云的使用/"/>
+
+
+
+
+
+  <title>腾讯云的使用 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/web开发/2016-04-10-腾讯云的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">腾讯云的使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-10T00:00:00+08:00">
+                2016-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">web开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="腾讯云的使用"><a href="#腾讯云的使用" class="headerlink" title="腾讯云的使用"></a>腾讯云的使用</h1><blockquote>
+<p>参考网址:</p>
+<p>主要的参考还是腾讯的官方教程: <a href="http://www.qcloud.com/wiki/" target="_blank" rel="external">http://www.qcloud.com/wiki/</a></p>
+<p>下面的内容主要介绍怎么使用腾讯几乎是免费送给大家的免费云平台,在这里的你可以尽情的展现你自己的想法,我的想法也很简单:</p>
+<p>1.搭建自己的CMS</p>
+<p>2.搭建自己家的云平台实现数据的云端处理</p>
+<p>3.将实验的服务器端放在虚拟主机(云服务器中)，方便以后的管理</p>
+</blockquote>
+<h2 id="为什么选择腾讯云"><a href="#为什么选择腾讯云" class="headerlink" title="为什么选择腾讯云"></a>为什么选择腾讯云</h2><p>为什么要选择腾讯云,这个最为主要的原因是自己经济情况决定的,腾讯云每年送我一个域名然后每个月只要1元就可以租用腾讯的云平台.相比较于阿里云,阿里云是学生价9.9元每个月,由于自己对云平台的要求也不是很高而且对系统也没有特殊要求况且两个平台的操作系统都差不多.这样自己就选择了腾讯云,对于学生其实花这1块钱我是认为很有必要的,在学校不多学点东西,到社会工作早晚还是会加倍的学习的.总之一句话:‘欠下的迟早要还的’。</p>
+<p><img src="http://ww2.sinaimg.cn/mw690/9d2c4511gw1f2ylojvkyoj21kw0vcdq1.jpg" alt="1元计划"></p>
+<h2 id="该选择哪种系统"><a href="#该选择哪种系统" class="headerlink" title="该选择哪种系统"></a>该选择哪种系统</h2><p>对于选择什么系统的问题上,自己感觉要学习的话还是Linux系统好,我选择的是Centos的纯净版,当然了如果有人希望系统中把所有的环境都搭建好其实也是可以选择的.</p>
+<p><img src="http://ww4.sinaimg.cn/mw690/9d2c4511gw1f2ylo21fyej21kw101ali.jpg" alt="选择系统"></p>
+<h2 id="怎么登陆服务器"><a href="#怎么登陆服务器" class="headerlink" title="怎么登陆服务器"></a>怎么登陆服务器</h2><p>对于登陆方式,主要是分为两种,一种是通过密码登录这种方式很简单；另一种就是通过密钥登录这种略复杂点.我采用的密码登录的方式,当然凡事试一下的态度我也尝试了通过密钥登录,整体来说也不是很复杂就是步骤多了一点</p>
+<h3 id="windows平台"><a href="#windows平台" class="headerlink" title="windows平台"></a>windows平台</h3><h4 id="putty密钥登录"><a href="#putty密钥登录" class="headerlink" title="putty密钥登录"></a>putty密钥登录</h4><p>这个我有点懒了,要是非要这样做可以自己去查看<a href="http://www.qcloud.com/wiki/通过ssh密钥方式登陆到Linux服务器（有公网IP）" target="_blank" rel="external">官方文档</a>这里面写的很详细.官方文档的是将私钥给你然后自己用这个私钥绑定主机.</p>
+<p>还有一种方式是通过本地产生公钥给服务器然后实现绑定,具体的教程是<a href="http://blog.csdn.net/gsls200808/article/details/49778959" target="_blank" rel="external">腾讯云配置密钥使用putty登录</a></p>
+<h3 id="Linux-or-Mac平台"><a href="#Linux-or-Mac平台" class="headerlink" title="Linux or Mac平台"></a>Linux or Mac平台</h3><h4 id="ssh密码登录"><a href="#ssh密码登录" class="headerlink" title="ssh密码登录"></a>ssh密码登录</h4><p>ssh下的密码登录很简单,就是一行的代码,然后按照要求输入密码就行了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@115.111.111.111  #root是系统管理员</div></pre></td></tr></table></figure>
+<h4 id="ssh密钥登录"><a href="#ssh密钥登录" class="headerlink" title="ssh密钥登录"></a>ssh密钥登录</h4><p>我还是感觉在linux下用命令行登录的方式非常方便,按下面的代码操作也就两行,window下却需要一堆的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">chmod 400 私钥文件                 #将您的私钥文件设置权限为400</div><div class="line">ssh -i 私钥文件 系统管理员@服务器IP   #对于ubuntu系统管理员为ubuntu；对于redhat，centos，debian，suse</div><div class="line">用户名为root</div><div class="line">例：ssh -i ~/test root@203.111.111.111  #私钥文件路径为~/test，用户名为ubuntu，服务IP为203.111.111.111</div></pre></td></tr></table></figure>
+<h2 id="主要的问题"><a href="#主要的问题" class="headerlink" title="主要的问题"></a>主要的问题</h2><p>1.主要是当在Mac下终端编辑的中文到windows平台下时终端打开是乱码</p>
+<blockquote>
+<p>如果有谁能帮忙解决的,希望能给我留言或发邮件给我<a href="nezhaxiaozi@outlook">nezhaxiaozi@outlook.com</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/腾讯云/" rel="tag"># 腾讯云</a>
+          
+            <a href="/tags/web开发/" rel="tag"># web开发</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/2016-03-15-github常见问题(持续更新)/" rel="next" title="github常见问题">
+                <i class="fa fa-chevron-left"></i> github常见问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/web开发/2016-04-12-腾讯云FTP的配置/" rel="prev" title="腾讯云FTP的配置">
+                腾讯云FTP的配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#腾讯云的使用"><span class="nav-number">1.</span> <span class="nav-text">腾讯云的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么选择腾讯云"><span class="nav-number">1.1.</span> <span class="nav-text">为什么选择腾讯云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#该选择哪种系统"><span class="nav-number">1.2.</span> <span class="nav-text">该选择哪种系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么登陆服务器"><span class="nav-number">1.3.</span> <span class="nav-text">怎么登陆服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows平台"><span class="nav-number">1.3.1.</span> <span class="nav-text">windows平台</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#putty密钥登录"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">putty密钥登录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-or-Mac平台"><span class="nav-number">1.3.2.</span> <span class="nav-text">Linux or Mac平台</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh密码登录"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">ssh密码登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh密钥登录"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">ssh密钥登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要的问题"><span class="nav-number">1.4.</span> <span class="nav-text">主要的问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

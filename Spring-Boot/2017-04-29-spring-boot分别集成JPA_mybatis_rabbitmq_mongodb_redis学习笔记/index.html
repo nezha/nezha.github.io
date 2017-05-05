@@ -1,0 +1,999 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring Boot,Spring Jpa,mybatis,rabbitmq,mongodb,redis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  # pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1.4.1.RELEASE。 常用注解 @RestController返回json形式的结果，便于前后端分离。是@ResponseBo">
+<meta name="keywords" content="Spring Boot,Spring Jpa,mybatis,rabbitmq,mongodb,redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记">
+<meta property="og:url" content="https://nezha.github.io/Spring-Boot/2017-04-29-spring-boot分别集成JPA_mybatis_rabbitmq_mongodb_redis学习笔记/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  # pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1.4.1.RELEASE。 常用注解 @RestController返回json形式的结果，便于前后端分离。是@ResponseBo">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/977217/201607/977217-20160718164109076-508374758.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/977217/201607/977217-20160719183149701-931010371.jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3239635-f350dec07f1883ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3239635-6068a7de288f4e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3239635-d60da0cd0754fdfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-05T11:47:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记">
+<meta name="twitter:description" content="Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  # pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1.4.1.RELEASE。 常用注解 @RestController返回json形式的结果，便于前后端分离。是@ResponseBo">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/977217/201607/977217-20160718164109076-508374758.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/Spring-Boot/2017-04-29-spring-boot分别集成JPA_mybatis_rabbitmq_mongodb_redis学习笔记/"/>
+
+
+
+
+
+  <title>spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/Spring-Boot/2017-04-29-spring-boot分别集成JPA_mybatis_rabbitmq_mongodb_redis学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T00:00:00+08:00">
+                2017-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring-Boot/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Boot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Spring-Boot学习笔记–全注解方式"><a href="#Spring-Boot学习笔记–全注解方式" class="headerlink" title="Spring Boot学习笔记–全注解方式"></a>Spring Boot学习笔记–全注解方式</h2><blockquote>
+<p><a href="http://git.oschina.net/didispace/SpringBoot-Learning" target="_blank" rel="external">Spring Boot教程与Spring Cloud教程</a></p>
+</blockquote>
+<h1 id="pring-boot中文帮助文档"><a href="#pring-boot中文帮助文档" class="headerlink" title="# pring boot中文帮助文档"></a># pring boot中文帮助文档</h1><p><a href="https://qbgbook.gitbooks.io/spring-boot-reference-guide-zh/content/" target="_blank" rel="external">Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》</a>—说明：本文档翻译的版本：1.4.1.RELEASE。</p>
+<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><ul>
+<li><code>@RestController</code><br>返回json形式的结果，便于前后端分离。是@ResponseBody 和 @Controller的组合体</li>
+<li><code>@RequestMapping</code><br>配置url映射</li>
+<li><code>@EnableAutoConfiguration</code></li>
+<li><code>@Configuration</code></li>
+<li><code>@ComponentScan</code></li>
+<li><code>@SpringBootApplication</code></li>
+</ul>
+<p>很多Spring Boot开发者总是使用 <code>@Configuration</code> ， <code>@EnableAutoConfiguration</code> 和 <code>@ComponentScan</code> 注解他们的main类。由于这些注解被如此频繁地一块使用（特别是你遵循以上最佳实践时），Spring Boot提供一个方便的 <code>@SpringBootApplication</code> 选择。</p>
+<p>该 <code>@SpringBootApplication</code> 注解等价于以默认属性使用 <code>@Configuration</code> ， <code>@EnableAutoConfiguration</code> 和 <code>@ComponentScan</code> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</div><div class="line"><span class="meta">@SpringBootApplication</span> <span class="comment">// same as @Configuration @EnableAutoConfiguration @ComponentScan</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>@ConfigurationProperties</code></li>
+</ul>
+<p>属性注入,prefix指代注入的配置来自connection的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"connection"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionSettings</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String username;</div><div class="line">    <span class="keyword">private</span> InetAddress remoteAddress;</div><div class="line">    <span class="comment">// ... getters and setters</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">connection:</div><div class="line">  name: 赵武</div><div class="line">  age: 18</div><div class="line">  job: Java研发工程师</div></pre></td></tr></table></figure>
+<p>为了使用<code>@ConfigurationProperties</code> beans，你可以使用与其他任何bean相同的方式注入它们</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> ConnectionSettings connection;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="meta">@PostConstruct</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">openConnection</span><span class="params">()</span> </span>&#123;</div><div class="line">        Server server = <span class="keyword">new</span> Server();</div><div class="line">        <span class="keyword">this</span>.connection.configure(server);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>@EnableConfigurationProperties</code></li>
+<li><code>@Component</code>和<code>@Bean</code><br><code>@Bean</code>主要被用在方法上，来显式声明要用生成的类</li>
+<li><code>@Profiles</code></li>
+</ul>
+<p>Spring Profiles提供了一种隔离应用程序配置的方式，并让这些配置只能在特定的环境下生效。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">spring:</div><div class="line">  profiles:</div><div class="line">    active: dev</div></pre></td></tr></table></figure>
+<ul>
+<li><code>@Value</code></li>
+</ul>
+<p>用于获取配置文件下的配置项</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">people:</div><div class="line">  name: 赵武</div><div class="line">  age: 18</div><div class="line">  job: Java研发工程师</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;people.name&#125;"</span>)</div><div class="line"><span class="keyword">private</span> String name;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>@Controller</code></li>
+</ul>
+<blockquote>
+<p><code>@PathVariable</code>,<code>@RequestParam</code><br><code>@GetMapping</code>,<code>@PostMapping</code>:Get 或Post方式的请求，组合模式</p>
+</blockquote>
+<p><code>@PathVariable</code>的使用，获取请求参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/hello/&#123;id&#125;"</span>,method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayhello</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span>Integer myid)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"id:"</span>+myid;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>@RequestParam</code>的使用，获取传统方式的参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/hi"</span>,method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayhi</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>,required = <span class="keyword">false</span>,defaultValue = <span class="string">"100"</span>)</span>Integer myid)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"id:"</span>+myid;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="spring-data-JPA-–-单数据源"><a href="#spring-data-JPA-–-单数据源" class="headerlink" title="spring data JPA  – 单数据源"></a>spring data JPA  – 单数据源</h2><blockquote>
+<p>具体的实现代码demo：<a href="https://github.com/nezha/Spring-Boot-Restful-JPA" target="_blank" rel="external">Spring-Boot-Restful-JPA的demo程序</a></p>
+<p>定义了对象持久化的标准，主要是对Hibernate的整合</p>
+<p>现阶段发现和mybatis的直观操作很一致，都是可能集中管理数据库连接与释放，JPA想比较于mybatis可以自动建表，不知道算不算一种优势，在我看来不算是。毕竟表结构基本上数据库工程师都搞定了的事。</p>
+</blockquote>
+<p>1.加入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.配置数据库和JPA</p>
+<blockquote>
+<p>ddl-auto:创建的方式</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">spring:</div><div class="line">  datasource:</div><div class="line">    driver-class-name: com.mysql.jdbc.Driver</div><div class="line">    url: jdbc:mysql://127.0.0.1:3306/coder</div><div class="line">    username: root</div><div class="line">    password: root</div><div class="line">  jpa:</div><div class="line">    hibernate:</div><div class="line">      ddl-auto: create</div><div class="line">    show-sql: true</div></pre></td></tr></table></figure>
+<p>3.创建Mapper对象</p>
+<blockquote>
+<p>@Entity: 持久化实例</p>
+<p>@Table: 自定义表的名称</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="comment">//@Table(name = "programmer")</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coder</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.AUTO)</div><div class="line">    <span class="keyword">private</span> Integer id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Integer age;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Coder</span><span class="params">()</span></span>&#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.集成JpaRepository</p>
+<blockquote>
+<p>主要是基于Hibernate的</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CoderRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Coder</span>,<span class="title">Integer</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">//这个是扩展开来的查询方式</span></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Coder&gt; <span class="title">findByAge</span><span class="params">(Integer age)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.实现一个CoderController，实现增删改查。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CoderController</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> CoderRepository coderRepository;</div><div class="line"></div><div class="line">    <span class="comment">//1.Get方式请求，查询所有程序员信息</span></div><div class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/coders"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Coder&gt; <span class="title">coderList</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> coderRepository.findAll();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//2.Post方式，增加程序员</span></div><div class="line">    <span class="meta">@PostMapping</span>(value = <span class="string">"/coders"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> Coder <span class="title">CoderAdd</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span>String name,@<span class="title">RequestParam</span><span class="params">(<span class="string">"age"</span>)</span>Integer age)</span>&#123;</div><div class="line">        Coder coder = <span class="keyword">new</span> Coder();</div><div class="line">        coder.setAge(age);</div><div class="line">        coder.setName(name);</div><div class="line">        <span class="keyword">return</span>  coderRepository.save(coder);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//3.通过id查询一个人</span></div><div class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/coders/&#123;id&#125;"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> Coder <span class="title">CoderFindOne</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span>Integer id)</span>&#123;</div><div class="line">        <span class="keyword">return</span> coderRepository.findOne(id);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//4.通过id删除一个人</span></div><div class="line">    <span class="meta">@DeleteMapping</span>(value = <span class="string">"/coders/&#123;id&#125;"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CoderDelete</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span>Integer id)</span>&#123;</div><div class="line">        coderRepository.delete(id);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//5.更新一个人,用Postman模拟的时候注意：用x-www-form-urlencoded</span></div><div class="line">    <span class="meta">@PutMapping</span>(value = <span class="string">"/coders/&#123;id&#125;"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> Coder <span class="title">CoderUpdateOne</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span>Integer id, @<span class="title">RequestParam</span><span class="params">(<span class="string">"name"</span>)</span> String name, @<span class="title">RequestParam</span><span class="params">(<span class="string">"age"</span>)</span>Integer age)</span>&#123;</div><div class="line">        Coder coder = <span class="keyword">new</span> Coder();</div><div class="line">        coder.setId(id);</div><div class="line">        coder.setName(name);</div><div class="line">        coder.setAge(age);</div><div class="line">        <span class="keyword">return</span> coderRepository.save(coder);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//6.扩展Jpa接口，按照年龄查找</span></div><div class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/coder/age/&#123;age&#125;"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Coder&gt; <span class="title">CoderFindAll</span><span class="params">(@PathVariable(<span class="string">"age"</span>)</span>Integer age)</span>&#123;</div><div class="line">        <span class="keyword">return</span> coderRepository.findByAge(age);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>6.实现mysql的事务</p>
+<ul>
+<li>首先新建一个Service类:CoderService</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CoderService</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    CoderRepository coderRepository;</div><div class="line"></div><div class="line">    <span class="meta">@Transactional</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertTwo</span><span class="params">()</span></span>&#123;</div><div class="line">        Coder coderA = <span class="keyword">new</span> Coder();</div><div class="line">        coderA.setAge(<span class="number">101</span>);</div><div class="line">        coderA.setName(<span class="string">"1"</span>);</div><div class="line">        coderRepository.save(coderA);</div><div class="line"></div><div class="line">        Coder coderB = <span class="keyword">new</span> Coder();</div><div class="line">        coderB.setAge(<span class="number">102</span>);</div><div class="line">        coderB.setName(<span class="string">"102"</span>);</div><div class="line">        coderRepository.save(coderB);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在CoderController中自动载入coderService</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Autowired</span></div><div class="line"><span class="keyword">private</span> CoderService coderService;</div></pre></td></tr></table></figure>
+<ul>
+<li>在CoderController调用service。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//7.使用事务，同时插入两个人的数据</span></div><div class="line"><span class="meta">@PostMapping</span>(value = <span class="string">"coder/two"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">coderTwo</span><span class="params">()</span></span>&#123;</div><div class="line">    coderService.insertTwo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>7.使用<code>@Query</code>实现自定义sql查询</p>
+<ul>
+<li>在<code>CoderRepository</code>实现下面代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Query</span>(<span class="string">"select p from Coder p where p.id = (select max(p2.id) from Coder p2)"</span>)</div><div class="line">    <span class="function">Coder <span class="title">getMaxIdCoder</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>在<code>CoderController</code>中使用<code>getMaxIdCoder</code>方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//8.自定义sql语句查询</span></div><div class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/coder/find"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> Coder <span class="title">CoderFindByTask</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> coderRepository.getMaxIdCoder();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Spring-Boot-MyBatis-–-单数据源"><a href="#Spring-Boot-MyBatis-–-单数据源" class="headerlink" title="Spring Boot MyBatis – 单数据源"></a>Spring Boot MyBatis – 单数据源</h2><p>基于注解方式的Mybatis其实和JPA很类似，不过mybatis不提供自动创建表的操作。这点上jpa更好些。</p>
+<blockquote>
+<p>我的demo程序，在我的github上：<a href="https://github.com/nezha/spring-boot-mybatis-mysql" target="_blank" rel="external">spring-boot-mybatis-mysql</a></p>
+<p>引用博客：<br><a href="http://www.jianshu.com/p/c2444ddd2de9" target="_blank" rel="external">Spring Boot + MyBatis + MySQL 整合</a>–简书 FlySheep_ly</p>
+<p>程序员DD：<a href="http://blog.didispace.com/springbootmybatis/" target="_blank" rel="external">Spring Boot整合MyBatis</a></p>
+<pre><code>[Spring Boot中使用MyBatis注解配置详解](http://blog.didispace.com/mybatisinfo/)
+</code></pre></blockquote>
+<p>1.引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 添加 MyBatis --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 添加 MySQL --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.41<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.application.properties中配置mysql的连接配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">spring.datasource.url=jdbc:mysql://localhost:3306/test01</div><div class="line">spring.datasource.username=root</div><div class="line">spring.datasource.password=root</div><div class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</div></pre></td></tr></table></figure>
+<p>3.创建映射对象User</p>
+<p>关于序列化的实现，最好还是实现一下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">5554561712056198940L</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Integer age;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Long id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.创建User映射的操作UserMapper</p>
+<p>关于Mapper的更多操作，请参考mybatis官网</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by nezha on 2017/4/26.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="meta">@Mapper</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 添加操作，返回新增元素的 ID</div><div class="line">     * <span class="doctag">@param</span> User</div><div class="line">     */</div><div class="line">    <span class="meta">@Insert</span>(<span class="string">"insert into person(name,age) values(#&#123;name&#125;,#&#123;age&#125;)"</span>)</div><div class="line">    <span class="meta">@Options</span>(useGeneratedKeys = <span class="keyword">true</span>, keyColumn = <span class="string">"id"</span>, keyProperty = <span class="string">"id"</span>)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(User user)</span></span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 查询所有</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Select</span>(<span class="string">"select id,name,age from person"</span>)</div><div class="line">    <span class="function">List&lt;User&gt; <span class="title">selectAll</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM USER WHERE NAME = #&#123;name&#125;"</span>)</div><div class="line">    <span class="function">User <span class="title">findByName</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name)</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.调用测试</p>
+<p>发现Restful风格真是好习惯，很好用很实用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@EnableTransactionManagement</span></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> UserMapper userMapper;</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/test/&#123;name&#125;"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">findOne</span><span class="params">(@PathVariable(<span class="string">"name"</span>)</span>String name)</span>&#123;</div><div class="line">        <span class="keyword">return</span> userMapper.findByName(name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###可能出现的问题：</p>
+<blockquote>
+<p>mybatis+spring boot, mapper 提示Could not autowire. 一直提示不能加载</p>
+</blockquote>
+<p><img src="http://images2015.cnblogs.com/blog/977217/201607/977217-20160718164109076-508374758.png" alt=""></p>
+<ul>
+<li>解决方案</li>
+</ul>
+<p>修改idea配置，将spring 的severity的值设置为”warning”, 如下：<br><img src="http://images2015.cnblogs.com/blog/977217/201607/977217-20160719183149701-931010371.jpg" alt=""></p>
+<p>如果想进一步缩小修改范围的话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Alt + Enter quick fix or change settings</div><div class="line">Settings - Editor - Inspections - Spring - Spring Core - Code - Autowiring for Bean Class - warning</div></pre></td></tr></table></figure>
+<h3 id="关于多源配置的问题："><a href="#关于多源配置的问题：" class="headerlink" title="关于多源配置的问题："></a>关于多源配置的问题：</h3><p>1.<a href="http://www.jianshu.com/p/c6770b1466b8" target="_blank" rel="external">Spring Boot 整合 Mybatis 实现 Druid 多数据源详解</a></p>
+<p>2.<a href="http://www.ityouknow.com/springboot/2016/11/25/springboot(%E4%B8%83" target="_blank" rel="external">springboot+mybatis多数据源最简解决方案</a>-springboot+mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%9C%80%E7%AE%80%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html)</p>
+<h2 id="Spring-Boot-RabbitMQ"><a href="#Spring-Boot-RabbitMQ" class="headerlink" title="Spring Boot RabbitMQ"></a>Spring Boot RabbitMQ</h2><blockquote>
+<p>我的demo程序：<a href="https://github.com/nezha/spring-boot-RabbitMQ" target="_blank" rel="external">spring-boot-RabbitMQ</a></p>
+<p><a href="http://www.jianshu.com/p/22687e6e2a38" target="_blank" rel="external">Spring Boot RabbitMQ 入门</a>–这篇文章写得不错,关于RabbitMQ的三种Exchange方式讲的很好。不过代码不是很简洁。</p>
+<p><a href="http://www.ityouknow.com/springboot/2016/11/30/springboot(八" target="_blank" rel="external">RabbitMQ详解</a>-RabbitMQ详解.html)–<a href="https://github.com/ityouknow" target="_blank" rel="external">纯洁的微笑的文章代码很简洁</a></p>
+</blockquote>
+<h3 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h3><blockquote>
+<p><a href="http://blog.didispace.com/spring-boot-rabbitmq/" target="_blank" rel="external">翟永超-Spring boot系列教程</a></p>
+</blockquote>
+<h3 id="RabbitMQ的三种Exchange方式"><a href="#RabbitMQ的三种Exchange方式" class="headerlink" title="RabbitMQ的三种Exchange方式"></a>RabbitMQ的三种Exchange方式</h3><p><strong>1.Direct Exchange</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3239635-f350dec07f1883ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>如果 routing key 匹配, 那么Message就会被传递到相应的queue中。其实在queue创建时，它会自动的以queue的名字作为routing key来绑定那个exchange。</p>
+<p><strong>2.Fanout Exchange</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3239635-6068a7de288f4e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout交换机转发消息是最快的。</p>
+<p><strong>3.Topic Exchange</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3239635-d60da0cd0754fdfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>将路由键和某模式进行匹配。此时队列需要绑定要一个模式上。符号“#”匹配一个或多个词，符号“<em>”匹配不多不少一个词。因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.</em>”</p>
+<h3 id="实例讲解"><a href="#实例讲解" class="headerlink" title="实例讲解"></a>实例讲解</h3><blockquote>
+<p>三种方式最主要的文件就三个：</p>
+<p>1.sender的配置</p>
+<p>2.receiver的配置</p>
+<p>3.rabbitConfig的配置</p>
+</blockquote>
+<p>下面，我们通过在Spring Boot应用中整合RabbitMQ，并实现一个简单的发送、接收消息的例子来对RabbitMQ有一个直观的感受和理解。</p>
+<p>在Spring Boot中整合RabbitMQ是一件非常容易的事，因为之前我们已经介绍过Starter POMs，其中的AMQP模块就可以很好的支持RabbitMQ，下面我们就来详细说说整合过程：</p>
+<p>1.pom依赖引入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.连接配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">spring.application.name=rabbitmq-hello</div><div class="line">spring.rabbitmq.host=localhost</div><div class="line">spring.rabbitmq.port=5672</div><div class="line">spring.rabbitmq.username=guest</div><div class="line">spring.rabbitmq.password=guest</div></pre></td></tr></table></figure>
+<p>3.创建消息生产者Sender</p>
+<p>创建消息生产者Sender。通过注入AmqpTemplate接口的实例来实现消息的发送，AmqpTemplate接口定义了一套针对AMQP协议的基础操作。在Spring Boot中会根据配置来注入其具体实现。在该生产者，我们会产生一个字符串，并发送到名为hello的队列中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sender</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    AmqpTemplate amqpTemplate;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">()</span> </span>&#123;</div><div class="line">        String context = <span class="string">"hello "</span> + <span class="keyword">new</span> Date();</div><div class="line">        System.out.println(<span class="string">"Sender : "</span> + context);</div><div class="line">        <span class="keyword">this</span>.amqpTemplate.convertAndSend(<span class="string">"hello"</span>, context);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.创建消息消费者Receiver</p>
+<p>创建消息消费者Receiver。通过@RabbitListener注解定义该类对hello队列的监听，并用@RabbitHandler注解来指定对消息的处理方法。所以，该消费者实现了对hello队列的消费，消费操作为输出消息的字符串内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="meta">@RabbitListener</span>(queues = <span class="string">"hello"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</div><div class="line">    <span class="meta">@RabbitHandler</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(String hello)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Receiver1 : "</span> + hello);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.创建RabbitMQ的配置类RabbitConfig</p>
+<p>创建RabbitMQ的配置类RabbitConfig，用来配置队列、交换器、路由等高级信息。这里我们以入门为主，先以最小化的配置来定义，以完成一个基本的生产和消费过程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitConfig</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//1.配置一个名为hello的一对一的消息队列</span></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">helloQueue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"hello"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.单元测试:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</div><div class="line"><span class="meta">@SpringApplicationConfiguration</span>(classes = HelloApplication.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloApplicationTests</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> Sender sender;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        sender.send();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Spring-Boot-mongodb"><a href="#Spring-Boot-mongodb" class="headerlink" title="Spring Boot mongodb"></a>Spring Boot mongodb</h2><blockquote>
+<p>spring boot mongodb 的demo程序:<a href="https://github.com/nezha/spring-boot-mongodb" target="_blank" rel="external">spring-boot-mongodb</a></p>
+</blockquote>
+<h3 id="安装与配置-1"><a href="#安装与配置-1" class="headerlink" title="安装与配置"></a>安装与配置</h3><ul>
+<li>mongodb的安装与配置: <a href="http://blog.csdn.net/testcs_dn/article/details/50698572" target="_blank" rel="external">CentOS 6.5下通过yum安装MongoDB记录</a></li>
+<li>用户管理参考：<a href="http://www.cnblogs.com/mymelody/p/5906199.html" target="_blank" rel="external">mongodb 3.2 用户权限管理配置</a></li>
+<li>Mac下的mongodb安装与配置: <a href="http://www.jianshu.com/p/dd0c39bf7be4" target="_blank" rel="external">Mac 上安装MongoDB</a></li>
+</ul>
+<p>1、进入mongodb的shell ： mongo</p>
+<p>2、切换数据库： use admin</p>
+<p>3、添加用户，指定用户的角色和数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">db.createUser(  </div><div class="line">  &#123; user: &quot;admin&quot;,  </div><div class="line">    customData：&#123;description:&quot;superuser&quot;&#125;,</div><div class="line">    pwd: &quot;admin&quot;,  </div><div class="line">    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125; ]  </div><div class="line">  &#125;  </div><div class="line">)  </div><div class="line">user字段，为新用户的名字；</div><div class="line">pwd字段，用户的密码；</div><div class="line">cusomData字段，为任意内容，例如可以为用户全名介绍；</div><div class="line">roles字段，指定用户的角色，可以用一个空数组给新用户设定空角色。在roles字段,可以指定内置角色和用户定义的角色。</div></pre></td></tr></table></figure>
+<p>4、查看创建的用户 ： show users 或 db.system.users.find()</p>
+<p>5、启用用户权限：</p>
+<p>修改配置文件，增加配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/mongod.conf</div><div class="line">security:</div><div class="line">  authorization: enabled</div></pre></td></tr></table></figure>
+<p>6.重新启动mongodb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service mongod restart</div></pre></td></tr></table></figure>
+<p>7.使用用户管理账户登录认证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">use admin</div><div class="line">db.auth(&apos;admin&apos;, &apos;admin&apos;)</div></pre></td></tr></table></figure>
+<p>8.远程登陆</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo 123.xxx.xxx.xxx:27017/amdin -uadmin -padmin</div></pre></td></tr></table></figure>
+<blockquote>
+<p>第一个admin:指代数据库<br>第二个admin:指代用户名<br>第三个admin:指代密码</p>
+</blockquote>
+<h3 id="spring-boot-集成-mongodb"><a href="#spring-boot-集成-mongodb" class="headerlink" title="spring boot 集成 mongodb"></a>spring boot 集成 mongodb</h3><p>1.引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-mongodb<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.创建存储的实体</p>
+<p>创建要存储的User实体，包含属性：id、username、age</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String username;</div><div class="line">    <span class="keyword">private</span> Integer age;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String username, Integer age)</span> </span>&#123;</div><div class="line"><span class="comment">//        this.id = id;</span></div><div class="line">        <span class="keyword">this</span>.username = username;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> username;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.username = username;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"username:"</span>+username+<span class="string">"--age:"</span>+age;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.实现User的数据访问对象</p>
+<p>实现User的数据访问对象：UserRepository</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">MongoRepository</span>&lt;<span class="title">User</span>, <span class="title">String</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function">User <span class="title">findByUsername</span><span class="params">(String username)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.配置mongodb的连接</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#mongodb3.X的配置</div><div class="line">spring.data.mongodb.uri=mongodb://admin:admin@123.206.xxx.xxx:27017/test</div><div class="line">#mongodb2.x的配置</div><div class="line">spring.data.mongodb.host=localhost spring.data.mongodb.port=27017</div></pre></td></tr></table></figure>
+<p>5.在单元测试中调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</div><div class="line"><span class="meta">@SpringBootTest</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test05ApplicationTests</span></span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> UserRepository userRepository;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        userRepository.deleteAll();</div><div class="line">        <span class="comment">// 创建三个User，并验证User总数</span></div><div class="line">        userRepository.save(<span class="keyword">new</span> User(<span class="string">"didi"</span>, <span class="number">30</span>));</div><div class="line">        userRepository.save(<span class="keyword">new</span> User(<span class="string">"mama"</span>, <span class="number">40</span>));</div><div class="line">        userRepository.save(<span class="keyword">new</span> User(<span class="string">"kaka"</span>, <span class="number">50</span>));</div><div class="line">        Assert.assertEquals(<span class="number">3</span>, userRepository.findAll().size());</div><div class="line"></div><div class="line">        <span class="comment">// 删除一个User，再验证User总数</span></div><div class="line">        User u = userRepository.findByUsername(<span class="string">"didi"</span>);</div><div class="line">        System.out.println(u.toString());</div><div class="line">        userRepository.delete(u);</div><div class="line">        Assert.assertEquals(<span class="number">2</span>, userRepository.findAll().size());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h3><p>1.发现运行成功，但是查不到数据</p>
+<blockquote>
+<p>主要是自己理解错误，mongodb数据库下还有collection(相当于表).然后针对每一个Database下可能有多个collection</p>
+</blockquote>
+<h2 id="Spring-Boot-redis"><a href="#Spring-Boot-redis" class="headerlink" title="Spring Boot redis"></a>Spring Boot redis</h2><blockquote>
+<p>redis的demo程序：<a href="https://github.com/nezha/spring-boot-redis" target="_blank" rel="external">nezha/spring-boot-redis</a></p>
+</blockquote>
+<ul>
+<li>redis的配置：<a href="http://blog.csdn.net/ludonqin/article/details/47211109" target="_blank" rel="external">CentOS6.5下Redis安装与配置</a></li>
+<li>redis开启远程连接<a href="http://www.cnblogs.com/liusxg/p/5712493.html" target="_blank" rel="external">redis开启远程访问</a></li>
+<li>redis远程连接<code>redis-cli -h 123.206.xxx.xxx -p 6379</code></li>
+</ul>
+<p>1.引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.参数配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># REDIS (RedisProperties)</div><div class="line"># Redis数据库索引（默认为0）</div><div class="line">spring.redis.database=0</div><div class="line"># Redis服务器地址</div><div class="line">spring.redis.host=123.206.xxx.xxx</div><div class="line"># Redis服务器连接端口</div><div class="line">spring.redis.port=6379</div><div class="line"># Redis服务器连接密码（默认为空）</div><div class="line">spring.redis.password=</div><div class="line"># 连接池最大连接数（使用负值表示没有限制）</div><div class="line">spring.redis.pool.max-active=-1</div><div class="line"># 连接池最大阻塞等待时间（使用负值表示没有限制）</div><div class="line">spring.redis.pool.max-wait=-1</div><div class="line"># 连接池中的最大空闲连接</div><div class="line">spring.redis.pool.max-idle=16</div><div class="line"># 连接池中的最小空闲连接</div><div class="line">spring.redis.pool.min-idle=0</div><div class="line"># 连接超时时间（毫秒）</div><div class="line">spring.redis.timeout=0</div></pre></td></tr></table></figure>
+<p>3.测试访问</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</div><div class="line"><span class="meta">@SpringBootTest</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test04ApplicationTests</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    StringRedisTemplate stringRedisTemplate;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 保存字符串</span></div><div class="line">        stringRedisTemplate.opsForValue().set(<span class="string">"aaa"</span>, <span class="string">"111"</span>);</div><div class="line">        Assert.assertEquals(<span class="string">"111"</span>, stringRedisTemplate.opsForValue().get(<span class="string">"aaa"</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Spring-Boot定时任务"><a href="#Spring-Boot定时任务" class="headerlink" title="Spring Boot定时任务"></a>Spring Boot定时任务</h2><blockquote>
+<p>定时任务demo程序:<a href="https://github.com/nezha/spring-boot-schedule" target="_blank" rel="external">spring-boot-schedule</a></p>
+</blockquote>
+<p>1.pom包配置</p>
+<blockquote>
+<p>这部分基本的spring boot启动项就行，没有什么特别的依赖包</p>
+</blockquote>
+<p>2.启动类启用定时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@EnableScheduling</span></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduleApplication</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(ScheduleApplication.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.创建定时任务实现类</p>
+<p>定时任务一</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by nezha on 2017/4/28.</div><div class="line"> */</div><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SchedulerTask</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Scheduled</span>(cron=<span class="string">"*/6 * * * * ?"</span>)</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"this is scheduler task runing  "</span>+(count++));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定时任务二</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by nezha on 2017/4/28.</div><div class="line"> */</div><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SchedulerTask2</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SimpleDateFormat dateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>);</div><div class="line"></div><div class="line">    <span class="meta">@Scheduled</span>(fixedRate = <span class="number">6000</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reportCurrentTime</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"现在时间："</span> + dateFormat.format(<span class="keyword">new</span> Date()));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.参数说明</p>
+<p><code>@Scheduled</code> 参数可以接受两种定时的设置，一种是我们常用的<code>cron=&quot;*/6 * * * * ?&quot;</code>,一种是 <code>fixedRate = 6000</code>，两种都表示每隔六秒打印一下内容。</p>
+<p><strong>fixedRate 说明</strong></p>
+<ul>
+<li><code>@Scheduled(fixedRate = 6000)</code> ：上一次开始执行时间点之后6秒再执行</li>
+<li><code>@Scheduled(fixedDelay = 6000)</code> ：上一次执行完毕时间点之后6秒再执行</li>
+<li><code>@Scheduled(initialDelay=1000, fixedRate=6000)</code> ：第一次延迟1秒后执行，之后按fixedRate的规则每6秒执行一次</li>
+</ul>
+<h2 id="Spring-Boot相关技术"><a href="#Spring-Boot相关技术" class="headerlink" title="Spring Boot相关技术"></a>Spring Boot相关技术</h2><h3 id="自定义图标"><a href="#自定义图标" class="headerlink" title="自定义图标"></a>自定义图标</h3><p><a href="http://www.jianshu.com/p/e719f57191d9" target="_blank" rel="external">Spring Boot自定义Banner</a>—自定义图标</p>
+<h3 id="部署spring项目"><a href="#部署spring项目" class="headerlink" title="部署spring项目"></a>部署spring项目</h3><p>1.IntelliJ Idea中直接运行</p>
+<p>2.mvn spring-boot:run</p>
+<p>3.mvn install &gt;&gt;&gt; 会生成jar文件，执行jar文件。</p>
+<h3 id="spring-boot测试的时候，怎么单元测试"><a href="#spring-boot测试的时候，怎么单元测试" class="headerlink" title="spring boot测试的时候，怎么单元测试"></a>spring boot测试的时候，怎么单元测试</h3><p>1.使用<code>@SpringBootTest</code><br>文件主要实在test目录下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</div><div class="line"><span class="meta">@SpringBootTest</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test05ApplicationTests</span></span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> UserRepository userRepository;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        userRepository.deleteAll();</div><div class="line">        <span class="comment">// 创建三个User，并验证User总数</span></div><div class="line">        userRepository.save(<span class="keyword">new</span> User(<span class="string">"didi"</span>, <span class="number">30</span>));</div><div class="line">        userRepository.save(<span class="keyword">new</span> User(<span class="string">"mama"</span>, <span class="number">40</span>));</div><div class="line">        userRepository.save(<span class="keyword">new</span> User(<span class="string">"kaka"</span>, <span class="number">50</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.使用<code>@SpringBootApplication</code></p>
+<p>在主目录下com.nezha/</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> CustomerRepository repository;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        repository.deleteAll();</div><div class="line">        <span class="comment">// save a couple of customers</span></div><div class="line">        repository.save(<span class="keyword">new</span> Customer(<span class="string">"Alice"</span>, <span class="string">"Smith"</span>));</div><div class="line">        repository.save(<span class="keyword">new</span> Customer(<span class="string">"Bob"</span>, <span class="string">"Smith"</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.使用<code>RestController</code></p>
+<p>这种方式很方便，很好用，有些时候我会用。</p>
+<h2 id="待研究学习框架"><a href="#待研究学习框架" class="headerlink" title="待研究学习框架"></a>待研究学习框架</h2><ol>
+<li>Spring Boot Dubbo</li>
+<li>Spring Boot Druid</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+            <a href="/tags/Spring-Jpa/" rel="tag"># Spring Jpa</a>
+          
+            <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          
+            <a href="/tags/rabbitmq/" rel="tag"># rabbitmq</a>
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/2017-01-05-Jupyter学习总结/" rel="next" title="Jupyter Notebook的使用总结">
+                <i class="fa fa-chevron-left"></i> Jupyter Notebook的使用总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/设计模式/2017-05-02-设计模式学习笔记-观察者模式/" rel="prev" title="设计模式学习笔记-观察者模式">
+                设计模式学习笔记-观察者模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot学习笔记–全注解方式"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot学习笔记–全注解方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pring-boot中文帮助文档"><span class="nav-number"></span> <span class="nav-text"># pring boot中文帮助文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用注解"><span class="nav-number">1.</span> <span class="nav-text">常用注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-data-JPA-–-单数据源"><span class="nav-number">2.</span> <span class="nav-text">spring data JPA  – 单数据源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-MyBatis-–-单数据源"><span class="nav-number">3.</span> <span class="nav-text">Spring Boot MyBatis – 单数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于多源配置的问题："><span class="nav-number">3.1.</span> <span class="nav-text">关于多源配置的问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-RabbitMQ"><span class="nav-number">4.</span> <span class="nav-text">Spring Boot RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置"><span class="nav-number">4.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ的三种Exchange方式"><span class="nav-number">4.2.</span> <span class="nav-text">RabbitMQ的三种Exchange方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例讲解"><span class="nav-number">4.3.</span> <span class="nav-text">实例讲解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-mongodb"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot-集成-mongodb"><span class="nav-number">5.2.</span> <span class="nav-text">spring boot 集成 mongodb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">5.3.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-redis"><span class="nav-number">6.</span> <span class="nav-text">Spring Boot redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot定时任务"><span class="nav-number">7.</span> <span class="nav-text">Spring Boot定时任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot相关技术"><span class="nav-number">8.</span> <span class="nav-text">Spring Boot相关技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义图标"><span class="nav-number">8.1.</span> <span class="nav-text">自定义图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署spring项目"><span class="nav-number">8.2.</span> <span class="nav-text">部署spring项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot测试的时候，怎么单元测试"><span class="nav-number">8.3.</span> <span class="nav-text">spring boot测试的时候，怎么单元测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待研究学习框架"><span class="nav-number">9.</span> <span class="nav-text">待研究学习框架</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

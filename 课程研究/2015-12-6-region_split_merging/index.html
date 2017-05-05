@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Splitting,Merging,图像分裂与合并,spam," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="区域分裂与合并算法基本思想：先确定一个分裂合并的准则,即区域特征一致性的量度,当图像中某个区域的特征不一致时就将该区域分裂成4个相等的子区域,当相邻的子区域满足一致性特征时则将它们合成一个大区域,直至所有区域不再满足分裂合并的条件为止.当分裂到不能再分的情况时，分裂结束，然后它将查找相邻区域有没有相似的特征，如果有就将相似区域进行合并，最后达到分割的作用。在一定程度上区域生长和区域分裂合并算法有异">
+<meta name="keywords" content="Splitting,Merging,图像分裂与合并,spam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Splitting and Merging--区域分裂与合并算法">
+<meta property="og:url" content="https://nezha.github.io/课程研究/2015-12-6-region_split_merging/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="区域分裂与合并算法基本思想：先确定一个分裂合并的准则,即区域特征一致性的量度,当图像中某个区域的特征不一致时就将该区域分裂成4个相等的子区域,当相邻的子区域满足一致性特征时则将它们合成一个大区域,直至所有区域不再满足分裂合并的条件为止.当分裂到不能再分的情况时，分裂结束，然后它将查找相邻区域有没有相似的特征，如果有就将相似区域进行合并，最后达到分割的作用。在一定程度上区域生长和区域分裂合并算法有异">
+<meta property="og:image" content="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1eyr1am4g7gj20e80e8abn.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1eyr1als9rij20it0gm74p.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyr1anc2rmj20bo09iq31.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyr1ammyuyj20bo09ijrn.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1eyr1aoldl1j20ei0hbwer.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyr1ao0fhpj20ei0hbgmb.jpg">
+<meta property="og:updated_time" content="2017-05-05T11:26:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Splitting and Merging--区域分裂与合并算法">
+<meta name="twitter:description" content="区域分裂与合并算法基本思想：先确定一个分裂合并的准则,即区域特征一致性的量度,当图像中某个区域的特征不一致时就将该区域分裂成4个相等的子区域,当相邻的子区域满足一致性特征时则将它们合成一个大区域,直至所有区域不再满足分裂合并的条件为止.当分裂到不能再分的情况时，分裂结束，然后它将查找相邻区域有没有相似的特征，如果有就将相似区域进行合并，最后达到分割的作用。在一定程度上区域生长和区域分裂合并算法有异">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1eyr1am4g7gj20e80e8abn.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/课程研究/2015-12-6-region_split_merging/"/>
+
+
+
+
+
+  <title>Splitting and Merging--区域分裂与合并算法 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/课程研究/2015-12-6-region_split_merging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Splitting and Merging--区域分裂与合并算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+08:00">
+                2015-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程研究/" itemprop="url" rel="index">
+                    <span itemprop="name">课程研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="区域分裂与合并算法"><a href="#区域分裂与合并算法" class="headerlink" title="区域分裂与合并算法"></a>区域分裂与合并算法</h1><p><strong>基本思想：</strong>先确定一个分裂合并的准则,即区域特征一致性的量度,当图像中某个区域的特征不一致时就将该区域分裂成4个相等的子区域,当相邻的子区域满足一致性特征时则将它们合成一个大区域,直至所有区域不再满足分裂合并的条件为止.当分裂到不能再分的情况时，分裂结束，然后它将查找相邻区域有没有相似的特征，如果有就将相似区域进行合并，最后达到分割的作用。在一定程度上区域生长和区域分裂合并算法有异曲同工之妙，互相促进相辅相成的，区域分裂到极致就是分割成单一像素点，然后按照一定的测量准则进行合并，在一定程度上可以认为是单一像素点的区域生长方法。区域生长比区域分裂合并的方法节省了分裂的过程，而区域分裂合并的方法可以在较大的一个相似区域基础上再进行相似合并，而区域生长只能从单一像素点出发进行生长（合并）。</p>
+<h2 id="分裂原理"><a href="#分裂原理" class="headerlink" title="分裂原理"></a>分裂原理</h2><h3 id="分裂的过程"><a href="#分裂的过程" class="headerlink" title="分裂的过程"></a>分裂的过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Set ProcessList = IMAGE</div><div class="line">Repeat</div><div class="line">	 取出 ProcessList 中第一个元素</div><div class="line">	 IF 区域内是均匀的，则加入 RegionList</div><div class="line">	 Else 把区域分成四个自区域，然后都加到 ProcessList</div><div class="line">Until ( ProcessList 中没有元素)</div></pre></td></tr></table></figure>
+<h3 id="如何判断是否可以分裂"><a href="#如何判断是否可以分裂" class="headerlink" title="如何判断是否可以分裂"></a>如何判断是否可以分裂</h3><p>对于一个灰度图，如果说某一区域是均匀的，那么该区域所有灰度值的标准差需要小于一定的阈值，标准差的公式如下：</p>
+<p>$$  \sigma  = \left [ \frac{1}{N-1} \sum<em>{j=1}^{N} \left ( x</em>{j}-\bar{x} \right )^{2}\right ] $$</p>
+<h2 id="合并原理"><a href="#合并原理" class="headerlink" title="合并原理"></a>合并原理</h2><h3 id="合并的过程"><a href="#合并的过程" class="headerlink" title="合并的过程"></a>合并的过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Put all regions on ProcessList</div><div class="line">Repeat</div><div class="line">	 从 ProcessList 每次取出一个元素</div><div class="line">	 遍历列表中的元素，找到相似的元素 (homogeneity criterion)</div><div class="line">	 If 相邻 then</div><div class="line"> 		 合并区域 然后上面的步骤;</div><div class="line">until (不能合并为止)</div></pre></td></tr></table></figure>
+<h3 id="如何判断可以合并"><a href="#如何判断可以合并" class="headerlink" title="如何判断可以合并"></a>如何判断可以合并</h3><h2 id="分裂与合并"><a href="#分裂与合并" class="headerlink" title="分裂与合并"></a>分裂与合并</h2><p>如果只使用拆分，最后的分区可能会包含具有相同性质的相邻区域。这种缺陷可以通过进行拆分的同时也允许进行区域聚合来得到矫正。就是说，只有在P(Rj∪Rk)=TRUE时，两个相邻的区域Rj和Rk才能聚合。</p>
+<p>前面的讨论可以总结为如下过程。在反复操作的每一步，我们需要做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.对于任何区域Ri，如果P(Ri)=FALSE，就将每个区域都拆分为4个相连的象限区域。</div><div class="line">2.将P(Rj∪Rk)=TRUE的任意两个相邻区域Rj和Rk进行聚合。</div><div class="line">3.当再无法进行聚合或拆分时操作停止。</div></pre></td></tr></table></figure>
+<p>开始时将图像拆分为一组图象块。然后对每个块进一步进行上述拆分，但聚合操作开始时受只能将4个块并为一组的限制。这4个块是四叉树表示法中节点的后代且都满足谓词P。当不能再进行此类聚合时，这个过程终止于满足步骤2的最后的区域聚合。在这种情况下，聚合的区域可能会大小不同。这种方法的主要优点是对于拆分和聚合都使用同样的四叉树，直到聚合的最后一步。</p>
+<h2 id="实验分析"><a href="#实验分析" class="headerlink" title="实验分析"></a>实验分析</h2><h3 id="Matlab源码"><a href="#Matlab源码" class="headerlink" title="Matlab源码"></a>Matlab源码</h3><ol>
+<li>源码一:splitmerge.m</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span> = <span class="title">splitmerge</span><span class="params">( f,mindim,fun )</span></span></div><div class="line">Q = <span class="number">2</span>^<span class="built_in">nextpow2</span>(max(<span class="built_in">size</span>(f)));</div><div class="line">[M,N] = <span class="built_in">size</span>(f);</div><div class="line">f = padarray(f,[Q-M,Q-N],<span class="string">'post'</span>);</div><div class="line">S = qtdecomp(f,@split_test,mindim,fun);</div><div class="line">Lmax = full(max(S(:)));</div><div class="line">g = <span class="built_in">zeros</span>(<span class="built_in">size</span>(f));</div><div class="line">MARKER = <span class="built_in">zeros</span>(<span class="built_in">size</span>(f));</div><div class="line"><span class="keyword">for</span> K = <span class="number">1</span>:Lmax</div><div class="line">    [vals,r,c] = qtgetblk(f,S,K);</div><div class="line">    <span class="keyword">if</span> ~<span class="built_in">isempty</span>(vals)</div><div class="line">        <span class="keyword">for</span> I = <span class="number">1</span>:<span class="built_in">length</span>(r)</div><div class="line">            xlow = r(I);</div><div class="line">            ylow = c(I);</div><div class="line">            xhigh = xlow + K - <span class="number">1</span>;</div><div class="line">            yhigh = ylow + K - <span class="number">1</span>;</div><div class="line">            region = f(xlow:xhigh,ylow:yhigh);</div><div class="line">            flag = feval(fun, region);</div><div class="line">            <span class="keyword">if</span> flag</div><div class="line">                g(xlow:xhigh,ylow:yhigh) = <span class="number">1</span>;</div><div class="line">                MARKER(xlow,ylow) = <span class="number">1</span>;</div><div class="line">            <span class="keyword">end</span></div><div class="line">        <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line">g = bwlabel(imreconstruct(MARKER,g));</div><div class="line">g = g(<span class="number">1</span>:M,<span class="number">1</span>:N);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ol>
+<li>源码二:split_test.m</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">v</span> = <span class="title">split_test</span><span class="params">( B,mindim,fun )</span></span></div><div class="line">k = <span class="built_in">size</span>(B,<span class="number">3</span>);</div><div class="line">v(<span class="number">1</span>:k) = false;</div><div class="line"><span class="keyword">for</span> I = <span class="number">1</span>:k</div><div class="line">    quadregion = B(:, :, I);</div><div class="line">    <span class="keyword">if</span> <span class="built_in">size</span>(quadregion,<span class="number">1</span>) &lt;= mindim</div><div class="line">        v(I) = false;</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    flag = feval(fun,quadregion);</div><div class="line">    <span class="keyword">if</span> flag</div><div class="line">        v(I) = true;</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<ol>
+<li>源码三:predicate.m</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">flag</span> = <span class="title">predicate</span><span class="params">( region )</span></span></div><div class="line">sd = std2(region);</div><div class="line">m = mean2(region);</div><div class="line">flag = (sd &gt; <span class="number">10</span>) &amp; (m &gt; <span class="number">0</span>) &amp; (m &lt; <span class="number">255</span>);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><h4 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h4><ol>
+<li>原图</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1eyr1am4g7gj20e80e8abn.jpg" alt="原始图"></p>
+<ol>
+<li>处理后的图</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/bmiddle/9d2c4511gw1eyr1als9rij20it0gm74p.jpg" alt="图像分割后"></p>
+<h4 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h4><ol>
+<li>原图</li>
+</ol>
+<p><img src="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyr1anc2rmj20bo09iq31.jpg" alt="原始图"></p>
+<ol>
+<li>处理后的图</li>
+</ol>
+<p><img src="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyr1ammyuyj20bo09ijrn.jpg" alt="图像分割后"></p>
+<h4 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h4><ol>
+<li>原图</li>
+</ol>
+<p><img src="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1eyr1aoldl1j20ei0hbwer.jpg" alt="原始图"></p>
+<ol>
+<li>处理后的图</li>
+</ol>
+<p><img src="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyr1ao0fhpj20ei0hbgmb.jpg" alt="图像分割后"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>[1] <a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/MARBLE/medium/segment/split.htm" target="_blank" rel="external">http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/MARBLE/medium/segment/split.htm</a></p>
+<p>[2] <a href="http://blog.csdn.net/bagboy_taobao_com/article/details/5666109" target="_blank" rel="external">http://blog.csdn.net/bagboy_taobao_com/article/details/5666109</a></p>
+<p>[3] <a href="http://blog.csdn.net/bagboy_taobao_com/article/details/5666091" target="_blank" rel="external">http://blog.csdn.net/bagboy_taobao_com/article/details/5666091</a></p>
+<p>[4] 冈萨雷斯-数字图像处理（MATLAB版）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Splitting/" rel="tag"># Splitting</a>
+          
+            <a href="/tags/Merging/" rel="tag"># Merging</a>
+          
+            <a href="/tags/图像分裂与合并/" rel="tag"># 图像分裂与合并</a>
+          
+            <a href="/tags/spam/" rel="tag"># spam</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/课程研究/2015-12-2-WIFI室内定位技术的仔细介绍/" rel="next" title="WIFI室内定位技术的详细介绍-指纹法">
+                <i class="fa fa-chevron-left"></i> WIFI室内定位技术的详细介绍-指纹法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/课程研究/2015-12-30-傅里叶变换理解二/" rel="prev" title="傅里叶变换的理解（二）">
+                傅里叶变换的理解（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#区域分裂与合并算法"><span class="nav-number">1.</span> <span class="nav-text">区域分裂与合并算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分裂原理"><span class="nav-number">1.1.</span> <span class="nav-text">分裂原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分裂的过程"><span class="nav-number">1.1.1.</span> <span class="nav-text">分裂的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断是否可以分裂"><span class="nav-number">1.1.2.</span> <span class="nav-text">如何判断是否可以分裂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并原理"><span class="nav-number">1.2.</span> <span class="nav-text">合并原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合并的过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">合并的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断可以合并"><span class="nav-number">1.2.2.</span> <span class="nav-text">如何判断可以合并</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分裂与合并"><span class="nav-number">1.3.</span> <span class="nav-text">分裂与合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验分析"><span class="nav-number">1.4.</span> <span class="nav-text">实验分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matlab源码"><span class="nav-number">1.4.1.</span> <span class="nav-text">Matlab源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-number">1.4.2.</span> <span class="nav-text">效果图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实验一"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">实验一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验二"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">实验二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验三"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">实验三</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">1.5.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

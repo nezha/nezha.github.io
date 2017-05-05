@@ -1,0 +1,797 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="室内定位,KNN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="WIFI室内定位技术的详细介绍-位置指纹法1、室内定位方法概述位置信息在我们生活中扮演着越来越重要的角色。例如，医疗行业中病人的跟踪监护、产房中婴儿的防偷、贵重医疗设备的监控；商品购物车的定位、顾客消费习惯的收集等等。然而卫星定位需要在相对空旷、高层建筑不密集的地方才能实现比较准确的定位，户内无法使用且耗电量较高。但是当终端接收机在楼群密集的城市或者室内工作的时候，由于信号强度受到建筑物的影响而大">
+<meta name="keywords" content="室内定位,KNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WIFI室内定位技术的详细介绍-指纹法">
+<meta property="og:url" content="https://nezha.github.io/课程研究/2015-12-2-WIFI室内定位技术的仔细介绍/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="WIFI室内定位技术的详细介绍-位置指纹法1、室内定位方法概述位置信息在我们生活中扮演着越来越重要的角色。例如，医疗行业中病人的跟踪监护、产房中婴儿的防偷、贵重医疗设备的监控；商品购物车的定位、顾客消费习惯的收集等等。然而卫星定位需要在相对空旷、高层建筑不密集的地方才能实现比较准确的定位，户内无法使用且耗电量较高。但是当终端接收机在楼群密集的城市或者室内工作的时候，由于信号强度受到建筑物的影响而大">
+<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyubwsuju2j20ig0g0dhi.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyubwu5icjj20ik0gvac5.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1eyubwtks66j20mp0nrafg.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyubws8myrj20ir08ldgp.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyubwuusdjj20uy0pmdme.jpg">
+<meta property="og:updated_time" content="2017-05-05T11:24:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WIFI室内定位技术的详细介绍-指纹法">
+<meta name="twitter:description" content="WIFI室内定位技术的详细介绍-位置指纹法1、室内定位方法概述位置信息在我们生活中扮演着越来越重要的角色。例如，医疗行业中病人的跟踪监护、产房中婴儿的防偷、贵重医疗设备的监控；商品购物车的定位、顾客消费习惯的收集等等。然而卫星定位需要在相对空旷、高层建筑不密集的地方才能实现比较准确的定位，户内无法使用且耗电量较高。但是当终端接收机在楼群密集的城市或者室内工作的时候，由于信号强度受到建筑物的影响而大">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyubwsuju2j20ig0g0dhi.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/课程研究/2015-12-2-WIFI室内定位技术的仔细介绍/"/>
+
+
+
+
+
+  <title>WIFI室内定位技术的详细介绍-指纹法 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/课程研究/2015-12-2-WIFI室内定位技术的仔细介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WIFI室内定位技术的详细介绍-指纹法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-02T00:00:00+08:00">
+                2015-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程研究/" itemprop="url" rel="index">
+                    <span itemprop="name">课程研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="WIFI室内定位技术的详细介绍-位置指纹法"><a href="#WIFI室内定位技术的详细介绍-位置指纹法" class="headerlink" title="WIFI室内定位技术的详细介绍-位置指纹法"></a>WIFI室内定位技术的详细介绍-位置指纹法</h1><h2 id="1、室内定位方法概述"><a href="#1、室内定位方法概述" class="headerlink" title="1、室内定位方法概述"></a>1、室内定位方法概述</h2><p>位置信息在我们生活中扮演着越来越重要的角色。例如，医疗行业中病人的跟踪监护、产房中婴儿的防偷、贵重医疗设备的监控；商品购物车的定位、顾客消费习惯的收集等等。然而卫星定位需要在相对空旷、高层建筑不密集的地方才能实现比较准确的定位，户内无法使用且耗电量较高。但是当终端接收机在楼群密集的城市或者室内工作的时候，由于信号强度受到建筑物的影响而大大衰减，导致定位精度低甚至不能够完成定位。于是无线室内定位技术迅速发展，包括WIFI、RFID（射频识别）、蓝牙、红外、声信号、超声波等短距离无线技术。其中基于WIFI网络的无线定位技术由于部署广泛且成本较低，因此备受关注。WIFI无线定位可以采用最强AP法，三边测量法，位置指纹法。但是无论哪种方法，都需要通过WIFI信道扫描的方式来获取AP的相关信息，如AP的BSSID,以及RSSI.</p>
+<p>下图为我们具体的实验架构图：<br><img src="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyubwsuju2j20ig0g0dhi.jpg" alt="实验架构图"></p>
+<h2 id="2、实验环境描述"><a href="#2、实验环境描述" class="headerlink" title="2、实验环境描述"></a>2、实验环境描述</h2><p>首先说明我的实验都是在python2.7环境中实现的，如果没有python环境最好下个python(x,y)，把python环境安装一下。</p>
+<p>我的demo实验主要是在江南大学的实验楼的一层中做的，在楼层中我主要采集了下面五角星标记的８个位置点的信息,数据采样和定位效果展示都是在这几个点实现的，如果读者要全部平面实现定位那就需要大量的工作量。</p>
+<p><img src="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyubwu5icjj20ik0gvac5.jpg" alt="楼层信息"></p>
+<h2 id="3、室内定位过程"><a href="#3、室内定位过程" class="headerlink" title="3、室内定位过程"></a>3、室内定位过程</h2><h3 id="第一步：采集WIFI指纹数据"><a href="#第一步：采集WIFI指纹数据" class="headerlink" title="第一步：采集WIFI指纹数据"></a>第一步：采集WIFI指纹数据</h3><h4 id="1-采集工具"><a href="#1-采集工具" class="headerlink" title="1.采集工具"></a>1.采集工具</h4><blockquote>
+<p>在360应用市场上搜索—Sensor log</p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1eyubwtks66j20mp0nrafg.jpg" alt="Sensor log"></p>
+<h4 id="2-采集过程"><a href="#2-采集过程" class="headerlink" title="2.采集过程"></a>2.采集过程</h4><p>用上面的Android程序在每个点下面采集单WIFI信息两分钟（１分钟也可以），那个程序可以定制每个位置的名字和所用到的传感器，我就定制了loc1-loc8的按钮，每个只要采集WIFI信号就行了。采集到的信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2|WiFi|&#123;&quot;BSSID&quot;:&quot;74:25:8a:47:36:d0&quot;,&quot;HexSSID&quot;:&quot;0x4169724a&quot;,&quot;SSID&quot;:&quot;AirJ&quot;,&quot;capabilities&quot;:&quot;[ESS]&quot;,&quot;wifiSsid&quot;:&#123;&quot;SSID&quot;:&quot;AirJ&quot;,&quot;octets&quot;:&#123;&quot;buf&quot;:[65,105,114,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],&quot;count&quot;:4&#125;&#125;,&quot;blackListTimestamp&quot;:0,&quot;seen&quot;:1448621242439,&quot;timestamp&quot;:10534923676,&quot;autoJoinStatus&quot;:0,&quot;distanceCm&quot;:-1,&quot;distanceSdCm&quot;:-1,&quot;frequency&quot;:2462,&quot;isAutoJoinCandidate&quot;:1,&quot;level&quot;:-33,&quot;numConnection&quot;:0,&quot;numIpConfigFailures&quot;:0,&quot;numUsage&quot;:0,&quot;untrusted&quot;:False&#125;|1448614784698</div></pre></td></tr></table></figure>
+<p>采集完成后将log.txt文件导出来，在下面的建立指纹数据库的过程中，最主要的需要用到BSSID和level。</p>
+<h3 id="第二步：建立指纹数据库"><a href="#第二步：建立指纹数据库" class="headerlink" title="第二步：建立指纹数据库"></a>第二步：建立指纹数据库</h3><p>如何构建指纹数据库呢，主要就是将上面在每个位置采集的两分钟的数据，按照AP（路由器）的Mac地址区分，将两分钟内的RSS（信号强度）求均值。可能在我的算法中还求了标准差。</p>
+<p>建立指纹数据库的算法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> json   <span class="comment">#the type database will be write into database as the format of json</span></div><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="string">'''</span></div><div class="line">this code is to create fingerprint database </div><div class="line"></div><div class="line">'''</div><div class="line"><span class="string">'''</span></div><div class="line">@author nezha 2015/08/04</div><div class="line">'''</div><div class="line">DB_FN = <span class="string">"log.txt"</span>  <span class="comment">#原始数据源</span></div><div class="line">DB_LandMark=<span class="string">"LMDB_std"</span> <span class="comment">#目标数据库</span></div><div class="line"></div><div class="line"><span class="comment">#open the file of wifi info</span></div><div class="line">f_db = open(DB_FN)</div><div class="line">f_lmdb = open(DB_LandMark,<span class="string">'w'</span>)</div><div class="line"><span class="comment">#当是1 0的时候可以读取位置信息</span></div><div class="line"><span class="comment">#当是1 1的时候读取WiFi信息</span></div><div class="line">StrStart = <span class="string">'statusId | label'</span>;</div><div class="line">StrEnd = <span class="string">'statusId|sensorName|value|timestamp'</span>;</div><div class="line">FlagStart = <span class="number">0</span> </div><div class="line">FlagEnd = <span class="number">0</span></div><div class="line">dictRF = &#123;&#125;</div><div class="line">dictWiFi = &#123;&#125; <span class="comment">#the item of string which will write into file</span></div><div class="line">FlagLoc = <span class="string">'0'</span> <span class="comment">#init the flag of Loc position</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="comment">#逐行读取</span></div><div class="line">    line = f_db.readline()</div><div class="line">    <span class="comment">#去除空格或者换行符</span></div><div class="line">    line = line.strip()</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> line <span class="keyword">or</span> len(line) &lt; <span class="number">5</span>: </div><div class="line">        dictLoc = &#123;&#125;;</div><div class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> dictWiFi.keys():</div><div class="line">            <span class="keyword">if</span> len(dictWiFi[key]) &gt; <span class="number">5</span>:</div><div class="line">                dictWiFi[key] = [np.mean(dictWiFi[key]),np.std(dictWiFi[key])];</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">del</span>(dictWiFi[key]);</div><div class="line">        dictLoc[<span class="string">'loc'</span>] = dictRF[FlagLoc]; <span class="comment">#get last loc</span></div><div class="line">        <span class="comment">#print FlagLoc;</span></div><div class="line">        dictLoc[<span class="string">'wifi'</span>] = dictWiFi;</div><div class="line">        outLine = str(dictLoc);</div><div class="line">        f_lmdb.write(outLine)</div><div class="line">        f_lmdb.flush()</div><div class="line">        <span class="keyword">break</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> line == StrStart:</div><div class="line">        FlagStart = <span class="number">1</span></div><div class="line">    <span class="keyword">if</span> line == StrEnd:</div><div class="line">        FlagEnd = <span class="number">1</span>   </div><div class="line">    </div><div class="line">    <span class="keyword">if</span> FlagStart <span class="keyword">is</span> <span class="number">1</span> <span class="keyword">and</span> FlagEnd <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">and</span> line !=  StrStart <span class="keyword">and</span> line != StrEnd:</div><div class="line">        <span class="comment">#start read the location and label</span></div><div class="line">        listTemp = line.split(<span class="string">'|'</span>);</div><div class="line">        dictRF[listTemp[<span class="number">0</span>]] = listTemp[<span class="number">1</span>];</div><div class="line">    <span class="keyword">elif</span> FlagStart <span class="keyword">is</span> <span class="number">1</span> <span class="keyword">and</span> FlagEnd <span class="keyword">is</span> <span class="number">1</span> <span class="keyword">and</span> line !=  StrStart <span class="keyword">and</span> line != StrEnd:</div><div class="line">        <span class="comment">#start read the wifi info</span></div><div class="line">        listTemp = line.split(<span class="string">'|'</span>);</div><div class="line">        dictLine = eval(listTemp[<span class="number">2</span>]);   <span class="comment">#get wifi info </span></div><div class="line">        <span class="keyword">if</span> FlagLoc == <span class="string">'0'</span>:              <span class="comment">#if is the init Flag ,init data</span></div><div class="line">            FlagLoc = listTemp[<span class="number">0</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> FlagLoc ==  listTemp[<span class="number">0</span>]:</div><div class="line">            <span class="keyword">if</span> dictLine[<span class="string">'BSSID'</span>] <span class="keyword">not</span> <span class="keyword">in</span> dictWiFi.keys():</div><div class="line">                dictWiFi[dictLine[<span class="string">'BSSID'</span>]] = [int(dictLine[<span class="string">'level'</span>])];</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                dictWiFi[dictLine[<span class="string">'BSSID'</span>]].append(int(dictLine[<span class="string">'level'</span>]));        </div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            dictLoc = &#123;&#125;;</div><div class="line">            <span class="keyword">for</span> key <span class="keyword">in</span> dictWiFi.keys():</div><div class="line">                <span class="keyword">if</span> len(dictWiFi[key]) &gt; <span class="number">60</span>:</div><div class="line">                    dictWiFi[key] = [np.mean(dictWiFi[key]),np.std(dictWiFi[key])];</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">del</span>(dictWiFi[key]);</div><div class="line">            dictLoc[<span class="string">'loc'</span>] = dictRF[FlagLoc]; <span class="comment">#get last loc</span></div><div class="line">            dictLoc[<span class="string">'wifi'</span>] = dictWiFi;</div><div class="line">            outLine = str(dictLoc);</div><div class="line">            outLine = outLine + <span class="string">'\n'</span></div><div class="line">            f_lmdb.write(outLine)</div><div class="line">            f_lmdb.flush()</div><div class="line">            dictWiFi = &#123;&#125;;</div><div class="line">            dictLoc = &#123;&#125;;</div><div class="line">            FlagLoc = listTemp[<span class="number">0</span>];      <span class="comment">#new Flag</span></div><div class="line">            <span class="keyword">if</span> dictLine[<span class="string">'BSSID'</span>] <span class="keyword">not</span> <span class="keyword">in</span> dictWiFi.keys():</div><div class="line">                dictWiFi[dictLine[<span class="string">'BSSID'</span>]] = [int(dictLine[<span class="string">'level'</span>])];</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                dictWiFi[dictLine[<span class="string">'BSSID'</span>]].append(int(dictLine[<span class="string">'level'</span>]));       </div><div class="line">f_db.close()</div><div class="line">f_lmdb.close()</div></pre></td></tr></table></figure>
+<p>抽象出来后的图如下：</p>
+<p><img src="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyubws8myrj20ir08ldgp.jpg" alt="抽象出来的图"></p>
+<p>具体的指纹数据库的内容如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;'loc': 'loc1', 'wifi': &#123;'74:25:8a:47:35:e0': [-90.88732394366197, 1.4393787370187285], '74:25:8a:47:36:90': [-45.328947368421055, 5.941354085193962], '74:25:8a:47:3a:30': [-78.28947368421052, 0.7748648349650241], '74:25:8a:47:3a:e0': [-75.27631578947368, 1.6270629351730226]&#125;&#125;</div><div class="line">&#123;'loc': 'loc2', 'wifi': &#123;'74:25:8a:47:36:90': [-33.84415584415584, 1.5294930410843932], '74:25:8a:47:3a:e0': [-71.7012987012987, 0.8836896538287793], '74:25:8a:47:3a:10': [-84.0, 0.0], '70:f9:6d:2b:85:b0': [-85.06493506493507, 0.9978894915479763]&#125;&#125;</div><div class="line">&#123;'loc': 'loc3', 'wifi': &#123;'74:25:8a:47:36:90': [-52.734939759036145, 4.741725417622794], '74:25:8a:47:3a:e0': [-80.26506024096386, 2.0888939677301046], '74:25:8a:47:3a:10': [-84.0, 0.0], '70:f9:6d:2b:85:b0': [-86.0, 0.0]&#125;&#125;</div></pre></td></tr></table></figure>
+<h3 id="第三步：定位算法的描述"><a href="#第三步：定位算法的描述" class="headerlink" title="第三步：定位算法的描述"></a>第三步：定位算法的描述</h3><p>定位算法主要实现的是RADAR的KNN算法，这种算法简单且效果好。算法的实现都已经按照对象的思想整理过了，代码如下：</p>
+<p>KNN的主要思想：</p>
+<ol>
+<li>将loc1的指纹数据的内容拿出与查询位置的WIFI指纹中的所有AP取一个交集</li>
+<li>将交集中AP对应的RSSI（信号强度）计算欧式距离平方和，然后放到数组中</li>
+<li>循环上面步骤，直到loc1~loc8的指纹数据库中的条目都比较过之后</li>
+<li>取出欧式距离平方和最小的对应的位置输出</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</div><div class="line"><span class="keyword">import</span> math</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBEntry</span>:</span></div><div class="line">    location = <span class="string">''</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.location = <span class="string">''</span></div><div class="line">        self.ap_rss_dict = &#123;&#125; <span class="comment">#need init or all object will use the same apRssiList to append</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LMDB</span><span class="params">(list)</span>:</span>             <span class="comment">#extend the list</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,path)</span>:</span><span class="comment">#read the file and add DBEntry to self</span></div><div class="line">        f = open(path);</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            line = f.readline();</div><div class="line">            line = line.strip();</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> line:<span class="keyword">break</span>;</div><div class="line">            line = eval(line);   <span class="comment">#set the str to dict</span></div><div class="line">            db_entry = DBEntry();</div><div class="line">            db_entry.location = line[<span class="string">'loc'</span>];</div><div class="line">            db_entry.ap_rss_dict = line[<span class="string">'wifi'</span>];</div><div class="line">            self.append(db_entry);</div><div class="line">        f.close();</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__calDiatance</span><span class="params">(self,query_entry, db_entry)</span>:</span></div><div class="line">        query_aps = set(query_entry.keys());</div><div class="line">        db_aps = set(db_entry.keys());</div><div class="line">        all_aps = query_aps &amp; db_aps;</div><div class="line">        distance = <span class="number">0.0</span>;</div><div class="line">        sum = <span class="number">0.0</span></div><div class="line">        <span class="keyword">for</span> singleAp <span class="keyword">in</span> all_aps:</div><div class="line">            sum = sum + (query_entry[singleAp]-db_entry[singleAp][<span class="number">0</span>])**<span class="number">2</span>;</div><div class="line">        distance = sum;</div><div class="line">        <span class="keyword">return</span> distance/len(all_aps);</div><div class="line">    </div><div class="line">    <span class="comment">#use knn lm_str format as &#123;'mac1':level,'mac2':level2&#125;</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nn_location</span><span class="params">(self,lm_str)</span>:</span></div><div class="line">        client_entry = eval(lm_str);</div><div class="line">        distance_list = [];</div><div class="line">        <span class="keyword">for</span> db_entry <span class="keyword">in</span> self:</div><div class="line">            distance = self.__calDiatance(client_entry,db_entry.ap_rss_dict);</div><div class="line">            distance_list.append(distance);</div><div class="line">        nn_index = distance_list.index(min(distance_list));</div><div class="line">        <span class="keyword">return</span> self[nn_index].location;</div></pre></td></tr></table></figure>
+<h3 id="第四步：离线模拟仿真"><a href="#第四步：离线模拟仿真" class="headerlink" title="第四步：离线模拟仿真"></a>第四步：离线模拟仿真</h3><ol>
+<li>我的源码已经上传到github了，在<a href="https://github.com/nezha/WIFIDemo.git" target="_blank" rel="external">这里</a>，可以自行下载</li>
+</ol>
+<p><img src="http://ww3.sinaimg.cn/bmiddle/9d2c4511gw1eyubwuusdjj20uy0pmdme.jpg" alt="github上的截图"></p>
+<ol>
+<li><p>其中log.txt是用于构建指纹数据库的原始WIFI采样数据</p>
+</li>
+<li><p>执行create_lmdb.py时就会自动生成LMDB_std文件的指纹数据库</p>
+</li>
+<li><p>然后LMDB.py中是KNN算法</p>
+</li>
+<li><p>执行client_demo.py可以看到具体的定位效果</p>
+</li>
+<li><p>其中loc1-loc8 是我在实验环境中的模拟位置采集指纹数据</p>
+</li>
+</ol>
+<h2 id="4、存在的不足与展望"><a href="#4、存在的不足与展望" class="headerlink" title="4、存在的不足与展望"></a>4、存在的不足与展望</h2><p>不足：</p>
+<ol>
+<li><p>RSSI容易受到环境的影响产生波动</p>
+</li>
+<li><p>建立指纹库太复杂</p>
+</li>
+<li><p>指纹数据更新复杂</p>
+</li>
+</ol>
+<p>展望：</p>
+<ol>
+<li><p>结合航位推算和WIFI Landmark</p>
+</li>
+<li><p>结合大数据应用到商业</p>
+</li>
+<li><p>结合医疗</p>
+</li>
+</ol>
+<h2 id="5、参考文献"><a href="#5、参考文献" class="headerlink" title="5、参考文献"></a>5、参考文献</h2><p>[1] <a href="https://github.com/nezha/WIFIDemo" target="_blank" rel="external">https://github.com/nezha/WIFIDemo</a></p>
+<p>[2] Bahl P, Padmanabhan V N. RADAR: An in-building RF-based user location and tracking system[C]. IEEE. Ieee, 2000, 2: 775-784.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/室内定位/" rel="tag"># 室内定位</a>
+          
+            <a href="/tags/KNN/" rel="tag"># KNN</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/课程研究/2015-11-30-傅里叶变换理解(一)/" rel="next" title="傅里叶变换的理解（一）">
+                <i class="fa fa-chevron-left"></i> 傅里叶变换的理解（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/课程研究/2015-12-6-region_split_merging/" rel="prev" title="Splitting and Merging--区域分裂与合并算法">
+                Splitting and Merging--区域分裂与合并算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WIFI室内定位技术的详细介绍-位置指纹法"><span class="nav-number">1.</span> <span class="nav-text">WIFI室内定位技术的详细介绍-位置指纹法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、室内定位方法概述"><span class="nav-number">1.1.</span> <span class="nav-text">1、室内定位方法概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、实验环境描述"><span class="nav-number">1.2.</span> <span class="nav-text">2、实验环境描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、室内定位过程"><span class="nav-number">1.3.</span> <span class="nav-text">3、室内定位过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：采集WIFI指纹数据"><span class="nav-number">1.3.1.</span> <span class="nav-text">第一步：采集WIFI指纹数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-采集工具"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1.采集工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-采集过程"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.采集过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：建立指纹数据库"><span class="nav-number">1.3.2.</span> <span class="nav-text">第二步：建立指纹数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：定位算法的描述"><span class="nav-number">1.3.3.</span> <span class="nav-text">第三步：定位算法的描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：离线模拟仿真"><span class="nav-number">1.3.4.</span> <span class="nav-text">第四步：离线模拟仿真</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、存在的不足与展望"><span class="nav-number">1.4.</span> <span class="nav-text">4、存在的不足与展望</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、参考文献"><span class="nav-number">1.5.</span> <span class="nav-text">5、参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

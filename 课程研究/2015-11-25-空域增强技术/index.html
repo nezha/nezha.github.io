@@ -1,0 +1,798 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="均衡化,规定化,边缘检测," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="数字图像分析-第四章空域增强技术数字图像分析-第四章空域增强技术直方图均衡化 定义：直方图均衡化技术是将原图像的直方图变为均衡分布的形式, 即将一已知灰度概率分布的图像, 经过某种变换, 变成一幅具有均匀灰度概率分布的新图像。  基本思想：通过灰度级fk的概率函数Pf(fk )，求出累积分布函数(CDF)gk ，建立等值像素出现的次数与结果图象像素值之间的关系。 算法步骤：  代码实现 12345">
+<meta name="keywords" content="均衡化,规定化,边缘检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图像分析-第四章空域增强技术">
+<meta property="og:url" content="https://nezha.github.io/课程研究/2015-11-25-空域增强技术/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="数字图像分析-第四章空域增强技术数字图像分析-第四章空域增强技术直方图均衡化 定义：直方图均衡化技术是将原图像的直方图变为均衡分布的形式, 即将一已知灰度概率分布的图像, 经过某种变换, 变成一幅具有均匀灰度概率分布的新图像。  基本思想：通过灰度级fk的概率函数Pf(fk )，求出累积分布函数(CDF)gk ，建立等值像素出现的次数与结果图象像素值之间的关系。 算法步骤：  代码实现 12345">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ey57x3td68j20930gnjt8.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/9d2c4511gw1eycim8q6njj20q80bydi2.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ey58pf1jlrj211p0dwq4v.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyd8xxdyltj20fl0bomxn.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1ey5irv5m03j20m20ddmxr.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1ey5irvoi1wj20m708dq3b.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1ey68rupslrj20nj053aae.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1ey68rviv4bj20ol05c0t8.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1ey68rw88fuj20sj07mwfl.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1ey699jskutj20e302374a.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffawb66524j208602w74b.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/9d2c4511gy1ffawcuyulhj207s01yq2x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1ey68rwwddoj20k004lmxm.jpg">
+<meta property="og:updated_time" content="2017-05-05T15:23:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数字图像分析-第四章空域增强技术">
+<meta name="twitter:description" content="数字图像分析-第四章空域增强技术数字图像分析-第四章空域增强技术直方图均衡化 定义：直方图均衡化技术是将原图像的直方图变为均衡分布的形式, 即将一已知灰度概率分布的图像, 经过某种变换, 变成一幅具有均匀灰度概率分布的新图像。  基本思想：通过灰度级fk的概率函数Pf(fk )，求出累积分布函数(CDF)gk ，建立等值像素出现的次数与结果图象像素值之间的关系。 算法步骤：  代码实现 12345">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ey57x3td68j20930gnjt8.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/课程研究/2015-11-25-空域增强技术/"/>
+
+
+
+
+
+  <title>数字图像分析-第四章空域增强技术 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/课程研究/2015-11-25-空域增强技术/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数字图像分析-第四章空域增强技术</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-25T00:00:00+08:00">
+                2015-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课程研究/" itemprop="url" rel="index">
+                    <span itemprop="name">课程研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数字图像分析-第四章空域增强技术"><a href="#数字图像分析-第四章空域增强技术" class="headerlink" title="数字图像分析-第四章空域增强技术"></a><strong>数字图像分析-第四章空域增强技术</strong></h1><h2 id="数字图像分析-第四章空域增强技术-1"><a href="#数字图像分析-第四章空域增强技术-1" class="headerlink" title="数字图像分析-第四章空域增强技术"></a><strong>数字图像分析-第四章空域增强技术</strong></h2><h3 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a><strong>直方图均衡化</strong></h3><blockquote>
+<p>定义：直方图均衡化技术是将原图像的直方图变为均衡分布的形式, 即将一已知灰度概率分布的图像, 经过某种变换, 变成一幅具有均匀灰度概率分布的新图像。</p>
+</blockquote>
+<p>基本思想：通过灰度级fk的概率函数Pf(fk )，求出累积分布函数(CDF)gk ，建立等值像素出现的次数与结果图象像素值之间的关系。</p>
+<p><strong>算法步骤：</strong></p>
+<p><img src="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ey57x3td68j20930gnjt8.jpg" alt="直方图均衡化基本步骤"></p>
+<p><strong>代码实现</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">%直方图均衡化</span></div><div class="line">I = imread(<span class="string">'rice.png'</span>);</div><div class="line">[height,width] = <span class="built_in">size</span>(I);</div><div class="line">figure</div><div class="line">subplot(<span class="number">221</span>)</div><div class="line">imshow(I)<span class="comment">%显示原始图像</span></div><div class="line">subplot(<span class="number">222</span>)</div><div class="line">imhist(I)<span class="comment">%显示原始图像直方图</span></div><div class="line"></div><div class="line"><span class="comment">%进行像素灰度统计;</span></div><div class="line">NumPixel = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);<span class="comment">%统计各灰度数目，共256个灰度级</span></div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:height</div><div class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>: width</div><div class="line">        NumPixel(I(<span class="built_in">i</span>,<span class="built_in">j</span>) + <span class="number">1</span>) = NumPixel(I(<span class="built_in">i</span>,<span class="built_in">j</span>) + <span class="number">1</span>) + <span class="number">1</span>;<span class="comment">%对应灰度值像素点数量增加一</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="comment">%计算灰度分布密度</span></div><div class="line">ProbPixel = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);</div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">256</span></div><div class="line">    ProbPixel(<span class="built_in">i</span>) = NumPixel(<span class="built_in">i</span>) / (height * width * <span class="number">1.0</span>);</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="comment">%计算累计直方图分布</span></div><div class="line">CumuPixel = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);</div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">256</span></div><div class="line">    <span class="keyword">if</span> <span class="built_in">i</span> == <span class="number">1</span></div><div class="line">        CumuPixel(<span class="built_in">i</span>) = ProbPixel(<span class="built_in">i</span>);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        CumuPixel(<span class="built_in">i</span>) = CumuPixel(<span class="built_in">i</span> - <span class="number">1</span>) + ProbPixel(<span class="built_in">i</span>);</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="comment">%累计分布取整</span></div><div class="line">CumuPixel = uint8(<span class="number">255</span> .* CumuPixel + <span class="number">0.5</span>);</div><div class="line"><span class="comment">%对灰度值进行映射（均衡化）</span></div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:height</div><div class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>: width</div><div class="line">        I(<span class="built_in">i</span>,<span class="built_in">j</span>) = CumuPixel(I(<span class="built_in">i</span>,<span class="built_in">j</span>));</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">subplot(<span class="number">223</span>)</div><div class="line">imshow(I)<span class="comment">%显示原始图像</span></div><div class="line">subplot(<span class="number">224</span>)</div><div class="line">imhist(I)<span class="comment">%显示原始图像直方图</span></div></pre></td></tr></table></figure>
+<p>最后的效果图如下：</p>
+<p><img src="http://ww2.sinaimg.cn/large/9d2c4511gw1eycim8q6njj20q80bydi2.jpg" alt="直方图均衡化效果图"></p>
+<h3 id="直方图规定化"><a href="#直方图规定化" class="headerlink" title="直方图规定化"></a><strong>直方图规定化</strong></h3><p>直方图均衡化通过扩展输入图像的灰度级来增强图像，然而在实际应用中，可能需要有目的的增强某个灰度区间的图像。</p>
+<p>如：当需要从左边图像的灰度分布变换到右边的灰度密度函数</p>
+<p><img src="http://ww2.sinaimg.cn/bmiddle/9d2c4511gw1ey58pf1jlrj211p0dwq4v.jpg" alt="左边原图，右边变化图"></p>
+<p>主要步骤:<br>2.2 先对原始的直方图均衡化： S = T(r)<br>2.2 同时对规定的直方图均衡化：$ v = G(z)$<br>2.3 由于都是均衡化，故令$$S = v$$,则：$$ z = {G}^{-1}\left(v \right) = {G}^{-1}\left(T\left(r \right ) \right )$$</p>
+<p><strong>主要的代码如下</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">clear all</div><div class="line">figure</div><div class="line">A=imread(<span class="string">'pout.tif'</span>);                 <span class="comment">%读入bmp彩色图像</span></div><div class="line">subplot(<span class="number">221</span>)</div><div class="line">imshow(A)                                 <span class="comment">%显示出来 </span></div><div class="line">title(<span class="string">'输入的bmp图像'</span>)</div><div class="line"><span class="comment">%绘制直方图</span></div><div class="line">[m,n]=<span class="built_in">size</span>(A);                             <span class="comment">%测量图像尺寸</span></div><div class="line">B=<span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);                            <span class="comment">%预创建存放灰度出现概率的向量</span></div><div class="line"><span class="keyword">for</span> k=<span class="number">0</span>:<span class="number">255</span></div><div class="line">     B(k+<span class="number">1</span>)=<span class="built_in">length</span>(<span class="built_in">find</span>(A==k))/(m*n);      <span class="comment">%计算每级灰度出现的概率，将其存入B中相应位置</span></div><div class="line"><span class="keyword">end</span></div><div class="line">subplot(<span class="number">222</span>)</div><div class="line">bar(<span class="number">0</span>:<span class="number">255</span>,B,<span class="string">'g'</span>);                 <span class="comment">%绘制直方图</span></div><div class="line">title(<span class="string">'原图像直方图'</span>)</div><div class="line">xlabel(<span class="string">'灰度值'</span>)</div><div class="line">ylabel(<span class="string">'出现概率'</span>)</div><div class="line">axis([<span class="number">0</span>,<span class="number">260</span>,<span class="number">0</span>,<span class="number">0.015</span>])</div><div class="line"></div><div class="line">S1=<span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);</div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">256</span></div><div class="line">     <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="built_in">i</span></div><div class="line">          S1(<span class="built_in">i</span>)=B(<span class="built_in">j</span>)+S1(<span class="built_in">i</span>);                 <span class="comment">%计算原灰度图累计直方图</span></div><div class="line">     <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">  counts=[zeros(<span class="number">1</span>,<span class="number">49</span>),<span class="number">0.1</span>,zeros(<span class="number">1</span>,<span class="number">49</span>),<span class="number">0.2</span>,zeros(<span class="number">1</span>,<span class="number">49</span>),<span class="number">0.3</span>,zeros(<span class="number">1</span>,<span class="number">49</span>),<span class="number">0.1</span>,zeros(<span class="number">1</span>,<span class="number">49</span>),<span class="number">0.2</span>,zeros(<span class="number">1</span>,<span class="number">49</span>),<span class="number">0.1</span>];<span class="comment">%规定化直方图 </span></div><div class="line">   <span class="comment">%figure,bar(1:300,counts,'r') </span></div><div class="line">   S2=<span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);</div><div class="line">     <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">256</span></div><div class="line">       <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="built_in">i</span></div><div class="line">          S2(<span class="built_in">i</span>)=counts(<span class="built_in">j</span>)+S2(<span class="built_in">i</span>);                 </div><div class="line">       <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span>;                           <span class="comment">%"累计"规定化直方图 </span></div><div class="line"> </div><div class="line">  <span class="comment">%对比直方图，找到相差最小的灰度级</span></div><div class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">256</span></div><div class="line">     <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">256</span></div><div class="line">       <span class="keyword">if</span> S1(<span class="built_in">j</span>)&lt;=S2(<span class="built_in">i</span>)&amp;S1(<span class="built_in">j</span>+<span class="number">1</span>)&gt;=S2(<span class="built_in">i</span>) </div><div class="line">           <span class="keyword">if</span> <span class="built_in">abs</span>(S1(<span class="built_in">j</span>)-S2(<span class="built_in">i</span>))&lt;=<span class="built_in">abs</span>(S1(<span class="built_in">j</span>+<span class="number">1</span>)-S2(<span class="built_in">i</span>))  T(<span class="built_in">i</span>)=<span class="built_in">j</span>; </div><div class="line">           <span class="keyword">else</span>  T(<span class="built_in">i</span>)=<span class="built_in">j</span>+<span class="number">1</span>; </div><div class="line">           <span class="keyword">end</span> </div><div class="line">       <span class="keyword">end</span>       </div><div class="line">   <span class="keyword">end</span> </div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="comment">%确定变换关系，重组直方图</span></div><div class="line">  H=<span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">256</span>);</div><div class="line">  H(<span class="number">1</span>)=S2(<span class="number">1</span>);</div><div class="line">  <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:<span class="number">256</span></div><div class="line">      <span class="keyword">if</span> T(<span class="built_in">i</span><span class="number">-1</span>)&gt;<span class="number">0</span></div><div class="line">          <span class="keyword">for</span> k=(T(<span class="built_in">i</span><span class="number">-1</span>)+<span class="number">1</span>):T(<span class="built_in">i</span>)</div><div class="line">              H(<span class="built_in">i</span>)=H(<span class="built_in">i</span>)+B(k);</div><div class="line">          <span class="keyword">end</span></div><div class="line">      <span class="keyword">else</span> H(<span class="built_in">i</span>)=<span class="number">0</span>;</div><div class="line">      <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">subplot(<span class="number">223</span>)  </div><div class="line">bar(<span class="number">0</span>:<span class="number">255</span>,H,<span class="string">'g'</span>)                  <span class="comment">%显示规定化后的直方图</span></div><div class="line">title(<span class="string">'规定化后的直方图'</span>)</div><div class="line">xlabel(<span class="string">'灰度值'</span>)</div><div class="line">ylabel(<span class="string">'出现概率'</span>)</div><div class="line">axis([<span class="number">0</span>,<span class="number">260</span>,<span class="number">0</span>,<span class="number">0.6</span>])</div><div class="line"></div><div class="line"><span class="comment">%显示规定图</span></div><div class="line">PA=A;                 <span class="comment">%将各个像素归一化后的灰度值赋给这个像素</span></div><div class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</div><div class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:n</div><div class="line">        <span class="keyword">for</span> k=<span class="number">2</span>:<span class="number">256</span></div><div class="line">            <span class="keyword">if</span> T(k<span class="number">-1</span>)&lt;=A(<span class="built_in">i</span>,<span class="built_in">j</span>)&amp;A(<span class="built_in">i</span>,<span class="built_in">j</span>)&lt;=T(k)</div><div class="line">                PA(<span class="built_in">i</span>,<span class="built_in">j</span>)=k;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">end</span></div><div class="line">        <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line">subplot(<span class="number">224</span>)</div><div class="line">imshow(PA)                           <span class="comment">%显示均衡化后的图像</span></div><div class="line">title(<span class="string">'规定化后图像'</span>)</div></pre></td></tr></table></figure>
+<p><strong>最后的效果图：</strong></p>
+<p><img src="http://ww4.sinaimg.cn/bmiddle/9d2c4511gw1eyd8xxdyltj20fl0bomxn.jpg" alt="直方图规定化"></p>
+<h3 id="空间滤波"><a href="#空间滤波" class="headerlink" title="空间滤波"></a><strong>空间滤波</strong></h3><blockquote>
+<p><strong>卷积</strong>：图像就是图像f(x),模板是g(x),然后将模版g(x)在模版中移动,每到一个位置,就把f(x)与g(x)的定义域相交的元素进行乘积并且求和,得出新的图像一点,就是被卷积后的图像.模版又称为卷积核.卷积核做一个矩阵的形状。由于大多数模板都是对称的，所以模板不旋转。</p>
+</blockquote>
+<p><strong>一个简单的数字图像卷积处理流程可以如下：</strong></p>
+<ul>
+<li>读取源图像像素</li>
+<li>应用卷积操作数矩阵产生目标图像</li>
+<li>对目标图像进行归一化处理</li>
+<li>处理边界像素</li>
+</ul>
+<p><strong>常用模板</strong><br><img src="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1ey5irv5m03j20m20ddmxr.jpg" alt="常用模板一"><br><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1ey5irvoi1wj20m708dq3b.jpg" alt="常用模板二"></p>
+<p><strong>梯度算子—用于边缘检测</strong></p>
+<ol>
+<li>水平垂直差分法：</li>
+</ol>
+<p>$$g\left(i,j \right ) = \left | f\left(i,j \right ) -f\left(i+1,j \right ) \right | + \left | f\left(i,j \right ) -f\left(i,j+1 \right ) \right |$$</p>
+<p><img src="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1ey68rupslrj20nj053aae.jpg" alt="水平垂直差"></p>
+<ol>
+<li>Robert 算子梯度</li>
+</ol>
+<p>$$g\left(i,j \right ) = \left | f\left(i,j \right ) -f\left(i+1,j+1 \right ) \right | + \left | f\left(i+1,j \right ) -f\left(i,j+1 \right ) \right |$$</p>
+<p><img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1ey68rviv4bj20ol05c0t8.jpg" alt="Robert 算子梯度"></p>
+<ol>
+<li>sobel算子</li>
+</ol>
+<p><img src="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1ey68rw88fuj20sj07mwfl.jpg" alt="sobel算子"></p>
+<p>该算子包含两组3x3的矩阵，分别为横向及纵向，将之与图像作平面卷积，即可分别得出横向及纵向的亮度差分近似值。如果以A代表原始图像，Gx及Gy分别代表经横向及纵向边缘检测的图像灰度值，其公式如下：</p>
+<p><img src="http://ww4.sinaimg.cn/mw1024/9d2c4511gw1ey699jskutj20e302374a.jpg" alt="公式"></p>
+<p>图像的每一个像素的横向及纵向灰度值通过以下公式结合，来计算该点灰度的大小：</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffawb66524j208602w74b.jpg" alt=""></p>
+<p>通常，为了提高效率使用不开平方的近似值：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/9d2c4511gy1ffawcuyulhj207s01yq2x.jpg" alt=""></p>
+<ol>
+<li>拉普拉斯算子</li>
+</ol>
+<p>$$g\left(i,j \right ) = 8*f\left(i,j \right ) - \left | f\left(i-1,j \right ) + f\left(i+1,j \right ) + f\left(i,j-1 \right ) + f\left(i,j+1 \right ) \right |$$</p>
+<p> <img src="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1ey68rwwddoj20k004lmxm.jpg" alt="拉普拉斯算子"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/均衡化/" rel="tag"># 均衡化</a>
+          
+            <a href="/tags/规定化/" rel="tag"># 规定化</a>
+          
+            <a href="/tags/边缘检测/" rel="tag"># 边缘检测</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/2015-11-23-github_vim_Linux_Note/" rel="next" title="关于Latex、git、vim、Linux的常用命令">
+                <i class="fa fa-chevron-left"></i> 关于Latex、git、vim、Linux的常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/疑难解惑/2015-11-25-手机ping不通主机win10/" rel="prev" title="解决问题：手机ping不通主机win10">
+                解决问题：手机ping不通主机win10 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数字图像分析-第四章空域增强技术"><span class="nav-number">1.</span> <span class="nav-text">数字图像分析-第四章空域增强技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字图像分析-第四章空域增强技术-1"><span class="nav-number">1.1.</span> <span class="nav-text">数字图像分析-第四章空域增强技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图均衡化"><span class="nav-number">1.1.1.</span> <span class="nav-text">直方图均衡化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图规定化"><span class="nav-number">1.1.2.</span> <span class="nav-text">直方图规定化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间滤波"><span class="nav-number">1.1.3.</span> <span class="nav-text">空间滤波</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

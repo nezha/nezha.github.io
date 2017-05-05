@@ -1,0 +1,749 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JiaThis,友言,百度统计," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="加一个JiaThis的分享组件 怎么增加分享组件   官方教程网址  复制并粘贴下面的JS代码,放到您的网页，可以在和的之间网页的任意位置放置。如果您的网站使用的模板，您也可以复制代码到您的模板，按钮将在所有网页自动出现。 123456789101112131415&amp;lt;!-- JiaThis Button BEGIN --&amp;gt;&amp;lt;div class=&quot;jiathis_style_32x">
+<meta name="keywords" content="JiaThis,友言,百度统计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="增加JiaThis的分享和友言评论插件及百度统计">
+<meta property="og:url" content="https://nezha.github.io/笔记/2015-11-26-分享评论访问统计插件安装/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="加一个JiaThis的分享组件 怎么增加分享组件   官方教程网址  复制并粘贴下面的JS代码,放到您的网页，可以在和的之间网页的任意位置放置。如果您的网站使用的模板，您也可以复制代码到您的模板，按钮将在所有网页自动出现。 123456789101112131415&amp;lt;!-- JiaThis Button BEGIN --&amp;gt;&amp;lt;div class=&quot;jiathis_style_32x">
+<meta property="og:updated_time" content="2017-05-05T11:22:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="增加JiaThis的分享和友言评论插件及百度统计">
+<meta name="twitter:description" content="加一个JiaThis的分享组件 怎么增加分享组件   官方教程网址  复制并粘贴下面的JS代码,放到您的网页，可以在和的之间网页的任意位置放置。如果您的网站使用的模板，您也可以复制代码到您的模板，按钮将在所有网页自动出现。 123456789101112131415&amp;lt;!-- JiaThis Button BEGIN --&amp;gt;&amp;lt;div class=&quot;jiathis_style_32x">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/笔记/2015-11-26-分享评论访问统计插件安装/"/>
+
+
+
+
+
+  <title>增加JiaThis的分享和友言评论插件及百度统计 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/笔记/2015-11-26-分享评论访问统计插件安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">增加JiaThis的分享和友言评论插件及百度统计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-26T00:00:00+08:00">
+                2015-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="加一个JiaThis的分享组件"><a href="#加一个JiaThis的分享组件" class="headerlink" title="加一个JiaThis的分享组件"></a>加一个JiaThis的分享组件</h2><ol>
+<li>怎么增加分享组件</li>
+</ol>
+<blockquote>
+<p><a href="http://www.jiathis.com/getcode/icon/?style=32x32&amp;btn=qzone,tsina,tqq,weixin,renren,jicon&amp;codestyle=standard&amp;showshares=true" target="_blank" rel="external">官方教程网址</a></p>
+</blockquote>
+<p>复制并粘贴下面的JS代码,放到您的网页，可以在<body>和<!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>的之间网页的任意位置放置。如果您的网站使用的模板，您也可以复制代码到您的模板，按钮将在所有网页自动出现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!-- JiaThis Button BEGIN --&gt;</div><div class="line">&lt;div class="jiathis_style_32x32"&gt;</div><div class="line">	&lt;a class="jiathis_button_qzone"&gt;&lt;/a&gt;</div><div class="line">	&lt;a class="jiathis_button_tsina"&gt;&lt;/a&gt;</div><div class="line">	&lt;a class="jiathis_button_tqq"&gt;&lt;/a&gt;</div><div class="line">	&lt;a class="jiathis_button_weixin"&gt;&lt;/a&gt;</div><div class="line">	&lt;a class="jiathis_button_renren"&gt;&lt;/a&gt;</div><div class="line">	&lt;a href="http://www.jiathis.com/share?uid=2073019" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"&gt;&lt;/a&gt;</div><div class="line">	&lt;a class="jiathis_counter_style"&gt;&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">var</span> jiathis_config = &#123;<span class="attr">data_track_clickback</span>:<span class="string">'true'</span>&#125;;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://v3.jiathis.com/code/jia.js?uid=2073019"</span> charset=<span class="string">"utf-8"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;!-- JiaThis Button END --&gt;</div></pre></td></tr></table></figure>
+<h2 id="增加评论功能"><a href="#增加评论功能" class="headerlink" title="增加评论功能"></a>增加评论功能</h2><ol>
+<li>怎么使用</li>
+</ol>
+<p>将如下代码插入到网站中需要评论框的位置中，可以放在<body>和</body>的之间任意位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- UY BEGIN --&gt;</div><div class="line">&lt;div id="uyan_frame"&gt;&lt;/div&gt;</div><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://v2.uyan.cc/code/uyan.js?uid=2073019"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;!-- UY END --&gt;</div></pre></td></tr></table></figure>
+<h2 id="添加百度统计功能"><a href="#添加百度统计功能" class="headerlink" title="添加百度统计功能"></a>添加百度统计功能</h2><ol>
+<li><p>去<a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计网站</a>注册账号</p>
+</li>
+<li><p>拷贝JS代码到主页中去</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">var _hmt = _hmt || [];</div><div class="line">(function() &#123;</div><div class="line">  var hm = document.createElement(&quot;script&quot;);</div><div class="line">  hm.src = &quot;//hm.baidu.com/hm.js?1dd5125da2de7a41425d167822df1043&quot;;</div><div class="line">  var s = document.getElementsByTagName(&quot;script&quot;)[0]; </div><div class="line">  s.parentNode.insertBefore(hm, s);</div><div class="line">&#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JiaThis/" rel="tag"># JiaThis</a>
+          
+            <a href="/tags/友言/" rel="tag"># 友言</a>
+          
+            <a href="/tags/百度统计/" rel="tag"># 百度统计</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/疑难解惑/2015-11-25-手机ping不通主机win10/" rel="next" title="解决问题：手机ping不通主机win10">
+                <i class="fa fa-chevron-left"></i> 解决问题：手机ping不通主机win10
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/疑难解惑/2015-11-26-Jekyll支持Latex公式/" rel="prev" title="Jekyll使用MathJax来显示数学式">
+                Jekyll使用MathJax来显示数学式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加一个JiaThis的分享组件"><span class="nav-number">1.</span> <span class="nav-text">加一个JiaThis的分享组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加评论功能"><span class="nav-number">2.</span> <span class="nav-text">增加评论功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加百度统计功能"><span class="nav-number">3.</span> <span class="nav-text">添加百度统计功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

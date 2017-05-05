@@ -1,0 +1,820 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TBSchedule,淘宝任务调度,zookeeper," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="tbschedule的部署与使用1. zookeeper的集群部署与使用假设我们的设想是在三台机子上建立zookeeper集群，分别是192.168.8.28 31 32的目标主机中部署集群环境  全程的部署及运行都是基于centos系统，并且需要保证有java环境  1.1 下载zookeeper的压缩包下面的操作在三台主机中都是同样的操作创建同样的目录结构 123456789#1.下载源文件w">
+<meta name="keywords" content="TBSchedule,淘宝任务调度,zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TBSchedule使用实战">
+<meta property="og:url" content="https://nezha.github.io/开源项目/2016-08-03-TBSchedule使用实战/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="tbschedule的部署与使用1. zookeeper的集群部署与使用假设我们的设想是在三台机子上建立zookeeper集群，分别是192.168.8.28 31 32的目标主机中部署集群环境  全程的部署及运行都是基于centos系统，并且需要保证有java环境  1.1 下载zookeeper的压缩包下面的操作在三台主机中都是同样的操作创建同样的目录结构 123456789#1.下载源文件w">
+<meta property="og:image" content="http://code.taobao.org/p/tbschedule/file/2216/Zookeeper%E9%85%8D%E7%BD%AE.JPG">
+<meta property="og:image" content="http://code.taobao.org/p/tbschedule/file/2218/%E6%8E%A7%E5%88%B6%E5%8F%B0.JPG">
+<meta property="og:updated_time" content="2017-05-05T11:39:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TBSchedule使用实战">
+<meta name="twitter:description" content="tbschedule的部署与使用1. zookeeper的集群部署与使用假设我们的设想是在三台机子上建立zookeeper集群，分别是192.168.8.28 31 32的目标主机中部署集群环境  全程的部署及运行都是基于centos系统，并且需要保证有java环境  1.1 下载zookeeper的压缩包下面的操作在三台主机中都是同样的操作创建同样的目录结构 123456789#1.下载源文件w">
+<meta name="twitter:image" content="http://code.taobao.org/p/tbschedule/file/2216/Zookeeper%E9%85%8D%E7%BD%AE.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/开源项目/2016-08-03-TBSchedule使用实战/"/>
+
+
+
+
+
+  <title>TBSchedule使用实战 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/开源项目/2016-08-03-TBSchedule使用实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TBSchedule使用实战</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-03T00:00:00+08:00">
+                2016-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开源项目/" itemprop="url" rel="index">
+                    <span itemprop="name">开源项目</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="tbschedule的部署与使用"><a href="#tbschedule的部署与使用" class="headerlink" title="tbschedule的部署与使用"></a>tbschedule的部署与使用</h1><h2 id="1-zookeeper的集群部署与使用"><a href="#1-zookeeper的集群部署与使用" class="headerlink" title="1. zookeeper的集群部署与使用"></a>1. zookeeper的集群部署与使用</h2><p>假设我们的设想是在三台机子上建立zookeeper集群，分别是192.168.8.28 31 32的目标主机中部署集群环境</p>
+<blockquote>
+<p>全程的部署及运行都是基于centos系统，并且需要保证有java环境</p>
+</blockquote>
+<h3 id="1-1-下载zookeeper的压缩包"><a href="#1-1-下载zookeeper的压缩包" class="headerlink" title="1.1 下载zookeeper的压缩包"></a>1.1 下载zookeeper的压缩包</h3><p>下面的操作在三台主机中都是同样的操作创建同样的目录结构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1.下载源文件</span></div><div class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.3.6/zookeeper-3.3.6.tar.gz</div><div class="line"><span class="comment">#2.解压到当前的目录</span></div><div class="line">tar -zxvf zookeeper-3.3.6.tar.gz</div><div class="line"><span class="comment">#3.重命名</span></div><div class="line">mv zookeeper-3.3.6 zk</div><div class="line"><span class="comment">#4.创建数据文件和日志文件目录，此时与zk目录是同级的</span></div><div class="line">mkdir data</div><div class="line">mkdir <span class="built_in">log</span></div></pre></td></tr></table></figure>
+<h3 id="1-2-zookeeper配置"><a href="#1-2-zookeeper配置" class="headerlink" title="1.2 zookeeper配置"></a>1.2 zookeeper配置</h3><p>1.2.1 <em>进入zk目录，在<code>conf</code>目录下复制 <code>zoo_sample.cfg</code>文件至<code>zoo.cfg</code></em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp zoo_sample.cfg zoo.cfg</div></pre></td></tr></table></figure>
+<p>1.2.2 <em>vim进入修改配置文件至如下：</em></p>
+<ul>
+<li><p>[ ] <code>ClientPort</code>端口：此时我们是多机集群部署，所以都是指定为2181端口,如果在1台机器上部署多个server，那么每台机器都要不同的 clientPort，比如 server1是2181,server2是2182，server3是2183 </p>
+</li>
+<li><p>[ ] <code>dataDir</code>和<code>dataLogDir</code>：<code>dataDir</code>和<code>dataLogDir</code>也需要区分下，将数据文件和日志文件分开存放，同时每个server的这两变量所对应的路径都是不同的</p>
+</li>
+<li><p>[ ] <code>server.X</code>和<code>myid</code>： <code>server.X</code> 这个数字就是对应，<code>data/myid</code>中的数字。在3个server的myid文件中分别写入了1，2，3那么每个server中的<code>zoo.cfg</code>都配 server.1 server.2,server.3就行了。后面连着的2个端口是zookeeper间的通信端口可以一致</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意:</strong>这里的<code>server.1=192.168.8.28:2287:3387</code>其中<code>data/myid</code>的值和<code>server.1</code>中1的值都要对应到后面的IP地址的主机</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"># The number of milliseconds of each tick</div><div class="line">tickTime=2000</div><div class="line"></div><div class="line"># The number of ticks that the initial</div><div class="line"># synchronization phase can take</div><div class="line">initLimit=10</div><div class="line"></div><div class="line"># The number of ticks that can pass between</div><div class="line"># sending a request and getting an acknowledgement</div><div class="line">syncLimit=5</div><div class="line"></div><div class="line"># the directory where the snapshot is stored.</div><div class="line">dataDir=/home/zhangyi/zookeeper/data</div><div class="line"></div><div class="line"># the port at which the clients will connect</div><div class="line">clientPort=2181</div><div class="line"></div><div class="line">#the location of the log file</div><div class="line">dataLogDir=/home/zhangyi/zookeeper/log</div><div class="line"></div><div class="line">server.1=192.168.8.28:2287:3387</div><div class="line">server.2=192.168.8.31:2288:3388</div><div class="line">server.3=192.168.8.32:2289:3389</div></pre></td></tr></table></figure>
+<h3 id="1-3-zookeeper的启动与测试"><a href="#1-3-zookeeper的启动与测试" class="headerlink" title="1.3 zookeeper的启动与测试"></a>1.3 zookeeper的启动与测试</h3><p>1.3.1 <em>启动zookeeper</em></p>
+<p>进入<code>zookeeper</code>的<code>bin</code>目录下，使用如下命令</p>
+<blockquote>
+<p>分别进入三台目标主机的zookeeper下的bin目录启动下面命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./zkServer.sh start</div></pre></td></tr></table></figure>
+<p>1.3.2 <em>测试运行状态</em></p>
+<blockquote>
+<p>执行下面命令就会进入该IP主机<code>zookeeper</code>的工作空间，其中启动过程不能出现任何的错误信息报出，如果出错查看<code>myid</code>有没有正确写入，并且使用命令<code>jps</code>查看是否已经启动了<code>zookeeper</code>服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./zkCli.sh -server 192.168.8.28</div></pre></td></tr></table></figure>
+<h2 id="2-tbschedule的部署与配置"><a href="#2-tbschedule的部署与配置" class="headerlink" title="2. tbschedule的部署与配置"></a>2. tbschedule的部署与配置</h2><h3 id="2-1-下载tbschedule的源码，并且在tbschedule源码的基础上创建自己的maven项目"><a href="#2-1-下载tbschedule的源码，并且在tbschedule源码的基础上创建自己的maven项目" class="headerlink" title="2.1 下载tbschedule的源码，并且在tbschedule源码的基础上创建自己的maven项目"></a>2.1 下载tbschedule的源码，并且在tbschedule源码的基础上创建自己的maven项目</h3><blockquote>
+<p>tbschedule下载下来源码是放在<code>trunk/</code>的目录下的</p>
+</blockquote>
+<h3 id="2-2-tbschedule控制台部署"><a href="#2-2-tbschedule控制台部署" class="headerlink" title="2.2 tbschedule控制台部署"></a>2.2 tbschedule控制台部署</h3><p>tbSchedule就是个用servlet/JSP 写的web项目，我们可以直接把war包部署到tomcat中，然后在浏览器访问</p>
+<p><img src="http://code.taobao.org/p/tbschedule/file/2216/Zookeeper%E9%85%8D%E7%BD%AE.JPG" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//向注册中心注册配置</div><div class="line">http://&#123;server&#125;:&#123;port&#125;/ScheduleConsole/schedule/config.jsp</div><div class="line">//配置调度任务</div><div class="line">http://&#123;server&#125;:&#123;port&#125;/ScheduleConsole/schedule/index.jsp</div></pre></td></tr></table></figure>
+<h3 id="2-3-修改代码中的zookeeper配置"><a href="#2-3-修改代码中的zookeeper配置" class="headerlink" title="2.3 修改代码中的zookeeper配置"></a>2.3 修改代码中的zookeeper配置</h3><p>修改<code>src/test/resources/schedule.xml</code>中的配置信息指向已经启动的<code>zookeeper</code>服务器。为了避免不同应用任务类型间冲突，<code>rootPath</code>尽量全局唯一</p>
+<blockquote>
+<p>由于tbschedule是基于spring框架的，所以此处的<code>src/test/resources/schedule.xml</code>是需要spring中ApplicationContext来解析xml文件的，由于maven项目结构和spring结构不太一致一般情况下spring是解析不到<code>.xml</code>文件的，指定这个<code>.xml</code>目录的文件是项目根目录下一个以<code>项目名＋.imp</code>中<code>&lt;sourceFolder url=&quot;file://$MODULE_DIR$/src/main/resources&quot; type=&quot;java-resource&quot; /&gt;</code>指定的。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">default-autowire</span>=<span class="string">"byName"</span></span></div><div class="line">       <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></div><div class="line">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></div><div class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"demoTaskBean"</span> <span class="attr">class</span>=<span class="string">"com.intsig.task.DemoTaskBean"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"scheduleManagerFactory"</span> <span class="attr">class</span>=<span class="string">"com.taobao.pamirs.schedule.strategy.TBScheduleManagerFactory"</span></span></div><div class="line">        <span class="attr">init-method</span>=<span class="string">"init"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"zkConfig"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">map</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"zkConnectString"</span> <span class="attr">value</span>=<span class="string">"192.168.8.31:2181"</span> /&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"rootPath"</span> <span class="attr">value</span>=<span class="string">"/root/zhangyi/zookeeper/data"</span> /&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"zkSessionTimeout"</span> <span class="attr">value</span>=<span class="string">"10000"</span> /&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"userName"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"admin"</span> /&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"isCheckParentPath"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></div><div class="line">           <span class="tag">&lt;/<span class="name">map</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-tbschedule的实例分析"><a href="#3-tbschedule的实例分析" class="headerlink" title="3. tbschedule的实例分析"></a>3. tbschedule的实例分析</h2><p>上面把所有的基本的配置及环境的搭建都讲好了，结下来的就是最接近实战的内容了，当然了关于spring的知识还是需要有部分的积累的，主要这里用到的是spring的依赖注入的思想，然后最主要的就是用maven导入spring-framework的框架。</p>
+<h3 id="3-1-任务和调度策略的初始化-启动"><a href="#3-1-任务和调度策略的初始化-启动" class="headerlink" title="3.1 任务和调度策略的初始化,启动"></a>3.1 任务和调度策略的初始化,启动</h3><p>首先，这一部分的配置可以说有三种方式的配置</p>
+<ol>
+<li>通过java代码的初始化</li>
+</ol>
+<blockquote>
+<p>这种方式主要参考的方式是源码中<code>InitialDemoConfigData.java</code>中变成方式，其中需要注意的是创建任务调度时<code>setDealBeanName()</code>中设置的名字需要和<code>schedule.xml</code>中执行任务的bean的id一致。这种方式先执行<code>InitialDemoConfigData</code>类，然后执行<code>StartDemoSchedule</code></p>
+</blockquote>
+<ol>
+<li>通过xml文件的初始化</li>
+</ol>
+<blockquote>
+<p>这种方式在我认为可扩展性，更强一点，就是可以将策略和任务的配置通过xml的形式写入, 如果对spring有一定的理解后可以尝试一下，这部分不做详细介绍</p>
+</blockquote>
+<ol>
+<li>通过tbschedule控制台的初始化</li>
+</ol>
+<blockquote>
+<p>这种方式应该说是最为简单方便的初始化飞方式，配置策略和任务时需要注意的是<code>任务处理Bean</code>的名称必须和<code>schedule.xml</code>中执行任务的bean的id一致，如果要运行的话可以直接运行<code>StartDemoSchedule</code></p>
+</blockquote>
+<p><img src="http://code.taobao.org/p/tbschedule/file/2218/%E6%8E%A7%E5%88%B6%E5%8F%B0.JPG" alt=""></p>
+<h3 id="3-2-具体逻辑代码的实现"><a href="#3-2-具体逻辑代码的实现" class="headerlink" title="3.2 具体逻辑代码的实现"></a>3.2 具体逻辑代码的实现</h3><blockquote>
+<p>在这部分中我们最为主要的是实现<code>IScheduleTaskDealSingle&lt;T&gt;</code>或<code>IScheduleTaskDealMulti&lt;T&gt;</code>中的<code>selectTasks</code>和<code>execute</code>。</p>
+</blockquote>
+<p>3.2.1 <strong>情景假设</strong></p>
+<p>假设我们现在向姓名首字母a-z的所有用户发送一封邮件，我们需要以最快的方式发出去，这个时候就可以考虑使用分布式的方式用多台服务器不重复的同时发送目标邮件。</p>
+<ol>
+<li><p>创建调度策略，其中“最大线程组数量”设置为13，表示在机器上的通过4个线程组并行执行数据同步任务。</p>
+</li>
+<li><p>创建调度任务，需要注意下面设置</p>
+</li>
+</ol>
+<p><strong>任务名称：</strong>对应调度策略中的任务名称，标识任务和策略的关联关系；</p>
+<p><strong>任务处理的SpringBean：</strong>对应Demo TaskDeal服务Spring容器中的任务对象ID；</p>
+<p><strong>每次获取数据量：</strong>对应于bean任务类selectTasks方法参数 eachFetchDataNum</p>
+<p><strong>执行开始时间：</strong>“0 <em> </em> <em> </em> ?” 表示每分钟的0秒开始，表达式同Quartz设置的Crontab格式，有工具可以生成，详细解释参照<a href="http://dogstar.iteye.com/blog/116130" target="_blank" rel="external">这里</a></p>
+<p><strong>任务项：</strong>在上面的a-z中有26个字母，我们可以让一个县城组处理两个首字母的人名，向这些人发邮件，我们就可以将任务划分为a-z的任务片。26个任务碎片被分配到13个线程组，那么每个线程组对应2个任务碎片，运行时任务项参数又被传递到bean任务类<code>selectTasks</code>方法的<code>List&lt;TaskItemDefine&gt; queryCondition</code>参数，例如第1个线程组调用<code>selectTasks</code>方法是<code>queryCondition</code>参数条件为a,b ，第2个线程组执行参数条件为c,d，bean任务类中根据参数生成对应的字母条件去数据库中找到响应的人名的邮箱信息，并将结果提交到<code>execute</code>方法执行，从而实现并行计算。</p>
+<p>3.2.2 <strong>demo演示</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> Task;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Comparator;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.taobao.pamirs.schedule.IScheduleTaskDealSingle;</div><div class="line"><span class="keyword">import</span> com.taobao.pamirs.schedule.TaskItemDefine;</div><div class="line"></div><div class="line"><span class="keyword">import</span> DBHelper.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataSyncABean</span> <span class="keyword">implements</span> <span class="title">IScheduleTaskDealSingle</span>&lt;<span class="title">OrderInfo</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;CustomInfo&gt; <span class="title">selectTasks</span><span class="params">(String taskParameter, String ownSign,</span></span></div><div class="line">            <span class="keyword">int</span> taskItemNum, List&lt;TaskItemDefine&gt; queryCondition,</div><div class="line">            <span class="keyword">int</span> eachFetchDataNum) <span class="keyword">throws</span> Exception &#123;</div><div class="line"></div><div class="line">        List&lt;OrderInfo&gt; result = <span class="keyword">new</span> ArrayList&lt;OrderInfo&gt;();</div><div class="line">        <span class="keyword">if</span> (queryCondition.size() == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> result;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        StringBuffer condition = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queryCondition.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</div><div class="line">                condition.append(<span class="string">","</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//获取到被分配到执行主机上的名字首字母</span></div><div class="line">            condition.append(queryCondition.get(i).getTaskItemId());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        String sql = <span class="string">"select * from custom "</span> + <span class="string">"where "</span></div><div class="line">                + <span class="string">" firstchar in ("</span> + condition + <span class="string">") "</span> + <span class="string">"limit "</span></div><div class="line">                + eachFetchDataNum;</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"开始执行SQL："</span> + sql);</div><div class="line"></div><div class="line">        ResultSet rs = MySQLHelper.executeQuery(sql);</div><div class="line">        <span class="keyword">while</span> (rs.next()) &#123;</div><div class="line">            CustomInfo custom = <span class="keyword">new</span> CustomInfo();</div><div class="line">            custom.name = rs.getString(<span class="string">"name"</span>);</div><div class="line">            custom.email = rs.getString(<span class="string">"email"</span>);</div><div class="line">            result.add(custom);</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (rs.isLast()) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        MySQLHelper.free(rs, rs.getStatement(), rs.getStatement()</div><div class="line">                .getConnection());</div><div class="line"></div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Comparator&lt;OrderInfo&gt; <span class="title">getComparator</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">execute</span><span class="params">(CustomInfo task, String ownSign)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">//TODO 执行发邮件的操作，</span></div><div class="line">        <span class="comment">//这里的task是一个单个的数据对象，即只对应一个人的信息</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1.<a href="http://code.taobao.org/p/tbschedule/wiki/tbschedule-quick-start/" target="_blank" rel="external">http://code.taobao.org/p/tbschedule/wiki/tbschedule-quick-start/</a></p>
+<p>2.<a href="http://www.cnblogs.com/sunddenly/p/4018459.html" target="_blank" rel="external">http://www.cnblogs.com/sunddenly/p/4018459.html</a></p>
+<p>3.<a href="http://blog.csdn.net/neosmith/article/details/46535853" target="_blank" rel="external">http://blog.csdn.net/neosmith/article/details/46535853</a></p>
+<p>4.<a href="http://geek.csdn.net/news/detail/65738?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://geek.csdn.net/news/detail/65738?utm_source=tuicool&amp;utm_medium=referral</a></p>
+<p>5.<a href="http://blog.csdn.net/taosir_zhang/article/details/50728362" target="_blank" rel="external">http://blog.csdn.net/taosir_zhang/article/details/50728362</a></p>
+<p>6.<a href="http://www.cnblogs.com/lengfo/p/4146797.html" target="_blank" rel="external">http://www.cnblogs.com/lengfo/p/4146797.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TBSchedule/" rel="tag"># TBSchedule</a>
+          
+            <a href="/tags/淘宝任务调度/" rel="tag"># 淘宝任务调度</a>
+          
+            <a href="/tags/zookeeper/" rel="tag"># zookeeper</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/web开发/2016-04-13-腾讯云LAMP环境配置/" rel="next" title="腾讯云LAMP环境配置">
+                <i class="fa fa-chevron-left"></i> 腾讯云LAMP环境配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/python/2016-08-24-python常用函数积累/" rel="prev" title="python常用函数积累">
+                python常用函数积累 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tbschedule的部署与使用"><span class="nav-number">1.</span> <span class="nav-text">tbschedule的部署与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-zookeeper的集群部署与使用"><span class="nav-number">1.1.</span> <span class="nav-text">1. zookeeper的集群部署与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-下载zookeeper的压缩包"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 下载zookeeper的压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-zookeeper配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 zookeeper配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-zookeeper的启动与测试"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 zookeeper的启动与测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-tbschedule的部署与配置"><span class="nav-number">1.2.</span> <span class="nav-text">2. tbschedule的部署与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-下载tbschedule的源码，并且在tbschedule源码的基础上创建自己的maven项目"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 下载tbschedule的源码，并且在tbschedule源码的基础上创建自己的maven项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-tbschedule控制台部署"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 tbschedule控制台部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-修改代码中的zookeeper配置"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 修改代码中的zookeeper配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-tbschedule的实例分析"><span class="nav-number">1.3.</span> <span class="nav-text">3. tbschedule的实例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-任务和调度策略的初始化-启动"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 任务和调度策略的初始化,启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-具体逻辑代码的实现"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 具体逻辑代码的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.4.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,964 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,常用技能," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="python常用函数积累 python提供了相当丰富的函数库，没有做不到，只有想不到。而往往就是因为想不到在哪有适当的函数将简单问题复杂化的。再接触python这么久之后，我发现真的不要什么IDE记事本足已，然后Ipython是个神器，多用它！  python numpy包的使用 Numpy 是高性能科学计算和数据分许的基础包，它部分功能如下：ndarray，一个具有矢量算术运算的快速且节省空间的">
+<meta name="keywords" content="python,常用技能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python常用函数积累">
+<meta property="og:url" content="https://nezha.github.io/python/2016-08-24-python常用函数积累/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="python常用函数积累 python提供了相当丰富的函数库，没有做不到，只有想不到。而往往就是因为想不到在哪有适当的函数将简单问题复杂化的。再接触python这么久之后，我发现真的不要什么IDE记事本足已，然后Ipython是个神器，多用它！  python numpy包的使用 Numpy 是高性能科学计算和数据分许的基础包，它部分功能如下：ndarray，一个具有矢量算术运算的快速且节省空间的">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj4210nj20fl05qt9d.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj78mb6j20ka05jjur.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/9d2c4511gw1fbdoj4ggpgj20bl051mx5.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj4qu9hj20bn057aa1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/9d2c4511gw1fbdoj556jrj20d3052gln.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj5qag7j20bq052gln.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj63yibj20bk050wei.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/9d2c4511gw1fbdoj6h7qoj20bf04uq2y.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw690/9d2c4511gw1fbdoj6si0kj20bj04rq2y.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj8829gj208l056jr9.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj7r4prj20be02m745.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/9d2c4511gw1fbdoj8mv34j20t60fg3ze.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj91c6sj20bl03f747.jpg">
+<meta property="og:updated_time" content="2017-05-05T11:41:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python常用函数积累">
+<meta name="twitter:description" content="python常用函数积累 python提供了相当丰富的函数库，没有做不到，只有想不到。而往往就是因为想不到在哪有适当的函数将简单问题复杂化的。再接触python这么久之后，我发现真的不要什么IDE记事本足已，然后Ipython是个神器，多用它！  python numpy包的使用 Numpy 是高性能科学计算和数据分许的基础包，它部分功能如下：ndarray，一个具有矢量算术运算的快速且节省空间的">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj4210nj20fl05qt9d.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/python/2016-08-24-python常用函数积累/"/>
+
+
+
+
+
+  <title>python常用函数积累 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/python/2016-08-24-python常用函数积累/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python常用函数积累</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-24T00:00:00+08:00">
+                2016-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python常用函数积累"><a href="#python常用函数积累" class="headerlink" title="python常用函数积累"></a>python常用函数积累</h1><blockquote>
+<p>python提供了相当丰富的函数库，没有做不到，只有想不到。而往往就是因为想不到在哪有适当的函数将简单问题复杂化的。<br>再接触python这么久之后，我发现真的不要什么IDE记事本足已，然后Ipython是个神器，多用它！</p>
+</blockquote>
+<h2 id="python-numpy包的使用"><a href="#python-numpy包的使用" class="headerlink" title="python numpy包的使用"></a>python numpy包的使用</h2><blockquote>
+<p>Numpy 是高性能科学计算和数据分许的基础包，它部分功能如下：<br>ndarray，一个具有矢量算术运算的快速且节省空间的多维数组<br>用于对整组数据进行快速运算而不要编写循环的标准数学函数<br>线性代数，随机数生成及傅立叶变化功能<br>用于读写磁盘数据的工具</p>
+</blockquote>
+<h3 id="matrix学习理解"><a href="#matrix学习理解" class="headerlink" title="matrix学习理解"></a>matrix学习理解</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="comment">#1.生成随机数组</span></div><div class="line">array_data = np.random.randn(<span class="number">5</span>,<span class="number">3</span>)</div><div class="line"><span class="comment">#2.转换成矩阵</span></div><div class="line">matrix_data = np.matrix(array_data)</div></pre></td></tr></table></figure>
+<h3 id="随机函数的运用"><a href="#随机函数的运用" class="headerlink" title="随机函数的运用"></a>随机函数的运用</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">seed</td>
+<td style="text-align:center">确定随机生成数的种子</td>
+</tr>
+<tr>
+<td style="text-align:center">rand</td>
+<td style="text-align:center">产生均匀分布的样本值</td>
+</tr>
+<tr>
+<td style="text-align:center">randint</td>
+<td style="text-align:center">从给定的上下限范围内随机选取整数</td>
+</tr>
+<tr>
+<td style="text-align:center">randn</td>
+<td style="text-align:center">产生正态分布的样本值</td>
+</tr>
+<tr>
+<td style="text-align:center">normal</td>
+<td style="text-align:center">产生正态/高斯分布的样本值</td>
+</tr>
+<tr>
+<td style="text-align:center">uniform</td>
+<td style="text-align:center">产生在[0,1]中均匀分布的样本值</td>
+</tr>
+<tr>
+<td style="text-align:center">binomial</td>
+<td style="text-align:center">产生二项分布的样本值</td>
+</tr>
+<tr>
+<td style="text-align:center">gamma</td>
+<td style="text-align:center">产生Gamma分布的样本值</td>
+</tr>
+<tr>
+<td style="text-align:center">shuffle</td>
+<td style="text-align:center">对一个序列就地随机排列</td>
+</tr>
+<tr>
+<td style="text-align:center">permutation</td>
+<td style="text-align:center">返回一个序列的随机排列</td>
+</tr>
+</tbody>
+</table>
+<h3 id="求均值方差"><a href="#求均值方差" class="headerlink" title="求均值方差"></a>求均值方差</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">pos = np.random.randn(<span class="number">5</span>,<span class="number">2</span>)</div><div class="line">           <span class="comment">#按列求方差</span></div></pre></td></tr></table></figure>
+<h3 id="对于位置坐标获取X和Y轴的列集合"><a href="#对于位置坐标获取X和Y轴的列集合" class="headerlink" title="对于位置坐标获取X和Y轴的列集合"></a>对于位置坐标获取X和Y轴的列集合</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Loc_sample_matrix = np.matrix(Loc_sample).getH()</div><div class="line"><span class="keyword">print</span> Loc_sample_matrix.shape</div><div class="line"><span class="keyword">print</span> Loc_sample_matrix</div><div class="line">plt.plt_line(Loc_sample_matrix[<span class="number">0</span>], Loc_sample_matrix[<span class="number">1</span>])</div></pre></td></tr></table></figure>
+<h3 id="两个坐标位置间的距离"><a href="#两个坐标位置间的距离" class="headerlink" title="两个坐标位置间的距离"></a>两个坐标位置间的距离</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">result_location = [<span class="number">0</span>,<span class="number">0</span>]</div><div class="line">true_location = np.array([<span class="number">5</span>,<span class="number">5</span>])</div><div class="line">result_location = np.array(result_location)</div><div class="line">vector_dis = true_location - result_location</div><div class="line">dis_std = np.sqrt(np.dot(vector_dis.T,vector_dis))</div></pre></td></tr></table></figure>
+<h3 id="提取特定精度的数字"><a href="#提取特定精度的数字" class="headerlink" title="提取特定精度的数字"></a>提取特定精度的数字</h3><blockquote>
+<p>很多时候浮点数强制转换会有精度损失的，所以需要保留一定的精度</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#将array类型转成list用tolist()函数不会有精度损失</span></div><div class="line">Number = np.round(raw,<span class="number">2</span>).tolist()</div></pre></td></tr></table></figure>
+<h2 id="python-pandas的使用"><a href="#python-pandas的使用" class="headerlink" title="python pandas的使用"></a>python pandas的使用</h2><blockquote>
+<p>它使含有数据分析工作变得更快更简单，pandas是基于numpy构建的。<br>我已经整理过的函数有：<code>pd.read_excel</code>,<code>pd.DataFrame.sort</code>,<code>pd.read_csv</code>,<code>df.reset_index</code>,<code>df.isin</code></p>
+</blockquote>
+<h3 id="read-excel函数的使用"><a href="#read-excel函数的使用" class="headerlink" title="read_excel函数的使用"></a>read_excel函数的使用</h3><blockquote>
+<p>参考文献: pandas API文档</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="comment">#读取excel文件，并且指定某一页，如果有中文的情况可以转成unicode编码，data的类型是dataframe类型的</span></div><div class="line">data = pd.read_excel(<span class="string">'../data1wuhan.xls'</span>,sheetname=<span class="string">u'sheet1'</span>)</div></pre></td></tr></table></figure>
+<h3 id="DataFrame的理解"><a href="#DataFrame的理解" class="headerlink" title="DataFrame的理解"></a>DataFrame的理解</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1.读取指定位置的数据</span></div><div class="line">specific_data1 = data.loc[<span class="number">0</span>:<span class="number">10</span>,[<span class="string">'PM10'</span>,<span class="string">'PM2.5'</span>]]</div><div class="line">specific_data2 = data.PM10[<span class="number">0</span>:<span class="number">10</span>]</div><div class="line">specific_data3 = data[<span class="string">'PM10'</span>]   <span class="comment">#取出的一列数据到Series类型中</span></div><div class="line">specific_data4 = data[[<span class="string">'PM10'</span>,<span class="string">'SO2'</span>]] </div><div class="line"></div><div class="line"><span class="comment">#2.如何删除指定的列？</span></div><div class="line"><span class="keyword">del</span>(data[<span class="string">'NO2'</span>])</div><div class="line"></div><div class="line"><span class="comment">#3.获取列数</span></div><div class="line">col_size = data.columns.size</div><div class="line"></div><div class="line"><span class="comment">#4.将Dataframe转换成矩阵形势</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">array_data = np.random.randn(<span class="number">5</span>,<span class="number">3</span>)</div><div class="line">frame_data = pd.DataFrame(array_data)</div><div class="line">frame_data.as_matrix()<span class="comment">#转化成numpy中的数组了</span></div><div class="line"></div><div class="line"><span class="comment">#5.索引一条记录或几条记录：</span></div><div class="line">data[<span class="number">1</span>:<span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="comment">#6.DataFrame按照某一列排序</span></div><div class="line">data = frame_data.sort(<span class="string">'sche_all_rest'</span>,ascending=<span class="number">1</span>)</div><div class="line">help(frame_data.sort)</div><div class="line"></div><div class="line"><span class="comment">#7.按照某一属性大小取整个数据集</span></div><div class="line">data[data[<span class="string">'Col_Name'</span>]&gt;<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="comment">#8.如何按照list中的条件，整体的从DataFrame中寻找到数据, http://stackoverflow.com/questions/40999119/how-to-find-data-from-dataframe-at-a-time-when-the-condition-is-a-list</span></div><div class="line">condition = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>]</div><div class="line">df[df[<span class="string">"1"</span>].isin(condition)].index<span class="comment">#index是将索引的索引返回出来</span></div><div class="line"></div><div class="line"><span class="comment">#9.DataFrame怎么按照条件获取索引位置, http://stackoverflow.com/questions/37502298/python-pandas-get-index-from-column-value?noredirect=1&amp;lq=1</span></div><div class="line">df.index.get_loc(<span class="string">'2016-04-14'</span>)</div><div class="line"></div><div class="line"><span class="comment">#10.按照顺序将DataFrame的索引重新排序</span></div><div class="line">df.reset_index()</div><div class="line"></div><div class="line"><span class="comment">#11.如何按照自己的索引创建DataFrame</span></div><div class="line">data = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]  </div><div class="line">index = [<span class="string">'d'</span>,<span class="string">'e'</span>]  </div><div class="line">columns=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]  </div><div class="line">df = pd.DataFrame(data=data, index=index, columns=columns)</div></pre></td></tr></table></figure>
+<p>###pandas csv的读写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1.读取csv文件</span></div><div class="line">data = pd.read_csv(<span class="string">'file_path'</span>,names=[<span class="string">'xx'</span>,<span class="string">'xx'</span>])<span class="comment">#header=None</span></div><div class="line"><span class="comment">#2.将DataFrame格式的数据写入到csv文件中，以','为分隔符</span></div><div class="line">data.to_csv(<span class="string">'./ans1_11_schemes.csv'</span>) <span class="comment">#sep='|'</span></div></pre></td></tr></table></figure>
+<h3 id="pandas-数据预处理-处理缺失值"><a href="#pandas-数据预处理-处理缺失值" class="headerlink" title="pandas 数据预处理-处理缺失值"></a>pandas 数据预处理-处理缺失值</h3><ul>
+<li><strong>缺失值填充的方法</strong></li>
+</ul>
+<p><br></p>
+<p><img src="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj4210nj20fl05qt9d.jpg" alt="fillna的用法"></p>
+<hr>
+<ul>
+<li><strong>有缺失值的时候处理</strong></li>
+</ul>
+<p><br></p>
+<p><img src="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj78mb6j20ka05jjur.jpg" alt="当存在缺失值的时候"></p>
+<p>1.先来创建一个带有缺失值的DataFrame:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  </div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  </div><div class="line">df=pd.DataFrame(np.random.randn(<span class="number">5</span>,<span class="number">3</span>),index=list(<span class="string">'abcde'</span>),columns=[<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>])  </div><div class="line">df=pd.DataFrame(np.random.randn(<span class="number">5</span>,<span class="number">3</span>),index=list(<span class="string">'abcde'</span>),columns=[<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>])  </div><div class="line">df.ix[<span class="number">1</span>,:<span class="number">-1</span>]=np.nan  </div><div class="line">df.ix[<span class="number">1</span>:<span class="number">-1</span>,<span class="number">2</span>]=np.nan  </div><div class="line">df</div></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/mw690/9d2c4511gw1fbdoj4ggpgj20bl051mx5.jpg" alt="df的值"></p>
+<p><br></p>
+<p>2.使用0替代缺失值（当然你可以用任意一个数字代替NaN）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.fillna(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj4qu9hj20bn057aa1.jpg" alt=""></p>
+<p><br></p>
+<p>3.用一个字符串代替缺失值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.fillna(<span class="string">'missing'</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/mw690/9d2c4511gw1fbdoj556jrj20d3052gln.jpg" alt=""></p>
+<p><br></p>
+<p>4.用前一个数据代替NaN：method=’pad’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.fillna(method=<span class="string">'pad'</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj5qag7j20bq052gln.jpg" alt=""></p>
+<p><br></p>
+<p>5.与pad相反，bfill表示用后一个数据代替NaN。这里我们增加一个知识点，用limit限制每列可以替代NaN的数目，下面我们限制每列只能替代一个NaN</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.fillna(method=<span class="string">'bfill'</span>,limit=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj63yibj20bk050wei.jpg" alt=""></p>
+<p><br></p>
+<p>6.除了上面用一个具体的值来代替NaN之外，还可以使用平均数或者其他描述性统计量来代替NaN</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.fillna(df.mean())</div></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/mw690/9d2c4511gw1fbdoj6h7qoj20bf04uq2y.jpg" alt=""></p>
+<p><br></p>
+<p>7.最后，我们还可以选择哪一列进行缺失值的处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.fillna(df.mean()[<span class="string">'one'</span>:<span class="string">'two'</span>])</div></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/mw690/9d2c4511gw1fbdoj6si0kj20bj04rq2y.jpg" alt=""></p>
+<p><br></p>
+<p>8.查找缺失值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.isnull()</div></pre></td></tr></table></figure>
+<p><img src="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj8829gj208l056jr9.jpg" alt=""></p>
+<p><br></p>
+<p>9.滤除缺失数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.dropna()</div></pre></td></tr></table></figure>
+<p><img src="http://ww4.sinaimg.cn/mw690/9d2c4511gw1fbdoj7r4prj20be02m745.jpg" alt=""></p>
+<p><br></p>
+<p><img src="http://ww1.sinaimg.cn/mw690/9d2c4511gw1fbdoj8mv34j20t60fg3ze.jpg" alt=""></p>
+<p><br></p>
+<p>10.去除特定列的缺失数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.dropna(subset=[[<span class="string">'one'</span>,<span class="string">"two"</span>]])</div></pre></td></tr></table></figure>
+<p><img src="http://ww3.sinaimg.cn/mw690/9d2c4511gw1fbdoj91c6sj20bl03f747.jpg" alt=""></p>
+<h2 id="python-collections使用"><a href="#python-collections使用" class="headerlink" title="python collections使用"></a>python collections使用</h2><blockquote>
+<p>参考文献1：<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001411031239400f7181f65f33a4623bc42276a605debf6000" target="_blank" rel="external">廖雪峰的官方网站</a><br>参考文献2：<a href="http://www.zlovezl.cn/articles/collections-in-python/" target="_blank" rel="external">不可不知的Python模块: collections</a></p>
+</blockquote>
+<h3 id="Counter计数器"><a href="#Counter计数器" class="headerlink" title="Counter计数器"></a>Counter计数器</h3><blockquote>
+<p>Counter可以迅速的统计出字符串或list中item的出现次数</p>
+</blockquote>
+<p><strong>代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(<span class="string">'abcdeabcdabcaba'</span>).most_common(<span class="number">3</span>)</div><div class="line">[(<span class="string">'a'</span>, <span class="number">5</span>), (<span class="string">'b'</span>, <span class="number">4</span>), (<span class="string">'c'</span>, <span class="number">3</span>)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Counter([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).most_common(<span class="number">2</span>)</div><div class="line">[(<span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">3</span>)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(<span class="string">'123234567'</span>)</div><div class="line">Counter(&#123;<span class="string">'3'</span>: <span class="number">2</span>, <span class="string">'2'</span>: <span class="number">2</span>, <span class="string">'1'</span>: <span class="number">1</span>, <span class="string">'5'</span>: <span class="number">1</span>, <span class="string">'4'</span>: <span class="number">1</span>, <span class="string">'7'</span>: <span class="number">1</span>, <span class="string">'6'</span>: <span class="number">1</span>&#125;)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Counter([<span class="string">'aa'</span>,<span class="string">'bb'</span>,<span class="string">'cc'</span>,<span class="string">'aa'</span>]).most_common(<span class="number">2</span>)</div><div class="line">[(<span class="string">'aa'</span>, <span class="number">2</span>), (<span class="string">'cc'</span>, <span class="number">1</span>)]</div></pre></td></tr></table></figure>
+<h3 id="defaultdict带有默认值的字典"><a href="#defaultdict带有默认值的字典" class="headerlink" title="defaultdict带有默认值的字典"></a>defaultdict带有默认值的字典</h3><blockquote>
+<p>我们都知道，在使用<code>Python</code>原生的数据结构<code>dict</code>的时候，如果用 <code>d[key]`` 这样的方式访问， 当指定的</code>key<code>不存在时，是会抛出</code>KeyError<code>异常的。
+&lt;br&gt;
+但是，如果使用</code>defaultdict<code>，只要你传入一个默认的工厂方法，那么请求一个不存在的</code>key<code>时， 便会调用这个工厂方法使用其结果来作为这个</code>key`的默认值。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line">members = [</div><div class="line">    <span class="comment"># Age, name</span></div><div class="line">    [<span class="string">'male'</span>, <span class="string">'John'</span>],</div><div class="line">    [<span class="string">'male'</span>, <span class="string">'Jack'</span>],</div><div class="line">    [<span class="string">'female'</span>, <span class="string">'Lily'</span>],</div><div class="line">    [<span class="string">'male'</span>, <span class="string">'Pony'</span>],</div><div class="line">    [<span class="string">'female'</span>, <span class="string">'Lucy'</span>],</div><div class="line">]</div><div class="line"></div><div class="line">result = defaultdict(list)</div><div class="line"><span class="keyword">for</span> sex, name <span class="keyword">in</span> members:</div><div class="line">    result[sex].append(name)</div><div class="line"></div><div class="line"><span class="keyword">print</span> result</div><div class="line"></div><div class="line"><span class="comment"># Result:</span></div><div class="line">defaultdict(&lt;type <span class="string">'list'</span>&gt;, &#123;<span class="string">'male'</span>: [<span class="string">'John'</span>, <span class="string">'Jack'</span>, <span class="string">'Pony'</span>], <span class="string">'female'</span>: [<span class="string">'Lily'</span>, <span class="string">'Lucy'</span>]&#125;)</div></pre></td></tr></table></figure>
+<h2 id="python-scipy的使用"><a href="#python-scipy的使用" class="headerlink" title="python scipy的使用"></a>python scipy的使用</h2><p>SciPy解决的问题还是很多的，主要的功能如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">常数和特殊函数</td>
+</tr>
+<tr>
+<td style="text-align:center">优化问题—optimize</td>
+</tr>
+<tr>
+<td style="text-align:center">插值—interpolate</td>
+</tr>
+<tr>
+<td style="text-align:center">数值积分—integrate</td>
+</tr>
+<tr>
+<td style="text-align:center">信号处理—signal</td>
+</tr>
+<tr>
+<td style="text-align:center">图像处理—ndimage</td>
+</tr>
+<tr>
+<td style="text-align:center">统计—stats</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-优化问题—optimize"><a href="#1-优化问题—optimize" class="headerlink" title="1.优化问题—optimize"></a>1.优化问题—optimize</h3><p>1.scipy.optimize.linprog 求解线性规划问题</p>
+<blockquote>
+<p><code>scipy.optimize.linprog(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None, bounds=None, method=&#39;simplex&#39;, callback=None, options=None)[source]</code></p>
+<p>Example: <a href="http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.linprog.html" target="_blank" rel="external">http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.linprog.html</a></p>
+</blockquote>
+<p>假设有如下的问题:</p>
+<blockquote>
+<p>Minimize: f = -1*x[0] + 4*x[1]</p>
+<p>约束条件是: -3*x[0] + 1*x[1] &lt;= 6</p>
+<p>1*x[0] + 2*x[1] &lt;= 4</p>
+<p>x[1] &gt;= -3</p>
+<p>where: -inf &lt;= x[0] &lt;= inf</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = [<span class="number">-1</span>, <span class="number">4</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>A = [[<span class="number">-3</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">2</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">6</span>, <span class="number">4</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x0_bounds = (<span class="keyword">None</span>, <span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x1_bounds = (<span class="number">-3</span>, <span class="keyword">None</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>res = linprog(c, A_ub=A, b_ub=b, bounds=(x0_bounds, x1_bounds),</div><div class="line"><span class="meta">... </span>              options=&#123;<span class="string">"disp"</span>: <span class="keyword">True</span>&#125;)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(res)</div><div class="line">Optimization terminated successfully.</div><div class="line">     Current function value: <span class="number">-11.428571</span></div><div class="line">     Iterations: <span class="number">2</span></div><div class="line">status: <span class="number">0</span></div><div class="line">success: <span class="keyword">True</span></div><div class="line">fun: <span class="number">-11.428571428571429</span></div><div class="line">x: array([<span class="number">-1.14285714</span>,  <span class="number">2.57142857</span>])</div><div class="line">message: <span class="string">'Optimization terminated successfully.'</span></div><div class="line">nit: <span class="number">2</span></div></pre></td></tr></table></figure>
+<h3 id="2-插值—interpolate"><a href="#2-插值—interpolate" class="headerlink" title="2.插值—interpolate"></a>2.插值—interpolate</h3><blockquote>
+<p>插值法在补全数据方面是很有用的，当数据不是完整的情况下有效的根据数据变化趋势相应的进行插值是一个需要研究的问题。<br>现在主要的插值法主要有拉格朗日插值法和牛顿插值法等，python中主要介绍的拉格朗日插值法</p>
+</blockquote>
+<h3 id="3-常用函数或特殊函数"><a href="#3-常用函数或特殊函数" class="headerlink" title="3.常用函数或特殊函数"></a>3.常用函数或特殊函数</h3><p>1.Matlab中.mat文件的读写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scipy.io <span class="keyword">as</span> sio  </div><div class="line"><span class="comment">#matlab文件名  </span></div><div class="line">matfn=<span class="string">u'./readdata.mat'</span>  </div><div class="line">data=sio.loadmat(matfn)  </div><div class="line">sio.savemat(<span class="string">'saveddata.mat'</span>, &#123;<span class="string">'name1'</span>: list1,<span class="string">'name2'</span>: list2&#125;)</div></pre></td></tr></table></figure>
+<h2 id="python-itertools使用"><a href="#python-itertools使用" class="headerlink" title="python itertools使用"></a>python itertools使用</h2><blockquote>
+<p>在需要进行排列组合的时候这个函数包就非常方便了</p>
+<p>1.product 笛卡尔积</p>
+<p>2.permutations 排列</p>
+<p>3.combinations 组合,没有重复</p>
+<p>4.combinations_with_replacement 组合,有重复</p>
+</blockquote>
+<ol>
+<li>product的使用</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product</div><div class="line">l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="keyword">print</span> list(product(l, l))</div><div class="line"><span class="keyword">print</span> list(product(l, repeat=<span class="number">4</span>))</div></pre></td></tr></table></figure>
+<h2 id="python-读写文件"><a href="#python-读写文件" class="headerlink" title="python 读写文件"></a>python 读写文件</h2><h3 id="csv文件的读写"><a href="#csv文件的读写" class="headerlink" title="csv文件的读写"></a>csv文件的读写</h3><blockquote>
+<p>参考文献: <a href="https://docs.python.org/3/library/csv.html" target="_blank" rel="external">https://docs.python.org/3/library/csv.html</a></p>
+</blockquote>
+<ol>
+<li>写文件</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line">csvfile = file(<span class="string">'csv_test.csv'</span>, <span class="string">'wb'</span>)</div><div class="line">writer = csv.writer(csvfile)</div><div class="line">writer.writerow([<span class="string">'姓名'</span>, <span class="string">'年龄'</span>, <span class="string">'电话'</span>])</div><div class="line">data = [</div><div class="line">    (<span class="string">'小河'</span>, <span class="string">'25'</span>, <span class="string">'1234567'</span>),</div><div class="line">    (<span class="string">'小芳'</span>, <span class="string">'18'</span>, <span class="string">'789456'</span>)</div><div class="line">]</div><div class="line">writer.writerows(data)</div><div class="line">csvfile.close()</div></pre></td></tr></table></figure>
+<ol>
+<li>读文件</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line">csvfile = file(<span class="string">'csv_test.csv'</span>, <span class="string">'rb'</span>)</div><div class="line">reader = csv.reader(csvfile)</div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> reader:</div><div class="line">    <span class="keyword">print</span> line</div><div class="line">csvfile.close()</div></pre></td></tr></table></figure>
+<h2 id="python杂记"><a href="#python杂记" class="headerlink" title="python杂记"></a>python杂记</h2><h3 id="二维list取个set"><a href="#二维list取个set" class="headerlink" title="二维list取个set"></a>二维list取个set</h3><blockquote>
+<p>map 是一个很好的函数，可以多使用</p>
+<p>参考网址： <a href="http://stackoverflow.com/questions/39081807/python-2-d-list-how-to-make-a-set/39081998#comment65511507_39081807" target="_blank" rel="external">http://stackoverflow.com/questions/39081807/python-2-d-list-how-to-make-a-set/39081998#comment65511507_39081807</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">2</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list2 = list(map(list, set(map(tuple,list1))))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list2</div><div class="line">[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]</div></pre></td></tr></table></figure>
+<h3 id="计算均方根误差-RMSE"><a href="#计算均方根误差-RMSE" class="headerlink" title="计算均方根误差-RMSE"></a>计算均方根误差-RMSE</h3><blockquote>
+<p>参考网址： <a href="http://stackoverflow.com/questions/17197492/root-mean-square-error-in-python" target="_blank" rel="external">http://stackoverflow.com/questions/17197492/root-mean-square-error-in-python</a></p>
+</blockquote>
+<p>$$[RMSE=\sqrt{\frac{1}{n}\sum<em>{i=1}^{n}\left ( d</em>{i}-p_{i} \right )^{2}}]$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#方法一：使用sklearn中的函数</span></div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</div><div class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</div><div class="line"></div><div class="line">rms = sqrt(mean_squared_error(y_actual, y_predicted))</div><div class="line"></div><div class="line"><span class="comment">#按照公式直接使用</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rmse</span><span class="params">(predictions, targets)</span>:</span></div><div class="line">    <span class="keyword">return</span> np.sqrt(((predictions - targets) ** <span class="number">2</span>).mean())</div></pre></td></tr></table></figure>
+<h3 id="python中赋值得注意"><a href="#python中赋值得注意" class="headerlink" title="python中赋值得注意"></a>python中赋值得注意</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line"><span class="comment">#此时修改b的时候，a的值也会被修改掉，此时的赋值类似于传地址</span></div><div class="line">b = a</div><div class="line"></div><div class="line"><span class="comment">##正确的方法有两种</span></div><div class="line"><span class="comment">##1.不借助函数包</span></div><div class="line">b = a[:]</div><div class="line"><span class="comment">##2.借助于copy函数包</span></div><div class="line"><span class="keyword">import</span> copy</div><div class="line">b = copy.copy(a)</div></pre></td></tr></table></figure>
+<h3 id="map函数式编程"><a href="#map函数式编程" class="headerlink" title="map函数式编程"></a>map函数式编程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert2second</span><span class="params">(time_cur)</span>:</span></div><div class="line">    time_list = time_cur.split(<span class="string">":"</span>)</div><div class="line">    time_list = map(<span class="keyword">lambda</span> x: int(x),time_list)</div><div class="line">    time_second = time_list[<span class="number">2</span>] + time_list[<span class="number">1</span>]*<span class="number">60</span> + time_list[<span class="number">0</span>]*<span class="number">3600</span></div><div class="line">    <span class="keyword">return</span> time_second</div><div class="line">time_second_all_list = map(convert2second,time_all_list)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/常用技能/" rel="tag"># 常用技能</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/开源项目/2016-08-03-TBSchedule使用实战/" rel="next" title="TBSchedule使用实战">
+                <i class="fa fa-chevron-left"></i> TBSchedule使用实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/笔记/2016-08-31-Linux常见函数/" rel="prev" title="Linux常见函数">
+                Linux常见函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python常用函数积累"><span class="nav-number">1.</span> <span class="nav-text">python常用函数积累</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-numpy包的使用"><span class="nav-number">1.1.</span> <span class="nav-text">python numpy包的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#matrix学习理解"><span class="nav-number">1.1.1.</span> <span class="nav-text">matrix学习理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机函数的运用"><span class="nav-number">1.1.2.</span> <span class="nav-text">随机函数的运用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求均值方差"><span class="nav-number">1.1.3.</span> <span class="nav-text">求均值方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于位置坐标获取X和Y轴的列集合"><span class="nav-number">1.1.4.</span> <span class="nav-text">对于位置坐标获取X和Y轴的列集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个坐标位置间的距离"><span class="nav-number">1.1.5.</span> <span class="nav-text">两个坐标位置间的距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取特定精度的数字"><span class="nav-number">1.1.6.</span> <span class="nav-text">提取特定精度的数字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-pandas的使用"><span class="nav-number">1.2.</span> <span class="nav-text">python pandas的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#read-excel函数的使用"><span class="nav-number">1.2.1.</span> <span class="nav-text">read_excel函数的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame的理解"><span class="nav-number">1.2.2.</span> <span class="nav-text">DataFrame的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pandas-数据预处理-处理缺失值"><span class="nav-number">1.2.3.</span> <span class="nav-text">pandas 数据预处理-处理缺失值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-collections使用"><span class="nav-number">1.3.</span> <span class="nav-text">python collections使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Counter计数器"><span class="nav-number">1.3.1.</span> <span class="nav-text">Counter计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#defaultdict带有默认值的字典"><span class="nav-number">1.3.2.</span> <span class="nav-text">defaultdict带有默认值的字典</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-scipy的使用"><span class="nav-number">1.4.</span> <span class="nav-text">python scipy的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-优化问题—optimize"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.优化问题—optimize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-插值—interpolate"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.插值—interpolate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-常用函数或特殊函数"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.常用函数或特殊函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-itertools使用"><span class="nav-number">1.5.</span> <span class="nav-text">python itertools使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-读写文件"><span class="nav-number">1.6.</span> <span class="nav-text">python 读写文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#csv文件的读写"><span class="nav-number">1.6.1.</span> <span class="nav-text">csv文件的读写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python杂记"><span class="nav-number">1.7.</span> <span class="nav-text">python杂记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二维list取个set"><span class="nav-number">1.7.1.</span> <span class="nav-text">二维list取个set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算均方根误差-RMSE"><span class="nav-number">1.7.2.</span> <span class="nav-text">计算均方根误差-RMSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中赋值得注意"><span class="nav-number">1.7.3.</span> <span class="nav-text">python中赋值得注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map函数式编程"><span class="nav-number">1.7.4.</span> <span class="nav-text">map函数式编程</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

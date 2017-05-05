@@ -1,0 +1,797 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="centos配置,搭建FTP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="腾讯云FTP的配置 参考网址: 官方教程: http://www.qcloud.com/wiki/ 国外网站: http://www.unixmen.com/install-configure-ftp-server-centos-7/ centos启用ftp功能 ： http://os.51cto.com/art/201408/448630.htm 腾讯云论坛: http://wsq.discuz">
+<meta name="keywords" content="centos配置,搭建FTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="腾讯云FTP的配置">
+<meta property="og:url" content="https://nezha.github.io/web开发/2016-04-12-腾讯云FTP的配置/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="腾讯云FTP的配置 参考网址: 官方教程: http://www.qcloud.com/wiki/ 国外网站: http://www.unixmen.com/install-configure-ftp-server-centos-7/ centos启用ftp功能 ： http://os.51cto.com/art/201408/448630.htm 腾讯云论坛: http://wsq.discuz">
+<meta property="og:updated_time" content="2017-05-05T11:36:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="腾讯云FTP的配置">
+<meta name="twitter:description" content="腾讯云FTP的配置 参考网址: 官方教程: http://www.qcloud.com/wiki/ 国外网站: http://www.unixmen.com/install-configure-ftp-server-centos-7/ centos启用ftp功能 ： http://os.51cto.com/art/201408/448630.htm 腾讯云论坛: http://wsq.discuz">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/web开发/2016-04-12-腾讯云FTP的配置/"/>
+
+
+
+
+
+  <title>腾讯云FTP的配置 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/web开发/2016-04-12-腾讯云FTP的配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">腾讯云FTP的配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-12T00:00:00+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">web开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="腾讯云FTP的配置"><a href="#腾讯云FTP的配置" class="headerlink" title="腾讯云FTP的配置"></a>腾讯云FTP的配置</h1><blockquote>
+<p>参考网址:</p>
+<p>官方教程: <a href="http://www.qcloud.com/wiki/" target="_blank" rel="external">http://www.qcloud.com/wiki/</a></p>
+<p>国外网站: <a href="http://www.unixmen.com/install-configure-ftp-server-centos-7/" target="_blank" rel="external">http://www.unixmen.com/install-configure-ftp-server-centos-7/</a></p>
+<p>centos启用ftp功能 ： <a href="http://os.51cto.com/art/201408/448630.htm" target="_blank" rel="external">http://os.51cto.com/art/201408/448630.htm</a></p>
+<p>腾讯云论坛: <a href="http://wsq.discuz.qq.com/?c=index&amp;a=viewthread&amp;f=inner&amp;siteid=264281419&amp;tid=1343&amp;source=wxhy&amp;fromuid=0" target="_blank" rel="external">http://wsq.discuz.qq.com/?c=index&amp;a=viewthread&amp;f=inner&amp;siteid=264281419&amp;tid=1343&amp;source=wxhy&amp;fromuid=0</a></p>
+</blockquote>
+<p>在腾讯云上配置FTP如果按照官方的教程来做,有可能是不能实现访问的.网上现在到处都能找到的教程都是基于Centos的,但是好多都是人云亦云没有很好的概括其中的脉络及可能出现的问题.</p>
+<h2 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h2><blockquote>
+<p>在腾讯云中虽然我选择的是Centos的版本,但是好像还是经过了一些的配置,因为我查看进程的时候发现其中根本没有开firewalld也没有开selinux</p>
+</blockquote>
+<p>1.查看防火墙运行状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">netstat -tunlp  #查看防火墙运行状态</div><div class="line">systemctl status firewalls</div></pre></td></tr></table></figure>
+<p>2.关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl mask firewalld</div><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
+<p>3.安装iptables防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># yum -y install iptables-services</div><div class="line"># systemctl enable iptables</div><div class="line"># systemctl enable ip6tables</div><div class="line"># systemctl start iptables</div><div class="line"># systemctl start ip6tables</div></pre></td></tr></table></figure>
+<p>4.配置iptables,开放21端口</p>
+<blockquote>
+<p>在行上面有22 -j ACCEPT 下面另起一行输入跟那行差不多的，只是把22换成21，然后：wq保存。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># vi /etc/sysconfig/iptables</div></pre></td></tr></table></figure>
+<p>5.如果要关闭SeLinux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># vi /etc/selinux/config</div><div class="line"></div><div class="line"># SELINUX=enforcing #注释掉</div><div class="line"># SELINUXTYPE=targeted #注释掉</div><div class="line"># SELINUX=disabled #增加</div><div class="line">:wq! #保存退出</div><div class="line"></div><div class="line">setenforce 0 #使配置立即生效</div></pre></td></tr></table></figure>
+<h2 id="FTP服务器端配置"><a href="#FTP服务器端配置" class="headerlink" title="FTP服务器端配置"></a>FTP服务器端配置</h2><blockquote>
+<p>安装vsftpd组件，安装完后，有/etc/vsftpd/vsftpd.conf 文件，用来配置，还有新建了一个ftp用户和ftp的组，指向home目录为/var/ftp,默认是nologin（不能登录系统）</p>
+</blockquote>
+<p>1.安装vsftpd组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install vsftpd</div></pre></td></tr></table></figure>
+<p>可以用下面命令查看用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd</div></pre></td></tr></table></figure>
+<p>默认ftp服务是没有启动的，用下面命令启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl start vsftpd</div></pre></td></tr></table></figure>
+<p>2.设置自动启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl enable vsftpd</div></pre></td></tr></table></figure>
+<p>3.将匿名登录禁用掉</p>
+<blockquote>
+<p>在配置文件中第11行的“anonymous_enable=YES”改为“anonymous_enable=NO”，即将匿名登录禁用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># vim /etc/vsftpd/vsftpd.conf</div></pre></td></tr></table></figure>
+<p>重新启动vsftpd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart vsftpd</div></pre></td></tr></table></figure>
+<p>4.安装ftp客户端组件（用来验证是否vsftpd）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install ftp</div></pre></td></tr></table></figure>
+<p>执行命令尝试登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ftp localhost</div></pre></td></tr></table></figure>
+<blockquote>
+<p>输入用户名ftp，密码随便（因为默认是允许匿名的）登录成功，就代表ftp服务可用了。但是，外网是访问不了的，所以还要继续配置。</p>
+</blockquote>
+<p>5.设置FTP用户账号。设置成功后，即可通过该账号登录FTP服务器。</p>
+<p>设置FTP用户的账号，例如账号为“ftpuser1”，目录为/home/ftpuser1，且设置不允许通过ssh登录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">useradd -m -d /home/ftpuser1 -s /sbin/nologin ftpuser1   #两个ftpuser1都必须有,而且一致</div></pre></td></tr></table></figure>
+<p>设置账号对应的密码，例如密码为“ftpuser1”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">passwd ftpuser1</div></pre></td></tr></table></figure>
+<p>6.修改vsftpd的pam配置，使用户可以通过自己设置的FTP用户帐号和密码连接到云服务器。</p>
+<p>修改pam</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/pam.d/vsftpd</div></pre></td></tr></table></figure>
+<p>内容修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#%PAM-1.0 </div><div class="line">auth required /lib64/security/pam_listfile.so item=user sense=deny file=/etc/ftpusers onerr=succeed </div><div class="line">auth required /lib64/security/pam_unix.so shadow nullok </div><div class="line">auth required /lib64/security/pam_shells.so </div><div class="line">account required /lib64/security/pam_unix.so </div><div class="line">session required /lib64/security/pam_unix.so</div></pre></td></tr></table></figure>
+<p>7.重启vsftpd服务，使修改生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart vsftpd</div></pre></td></tr></table></figure>
+<h2 id="FTP客户端配置"><a href="#FTP客户端配置" class="headerlink" title="FTP客户端配置"></a>FTP客户端配置</h2><blockquote>
+<p>添加完毕之后理论上就可以访问了，但是很多客户端会出现pasv错误。</p>
+</blockquote>
+<h3 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h3><p>FTP协议传输文件有2种模式，分为主动模式和被动模式。这里的问题原因简单来讲是这样：FTP客户端默认的传输模式是被动模式，因此在通信过程中会去寻找服务器端的ip地址进行连接，但是由于腾讯云的外网ip不是直接配在网卡上，因此在被动模式下客户端找不到有效的ip（因为找到的是腾讯云的内网ip，内网ip无法直接和外网通信），故无法建立连接。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>a、将客户端传输模式改为主动即可；</p>
+<p>b、如果客户端网络环境要求被动模式，那么需要在服务端的配置文件中新增这些语句</p>
+<p>打开vsftpd.conf文件，在后面加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pasv_min_port=30000   </div><div class="line">pasv_max_port=30999</div></pre></td></tr></table></figure>
+<p>改完重启一下vsftpd</p>
+<h2 id="可能的问题"><a href="#可能的问题" class="headerlink" title="可能的问题"></a>可能的问题</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/centos配置/" rel="tag"># centos配置</a>
+          
+            <a href="/tags/搭建FTP/" rel="tag"># 搭建FTP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/web开发/2016-04-10-腾讯云的使用/" rel="next" title="腾讯云的使用">
+                <i class="fa fa-chevron-left"></i> 腾讯云的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/web开发/2016-04-13-腾讯云LAMP环境配置/" rel="prev" title="腾讯云LAMP环境配置">
+                腾讯云LAMP环境配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#腾讯云FTP的配置"><span class="nav-number">1.</span> <span class="nav-text">腾讯云FTP的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙配置"><span class="nav-number">1.1.</span> <span class="nav-text">防火墙配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP服务器端配置"><span class="nav-number">1.2.</span> <span class="nav-text">FTP服务器端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTP客户端配置"><span class="nav-number">1.3.</span> <span class="nav-text">FTP客户端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题所在"><span class="nav-number">1.3.1.</span> <span class="nav-text">问题所在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.3.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能的问题"><span class="nav-number">1.4.</span> <span class="nav-text">可能的问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="github,Jekyll," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="注意点 关于源的问题 1.1 有些时候外网不是很好访问，这个时候就需要访问一些镜像网站了，如在下载某些插件或更新Ruby的时候可以将源指向https://ruby.taobao.org/ 1.2 还有就是自己花钱买专用网络通道了 关于Ruby的版本 最好下载的时候将Ruby和RubyDevKit的版本下载一个版本的 关于gem的介绍 网上有些教程还说要下载什么gem系统，其实现在已经不用了，因为r">
+<meta name="keywords" content="github,Jekyll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jekyll的本地环境搭建及编译">
+<meta property="og:url" content="https://nezha.github.io/笔记/2015-11-22-Jekyll_github_page/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="注意点 关于源的问题 1.1 有些时候外网不是很好访问，这个时候就需要访问一些镜像网站了，如在下载某些插件或更新Ruby的时候可以将源指向https://ruby.taobao.org/ 1.2 还有就是自己花钱买专用网络通道了 关于Ruby的版本 最好下载的时候将Ruby和RubyDevKit的版本下载一个版本的 关于gem的介绍 网上有些教程还说要下载什么gem系统，其实现在已经不用了，因为r">
+<meta property="og:updated_time" content="2017-05-05T11:49:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jekyll的本地环境搭建及编译">
+<meta name="twitter:description" content="注意点 关于源的问题 1.1 有些时候外网不是很好访问，这个时候就需要访问一些镜像网站了，如在下载某些插件或更新Ruby的时候可以将源指向https://ruby.taobao.org/ 1.2 还有就是自己花钱买专用网络通道了 关于Ruby的版本 最好下载的时候将Ruby和RubyDevKit的版本下载一个版本的 关于gem的介绍 网上有些教程还说要下载什么gem系统，其实现在已经不用了，因为r">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/笔记/2015-11-22-Jekyll_github_page/"/>
+
+
+
+
+
+  <title>Jekyll的本地环境搭建及编译 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/笔记/2015-11-22-Jekyll_github_page/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jekyll的本地环境搭建及编译</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-22T00:00:00+08:00">
+                2015-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol>
+<li>关于源的问题<br> 1.1 有些时候外网不是很好访问，这个时候就需要访问一些镜像网站了，如在下载某些插件或更新Ruby的时候可以将源指向<a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a><br> 1.2 还有就是自己花钱买专用网络通道了</li>
+<li>关于Ruby的版本<br> 最好下载的时候将Ruby和RubyDevKit的版本下载一个版本的</li>
+<li>关于gem的介绍<br> 网上有些教程还说要下载什么gem系统，其实现在已经不用了，因为ruby已经集成了</li>
+</ol>
+<h2 id="本地环境的搭建"><a href="#本地环境的搭建" class="headerlink" title="本地环境的搭建"></a>本地环境的搭建</h2><h3 id="第一步：Ruby的安装"><a href="#第一步：Ruby的安装" class="headerlink" title="第一步：Ruby的安装"></a>第一步：Ruby的安装</h3><p>jekyll本身基于Ruby开发，因此，想要在本地构建一个测试环境需要具有Ruby的开发和运行环境。在windows下，可以使用Rubyinstaller安装。</p>
+<h2 id="第二步：RubyDevKit安装"><a href="#第二步：RubyDevKit安装" class="headerlink" title="第二步：RubyDevKit安装"></a>第二步：RubyDevKit安装</h2><p>从这里<a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">下载DevKit</a>，<strong>注意版本要与Ruby版本一致</strong></p>
+<p>下载下来的是一个压缩文件，如果你安装有7-zip，可以直接双击，它会自解压到你所选择的目录。建议安装在和Ruby的同级目录下，例如：两者同时安装在D盘根目录下。</p>
+<p>解压完成之后，用cmd进入到刚才解压的目录下，运行下面命令，该命令会生成config.yml。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby dk.rb init</div></pre></td></tr></table></figure>
+<p><font color="red">config.yml</font>文件实际上是检测系统安装的ruby的位置并记录在这个文件中，以便稍后使用。但上面的命令只针对使用rubyinstall安装的ruby有效，如果是其他方式安装的话，需要手动修改config.yml。我生成的config.yml文件内容如下：（注意路径用的是linux的斜杠方向）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># This configuration file contains the absolute path locations of all</div><div class="line"># installed Rubies to be enhanced to work with the DevKit. This config</div><div class="line"># file is generated by the &apos;ruby dk.rb init&apos; step and may be modified</div><div class="line"># before running the &apos;ruby dk.rb install&apos; step. To include any installed</div><div class="line"># Rubies that were not automagically discovered, simply add a line below</div><div class="line"># the triple hyphens with the absolute path to the Ruby root directory.</div><div class="line">#</div><div class="line"># Example:</div><div class="line">#</div><div class="line"># ---</div><div class="line"># - C:/ruby19trunk</div><div class="line"># - C:/ruby192dev</div><div class="line">#</div><div class="line">---</div><div class="line">- E:/Dev/Ruby22-x64</div></pre></td></tr></table></figure>
+<p>最后，执行如下命令，执行安装：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby setup.rb</div></pre></td></tr></table></figure>
+<p>如果没有setup.rb的话，执行：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby dk.rb install</div></pre></td></tr></table></figure>
+<h2 id="第三步：Ruby-gems的安装-可免，Ruby已经集成"><a href="#第三步：Ruby-gems的安装-可免，Ruby已经集成" class="headerlink" title="第三步：Ruby gems的安装(可免，Ruby已经集成)"></a>第三步：Ruby gems的安装(可免，Ruby已经集成)</h2><p>Rubygems是类似Radhat的RPM、centOS的Yum、Ubuntu的apt-get的应用程序打包部署解决方案。Rubygems本身基于Ruby开发，在Ruby命令行中执行。我们需要它主要是因为jekyll的执行需要依赖很多Ruby应用程序，如果一个个手动安装比较繁琐。jekyll作为一个Ruby的应用，也实现了Rubygems打包标准。只要通过简单的命令就可以自动下载其依赖。</p>
+<p><strong>更新ruby和gems系统时</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem update --system</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在的Ruby版本都已经默认安装了gem，所有就没有大费周折的去绕过天朝的墙了，不过由于源问题，还是留一手比较好</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ gem sources --remove <span class="symbol">http:</span>/<span class="regexp">/rubygems.org/</span></div><div class="line">$ gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.taobao.org/</span></div><div class="line">$ gem sources -l</div></pre></td></tr></table></figure>
+<h2 id="第四步：安装jekyll-可免-见第6步"><a href="#第四步：安装jekyll-可免-见第6步" class="headerlink" title="第四步：安装jekyll(可免,见第6步)"></a>第四步：安装jekyll(可免,见第6步)</h2><p>有了上面的基础，安装jekyll就十分轻松了，执行下面gem命令即可全自动搞定：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install jekyll</div></pre></td></tr></table></figure>
+<h2 id="第五步：安装Bundle"><a href="#第五步：安装Bundle" class="headerlink" title="第五步：安装Bundle"></a>第五步：安装Bundle</h2><blockquote>
+<p>以前搭建Jekyll本地环境的时候步骤非常复杂，不过现在情况变的更简单了，github有一个对应的gem，可以”一键”配置环境，具体可以参考<a href="https://help.github.com/articles/using-jekyll-with-pages" target="_blank" rel="external">Using Jekyll with Pages</a>。</p>
+</blockquote>
+<p>直接使用下面命令即可：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gem install bundle</div></pre></td></tr></table></figure>
+<h2 id="第六步：Gemfile和Bundle安装"><a href="#第六步：Gemfile和Bundle安装" class="headerlink" title="第六步：Gemfile和Bundle安装"></a>第六步：Gemfile和Bundle安装</h2><p>在你blog项目的根目录下创建一个叫Gemfile的文件，注意没有后缀，输入下面内容</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'https://ruby.taobao.org/'</span></div><div class="line"></div><div class="line">gem <span class="string">'jekyll'</span></div><div class="line">gem <span class="string">'jekyll-paginate'</span></div><div class="line">gem <span class="string">'redcarpet'</span>, <span class="string">'~&gt; 3.2.3'</span></div><div class="line">gem <span class="string">'jekyll-watch'</span>, <span class="string">'~&gt; 1.2.1'</span></div><div class="line">gem <span class="string">'pygments.rb'</span></div><div class="line">gem <span class="string">'kramdown'</span></div><div class="line">gem <span class="string">'wdm'</span>, <span class="string">'&gt;= 0.1.0'</span> <span class="keyword">if</span> Gem.win_platform?</div></pre></td></tr></table></figure>
+<p>保存后，在命令行中执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bundle install</div></pre></td></tr></table></figure>
+<p>命令会根据当前目录下的Gemfile，安装所需要的所有软件。这一步所安装的东西，可以说跟github本身的环境是完全一致的，所以可以确保本地如果没有错误，上传后也不会有错误。而且可以在将来使用下面命令，随时更新环境，十分方便</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bundle update</div></pre></td></tr></table></figure>
+<h2 id="第七步：启动转化和本地服务"><a href="#第七步：启动转化和本地服务" class="headerlink" title="第七步：启动转化和本地服务"></a>第七步：启动转化和本地服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bundle <span class="built_in">exec</span> jekyll serve</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/Jekyll/" rel="tag"># Jekyll</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/2015-11-19-github_blog/" rel="next" title="初步学习github page 和Jekyll来构建博客">
+                <i class="fa fa-chevron-left"></i> 初步学习github page 和Jekyll来构建博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/笔记/2015-11-23-github_vim_Linux_Note/" rel="prev" title="关于Latex、git、vim、Linux的常用命令">
+                关于Latex、git、vim、Linux的常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意点"><span class="nav-number">1.</span> <span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地环境的搭建"><span class="nav-number">2.</span> <span class="nav-text">本地环境的搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：Ruby的安装"><span class="nav-number">2.1.</span> <span class="nav-text">第一步：Ruby的安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：RubyDevKit安装"><span class="nav-number">3.</span> <span class="nav-text">第二步：RubyDevKit安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：Ruby-gems的安装-可免，Ruby已经集成"><span class="nav-number">4.</span> <span class="nav-text">第三步：Ruby gems的安装(可免，Ruby已经集成)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：安装jekyll-可免-见第6步"><span class="nav-number">5.</span> <span class="nav-text">第四步：安装jekyll(可免,见第6步)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步：安装Bundle"><span class="nav-number">6.</span> <span class="nav-text">第五步：安装Bundle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六步：Gemfile和Bundle安装"><span class="nav-number">7.</span> <span class="nav-text">第六步：Gemfile和Bundle安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七步：启动转化和本地服务"><span class="nav-number">8.</span> <span class="nav-text">第七步：启动转化和本地服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
