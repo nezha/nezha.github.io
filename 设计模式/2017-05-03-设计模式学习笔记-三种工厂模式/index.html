@@ -5,13 +5,17 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
 
 
 
@@ -90,23 +94,23 @@
 
 
 
-<meta name="description" content="设计模式学习笔记-工厂模式介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。 简单工厂模式从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。 类视图简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory M">
+<meta name="description" content="设计模式学习笔记-工厂模式 介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。 简单工厂模式从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。 类视图简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory">
 <meta name="keywords" content="设计模式,工厂模式,抽象工厂">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式学习笔记-工厂模式">
 <meta property="og:url" content="https://nezha.github.io/设计模式/2017-05-03-设计模式学习笔记-三种工厂模式/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="设计模式学习笔记-工厂模式介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。 简单工厂模式从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。 类视图简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory M">
+<meta property="og:description" content="设计模式学习笔记-工厂模式 介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。 简单工厂模式从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。 类视图简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffagjt11dkj20au0650sk.jpg">
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffagjq730gj215q0yktd5.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/9d2c4511gy1ffagjsv0jnj20hw07bq2y.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffagjw0638j20nb0a70x2.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw1024/9d2c4511gy1ffagjuhp5kj20qh08hdg2.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw1024/9d2c4511gy1ffagjy3etvj20p10hetes.jpg">
-<meta property="og:updated_time" content="2017-05-05T11:48:55.000Z">
+<meta property="og:updated_time" content="2017-05-06T06:35:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记-工厂模式">
-<meta name="twitter:description" content="设计模式学习笔记-工厂模式介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。 简单工厂模式从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。 类视图简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory M">
+<meta name="twitter:description" content="设计模式学习笔记-工厂模式 介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。 简单工厂模式从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。 类视图简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory">
 <meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffagjt11dkj20au0650sk.jpg">
 
 
@@ -120,8 +124,8 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
-      author: 'Author'
+      userId: 'undefined',
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -144,13 +148,23 @@
   <title>设计模式学习笔记-工厂模式 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
 
 
 
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1dd5125da2de7a41425d167822df1043";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -166,7 +180,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -207,7 +221,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -217,7 +251,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -227,7 +261,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
           </a>
         </li>
       
@@ -287,9 +331,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-03T15:56:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T15:56:02+08:00">
                 2017-05-03
               </time>
             
@@ -308,7 +352,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -340,13 +384,14 @@
       </header>
     
 
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="设计模式学习笔记-工厂模式"><a href="#设计模式学习笔记-工厂模式" class="headerlink" title="设计模式学习笔记-工厂模式"></a>设计模式学习笔记-工厂模式</h1><p>介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。</p>
+        <h1 id="设计模式学习笔记-工厂模式"><a href="#设计模式学习笔记-工厂模式" class="headerlink" title="设计模式学习笔记-工厂模式"></a>设计模式学习笔记-工厂模式</h1><p><br></p>
+<p>介绍简单工厂模式之前先通过一个披萨项目的例子来引出问题，然后给出简单工厂模式这种解决方案，然后随着披萨项目的不断扩展，遇到新的问题，引出工厂方法模式，然后又遇到新的问题，引出最终解决方案，抽象工厂模式。</p>
 <h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>从下面的UML图中就已经可以直观上看出：简单工厂是实现直接的实例对象。</p>
 <h3 id="类视图"><a href="#类视图" class="headerlink" title="类视图"></a>类视图</h3><p>简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory Method）模式。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。<br>简单工厂模式的结构如下：</p>
 <p><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffagjt11dkj20au0650sk.jpg" alt=""></p>
@@ -439,6 +484,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/Wechatpay.jpeg" alt="Jack·Joney WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpeg" alt="Jack·Joney Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -481,10 +547,6 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/uncategorized/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -509,6 +571,8 @@
           
   <div class="comments" id="comments">
     
+      <div id="uyan_frame"></div>
+    
   </div>
 
 
@@ -532,10 +596,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -555,8 +619,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
@@ -565,10 +629,10 @@
             
             
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">Kategorien</span>
-              
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
@@ -576,10 +640,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">64</span>
-                <span class="site-state-item-name">Tags</span>
-              
+                <span class="site-state-item-name">标签</span>
+              </a>
             </div>
           
 
@@ -589,12 +653,68 @@
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nezha" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/coder_chang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yi.zhang.12935756" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/businezha" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
         </div>
 
         
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezhaxiaozi.coding.me" title="国内访问路径" target="_blank">国内访问路径</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezha.github.io" title="国外访问路径" target="_blank">国外访问路径</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         
@@ -634,7 +754,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2011 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -644,11 +764,11 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
@@ -763,6 +883,14 @@
 
 
 
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2073019"></script>
+      <!-- UY END -->
+    
   
 
 
