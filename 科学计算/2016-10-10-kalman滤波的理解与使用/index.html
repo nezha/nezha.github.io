@@ -101,14 +101,14 @@
 <meta property="og:url" content="https://nezha.github.io/科学计算/2016-10-10-kalman滤波的理解与使用/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
 <meta property="og:description" content="kalman滤波的理解与使用kalman 滤波原理kalman 滤波效果演示kalman filter 程序 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253import numpy as npimport matplotlib.pyplot as pl">
-<meta property="og:image" content="http://scipy-cookbook.readthedocs.io/_images/KalmanFiltering_1_0.png">
-<meta property="og:image" content="http://scipy-cookbook.readthedocs.io/_images/KalmanFiltering_1_1.png">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffbow2o4v3j20h70e0gly.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/9d2c4511gy1ffbow3863uj20hl0e2q33.jpg">
 <meta property="og:image" content="http://nbviewer.jupyter.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/animations/05_dog_track.gif">
-<meta property="og:updated_time" content="2017-05-05T11:43:47.000Z">
+<meta property="og:updated_time" content="2017-05-06T07:48:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kalman滤波的理解与使用">
 <meta name="twitter:description" content="kalman滤波的理解与使用kalman 滤波原理kalman 滤波效果演示kalman filter 程序 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253import numpy as npimport matplotlib.pyplot as pl">
-<meta name="twitter:image" content="http://scipy-cookbook.readthedocs.io/_images/KalmanFiltering_1_0.png">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffbow2o4v3j20h70e0gly.jpg">
 
 
 
@@ -117,7 +117,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -177,7 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -390,8 +390,8 @@
         <h1 id="kalman滤波的理解与使用"><a href="#kalman滤波的理解与使用" class="headerlink" title="kalman滤波的理解与使用"></a>kalman滤波的理解与使用</h1><h2 id="kalman-滤波原理"><a href="#kalman-滤波原理" class="headerlink" title="kalman 滤波原理"></a>kalman 滤波原理</h2><h2 id="kalman-滤波效果演示"><a href="#kalman-滤波效果演示" class="headerlink" title="kalman 滤波效果演示"></a>kalman 滤波效果演示</h2><p><strong>kalman filter 程序</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">plt.rcParams[<span class="string">'figure.figsize'</span>] = (<span class="number">10</span>, <span class="number">8</span>)</div><div class="line"></div><div class="line"><span class="comment"># intial parameters</span></div><div class="line">n_iter = <span class="number">50</span></div><div class="line">sz = (n_iter,) <span class="comment"># size of array</span></div><div class="line">x = <span class="number">-0.37727</span> <span class="comment"># truth value (typo in example at top of p. 13 calls this z)</span></div><div class="line">z = np.random.normal(x,<span class="number">0.1</span>,size=sz) <span class="comment"># observations (normal about x, sigma=0.1)</span></div><div class="line"></div><div class="line">Q = <span class="number">1e-5</span> <span class="comment"># process variance</span></div><div class="line"></div><div class="line"><span class="comment"># allocate space for arrays</span></div><div class="line">xhat=np.zeros(sz)      <span class="comment"># a posteri estimate of x</span></div><div class="line">P=np.zeros(sz)         <span class="comment"># a posteri error estimate</span></div><div class="line">xhatminus=np.zeros(sz) <span class="comment"># a priori estimate of x</span></div><div class="line">Pminus=np.zeros(sz)    <span class="comment"># a priori error estimate</span></div><div class="line">K=np.zeros(sz)         <span class="comment"># gain or blending factor</span></div><div class="line"></div><div class="line">R = <span class="number">0.1</span>**<span class="number">2</span> <span class="comment"># estimate of measurement variance, change to see effect</span></div><div class="line"></div><div class="line"><span class="comment"># intial guesses</span></div><div class="line">xhat[<span class="number">0</span>] = <span class="number">0.0</span></div><div class="line">P[<span class="number">0</span>] = <span class="number">1.0</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,n_iter):</div><div class="line">    <span class="comment"># time update</span></div><div class="line">    xhatminus[k] = xhat[k<span class="number">-1</span>]</div><div class="line">    Pminus[k] = P[k<span class="number">-1</span>]+Q</div><div class="line"></div><div class="line">    <span class="comment"># measurement update</span></div><div class="line">    K[k] = Pminus[k]/( Pminus[k]+R )</div><div class="line">    xhat[k] = xhatminus[k]+K[k]*(z[k]-xhatminus[k])</div><div class="line">    P[k] = (<span class="number">1</span>-K[k])*Pminus[k]</div><div class="line"></div><div class="line">plt.figure()</div><div class="line">plt.plot(z,<span class="string">'k+'</span>,label=<span class="string">'noisy measurements'</span>)</div><div class="line">plt.plot(xhat,<span class="string">'b-'</span>,label=<span class="string">'a posteri estimate'</span>)</div><div class="line">plt.axhline(x,color=<span class="string">'g'</span>,label=<span class="string">'truth value'</span>)</div><div class="line">plt.legend()</div><div class="line">plt.title(<span class="string">'Estimate vs. iteration step'</span>, fontweight=<span class="string">'bold'</span>)</div><div class="line">plt.xlabel(<span class="string">'Iteration'</span>)</div><div class="line">plt.ylabel(<span class="string">'Voltage'</span>)</div><div class="line"></div><div class="line">plt.figure()</div><div class="line">valid_iter = range(<span class="number">1</span>,n_iter) <span class="comment"># Pminus not valid at step 0</span></div><div class="line">plt.plot(valid_iter,Pminus[valid_iter],label=<span class="string">'a priori error estimate'</span>)</div><div class="line">plt.title(<span class="string">'Estimated $\it&#123;\mathbf&#123;a \ priori&#125;&#125;$ error vs. iteration step'</span>, fontweight=<span class="string">'bold'</span>)</div><div class="line">plt.xlabel(<span class="string">'Iteration'</span>)</div><div class="line">plt.ylabel(<span class="string">'$(Voltage)^2$'</span>)</div><div class="line">plt.setp(plt.gca(),<span class="string">'ylim'</span>,[<span class="number">0</span>,<span class="number">.01</span>])</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <p><strong>效果图</strong></p>
-<p><img src="http://scipy-cookbook.readthedocs.io/_images/KalmanFiltering_1_0.png" alt="效果图"></p>
-<p><img src="http://scipy-cookbook.readthedocs.io/_images/KalmanFiltering_1_1.png" alt="误差图"></p>
+<p><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffbow2o4v3j20h70e0gly.jpg" alt="效果图"></p>
+<p><img src="http://wx2.sinaimg.cn/mw690/9d2c4511gy1ffbow3863uj20hl0e2q33.jpg" alt="误差图"></p>
 <p><img src="http://nbviewer.jupyter.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/animations/05_dog_track.gif" alt="13"></p>
 <h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>[1]：<a href="http://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf" target="_blank" rel="external">kalman Filter intro</a></p>
 <p>[2]：<a href="http://blog.csdn.net/xiahouzuoxin/article/details/39582483" target="_blank" rel="external">http://blog.csdn.net/xiahouzuoxin/article/details/39582483</a></p>
@@ -626,7 +626,7 @@
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
               Links
