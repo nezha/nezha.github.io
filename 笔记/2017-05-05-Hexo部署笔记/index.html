@@ -1,0 +1,939 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo,Next," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="为什么用Hexo搭建博客原先是使用Jekyll写博客，但是Jekyll得Markdown语法兼容有些问题，这个时候又关注到Next主题，于是发现Hexo社区近两年很活跃而且兼容性很强。于是改去使用Hexo部署博客。 安装Hexo步骤1.安装Git，并注册Github账号2.安装nodejs环境。3.Hexo初始化博客框架 安装Hexo  1$ npm install -g hexo-cli  初始">
+<meta name="keywords" content="Hexo,Next">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Jekyll到Hexo">
+<meta property="og:url" content="https://nezha.github.io/笔记/2017-05-05-Hexo部署笔记/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="为什么用Hexo搭建博客原先是使用Jekyll写博客，但是Jekyll得Markdown语法兼容有些问题，这个时候又关注到Next主题，于是发现Hexo社区近两年很活跃而且兼容性很强。于是改去使用Hexo部署博客。 安装Hexo步骤1.安装Git，并注册Github账号2.安装nodejs环境。3.Hexo初始化博客框架 安装Hexo  1$ npm install -g hexo-cli  初始">
+<meta property="og:updated_time" content="2017-05-06T08:35:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Jekyll到Hexo">
+<meta name="twitter:description" content="为什么用Hexo搭建博客原先是使用Jekyll写博客，但是Jekyll得Markdown语法兼容有些问题，这个时候又关注到Next主题，于是发现Hexo社区近两年很活跃而且兼容性很强。于是改去使用Hexo部署博客。 安装Hexo步骤1.安装Git，并注册Github账号2.安装nodejs环境。3.Hexo初始化博客框架 安装Hexo  1$ npm install -g hexo-cli  初始">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/笔记/2017-05-05-Hexo部署笔记/"/>
+
+
+
+
+
+  <title>从Jekyll到Hexo | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1dd5125da2de7a41425d167822df1043";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/笔记/2017-05-05-Hexo部署笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从Jekyll到Hexo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-05T15:56:02+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么用Hexo搭建博客"><a href="#为什么用Hexo搭建博客" class="headerlink" title="为什么用Hexo搭建博客"></a>为什么用Hexo搭建博客</h2><p>原先是使用Jekyll写博客，但是Jekyll得Markdown语法兼容有些问题，这个时候又关注到Next主题，于是发现Hexo社区近两年很活跃而且兼容性很强。于是改去使用Hexo部署博客。</p>
+<h2 id="安装Hexo步骤"><a href="#安装Hexo步骤" class="headerlink" title="安装Hexo步骤"></a>安装Hexo步骤</h2><h3 id="1-安装Git，并注册Github账号"><a href="#1-安装Git，并注册Github账号" class="headerlink" title="1.安装Git，并注册Github账号"></a>1.安装Git，并注册Github账号</h3><h3 id="2-安装nodejs环境。"><a href="#2-安装nodejs环境。" class="headerlink" title="2.安装nodejs环境。"></a>2.安装nodejs环境。</h3><h3 id="3-Hexo初始化博客框架"><a href="#3-Hexo初始化博客框架" class="headerlink" title="3.Hexo初始化博客框架"></a>3.Hexo初始化博客框架</h3><ol>
+<li>安装Hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
+<ol>
+<li>初始化框架</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init &lt;yourFolder&gt;</div><div class="line">$ <span class="built_in">cd</span> &lt;yourFolder&gt;</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<ol>
+<li>初始化完成大概的目录：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。</div><div class="line">├── package.json</div><div class="line">├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</div><div class="line">├── source     //资源文件夹是存放用户资源的地方。</div><div class="line">|   ├── _drafts</div><div class="line">|   └── _posts</div><div class="line">└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。</div></pre></td></tr></table></figure>
+<ol>
+<li>新建文章（创建一个Hello World）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"Hello World"</span></div></pre></td></tr></table></figure>
+<p>会在/source/_post里添加hello-world.md文件，之后新建的文章都将存放在此目录下。</p>
+<ol>
+<li>生成网站</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>此时会将/source的.md文件生成到/public中，形成网站的静态文件。</p>
+<ol>
+<li>启动服务器</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server -p 3000</div></pre></td></tr></table></figure>
+<p>输入<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>即可查看网站。</p>
+<ol>
+<li>部署网站</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>部署网站之前需要生成静态文件，即可以用<code>$ hexo generate -d</code>直接生成并部署。此时需要在_config.yml中配置你所要部署的站点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">## Docs: http://hexo.io/docs/deployment.html</div><div class="line"> deploy:</div><div class="line">   type: git</div><div class="line">   repo: git@github.com:YourRepository.git</div><div class="line">   branch: master</div></pre></td></tr></table></figure></p>
+<ul>
+<li>如果部署失败，可能是因为没有安装hexo git插件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<h2 id="安装主题Next"><a href="#安装主题Next" class="headerlink" title="安装主题Next"></a>安装主题Next</h2><ol>
+<li>使用</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> your-hexo-site</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<p>从Next的Gihub仓库中获取最新版本。</p>
+<ol>
+<li>启用</li>
+</ol>
+<p>需要修改/root/_config.yml配置项theme：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">## Themes: http://hexo.io/themes/</div><div class="line">theme: next</div></pre></td></tr></table></figure>
+<ol>
+<li>主题设定及第三方配置</li>
+</ol>
+<p><a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">主题配置</a></p>
+<p><a href="http://theme-next.iissnan.com/third-party-services.html" target="_blank" rel="external">第三方服务</a></p>
+<h2 id="关于公式的问题"><a href="#关于公式的问题" class="headerlink" title="关于公式的问题"></a>关于公式的问题</h2><blockquote>
+<p>主要是说：原生的hexo主题没有MathJax解析器，我们需要配置后才能解析latex格式的公式。</p>
+</blockquote>
+<ul>
+<li>安装hexo-math插件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-math --save</div></pre></td></tr></table></figure>
+<ul>
+<li>当然还会有类似下划线的markdown解析冲突</li>
+</ul>
+<blockquote>
+<p>这个就采取最简单的方式出现<code>_</code>，就用<code>\_</code>去解析</p>
+</blockquote>
+<p>关于基本的MathJax公式使用及详细问题可以参考这个文献：<a href="https://fsh0524.github.io/2016/03/03/LaTeX-in-Hexo/" target="_blank" rel="external">LaTeX 在 Hexo 中的使用 -hexo-math</a></p>
+<p>##常用的命令</p>
+<blockquote>
+<p>当初次部署完成后，只要在<code>hexo-site/source/_post/</code>添加文件就可以。格式是markdown形式的。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1.将hexo-site/package.json中的依赖重新下载</span></div><div class="line">npm install </div><div class="line"><span class="comment">#2.清空原来生成的文件，重新整个编译</span></div><div class="line">hexo clean</div><div class="line"><span class="comment">#3.生成静态文件，用于直接访问</span></div><div class="line">hexo g</div><div class="line"><span class="comment">#4.部署到git上，也可以不部署，只在本地运行</span></div><div class="line">hexo d</div><div class="line"><span class="comment">#5.启动本地服务程序</span></div><div class="line">hexo s</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/Wechatpay.jpeg" alt="Jack·Joney WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpeg" alt="Jack·Joney Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/Next/" rel="tag"># Next</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/设计模式/2017-05-03-设计模式学习笔记-三种工厂模式/" rel="next" title="设计模式学习笔记-工厂模式">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记-工厂模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nezha" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/coder_chang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yi.zhang.12935756" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/businezha" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezhaxiaozi.coding.me" title="国内访问路径" target="_blank">国内访问路径</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezha.github.io" title="国外访问路径" target="_blank">国外访问路径</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么用Hexo搭建博客"><span class="nav-number">1.</span> <span class="nav-text">为什么用Hexo搭建博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo步骤"><span class="nav-number">2.</span> <span class="nav-text">安装Hexo步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Git，并注册Github账号"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Git，并注册Github账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装nodejs环境。"><span class="nav-number">2.2.</span> <span class="nav-text">2.安装nodejs环境。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Hexo初始化博客框架"><span class="nav-number">2.3.</span> <span class="nav-text">3.Hexo初始化博客框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装主题Next"><span class="nav-number">3.</span> <span class="nav-text">安装主题Next</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于公式的问题"><span class="nav-number">4.</span> <span class="nav-text">关于公式的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2011 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2073019"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
