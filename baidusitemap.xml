@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2017-05-05-Hexo%E9%83%A8%E7%BD%B2%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-05-15T11:00:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>从Jekyll到Hexo</title>
+        <pubTime>2017-05-05T07:56:02.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>Next</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2017-05-07-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-10T12:22:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-常用设计模式</title>
+        <pubTime>2017-05-07T07:56:02.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2017-05-09-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-10T12:21:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-装饰者模式-Decorator Pattern</title>
+        <pubTime>2017-05-09T07:56:02.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>装饰者模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2017-05-08-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-09T09:14:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-策略模式</title>
+        <pubTime>2017-05-08T07:56:02.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>策略模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/2016-10-10-kalman%E6%BB%A4%E6%B3%A2%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-05-06T07:48:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>kalman滤波的理解与使用</title>
+        <pubTime>2016-10-09T16:00:00.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>滤波算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="科学计算" url="https://nezha.github.io/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2017-05-03-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%89%E7%A7%8D%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-06T06:35:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-工厂模式</title>
+        <pubTime>2017-05-03T07:56:02.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>工厂模式</tag>
+         
+        <tag>抽象工厂</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/2015-12-30-%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%90%86%E8%A7%A3%E4%BA%8C/</loc>
+    <lastmod>2017-05-05T15:33:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>傅里叶变换的理解（二）</title>
+        <pubTime>2015-12-29T16:00:00.000Z</pubTime>
+        
+        <tag>傅里叶</tag>
+         
+        <tag>信号处理</tag>
+         
+        <tag>WIFI</tag>
+         
+         
+           
+             
+              <breadCrumb title="课程研究" url="https://nezha.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/2015-11-30-%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%90%86%E8%A7%A3(%E4%B8%80)/</loc>
+    <lastmod>2017-05-05T15:30:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>傅里叶变换的理解（一）</title>
+        <pubTime>2015-11-29T16:00:00.000Z</pubTime>
+        
+        <tag>傅里叶</tag>
+         
+        <tag>图像处理</tag>
+         
+        <tag>信号处理</tag>
+         
+         
+           
+             
+              <breadCrumb title="课程研究" url="https://nezha.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/2015-11-25-%E7%A9%BA%E5%9F%9F%E5%A2%9E%E5%BC%BA%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2017-05-05T15:23:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>数字图像分析-第四章空域增强技术</title>
+        <pubTime>2015-11-24T16:00:00.000Z</pubTime>
+        
+        <tag>均衡化</tag>
+         
+        <tag>规定化</tag>
+         
+        <tag>边缘检测</tag>
+         
+         
+           
+             
+              <breadCrumb title="课程研究" url="https://nezha.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2015-11-22-Jekyll_github_page/</loc>
+    <lastmod>2017-05-05T11:49:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jekyll的本地环境搭建及编译</title>
+        <pubTime>2015-11-21T16:00:00.000Z</pubTime>
+        
+        <tag>github</tag>
+         
+        <tag>Jekyll</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2017-05-02-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-05T11:48:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-观察者模式</title>
+        <pubTime>2017-05-01T16:00:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>观察者模式</tag>
+         
+        <tag>订阅者模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/Spring-Boot/2017-04-29-spring-boot%E5%88%86%E5%88%AB%E9%9B%86%E6%88%90JPA_mybatis_rabbitmq_mongodb_redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-05-05T11:47:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记</title>
+        <pubTime>2017-04-28T16:00:00.000Z</pubTime>
+        
+        <tag>Spring Boot</tag>
+         
+        <tag>Spring Jpa</tag>
+         
+        <tag>mybatis</tag>
+         
+        <tag>rabbitmq</tag>
+         
+        <tag>mongodb</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring Boot" url="https://nezha.github.io/categories/Spring-Boot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2017-01-05-Jupyter%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-05-05T11:45:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jupyter Notebook的使用总结</title>
+        <pubTime>2017-01-04T16:00:00.000Z</pubTime>
+        
+        <tag>Jupyter</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016-12-17-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-05T11:45:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-单例模式</title>
+        <pubTime>2016-12-16T16:00:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>单例模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/2016-10-26-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E5%8F%8Apython%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2017-05-05T11:44:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>最小二乘法的公式推导及python实战</title>
+        <pubTime>2016-10-25T16:00:00.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>最小二乘法</tag>
+         
+         
+           
+             
+              <breadCrumb title="科学计算" url="https://nezha.github.io/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/2016-09-11-pybrain%E5%88%9D%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-05-05T11:43:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>pybrain初入门</title>
+        <pubTime>2016-09-10T16:00:00.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>神经网络</tag>
+         
+         
+           
+             
+              <breadCrumb title="科学计算" url="https://nezha.github.io/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2016-08-31-Linux%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2017-05-05T11:42:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux常见函数</title>
+        <pubTime>2016-08-30T16:00:00.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/python/2016-08-24-python%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E7%A7%AF%E7%B4%AF/</loc>
+    <lastmod>2017-05-05T11:41:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>python常用函数积累</title>
+        <pubTime>2016-08-23T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>常用技能</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://nezha.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/2016-08-03-TBSchedule%E4%BD%BF%E7%94%A8%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2017-05-05T11:39:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>TBSchedule使用实战</title>
+        <pubTime>2016-08-02T16:00:00.000Z</pubTime>
+        
+        <tag>TBSchedule</tag>
+         
+        <tag>淘宝任务调度</tag>
+         
+        <tag>zookeeper</tag>
+         
+         
+           
+             
+              <breadCrumb title="开源项目" url="https://nezha.github.io/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/web%E5%BC%80%E5%8F%91/2016-04-13-%E8%85%BE%E8%AE%AF%E4%BA%91LAMP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2017-05-05T11:37:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>腾讯云LAMP环境配置</title>
+        <pubTime>2016-04-12T16:00:00.000Z</pubTime>
+        
+        <tag>php环境</tag>
+         
+        <tag>LAMP</tag>
+         
+         
+           
+             
+              <breadCrumb title="web开发" url="https://nezha.github.io/categories/web%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/web%E5%BC%80%E5%8F%91/2016-04-12-%E8%85%BE%E8%AE%AF%E4%BA%91FTP%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2017-05-05T11:36:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>腾讯云FTP的配置</title>
+        <pubTime>2016-04-11T16:00:00.000Z</pubTime>
+        
+        <tag>centos配置</tag>
+         
+        <tag>搭建FTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="web开发" url="https://nezha.github.io/categories/web%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/web%E5%BC%80%E5%8F%91/2016-04-10-%E8%85%BE%E8%AE%AF%E4%BA%91%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-05-05T11:35:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>腾讯云的使用</title>
+        <pubTime>2016-04-09T16:00:00.000Z</pubTime>
+        
+        <tag>腾讯云</tag>
+         
+        <tag>web开发</tag>
+         
+         
+           
+             
+              <breadCrumb title="web开发" url="https://nezha.github.io/categories/web%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2016-03-15-github%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</loc>
+    <lastmod>2017-05-05T11:34:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>github常见问题</title>
+        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
+        
+        <tag>github</tag>
+         
+        <tag>Latex</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>log</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2016-03-06-Mac%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2017-05-05T11:33:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Mac初次使用</title>
+        <pubTime>2016-03-05T16:00:00.000Z</pubTime>
+        
+        <tag>Mac使用</tag>
+         
+        <tag>应用安装</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/2016-03-04-scikit_learn%E5%88%9D%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-05-05T11:31:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>scikit_learn初入门</title>
+        <pubTime>2016-03-03T16:00:00.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>聚类算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="科学计算" url="https://nezha.github.io/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2016-01-21-sublime2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-05-05T11:29:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>sublime2使用教程</title>
+        <pubTime>2016-01-20T16:00:00.000Z</pubTime>
+        
+        <tag>sublime</tag>
+         
+        <tag>注册破解</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2016-01-17-github%E5%A6%82%E4%BD%95%E5%B0%86%E4%BB%A3%E7%A0%81%E5%9B%9E%E5%88%B0%E8%BF%87%E5%8E%BB/</loc>
+    <lastmod>2017-05-05T11:28:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>github如何将代码回到过去</title>
+        <pubTime>2016-01-16T16:00:00.000Z</pubTime>
+        
+        <tag>github</tag>
+         
+        <tag>Latex</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>log</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/python/2016-01-13-python%E7%BB%98%E5%88%B6%E5%9F%BA%E6%9C%AC%E5%9B%BE%E8%A1%A8/</loc>
+    <lastmod>2017-05-05T11:28:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>python绘制基本图表全解答-持续更新中</title>
+        <pubTime>2016-01-12T17:00:00.000Z</pubTime>
+        
+        <tag>折线图</tag>
+         
+        <tag>柱状图</tag>
+         
+        <tag>python绘图，Matplotlib</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://nezha.github.io/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%94%9F%E6%B4%BB/2016-01-13-%E8%90%BD%E6%88%B7%E4%B8%8A%E6%B5%B7%E6%94%BF%E7%AD%96/</loc>
+    <lastmod>2017-05-05T11:27:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>落户上海政策</title>
+        <pubTime>2016-01-12T16:00:00.000Z</pubTime>
+        
+        <tag>落户上海</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活" url="https://nezha.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/2015-12-6-region_split_merging/</loc>
+    <lastmod>2017-05-05T11:26:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Splitting and Merging--区域分裂与合并算法</title>
+        <pubTime>2015-12-05T16:00:00.000Z</pubTime>
+        
+        <tag>Splitting</tag>
+         
+        <tag>Merging</tag>
+         
+        <tag>图像分裂与合并</tag>
+         
+        <tag>spam</tag>
+         
+         
+           
+             
+              <breadCrumb title="课程研究" url="https://nezha.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/2015-12-2-WIFI%E5%AE%A4%E5%86%85%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E7%9A%84%E4%BB%94%E7%BB%86%E4%BB%8B%E7%BB%8D/</loc>
+    <lastmod>2017-05-05T11:24:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>WIFI室内定位技术的详细介绍-指纹法</title>
+        <pubTime>2015-12-01T16:00:00.000Z</pubTime>
+        
+        <tag>室内定位</tag>
+         
+        <tag>KNN</tag>
+         
+         
+           
+             
+              <breadCrumb title="课程研究" url="https://nezha.github.io/categories/%E8%AF%BE%E7%A8%8B%E7%A0%94%E7%A9%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%96%91%E9%9A%BE%E8%A7%A3%E6%83%91/2015-11-26-Jekyll%E6%94%AF%E6%8C%81Latex%E5%85%AC%E5%BC%8F/</loc>
+    <lastmod>2017-05-05T11:23:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jekyll使用MathJax来显示数学式</title>
+        <pubTime>2015-11-25T16:00:00.000Z</pubTime>
+        
+        <tag>Jekyll</tag>
+         
+        <tag>Latex公式</tag>
+         
+        <tag>MathJax</tag>
+         
+         
+           
+             
+              <breadCrumb title="疑难解惑" url="https://nezha.github.io/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E6%83%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2015-11-26-%E5%88%86%E4%BA%AB%E8%AF%84%E8%AE%BA%E8%AE%BF%E9%97%AE%E7%BB%9F%E8%AE%A1%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2017-05-05T11:22:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>增加JiaThis的分享和友言评论插件及百度统计</title>
+        <pubTime>2015-11-25T16:00:00.000Z</pubTime>
+        
+        <tag>JiaThis</tag>
+         
+        <tag>友言</tag>
+         
+        <tag>百度统计</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%96%91%E9%9A%BE%E8%A7%A3%E6%83%91/2015-11-25-%E6%89%8B%E6%9C%BAping%E4%B8%8D%E9%80%9A%E4%B8%BB%E6%9C%BAwin10/</loc>
+    <lastmod>2017-05-05T11:21:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决问题：手机ping不通主机win10</title>
+        <pubTime>2015-11-24T16:00:00.000Z</pubTime>
+        
+        <tag>ping</tag>
+         
+        <tag>win10访问受限</tag>
+         
+         
+           
+             
+              <breadCrumb title="疑难解惑" url="https://nezha.github.io/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E6%83%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2015-11-23-github_vim_Linux_Note/</loc>
+    <lastmod>2017-05-05T11:20:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于Latex、git、vim、Linux的常用命令</title>
+        <pubTime>2015-11-22T16:00:00.000Z</pubTime>
+        
+        <tag>github</tag>
+         
+        <tag>Latex</tag>
+         
+        <tag>vim</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2015-11-19-github_blog/</loc>
+    <lastmod>2017-05-05T11:11:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>初步学习github page 和Jekyll来构建博客</title>
+        <pubTime>2015-11-18T16:00:00.000Z</pubTime>
+        
+        <tag>github</tag>
+         
+        <tag>Jekyll</tag>
+         
+         
+           
+             
+              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>
