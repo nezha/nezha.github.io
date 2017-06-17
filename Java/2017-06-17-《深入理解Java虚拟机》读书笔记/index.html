@@ -94,13 +94,13 @@
 
 
 
-<meta name="description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;lt;nezhaxiaozi@qq.com  本书第一次阅读，所以并没有全篇通读，主要的阅读刚才是  第2章 Java内存区域与内存溢出异常 第3章 Java垃圾回收机器与内存分配策略 第4章 JVM性能监控与故障处理工具 第7章 虚拟机类加载机制  总之此书很值得一读，不管是理解JVM内存模型">
+<meta name="description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;lt;nezhaxiaozi@qq.com  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域与内存溢出异常 第3章 Java垃圾回收机器与内存分配策略 第4章 JVM性能监控与故障处理工具 第7章 虚拟机类加载机制  总之此书很值得一读，不管是理解JVM内存模">
 <meta name="keywords" content="深入理解Java虚拟机,Java,JVM,GC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解Java虚拟机》读书笔记">
 <meta property="og:url" content="https://nezha.github.io/Java/2017-06-17-《深入理解Java虚拟机》读书笔记/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;lt;nezhaxiaozi@qq.com  本书第一次阅读，所以并没有全篇通读，主要的阅读刚才是  第2章 Java内存区域与内存溢出异常 第3章 Java垃圾回收机器与内存分配策略 第4章 JVM性能监控与故障处理工具 第7章 虚拟机类加载机制  总之此书很值得一读，不管是理解JVM内存模型">
+<meta property="og:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;lt;nezhaxiaozi@qq.com  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域与内存溢出异常 第3章 Java垃圾回收机器与内存分配策略 第4章 JVM性能监控与故障处理工具 第7章 虚拟机类加载机制  总之此书很值得一读，不管是理解JVM内存模">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2843224-f692a4b1c13b2158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2843224-fb470dbc5c4296ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/object_access_reference_1.png">
@@ -135,10 +135,10 @@
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/tools_visualvm_2.png">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/classloader_extend.png">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fgoeqtnm4yj20el0dt75o.jpg">
-<meta property="og:updated_time" content="2017-06-17T14:33:55.000Z">
+<meta property="og:updated_time" content="2017-06-17T14:40:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解Java虚拟机》读书笔记">
-<meta name="twitter:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;lt;nezhaxiaozi@qq.com  本书第一次阅读，所以并没有全篇通读，主要的阅读刚才是  第2章 Java内存区域与内存溢出异常 第3章 Java垃圾回收机器与内存分配策略 第4章 JVM性能监控与故障处理工具 第7章 虚拟机类加载机制  总之此书很值得一读，不管是理解JVM内存模型">
+<meta name="twitter:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;lt;nezhaxiaozi@qq.com  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域与内存溢出异常 第3章 Java垃圾回收机器与内存分配策略 第4章 JVM性能监控与故障处理工具 第7章 虚拟机类加载机制  总之此书很值得一读，不管是理解JVM内存模">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2843224-f692a4b1c13b2158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -465,7 +465,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&lt;nezhaxiaozi@qq.com</p>
 </blockquote>
-<p>本书第一次阅读，所以并没有全篇通读，主要的阅读刚才是</p>
+<p>本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是</p>
 <ul>
 <li>第2章 Java内存区域与内存溢出异常</li>
 <li>第3章 Java垃圾回收机器与内存分配策略</li>
