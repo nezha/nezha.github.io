@@ -3,28 +3,50 @@
 
 
     
-    
   <url>
-    <loc>https://nezha.github.io/%E7%AC%94%E8%AE%B0/2017-06-06-%E4%BA%92%E8%81%94%E7%BD%91%E6%A0%A1%E6%8B%9B%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2017-07-06T15:43:50.000Z</lastmod>
+    <loc>https://nezha.github.io/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/2016-10-26-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E5%8F%8Apython%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2017-12-05T07:35:31.656Z</lastmod>
     <data>
         <display>
-        <title>【置顶】互联网校招信息汇总-江南大学互联网求职小组（随时更新信息，请保存网址）</title>
-        <pubTime>2017-07-30T07:56:02.000Z</pubTime>
+        <title>最小二乘法的公式推导及python实战</title>
+        <pubTime>2016-10-25T16:00:00.000Z</pubTime>
         
-        <tag>校招</tag>
+        <tag>机器学习</tag>
          
-        <tag>江南大学</tag>
+        <tag>最小二乘法</tag>
          
          
            
              
-              <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+              <breadCrumb title="科学计算" url="https://nezha.github.io/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
           
         </display>
     </data>
     </url>
 
+    
+  <url>
+    <loc>https://nezha.github.io/web%E5%BC%80%E5%8F%91/2017-12-05-Centos%E4%B8%8A%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89Git%E4%BB%93%E5%BA%93/</loc>
+    <lastmod>2017-12-05T07:31:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Centos上搭建私有Git仓库</title>
+        <pubTime>2017-12-05T07:56:02.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+        <tag>私有仓库</tag>
+         
+         
+           
+             
+              <breadCrumb title="web开发" url="https://nezha.github.io/categories/web%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://nezha.github.io/Java/2017-06-17-%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
@@ -418,28 +440,6 @@
            
              
               <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://nezha.github.io/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/2016-10-26-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E5%8F%8Apython%E5%AE%9E%E6%88%98/</loc>
-    <lastmod>2017-05-05T11:44:13.000Z</lastmod>
-    <data>
-        <display>
-        <title>最小二乘法的公式推导及python实战</title>
-        <pubTime>2016-10-25T16:00:00.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>最小二乘法</tag>
-         
-         
-           
-             
-              <breadCrumb title="科学计算" url="https://nezha.github.io/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/"/>
           
         </display>
     </data>

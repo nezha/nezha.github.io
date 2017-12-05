@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,最小二乘法," />
+  <meta name="keywords" content="Git,私有仓库," />
 
 
 
@@ -94,30 +94,18 @@
 
 
 
-<meta name="description" content="最小二乘法的公式推导及python实战 在基于传播模型法定位中，最常用的定位算法就是最小二乘法，当然还有加权最小二乘法或其他类似算法，下面将介绍最小二乘法的使用步骤，其他算法请自行查阅相关论文。   最小二乘法的公式推导首先如上图所示：A,B,C点是基站的位置-也可以理解为信号源的位置。D点是用户的位置，需要我们计算出来，此时至少需要三个信号源同时参与定位才能实现用户的位置定位。首先我们假设用户所">
-<meta name="keywords" content="机器学习,最小二乘法">
+<meta name="description" content="个人博客：https://nezha.github.io  1. 安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git 接下来我们 创建一个git用户组和用户，用来运行git服务： 123$ groupadd git$ addus">
+<meta name="keywords" content="Git,私有仓库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最小二乘法的公式推导及python实战">
-<meta property="og:url" content="https://nezha.github.io/科学计算/2016-10-26-最小二乘法的公式推导及python实战/index.html">
+<meta property="og:title" content="Centos上搭建私有Git仓库">
+<meta property="og:url" content="https://nezha.github.io/web开发/2017-12-05-Centos上搭建私有Git仓库/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="最小二乘法的公式推导及python实战 在基于传播模型法定位中，最常用的定位算法就是最小二乘法，当然还有加权最小二乘法或其他类似算法，下面将介绍最小二乘法的使用步骤，其他算法请自行查阅相关论文。   最小二乘法的公式推导首先如上图所示：A,B,C点是基站的位置-也可以理解为信号源的位置。D点是用户的位置，需要我们计算出来，此时至少需要三个信号源同时参与定位才能实现用户的位置定位。首先我们假设用户所">
+<meta property="og:description" content="个人博客：https://nezha.github.io  1. 安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git 接下来我们 创建一个git用户组和用户，用来运行git服务： 123$ groupadd git$ addus">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l3jhdgj20iw0f1mxp.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/9d2c4511gy1ffv9l41pyzj20fg02cwef.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l47621j2049017a9t.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l4ra10j20bu01m3yc.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l57jt8j205i01ea9u.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l5hkatj208201f742.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l60kizj20di01i744.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l6a5qqj20eg01pq2t.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l6wimhj20ex041jri.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l7q63aj202i00v0sh.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l7znwcj2063018a9u.jpg">
-<meta property="og:updated_time" content="2017-12-05T07:35:31.656Z">
+<meta property="og:updated_time" content="2017-12-05T07:31:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最小二乘法的公式推导及python实战">
-<meta name="twitter:description" content="最小二乘法的公式推导及python实战 在基于传播模型法定位中，最常用的定位算法就是最小二乘法，当然还有加权最小二乘法或其他类似算法，下面将介绍最小二乘法的使用步骤，其他算法请自行查阅相关论文。   最小二乘法的公式推导首先如上图所示：A,B,C点是基站的位置-也可以理解为信号源的位置。D点是用户的位置，需要我们计算出来，此时至少需要三个信号源同时参与定位才能实现用户的位置定位。首先我们假设用户所">
-<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l3jhdgj20iw0f1mxp.jpg">
+<meta name="twitter:title" content="Centos上搭建私有Git仓库">
+<meta name="twitter:description" content="个人博客：https://nezha.github.io  1. 安装Git12$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel$ yum install git 接下来我们 创建一个git用户组和用户，用来运行git服务： 123$ groupadd git$ addus">
 
 
 
@@ -145,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://nezha.github.io/科学计算/2016-10-26-最小二乘法的公式推导及python实战/"/>
+  <link rel="canonical" href="https://nezha.github.io/web开发/2017-12-05-Centos上搭建私有Git仓库/"/>
 
 
 
 
 
-  <title>最小二乘法的公式推导及python实战 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Centos上搭建私有Git仓库 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -338,7 +326,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/科学计算/2016-10-26-最小二乘法的公式推导及python实战/">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/web开发/2017-12-05-Centos上搭建私有Git仓库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack·Joney">
@@ -355,7 +343,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">最小二乘法的公式推导及python实战</h2>
+          <h2 class="post-title" itemprop="name headline">Centos上搭建私有Git仓库</h2>
         
 
         <div class="post-meta">
@@ -367,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T00:00:00+08:00">
-                2016-10-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T15:56:02+08:00">
+                2017-12-05
               </time>
             
 
@@ -390,8 +378,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/科学计算/" itemprop="url" rel="index">
-                    <span itemprop="name">科学计算</span>
+                  <a href="/categories/web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">web开发</span>
                   </a>
                 </span>
 
@@ -408,9 +396,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/科学计算/2016-10-26-最小二乘法的公式推导及python实战/#comments" itemprop="discussionUrl">
+                <a href="/web开发/2017-12-05-Centos上搭建私有Git仓库/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="科学计算/2016-10-26-最小二乘法的公式推导及python实战/" itemprop="commentCount"></span>
+                        data-disqus-identifier="web开发/2017-12-05-Centos上搭建私有Git仓库/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -440,14 +428,31 @@
       
 
       
-        <h1 id="最小二乘法的公式推导及python实战"><a href="#最小二乘法的公式推导及python实战" class="headerlink" title="最小二乘法的公式推导及python实战"></a>最小二乘法的公式推导及python实战</h1><blockquote>
-<p>在基于传播模型法定位中，最常用的定位算法就是最小二乘法，当然还有加权最小二乘法或其他类似算法，下面将介绍最小二乘法的使用步骤，其他算法请自行查阅相关论文。</p>
+        <blockquote>
+<p>个人博客：<a href="https://nezha.github.io">https://nezha.github.io</a></p>
 </blockquote>
-<p><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l3jhdgj20iw0f1mxp.jpg" alt=""></p>
-<h2 id="最小二乘法的公式推导"><a href="#最小二乘法的公式推导" class="headerlink" title="最小二乘法的公式推导"></a>最小二乘法的公式推导</h2><p>首先如上图所示：A,B,C点是基站的位置-也可以理解为信号源的位置。D点是用户的位置，需要我们计算出来，此时至少需要三个信号源同时参与定位才能实现用户的位置定位。<br>首先我们假设用户所在位置D的坐标为：$(x,y)$<br>然后A,B,C三个信号源的坐标为$(x<em>{i},y</em>{i})$<br>然后A,B,C与D点的距离可以表示为：（这里的距离其实是已知的，因为可以通过信号传播模型获取到，先不管继续推导）<br><img src="http://wx2.sinaimg.cn/mw690/9d2c4511gy1ffv9l41pyzj20fg02cwef.jpg" alt=""><br>这里我们定位$K<em>{i} = x</em>{i}^{2} + y<em>{i}^{2}$<br>然后我们继续定义$r</em>{i,1}$<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l47621j2049017a9t.jpg" alt=""><br>这展开就是：<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l4ra10j20bu01m3yc.jpg" alt=""><br>然后我们就可以得出：<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l57jt8j205i01ea9u.jpg" alt=""><br>展开就是：<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l5hkatj208201f742.jpg" alt=""><br>将上一条公式与第一条公式结合：<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l60kizj20di01i744.jpg" alt=""><br>这里$x<em>{i,1}$和$y</em>{i,1}$指代的是：$x<em>{i}-x</em>{1}$和$y<em>{i}-y</em>{1}$,将$r_{1}$,$x$和$y$移到一边<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l6a5qqj20eg01pq2t.jpg" alt=""><br>公式展开后即：<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l6wimhj20ex041jri.jpg" alt=""><br>上面的公式可以简单的表示为：<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1ffv9l7q63aj202i00v0sh.jpg" alt=""><br>所以最终的结果可以计算出来了：<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffv9l7znwcj2063018a9u.jpg" alt=""></p>
-<h2 id="最小二乘法的python实战"><a href="#最小二乘法的python实战" class="headerlink" title="最小二乘法的python实战"></a>最小二乘法的python实战</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">###最小二乘法试验###</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> leastsq</div><div class="line"></div><div class="line"><span class="comment">###采样点(Xi,Yi) &gt;&gt;&gt;此处可以改成信号源的坐标集###</span></div><div class="line">Xi=np.array([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-3</span>])</div><div class="line">Yi=np.array([<span class="number">-1.21</span>,<span class="number">1.9</span>,<span class="number">3.2</span>,<span class="number">10.3</span>,<span class="number">2.2</span>,<span class="number">3.71</span>,<span class="number">8.7</span>])</div><div class="line"></div><div class="line"><span class="comment">###代价函数###</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">error</span><span class="params">(p,x,y)</span>:</span></div><div class="line">    a,b,c=p</div><div class="line">    <span class="keyword">return</span> a*x**<span class="number">2</span>+b*x+c-y <span class="comment">#x、y都是列表，故返回值也是个列表</span></div><div class="line"></div><div class="line"><span class="comment">#TEST</span></div><div class="line">p0=[<span class="number">5</span>,<span class="number">2</span>,<span class="number">10</span>]</div><div class="line"></div><div class="line"><span class="comment">###主函数从此开始###</span></div><div class="line"><span class="comment">#试验最小二乘法函数leastsq得调用几次error函数才能找到使得均方误差之和最小的a~c</span></div><div class="line">Para=leastsq(error,p0,args=(Xi,Yi)) <span class="comment">#把error函数中除了p以外的参数打包到args中</span></div><div class="line">a,b,c=Para[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span><span class="string">"a="</span>,a,<span class="string">'\n'</span>,<span class="string">"b="</span>,b,<span class="string">"c="</span>,c</div><div class="line"></div><div class="line"><span class="comment">###绘图，看拟合效果###</span></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">6</span>))</div><div class="line">plt.scatter(Xi,Yi,color=<span class="string">"red"</span>,label=<span class="string">"Sample Point"</span>,linewidth=<span class="number">3</span>) <span class="comment">#画样本点</span></div><div class="line">x=np.linspace(<span class="number">-5</span>,<span class="number">5</span>,<span class="number">1000</span>)</div><div class="line">y=a*x**<span class="number">2</span>+b*x+c</div><div class="line">plt.plot(x,y,color=<span class="string">"orange"</span>,label=<span class="string">"Fitting Curve"</span>,linewidth=<span class="number">2</span>) <span class="comment">#画拟合曲线</span></div><div class="line">plt.legend()</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
-<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>[1]：<a href="http://blog.csdn.net/jairuschan/article/details/7517773/" target="_blank" rel="external">最小二乘法介绍</a></p>
-<p>[2]：[最小二乘法的WiKi引文]<a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95</a></p>
+<h2 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel</div><div class="line">$ yum install git</div></pre></td></tr></table></figure>
+<p>接下来我们 创建一个git用户组和用户，用来运行git服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ groupadd git</div><div class="line">$ adduser git -g git <span class="comment">#添加git用户，名称可以自己设置，不一定要用git</span></div><div class="line">$ passwd git     <span class="comment">#修改git用户的密码</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里<code>git</code>的密码是用于客户端<code>git</code>上传下载身份验证要的，如果需要用密钥登录可以用下面的的方式</p>
+</blockquote>
+<h2 id="2-创建证书登录"><a href="#2-创建证书登录" class="headerlink" title="2. 创建证书登录"></a>2. 创建证书登录</h2><blockquote>
+<p>注意我们这里代码仓库是放在了<code>/home/git/</code>目录下，用于存放验证密钥的<code>.ssh/</code>也要存在<code>/home/git/</code>。</p>
+</blockquote>
+<p>收集所有需要登录的用户的公钥，公钥位于<code>id_rsa.pub</code>文件中，把我们的公钥导入到<code>/home/git/.ssh/authorized_keys</code>文件里，一行一个。<br>如果没有该文件创建它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /home</div><div class="line">$ mkdir git</div><div class="line">$ chown git:git git/</div><div class="line">$ <span class="built_in">cd</span> /home/git/</div><div class="line">$ mkdir .ssh</div><div class="line">$ chmod 700 .ssh</div><div class="line">$ touch .ssh/authorized_keys</div><div class="line">$ chmod 600 .ssh/authorized_keys</div><div class="line">$ chown -R git:git /home/git/.ssh  <span class="comment">#设置目录和目录下的authorized_keys文件的拥有者和群组</span></div></pre></td></tr></table></figure>
+<ul>
+<li><strong>关于怎么在客户端生成公钥</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t RSA -C <span class="string">"git"</span>    <span class="comment">#使用RSA加密，密钥备注</span></div></pre></td></tr></table></figure>
+<h2 id="3-初始化Git仓库"><a href="#3-初始化Git仓库" class="headerlink" title="3. 初始化Git仓库"></a>3. 初始化Git仓库</h2><p>首先我们选定一个目录作为Git仓库，假定是/home/git/project.git，在/home/git目录下输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /home/git/</div><div class="line">$ git init --bare project.git</div><div class="line">Initialized empty Git repository <span class="keyword">in</span> /home/gitrepo/runoob.git/</div></pre></td></tr></table></figure>
+<p>以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chown -R git:git project.git</div></pre></td></tr></table></figure>
+<h2 id="4-本地克隆仓库"><a href="#4-本地克隆仓库" class="headerlink" title="4. 本地克隆仓库"></a>4. 本地克隆仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> git@xxx.168.45.4:/home/git/project.git</div><div class="line">Cloning into <span class="string">'project'</span>...</div><div class="line">warning: You appear to have cloned an empty repository.</div><div class="line">Checking connectivity... done.</div></pre></td></tr></table></figure>
+<h2 id="5-关闭git用户的ssh-shell登陆-Remote"><a href="#5-关闭git用户的ssh-shell登陆-Remote" class="headerlink" title="5. 关闭git用户的ssh shell登陆(Remote)"></a>5. 关闭git用户的ssh shell登陆(Remote)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/passwd</div><div class="line">$ git:x:1001:1001::/home/git:/usr/bin/git-shell  <span class="comment">#找到git用户，在最后添加</span></div><div class="line"><span class="comment">#这时候就不能通过shell使用git账号登陆</span></div><div class="line">fatal: Interactive git shell is not enabled.</div><div class="line">hint: ~/git-shell-commands should exist and have <span class="built_in">read</span> and execute access.</div><div class="line">Connection to 54.13.87.93 closed.</div></pre></td></tr></table></figure>
+<p>参考文献：<br><a href="http://www.runoob.com/git/git-server.html" target="_blank" rel="external">菜鸟笔记-Git 服务器搭建</a> — 菜鸟笔记没有给Git仓库更改所属用户，问题不大<br><a href="http://www.jianshu.com/p/085a36696aa4" target="_blank" rel="external">简书-蛋西的：搭建私有git服务</a></p>
 
       
     </div>
@@ -498,9 +503,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
           
-            <a href="/tags/最小二乘法/" rel="tag"># 最小二乘法</a>
+            <a href="/tags/私有仓库/" rel="tag"># 私有仓库</a>
           
         </div>
       
@@ -513,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/科学计算/2016-10-10-kalman滤波的理解与使用/" rel="next" title="kalman滤波的理解与使用">
-                <i class="fa fa-chevron-left"></i> kalman滤波的理解与使用
+              <a href="/Java/2017-06-17-【转】JAVA对象在JVM中内存分配/" rel="next" title="【转】JAVA对象在JVM中内存分配">
+                <i class="fa fa-chevron-left"></i> 【转】JAVA对象在JVM中内存分配
               </a>
             
           </div>
@@ -522,10 +527,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/设计模式/2016-12-17-设计模式学习笔记-单例模式/" rel="prev" title="设计模式学习笔记-单例模式">
-                设计模式学习笔记-单例模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -740,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最小二乘法的公式推导及python实战"><span class="nav-number">1.</span> <span class="nav-text">最小二乘法的公式推导及python实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘法的公式推导"><span class="nav-number">1.1.</span> <span class="nav-text">最小二乘法的公式推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘法的python实战"><span class="nav-number">1.2.</span> <span class="nav-text">最小二乘法的python实战</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考："><span class="nav-number">2.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Git"><span class="nav-number">1.</span> <span class="nav-text">1. 安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建证书登录"><span class="nav-number">2.</span> <span class="nav-text">2. 创建证书登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-初始化Git仓库"><span class="nav-number">3.</span> <span class="nav-text">3. 初始化Git仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-本地克隆仓库"><span class="nav-number">4.</span> <span class="nav-text">4. 本地克隆仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-关闭git用户的ssh-shell登陆-Remote"><span class="nav-number">5.</span> <span class="nav-text">5. 关闭git用户的ssh shell登陆(Remote)</span></a></li></ol></div>
             
 
           </div>
@@ -903,9 +904,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nezha.github.io/科学计算/2016-10-26-最小二乘法的公式推导及python实战/';
-          this.page.identifier = '科学计算/2016-10-26-最小二乘法的公式推导及python实战/';
-          this.page.title = '最小二乘法的公式推导及python实战';
+          this.page.url = 'https://nezha.github.io/web开发/2017-12-05-Centos上搭建私有Git仓库/';
+          this.page.identifier = 'web开发/2017-12-05-Centos上搭建私有Git仓库/';
+          this.page.title = 'Centos上搭建私有Git仓库';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://nezha.disqus.com/embed.js';
