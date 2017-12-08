@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016-12-17-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-12-08T07:25:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-单例模式</title>
+        <pubTime>2016-12-16T16:00:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>单例模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://nezha.github.io/web%E5%BC%80%E5%8F%91/2017-12-05-Centos%E4%B8%8A%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89Git%E4%BB%93%E5%BA%93/</loc>
     <lastmod>2017-12-05T07:40:57.000Z</lastmod>
     <data>
@@ -56,11 +78,11 @@
         <title>《深入理解Java虚拟机》读书笔记</title>
         <pubTime>2017-06-16T16:00:01.000Z</pubTime>
         
+        <tag>深入理解Java虚拟机</tag>
+         
         <tag>Java</tag>
          
         <tag>JVM</tag>
-         
-        <tag>深入理解Java虚拟机</tag>
          
         <tag>GC</tag>
          
@@ -418,28 +440,6 @@
            
              
               <breadCrumb title="笔记" url="https://nezha.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016-12-17-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-05-05T11:45:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式学习笔记-单例模式</title>
-        <pubTime>2016-12-16T16:00:00.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-        <tag>单例模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
         </display>
     </data>
