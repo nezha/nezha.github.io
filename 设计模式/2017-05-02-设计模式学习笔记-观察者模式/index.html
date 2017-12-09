@@ -103,7 +103,8 @@
 <meta property="og:description" content="观察者模式 本文的源代码放在我的GitHub上：nezha/DesignPatterns  观察者模式是对象的行为模式，又叫发布-订阅(Publish/Subscribe)模式、模型-视图(Model/View)模式、源-监听器(Source/Listener)模式或从属者(Dependents)模式。 观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw1024/9d2c4511gy1ffagjry7dwj20i50dbtbg.jpg">
-<meta property="og:updated_time" content="2017-05-05T11:48:25.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-09T05:02:43.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记-观察者模式">
 <meta name="twitter:description" content="观察者模式 本文的源代码放在我的GitHub上：nezha/DesignPatterns  观察者模式是对象的行为模式，又叫发布-订阅(Publish/Subscribe)模式、模型-视图(Model/View)模式、源-监听器(Source/Listener)模式或从属者(Dependents)模式。 观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状">
@@ -462,6 +463,12 @@
 <p>5.测试实验</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//create subject</span></div><div class="line">        ConcreteSubject subject = <span class="keyword">new</span> ConcreteSubject();</div><div class="line"></div><div class="line">        <span class="comment">//create observers</span></div><div class="line">        Observer obj1 = <span class="keyword">new</span> ConcreteObserver(subject,<span class="string">"Obj1"</span>);</div><div class="line">        Observer obj2 = <span class="keyword">new</span> ConcreteObserver(subject,<span class="string">"Obj2"</span>);</div><div class="line">        Observer obj3 = <span class="keyword">new</span> ConcreteObserver(subject,<span class="string">"Obj3"</span>);</div><div class="line">        <span class="comment">//now send message to subject</span></div><div class="line">        subject.postMessage(<span class="string">"New Message"</span>);</div><div class="line">        <span class="comment">//这里是解绑某一个对象，主动权在subject手中</span></div><div class="line">        subject.unregister(obj2);</div><div class="line"></div><div class="line">        subject.postMessage(<span class="string">"将二号对象移除"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="http://ifeve.com/observer-design-pattern-in-java-example-tutorial/" target="_blank" rel="external">http://ifeve.com/observer-design-pattern-in-java-example-tutorial/</a></p>
+<hr>
+<ul>
+<li>交流或更多内容请关注我的公众号：<strong>nezha_blog</strong></li>
+<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a></li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信公众号"></p>
 
       
     </div>

@@ -103,7 +103,8 @@
 <meta property="og:description" content="定义 装饰者模式：在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。 设计原则 要使用装饰者模式，需要满足以下设计原则：  多用组合，少用继承 开放-关闭原则：类应该对拓展开放，对修改关闭  UML类图 我们先来看看装饰者模式的类图，再来详细讲述：  由上自下：1、Girl是基类。通常是一个抽象类">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffg3q3y6d8j20qg0my40s.jpg">
-<meta property="og:updated_time" content="2017-05-10T12:21:41.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-09T05:02:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习笔记-装饰者模式-Decorator Pattern">
 <meta name="twitter:description" content="定义 装饰者模式：在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。 设计原则 要使用装饰者模式，需要满足以下设计原则：  多用组合，少用继承 开放-关闭原则：类应该对拓展开放，对修改关闭  UML类图 我们先来看看装饰者模式的类图，再来详细讲述：  由上自下：1、Girl是基类。通常是一个抽象类">
@@ -465,6 +466,12 @@
 <p>接着编写一个测试类：<strong>InputTest.java</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">int</span> c;</div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//这里用了两个装饰者，分别是BufferedInputStream和我们的UpperFirstWordInputStream</span></div><div class="line">            InputStream in = <span class="keyword">new</span> UpperFirstWordInputStream(<span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"/Users/nezha/Desktop/test.txt"</span>)));</div><div class="line">            <span class="keyword">while</span>((c = in.read()) &gt;= <span class="number">0</span>)</div><div class="line">            &#123;</div><div class="line">                sb.append((<span class="keyword">char</span>) c);</div><div class="line">            &#125;</div><div class="line">            System.out.println(sb);</div><div class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><hr>
 <p><a href="http://www.jianshu.com/p/eb1606dfc0ac" target="_blank" rel="external">学习、探究Java设计模式——装饰者模式</a></p>
+<hr>
+<ul>
+<li>交流或更多内容请关注我的公众号：<strong>nezha_blog</strong></li>
+<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a></li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信公众号"></p>
 
       
     </div>
