@@ -117,7 +117,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-a13eafd01a55563c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-f48bbbb142a611ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-11T02:24:03.000Z">
+<meta property="og:updated_time" content="2017-12-11T02:30:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试整理-Java综合高级篇（吐血整理）">
 <meta name="twitter:description" content="Java面试总结1.你用过哪些集合类？ 大公司最喜欢问的Java集合类面试题40个Java集合面试问题和答案java.util.Collections 是一个包装类。它包含有各种有关集合操作的静态多态方法。java.util.Collection 是一个集合接口。它提供了对集合对象进行基本操作的通用接口方法。  Collection├List│├LinkedList│├ArrayList│└Vec">
@@ -476,9 +476,12 @@
 <blockquote>
 <p><a href="http://www.importnew.com/20386.html" target="_blank" rel="external"><strong>Java8系列之重新认识HashMap</strong></a><br><strong>功能实现-方法</strong></p>
 <ol>
-<li><p>确定哈希桶数组索引位置 :这里的Hash算法本质上就是三步：取key的hashCode值、高位运算、取模运算。</p>
+<li>确定哈希桶数组索引位置 :这里的Hash算法本质上就是三步：取key的hashCode值、高位运算、取模运算。</li>
+</ol>
+</blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">方法一：</div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;   <span class="comment">//jdk1.8 &amp; jdk1.7</span></div><div class="line">     <span class="keyword">int</span> h;</div><div class="line">     <span class="comment">// h = key.hashCode() 为第一步 取hashCode值</span></div><div class="line">     <span class="comment">// h ^ (h &gt;&gt;&gt; 16)  为第二步 高位参与运算</span></div><div class="line">     <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div><div class="line">方法二：</div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">indexFor</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> length)</span> </span>&#123;  <span class="comment">//jdk1.7的源码，jdk1.8没有这个方法，但是实现原理一样的</span></div><div class="line">     <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);  <span class="comment">//第三步 取模运算</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
+<blockquote>
+<ol>
 <li><p>分析HashMap的put方法<br><img src="http://upload-images.jianshu.io/upload_images/5354563-b77f0f9429a7056a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 </li>
 <li><p><strong>扩容机制：原来的两倍</strong></p>
@@ -538,8 +541,10 @@
 <blockquote>
 <p>阻塞队列 (BlockingQueue)是Java util.concurrent包下重要的数据结构，BlockingQueue提供了线程安全的队列访问方式：当阻塞队列进行插入数据时，如果队列已满，线程将会阻塞等待直到队列非满；从阻塞队列取数据时，如果队列已空，线程将会阻塞等待直到队列非空。并发包下很多高级同步类的实现都是基于BlockingQueue实现的。</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/5354563-11ed53c3efc584a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="http://upload-images.jianshu.io/upload_images/5354563-a297e42b389df6cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p><strong>以ArrayBlockingQueue为例，我们先来看看代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(E e)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">    <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">this</span>.lock;</div><div class="line">    lock.lockInterruptibly();</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">while</span> (count == items.length)</div><div class="line">            notFull.await();</div><div class="line">        enqueue(e);</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">        lock.unlock();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-11ed53c3efc584a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-a297e42b389df6cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><strong>以ArrayBlockingQueue为例，我们先来看看代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(E e)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">    <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">this</span>.lock;</div><div class="line">    lock.lockInterruptibly();</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">while</span> (count == items.length)</div><div class="line">            notFull.await();</div><div class="line">        enqueue(e);</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">        lock.unlock();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>从<code>put</code>方法的实现可以看出，它先获取了锁，并且获取的是可中断锁，然后判断当前元素个数是否等于数组的长度，如果相等，则调用<code>notFull.await()</code>进行等待，当被其他线程唤醒时，通过<code>enqueue(e)</code>方法插入元素，最后解锁。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Inserts element at current put position, advances, and signals.</div><div class="line">* Call only when holding lock.</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(E x)</span> </span>&#123;</div><div class="line">    <span class="comment">// assert lock.getHoldCount() == 1;</span></div><div class="line">    <span class="comment">// assert items[putIndex] == null;</span></div><div class="line">    <span class="keyword">final</span> Object[] items = <span class="keyword">this</span>.items;</div><div class="line">    items[putIndex] = x;</div><div class="line">    <span class="keyword">if</span> (++putIndex == items.length) putIndex = <span class="number">0</span>;</div><div class="line">    count++;</div><div class="line">    notEmpty.signal();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>插入成功后，通过notEmpty唤醒正在等待取元素的线程。</p>
@@ -568,14 +573,185 @@
 <h3 id="16-有哪些-JVM-调优经验"><a href="#16-有哪些-JVM-调优经验" class="headerlink" title="16.有哪些 JVM 调优经验"></a>16.有哪些 JVM 调优经验</h3><blockquote>
 <p>Jvm参数总结：<a href="http://linfengying.com/?p=2470" target="_blank" rel="external">http://linfengying.com/?p=2470</a></p>
 </blockquote>
-<p><code>内存参数</code><br>| 参数     | 作用 |<br>| :——-: | :—-: |<br>|-Xmx  |  堆大小的最大值。当前主流虚拟机的堆都是可扩展的|<br>|-Xms  |  堆大小的最小值。可以设置成和 -Xmx 一样的值|<br>|-Xmn  |  新生代的大小。现代虚拟机都是“分代”的，因此堆空间由新生代和老年代组成。新生代增大，相应地老年代就减小。Sun官方推荐新生代占整个堆的3/8|<br>|-Xss  |  每个线程的堆栈大小。该值影响一台机器能够创建的线程数上限|<br>|-XX:MaxPermSize=  |  永久代的最大值。永久代是 HotSpot 特有的，HotSpot 用永久代来实现方法区|<br>|-XX:PermSize=  | 永久代的最小值。可以设置成和 -XX:MaxPermSize 一样的值|<br>|-XX:SurvivorRatio= | Eden 和 Survivor 的比值。基于“复制”的垃圾收集器又会把新生代分为一个 Eden 和两个 Survivor，如果该参数为8，就表示 Eden |占新生代的80%，而两个 Survivor 各占10%。默认值为8|<br>|-XX:PretenureSizeThreshold= |直接晋升到老年代的对象大小。大于这个参数的对象将直接在老年代分配。默认值为0，表示不启用|<br>|-XX:HandlePromotionFailure= |是否允许分配担保失败。在 JDK 6 Update 24 后该参数已经失效。|<br>|-XX:MaxTenuringThreshold=   |对象晋升到老年代的年龄。对象每经过一次 Minor GC 后年龄就加1，超过这个值时就进入老年代。默认值为15|<br>|-XX:MaxDirectMemorySize=    |直接内存的最大值。对于频繁使用 nio 的应用，应该显式设置该参数，默认值为0|</p>
-<p><code>GC参数</code><br>| 垃圾收集器     | 参数 | 备注 |<br>| :——-: | :—-: | :—–: |<br>| Serial（新生代） | -XX:+UseSerialGC | 虚拟机在 Client 模式下的默认值，打开此开关后，使用 Serial + Serial Old 的收集器组合。Serial 是一个单线程的收集器 |<br>| ParNew（新生代） | -XX:+UseParNewGC | 强制使用 ParNew，打开此开关后，使用 ParNew + Serial Old 的收集器组合。ParNew 是一个多线程的收集器，也是 server 模式下首选的新生代收集器 |<br>| | -XX:ParallelGCThreads= | 垃圾收集的线程数 |<br>| Parallel Scavenge（新生代） | -XX:+UseParallelGC | 虚拟机在 Server 模式下的默认值，打开此开关后，使用 Parallel Scavenge + Serial Old 的收集器组合 |<br>| | -XX:MaxGCPauseMillis= | 单位毫秒，收集器尽可能保证单次内存回收停顿的时间不超过这个值。 |<br>| | -XX:GCTimeRatio= | 总的用于 gc 的时间占应用程序的百分比，该参数用于控制程序的吞吐量 |<br>| | -XX:+UseAdaptiveSizePolicy | 设置了这个参数后，就不再需要指定新生代的大小（-Xmn）、 Eden 和 Survisor 的比例（-XX:SurvivorRatio）以及晋升老年代对象的年龄（-XX:PretenureSizeThreshold）了，因为该收集器会根据当前系统的运行情况自动调整。当然前提是先设置好前两个参数。 |<br>| Serial Old（老年代） | 无 | Serial Old 是 Serial 的老年代版本，主要用于 Client 模式下的老生代收集，同时也是 CMS 在发生 Concurrent Mode Failure 时的后备方案 |<br>| Parallel Old（老年代） | -XX:+UseParallelOldGC | 打开此开关后，使用 Parallel Scavenge + Parallel Old 的收集器组合。Parallel Old 是 Parallel Scavenge 的老年代版本，在注重吞吐量和 CPU 资源敏感的场合，可以优先考虑这个组合 |<br>| CMS（老年代） | -XX:+UseConcMarkSweepGC | 打开此开关后，使用 ParNew + CMS 的收集器组合。 |<br>|  | -XX:CMSInitiatingOccupancyFraction= | CMS 收集器在老年代空间被使用多少后触发垃圾收集 |<br>| | -XX:+UseCMSCompactAtFullCollection | 在完成垃圾收集后是否要进行一次内存碎片整理 |<br>| | -XX:CMSFullGCsBeforeCompaction= | 在进行若干次垃圾收集后才进行一次内存碎片整理 |</p>
-<p>附图：可以配合使用的收集器组合</p>
+<ul>
+<li><code>内存参数</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-Xmx</td>
+<td style="text-align:center">堆大小的最大值。当前主流虚拟机的堆都是可扩展的</td>
+</tr>
+<tr>
+<td style="text-align:center">-Xms</td>
+<td style="text-align:center">堆大小的最小值。可以设置成和 -Xmx 一样的值</td>
+</tr>
+<tr>
+<td style="text-align:center">-Xmn</td>
+<td style="text-align:center">新生代的大小。现代虚拟机都是“分代”的，因此堆空间由新生代和老年代组成。新生代增大，相应地老年代就减小。Sun官方推荐新生代占整个堆的3/8</td>
+</tr>
+<tr>
+<td style="text-align:center">-Xss</td>
+<td style="text-align:center">每个线程的堆栈大小。该值影响一台机器能够创建的线程数上限</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:MaxPermSize=</td>
+<td style="text-align:center">永久代的最大值。永久代是 HotSpot 特有的，HotSpot 用永久代来实现方法区</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:PermSize=</td>
+<td style="text-align:center">永久代的最小值。可以设置成和 -XX:MaxPermSize 一样的值</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:SurvivorRatio=</td>
+<td style="text-align:center">Eden 和 Survivor 的比值。基于“复制”的垃圾收集器又会把新生代分为一个 Eden 和两个 Survivor，如果该参数为8，就表示 Eden</td>
+<td>占新生代的80%，而两个 Survivor 各占10%。默认值为8</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:PretenureSizeThreshold=</td>
+<td style="text-align:center">直接晋升到老年代的对象大小。大于这个参数的对象将直接在老年代分配。默认值为0，表示不启用</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:HandlePromotionFailure=</td>
+<td style="text-align:center">是否允许分配担保失败。在 JDK 6 Update 24 后该参数已经失效。</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:MaxTenuringThreshold=</td>
+<td style="text-align:center">对象晋升到老年代的年龄。对象每经过一次 Minor GC 后年龄就加1，超过这个值时就进入老年代。默认值为15</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:MaxDirectMemorySize=</td>
+<td style="text-align:center">直接内存的最大值。对于频繁使用 nio 的应用，应该显式设置该参数，默认值为0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>GC参数</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">垃圾收集器</th>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Serial（新生代）</td>
+<td style="text-align:center">-XX:+UseSerialGC</td>
+<td style="text-align:center">虚拟机在 Client 模式下的默认值，打开此开关后，使用 Serial + Serial Old 的收集器组合。Serial 是一个单线程的收集器</td>
+</tr>
+<tr>
+<td style="text-align:center">ParNew（新生代）</td>
+<td style="text-align:center">-XX:+UseParNewGC</td>
+<td style="text-align:center">强制使用 ParNew，打开此开关后，使用 ParNew + Serial Old 的收集器组合。ParNew 是一个多线程的收集器，也是 server 模式下首选的新生代收集器</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:ParallelGCThreads=</td>
+<td style="text-align:center">垃圾收集的线程数</td>
+</tr>
+<tr>
+<td style="text-align:center">Parallel Scavenge（新生代）</td>
+<td style="text-align:center">-XX:+UseParallelGC</td>
+<td style="text-align:center">虚拟机在 Server 模式下的默认值，打开此开关后，使用 Parallel Scavenge + Serial Old 的收集器组合</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:MaxGCPauseMillis=</td>
+<td style="text-align:center">单位毫秒，收集器尽可能保证单次内存回收停顿的时间不超过这个值。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:GCTimeRatio=</td>
+<td style="text-align:center">总的用于 gc 的时间占应用程序的百分比，该参数用于控制程序的吞吐量</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:+UseAdaptiveSizePolicy</td>
+<td style="text-align:center">设置了这个参数后，就不再需要指定新生代的大小（-Xmn）、 Eden 和 Survisor 的比例（-XX:SurvivorRatio）以及晋升老年代对象的年龄（-XX:PretenureSizeThreshold）了，因为该收集器会根据当前系统的运行情况自动调整。当然前提是先设置好前两个参数。</td>
+</tr>
+<tr>
+<td style="text-align:center">Serial Old（老年代）</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">Serial Old 是 Serial 的老年代版本，主要用于 Client 模式下的老生代收集，同时也是 CMS 在发生 Concurrent Mode Failure 时的后备方案</td>
+</tr>
+<tr>
+<td style="text-align:center">Parallel Old（老年代）</td>
+<td style="text-align:center">-XX:+UseParallelOldGC</td>
+<td style="text-align:center">打开此开关后，使用 Parallel Scavenge + Parallel Old 的收集器组合。Parallel Old 是 Parallel Scavenge 的老年代版本，在注重吞吐量和 CPU 资源敏感的场合，可以优先考虑这个组合</td>
+</tr>
+<tr>
+<td style="text-align:center">CMS（老年代）</td>
+<td style="text-align:center">-XX:+UseConcMarkSweepGC</td>
+<td style="text-align:center">打开此开关后，使用 ParNew + CMS 的收集器组合。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:CMSInitiatingOccupancyFraction=</td>
+<td style="text-align:center">CMS 收集器在老年代空间被使用多少后触发垃圾收集</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:+UseCMSCompactAtFullCollection</td>
+<td style="text-align:center">在完成垃圾收集后是否要进行一次内存碎片整理</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">-XX:CMSFullGCsBeforeCompaction=</td>
+<td style="text-align:center">在进行若干次垃圾收集后才进行一次内存碎片整理</td>
+</tr>
+</tbody>
+</table>
+<p><strong>附图：可以配合使用的收集器组合</strong></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5354563-07dd672741e0724d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <blockquote>
 <p>上面有7中收集器，分为两块，上面为新生代收集器，下面是老年代收集器。如果两个收集器之间存在连线，就说明它们可以搭配使用。</p>
 </blockquote>
-<p><code>其他参数</code><br>| 参数 | 作用 |<br>| :—-: | :—-: |<br>| -verbose:class | 打印类加载过程 |<br>| -XX:+PrintGCDetails | 发生垃圾收集时打印 gc 日志，该参数会自动带上 -verbose:gc 和 -XX:+PrintGC |<br>| -XX:+PrintGCDateStamps / -XX:+PrintGCTimeStamps | 打印 gc 的触发事件，可以和 -XX:+PrintGC 和 -XX:+PrintGCDetails 混用 |<br>| -Xloggc:<path></path> |     gc 日志路径 |<br>| -XX:+HeapDumpOnOutOfMemoryError | 出现 OOM 时 dump 出内存快照用于事后分析 |<br>| -XX:HeapDumpPath= | 堆转储快照的文件路径 |</p>
+<ul>
+<li><code>其他参数</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-verbose:class</td>
+<td style="text-align:center">打印类加载过程</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:+PrintGCDetails</td>
+<td style="text-align:center">发生垃圾收集时打印 gc 日志，该参数会自动带上 -verbose:gc 和 -XX:+PrintGC</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:+PrintGCDateStamps / -XX:+PrintGCTimeStamps</td>
+<td style="text-align:center">打印 gc 的触发事件，可以和 -XX:+PrintGC 和 -XX:+PrintGCDetails 混用</td>
+</tr>
+<tr>
+<td style="text-align:center">-Xloggc:<path></path></td>
+<td style="text-align:center">gc 日志路径</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:+HeapDumpOnOutOfMemoryError</td>
+<td style="text-align:center">出现 OOM 时 dump 出内存快照用于事后分析</td>
+</tr>
+<tr>
+<td style="text-align:center">-XX:HeapDumpPath=</td>
+<td style="text-align:center">堆转储快照的文件路径</td>
+</tr>
+</tbody>
+</table>
 <h3 id="17-分布式-CAP-了解吗？"><a href="#17-分布式-CAP-了解吗？" class="headerlink" title="17.分布式 CAP 了解吗？"></a>17.分布式 CAP 了解吗？</h3><blockquote>
 <p>一致性(Consistency)<br>可用性(Availability)<br>分区容忍性(Partition tolerance)</p>
 </blockquote>
@@ -613,9 +789,12 @@
 </blockquote>
 <h3 id="27-运行时异常与一般异常有何异同？常见异常"><a href="#27-运行时异常与一般异常有何异同？常见异常" class="headerlink" title="27.运行时异常与一般异常有何异同？常见异常"></a>27.运行时异常与一般异常有何异同？常见异常</h3><blockquote>
 <p>Java提供了两类主要的异常:runtime exception和checked exception<br>常见异常：NullPointerException、IndexOutOfBoundsException、ClassNotFoundException，IllegalArgumentException，ClassCastException(数据类型转换异常)</p>
-<p>###28.error和exception有什么区别?<br>error 表示恢复不是不可能但很困难的情况下的一种严重问题。比如说内存溢出。不可能指望程序能处理这样的情况。<br>exception表示一种设计或实现问题。也就是说，它表示如果程序运行正常，从不会发生的情况。</p>
-<p>###29.Java异常处理机制</p>
 </blockquote>
+<p>###28.error和exception有什么区别?</p>
+<blockquote>
+<p>error 表示恢复不是不可能但很困难的情况下的一种严重问题。比如说内存溢出。不可能指望程序能处理这样的情况。<br>exception表示一种设计或实现问题。也就是说，它表示如果程序运行正常，从不会发生的情况。</p>
+</blockquote>
+<p>###29.Java异常处理机制</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5354563-a13eafd01a55563c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <blockquote>
 <p>1.捕获异常：try、catch 和 finally<br>2.抛出异常<br>2.1. throws抛出异常</p>
@@ -626,7 +805,10 @@
 </blockquote>
 <hr>
 <blockquote>
-<p>1.class Thread1 extends Thread{},然后重写run方法<br>2.class Thread2 implements Runnable{},然后重写run方法<br>3.class Thread3 implements Callable<integer>{},然后new FutureTask(thread3),再用new Thread(future)封装。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread1</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread1</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            System.out.println(name + <span class="string">"运行---&gt;&gt;&gt;"</span> + i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Thread1 mTh11=<span class="keyword">new</span> Thread1(<span class="string">"A"</span>);</div><div class="line">        Thread1 mTh12=<span class="keyword">new</span> Thread1(<span class="string">"B"</span>);</div><div class="line">        mTh1.start();</div><div class="line">        mTh2.start();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">15</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread2</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread2</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"运行  :  "</span> + count--);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Thread2 mTh2 = <span class="keyword">new</span> Thread2();</div><div class="line">        <span class="keyword">new</span> Thread(mTh2, <span class="string">"C"</span>).start();</div><div class="line">        <span class="keyword">new</span> Thread(mTh2, <span class="string">"D"</span>).start();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallableThread</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(;i&lt;<span class="number">100</span>;i++)</div><div class="line">        &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">" "</span>+i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        MyCallableThread mct = <span class="keyword">new</span> MyCallableThread();</div><div class="line">        FutureTask&lt;Integer&gt; ft = <span class="keyword">new</span> FutureTask&lt;Integer&gt;(mct);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">100</span>;i++)</div><div class="line">        &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">" 的循环变量i的值"</span>+i);</div><div class="line">            <span class="keyword">if</span>(i==<span class="number">20</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">new</span> Thread(ft,<span class="string">"有返回值的线程"</span>).start();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span></div><div class="line">        &#123;</div><div class="line">            System.out.println(<span class="string">"子线程的返回值："</span>+ft.get());</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></integer></p>
+<p>1.class Thread1 extends Thread{},然后重写run方法<br>2.class Thread2 implements Runnable{},然后重写run方法<br>3.class Thread3 implements Callable<integer>{},然后new FutureTask(thread3),再用new Thread(future)封装。</integer></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread1</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread1</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            System.out.println(name + <span class="string">"运行---&gt;&gt;&gt;"</span> + i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Thread1 mTh11=<span class="keyword">new</span> Thread1(<span class="string">"A"</span>);</div><div class="line">        Thread1 mTh12=<span class="keyword">new</span> Thread1(<span class="string">"B"</span>);</div><div class="line">        mTh1.start();</div><div class="line">        mTh2.start();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">15</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread2</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread2</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"运行  :  "</span> + count--);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Thread2 mTh2 = <span class="keyword">new</span> Thread2();</div><div class="line">        <span class="keyword">new</span> Thread(mTh2, <span class="string">"C"</span>).start();</div><div class="line">        <span class="keyword">new</span> Thread(mTh2, <span class="string">"D"</span>).start();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallableThread</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt;</span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(;i&lt;<span class="number">100</span>;i++)</div><div class="line">        &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">" "</span>+i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        MyCallableThread mct = <span class="keyword">new</span> MyCallableThread();</div><div class="line">        FutureTask&lt;Integer&gt; ft = <span class="keyword">new</span> FutureTask&lt;Integer&gt;(mct);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">100</span>;i++)</div><div class="line">        &#123;</div><div class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">" 的循环变量i的值"</span>+i);</div><div class="line">            <span class="keyword">if</span>(i==<span class="number">20</span>)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">new</span> Thread(ft,<span class="string">"有返回值的线程"</span>).start();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span></div><div class="line">        &#123;</div><div class="line">            System.out.println(<span class="string">"子线程的返回值："</span>+ft.get());</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
 <p><strong>如果一个类继承Thread，则不适合资源共享。但是如果实现了Runable接口的话，则很容易的实现资源共享。</strong></p>
 </blockquote>
 <h3 id="31-Java中常用的类，包，接口。"><a href="#31-Java中常用的类，包，接口。" class="headerlink" title="31.Java中常用的类，包，接口。"></a>31.Java中常用的类，包，接口。</h3><blockquote>
@@ -650,7 +832,13 @@
 <p>新生成的对象首先都是放在年轻代的。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象。</p>
 <p>在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。</p>
 <p>持久代主要存放的是Java类的类信息</p>
-<h3 id="37-JVM分为哪些区，每一个区干嘛的？"><a href="#37-JVM分为哪些区，每一个区干嘛的？" class="headerlink" title="37.JVM分为哪些区，每一个区干嘛的？"></a>37.JVM分为哪些区，每一个区干嘛的？</h3><p>问：Java运行时数据区域？<br>回答：包括程序计数器、JVM栈、本地方法栈、方法区、堆<br>问：方法区里存放什么？<br>本地方法栈：和jvm栈所发挥的作用类似，区别是jvm栈为jvm执行java方法（字节码）服务，而本地方法栈为jvm使用的native方法服务。<br>JVM栈：局部变量表、操作数栈、动态链接、方法出口。<br>方法区：用于存储已被虚拟机加载的类信息，常量、静态变量、即时编译器编译后的代码等。<br>堆：存放对象实例。</p>
+<h3 id="37-JVM分为哪些区，每一个区干嘛的？"><a href="#37-JVM分为哪些区，每一个区干嘛的？" class="headerlink" title="37.JVM分为哪些区，每一个区干嘛的？"></a>37.JVM分为哪些区，每一个区干嘛的？</h3><p>问：Java运行时数据区域？ </p>
+<p>回答：包括程序计数器、JVM栈、本地方法栈、方法区、堆 </p>
+<p>问：方法区里存放什么？ </p>
+<p>本地方法栈：和jvm栈所发挥的作用类似，区别是jvm栈为jvm执行java方法（字节码）服务，而本地方法栈为jvm使用的native方法服务。 </p>
+<p>JVM栈：局部变量表、操作数栈、动态链接、方法出口。 </p>
+<p>方法区：用于存储已被虚拟机加载的类信息，常量、静态变量、即时编译器编译后的代码等。 </p>
+<p>堆：存放对象实例。</p>
 <h3 id="38-GC用的引用可达性分析算法中，哪些对象可作为GC-Roots对象？"><a href="#38-GC用的引用可达性分析算法中，哪些对象可作为GC-Roots对象？" class="headerlink" title="38.GC用的引用可达性分析算法中，哪些对象可作为GC Roots对象？"></a>38.GC用的引用可达性分析算法中，哪些对象可作为GC Roots对象？</h3><ul>
 <li>虚拟机栈（栈帧中的本地变量表）中引用的对象；</li>
 <li>方法区中类静态属性引用的对象；</li>
