@@ -104,15 +104,15 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-f29191d1756dd6ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://wuchong.me/img/Insertion-sort-example-300px.gif">
-<meta property="og:image" content="http://wuchong.me/img/Quicksort-example.gif">
-<meta property="og:image" content="http://wuchong.me/img/Merge-sort-example-300px.gif">
-<meta property="og:image" content="http://wuchong.me/img/Heapsort-example.gif">
-<meta property="og:image" content="https://segmentfault.com/img/remote/1460000006767864">
-<meta property="og:image" content="https://segmentfault.com/img/remote/1460000004994006">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/81b78497jw1emncvtdf1qj20u10afn0r.jpg">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-7c3d7971e77b4a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-13T06:38:13.959Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc3428e8ca?w=300&h=180&f=gif&s=91950">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc3a56ff18?w=300&h=180&f=gif&s=140613">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc33eb2d03?w=300&h=180&f=gif&s=99504">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc60980c8d?w=350&h=280&f=gif&s=660087">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bcb2088786?w=684&h=363&f=png&s=25052">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bcbddde319?w=499&h=161&f=png&s=16862">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc0b0ed7c2?w=1081&h=375&f=jpeg&s=143057">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/13/1604e93153cbd71e?w=828&h=305&f=png&s=98669">
+<meta property="og:updated_time" content="2017-12-13T06:45:43.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法-排序算法">
 <meta name="twitter:description" content="排序算法 交流或更多内容请关注我的公众号：nezha_blog 我的技术博客：https://nezha.github.io   冒泡排序原理 俩俩比较相邻记录的排序码，若发生逆序，则交换；有俩种方式进行冒泡，一种是先把小的冒泡到前边去，另一种是把大的元素冒泡到后边。  性能 时间复杂度为$O(N^2)$，空间复杂度为$O(1)$。排序是稳定的，排序比较次数与初始序列无关，但交换次数与初始序列有">
@@ -366,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T15:56:02+08:00">
-                2017-12-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T15:56:02+08:00">
+                2017-12-13
               </time>
             
 
@@ -457,7 +457,7 @@
 <p>###代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = arr.length - <span class="number">1</span>; j &gt; i; j--) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[j - <span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">int</span> tmp = arr[j];</div><div class="line">                arr[j] = arr[j - <span class="number">1</span>];</div><div class="line">                arr[j - <span class="number">1</span>] = tmp;</div><div class="line">                flag = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (flag) <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>依次选择一个待排序的数据，插入到前边已排好序的序列中。</p>
-<p><img src="http://wuchong.me/img/Insertion-sort-example-300px.gif" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc3428e8ca?w=300&amp;h=180&amp;f=gif&amp;s=91950" alt=""></p>
 <h3 id="性能-1"><a href="#性能-1" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度为$O(N^2)$，空间复杂度为$O(1)$。算法是稳定的，比较次数和交换次数都与初始序列有关。</p>
 <h3 id="优化-1"><a href="#优化-1" class="headerlink" title="优化"></a>优化</h3><p>直接插入排序每次往前插入时，是按顺序依次往前找，可在这里进行优化，往前找合适的插入位置时采用二分查找的方式，即折半插入。 </p>
 <p>折半插入排序相对直接插入排序而言：平均性能更快，时间复杂度降至$O(NlogN)$，排序是稳定的，但排序的<strong>比较次数与初始序列无关</strong>，总是需要$foor(log(i))+1$次排序比较。</p>
@@ -482,7 +482,7 @@
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="原理-3"><a href="#原理-3" class="headerlink" title="原理"></a>原理</h3><p>每次从未排序的序列中找到最小值，记录并最后存放到已排序序列的末尾</p>
 <h3 id="性能-2"><a href="#性能-2" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度为$O(N^2)$，空间复杂度为$O(1)$，排序是<code>不稳定</code>的（把最小值交换到已排序的末尾导致的），每次都能确定一个元素所在的最终位置，比较次数与初始序列无关。</p>
 <h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> len = arr.length;</div><div class="line">    <span class="comment">//每次从后边选择一个最小值</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len-<span class="number">1</span>; i++)&#123;     <span class="comment">//只需选择n-1次</span></div><div class="line">        <span class="keyword">int</span> min = i;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; len; j++)&#123;</div><div class="line">            <span class="keyword">if</span> (arr[min]&gt;arr[j])&#123;</div><div class="line">                min = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (min != i)&#123;</div><div class="line">            <span class="keyword">int</span> temp = arr[i];</div><div class="line">            arr[i] = arr[min];</div><div class="line">            arr[min] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><h3 id="原理-4"><a href="#原理-4" class="headerlink" title="原理"></a>原理</h3><p><img src="http://wuchong.me/img/Quicksort-example.gif" alt=""></p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><h3 id="原理-4"><a href="#原理-4" class="headerlink" title="原理"></a>原理</h3><p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc3a56ff18?w=300&amp;h=180&amp;f=gif&amp;s=140613" alt=""></p>
 <p>分而治之思想：</p>
 <ul>
 <li>Divide：找到基准元素pivot，将数组A[p..r]划分为A[p..pivotpos-1]和A[pivotpos+1…q]，左边的元素都比基准小，右边的元素都比基准大;</li>
@@ -491,7 +491,7 @@
 </ul>
 <h3 id="性能-3"><a href="#性能-3" class="headerlink" title="性能"></a>性能</h3><p>快排的平均时间复杂度为$O(NlogN）$，空间复杂度为$O(logN)$，但最坏情况下，时间复杂度为$O(N^2)$，空间复杂度为$O(N)$；且排序是不稳定的，但每次都能确定一个元素所在序列中的最终位置，复杂度与初始序列有关。</p>
 <h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> temp = arr[i];</div><div class="line">    arr[i] = arr[j];</div><div class="line">    arr[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sortQuick</span><span class="params">(<span class="keyword">int</span>[] quickArray)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span>[] arr = quickArray;</div><div class="line">    quickSort(<span class="number">0</span>, arr.length - <span class="number">1</span>, arr);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (start &lt; end) &#123;</div><div class="line">        <span class="keyword">int</span> pivot = arr[start];</div><div class="line">        <span class="keyword">int</span> left = start;</div><div class="line">        <span class="keyword">int</span> right = end;</div><div class="line">        <span class="keyword">while</span> (left != right) &#123;</div><div class="line">            <span class="keyword">while</span> (arr[right] &gt;= pivot &amp;&amp; left &lt; right) right--;</div><div class="line">            <span class="keyword">while</span> (arr[left] &lt;= pivot &amp;&amp; left &lt; right) left++;</div><div class="line">            swap(left, right, arr);</div><div class="line">        &#125;</div><div class="line">        arr[start] = arr[left];</div><div class="line">        arr[left] = pivot;</div><div class="line">        quickSort(start, left - <span class="number">1</span>, arr);</div><div class="line">        quickSort(left + <span class="number">1</span>, end, arr);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="原理-5"><a href="#原理-5" class="headerlink" title="原理"></a>原理</h3><p><img src="http://wuchong.me/img/Merge-sort-example-300px.gif" alt=""><br>归并排序是采用分治法的一个非常典型的应用。归并排序的思想就是先递归分解数组，再合并数组。</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="原理-5"><a href="#原理-5" class="headerlink" title="原理"></a>原理</h3><p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc33eb2d03?w=300&amp;h=180&amp;f=gif&amp;s=99504" alt=""><br>归并排序是采用分治法的一个非常典型的应用。归并排序的思想就是先递归分解数组，再合并数组。</p>
 <p>先考虑合并两个有序数组，基本思路是比较两个数组的最前面的数，谁小就先取谁，取了后相应的指针就往后移一位。然后再比较，直至一个数组为空，最后把另一个数组的剩余部分复制过来即可。</p>
 <p>再考虑递归分解，基本思路是将数组分解成left和right，如果这两个数组内部数据是有序的，那么就可以用上面合并数组的方法将这两个数组合并排序。如何让这两个数组内部是有序的？可以再二分，直至分解出的小组只含有一个元素时为止，此时认为该小组内部已有序。然后合并排序相邻二个小组即可。</p>
 <h3 id="性能-4"><a href="#性能-4" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度总是为$O(NlogN)$，空间复杂度也总为为4O(N)$，算法与初始序列无关，排序是稳定的。</p>
@@ -512,7 +512,7 @@
 <li><p>最大堆调整（Max_Heapify）：该方法是提供给上述两个过程调用的。目的是将堆的末端子节点作调整，使得子节点永远小于父节点 。</p>
 </li>
 </ol>
-<p><img src="http://wuchong.me/img/Heapsort-example.gif" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc60980c8d?w=350&amp;h=280&amp;f=gif&amp;s=660087" alt=""></p>
 <h3 id="性能-5"><a href="#性能-5" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度为$O(NlogN)$，空间复杂度为$O(1)$，因为利用的排序空间仍然是初始的序列，并未开辟新空间。<strong>算法是不稳定的，与初始序列无关。</strong></p>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>想知道最大值或最小值时，比如优先级队列，作业调度等场景。</p>
 <h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><p><a href="http://blog.csdn.net/zdp072/article/details/44227317" target="_blank" rel="external">排序算法之归并排序(JAVA)-数组形式</a></p>
@@ -524,19 +524,19 @@
 <li>再对各个桶中的元素进行排序</li>
 <li>此时再按次序把各桶中的元素列出来即是已排序好的。</li>
 </ul>
-<p><img src="https://segmentfault.com/img/remote/1460000006767864" alt=""></p>
-<h3 id="性能-7"><a href="#性能-7" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度为 $O(N+C)$ ，$O(C)=O(M(N/M)log(N/M))=O(NlogN-NlogM)$，空间复杂度为$O(N+M)$，算法是稳定的，且与初始序列无关。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bcb2088786?w=684&amp;h=363&amp;f=png&amp;s=25052" alt=""></p>
+<h3 id="性能-7"><a href="#性能-7" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度为$O(N+C)$，$O(C)=O(M(N/M)log(N/M))=O(NlogN-NlogM)$，空间复杂度为$O(N+M)$，算法是稳定的，且与初始序列无关。</p>
 <h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><p>算法思想和散列中的开散列法差不多，当冲突时放入同一个桶中；可应用于数据量分布比较均匀，或比较侧重于区间数量时。</p>
 <h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><h3 id="原理-9"><a href="#原理-9" class="headerlink" title="原理"></a>原理</h3><p>对于有d个关键字时，可以分别按关键字进行排序。有俩种方法：</p>
 <ul>
 <li>MSD：先从高位开始进行排序，在每个关键字上，可采用计数排序</li>
 <li>LSD：先从低位开始进行排序，在每个关键字上，可采用桶排序</li>
 </ul>
-<p><img src="https://segmentfault.com/img/remote/1460000004994006" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bcbddde319?w=499&amp;h=161&amp;f=png&amp;s=16862" alt=""></p>
 <h3 id="性能-8"><a href="#性能-8" class="headerlink" title="性能"></a>性能</h3><p>时间复杂度为O(d*(N+K))，空间复杂度为O(N+K)。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="http://ww1.sinaimg.cn/large/81b78497jw1emncvtdf1qj20u10afn0r.jpg" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e7bc0b0ed7c2?w=1081&amp;h=375&amp;f=jpeg&amp;s=143057" alt=""></p>
 <hr>
-<p><img src="http://upload-images.jianshu.io/upload_images/5354563-7c3d7971e77b4a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/13/1604e93153cbd71e?w=828&amp;h=305&amp;f=png&amp;s=98669" alt="image.png"></p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]<a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/" target="_blank" rel="external">经典排序算法总结与实现</a>-基于Python的排序算法总结，写的很不错</p>
 <p>[2]<a href="https://segmentfault.com/a/1190000004994003" target="_blank" rel="external">排序算法总结-带有优化</a></p>
 
@@ -606,8 +606,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Java/2017-06-17-【转】JAVA对象在JVM中内存分配/" rel="next" title="【转】JAVA对象在JVM中内存分配">
-                <i class="fa fa-chevron-left"></i> 【转】JAVA对象在JVM中内存分配
+              <a href="/笔记/2017-12-11-学习笔记-Java面试经验/" rel="next" title="面试整理-Java综合高级篇（吐血整理）">
+                <i class="fa fa-chevron-left"></i> 面试整理-Java综合高级篇（吐血整理）
               </a>
             
           </div>
@@ -615,10 +615,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/web开发/2017-12-05-Centos上搭建私有Git仓库/" rel="prev" title="Centos上搭建私有Git仓库">
-                Centos上搭建私有Git仓库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
