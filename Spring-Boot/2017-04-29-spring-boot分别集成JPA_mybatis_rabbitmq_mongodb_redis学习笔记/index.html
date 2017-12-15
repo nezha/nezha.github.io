@@ -94,24 +94,26 @@
 
 
 
-<meta name="description" content="Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  # pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1.4.1.RELEASE。 常用注解 @RestController返回json形式的结果，便于前后端分离。是@ResponseBo">
+<meta name="description" content="交流或更多内容请关注我的公众号：nezha_blog 我的技术博客：https://nezha.github.io   1. Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  2. pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1">
 <meta name="keywords" content="Spring Boot,Spring Jpa,mybatis,rabbitmq,mongodb,redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记">
 <meta property="og:url" content="https://nezha.github.io/Spring-Boot/2017-04-29-spring-boot分别集成JPA_mybatis_rabbitmq_mongodb_redis学习笔记/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  # pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1.4.1.RELEASE。 常用注解 @RestController返回json形式的结果，便于前后端分离。是@ResponseBo">
+<meta property="og:description" content="交流或更多内容请关注我的公众号：nezha_blog 我的技术博客：https://nezha.github.io   1. Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  2. pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/977217/201607/977217-20160718164109076-508374758.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/977217/201607/977217-20160719183149701-931010371.jpg">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3239635-f350dec07f1883ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3239635-6068a7de288f4e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3239635-d60da0cd0754fdfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-05T11:47:46.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-c1933b0bf061615f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-780f5c4fa5636bff?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-320299cd5adf056b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-dbaaf5f7c811429a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-74996a3bde35484a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-b01ac2601400aaf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-8900087c1ae8f3f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-15T11:20:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring-boot分别集成JPA mybatis rabbitmq mongodb redis学习笔记">
-<meta name="twitter:description" content="Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  # pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1.4.1.RELEASE。 常用注解 @RestController返回json形式的结果，便于前后端分离。是@ResponseBo">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/977217/201607/977217-20160718164109076-508374758.png">
+<meta name="twitter:description" content="交流或更多内容请关注我的公众号：nezha_blog 我的技术博客：https://nezha.github.io   1. Spring Boot学习笔记–全注解方式 Spring Boot教程与Spring Cloud教程  2. pring boot中文帮助文档Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》—说明：本文档翻译的版本：1">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5354563-c1933b0bf061615f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -434,11 +436,17 @@
       
 
       
-        <h2 id="Spring-Boot学习笔记–全注解方式"><a href="#Spring-Boot学习笔记–全注解方式" class="headerlink" title="Spring Boot学习笔记–全注解方式"></a>Spring Boot学习笔记–全注解方式</h2><blockquote>
+        <p><img src="http://upload-images.jianshu.io/upload_images/5354563-c1933b0bf061615f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>交流或更多内容请关注我的公众号：<strong>nezha_blog</strong></li>
+<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a></li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-780f5c4fa5636bff?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信公众号"></p>
+<h2 id="1-Spring-Boot学习笔记–全注解方式"><a href="#1-Spring-Boot学习笔记–全注解方式" class="headerlink" title="1. Spring Boot学习笔记–全注解方式"></a>1. Spring Boot学习笔记–全注解方式</h2><blockquote>
 <p><a href="http://git.oschina.net/didispace/SpringBoot-Learning" target="_blank" rel="external">Spring Boot教程与Spring Cloud教程</a></p>
 </blockquote>
-<h1 id="pring-boot中文帮助文档"><a href="#pring-boot中文帮助文档" class="headerlink" title="# pring boot中文帮助文档"></a># pring boot中文帮助文档</h1><p><a href="https://qbgbook.gitbooks.io/spring-boot-reference-guide-zh/content/" target="_blank" rel="external">Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》</a>—说明：本文档翻译的版本：1.4.1.RELEASE。</p>
-<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><ul>
+<h2 id="2-pring-boot中文帮助文档"><a href="#2-pring-boot中文帮助文档" class="headerlink" title="2. pring boot中文帮助文档"></a>2. pring boot中文帮助文档</h2><p><a href="https://qbgbook.gitbooks.io/spring-boot-reference-guide-zh/content/" target="_blank" rel="external">Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》</a>—说明：本文档翻译的版本：1.4.1.RELEASE。</p>
+<h2 id="3-常用注解"><a href="#3-常用注解" class="headerlink" title="3. 常用注解"></a>3. 常用注解</h2><ul>
 <li><code>@RestController</code><br>返回json形式的结果，便于前后端分离。是@ResponseBody 和 @Controller的组合体</li>
 <li><code>@RequestMapping</code><br>配置url映射</li>
 <li><code>@EnableAutoConfiguration</code></li>
@@ -480,7 +488,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/hello/&#123;id&#125;"</span>,method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayhello</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span>Integer myid)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"id:"</span>+myid;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>@RequestParam</code>的使用，获取传统方式的参数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/hi"</span>,method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayhi</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>,required = <span class="keyword">false</span>,defaultValue = <span class="string">"100"</span>)</span>Integer myid)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"id:"</span>+myid;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="spring-data-JPA-–-单数据源"><a href="#spring-data-JPA-–-单数据源" class="headerlink" title="spring data JPA  – 单数据源"></a>spring data JPA  – 单数据源</h2><blockquote>
+<h2 id="4-spring-data-JPA-–-单数据源"><a href="#4-spring-data-JPA-–-单数据源" class="headerlink" title="4. spring data JPA  – 单数据源"></a>4. spring data JPA  – 单数据源</h2><blockquote>
 <p>具体的实现代码demo：<a href="https://github.com/nezha/Spring-Boot-Restful-JPA" target="_blank" rel="external">Spring-Boot-Restful-JPA的demo程序</a></p>
 <p>定义了对象持久化的标准，主要是对Hibernate的整合</p>
 <p>现阶段发现和mybatis的直观操作很一致，都是可能集中管理数据库连接与释放，JPA想比较于mybatis可以自动建表，不知道算不算一种优势，在我看来不算是。毕竟表结构基本上数据库工程师都搞定了的事。</p>
@@ -527,7 +535,7 @@
 <li>在<code>CoderController</code>中使用<code>getMaxIdCoder</code>方法</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//8.自定义sql语句查询</span></div><div class="line"><span class="meta">@GetMapping</span>(value = <span class="string">"/coder/find"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> Coder <span class="title">CoderFindByTask</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> coderRepository.getMaxIdCoder();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Spring-Boot-MyBatis-–-单数据源"><a href="#Spring-Boot-MyBatis-–-单数据源" class="headerlink" title="Spring Boot MyBatis – 单数据源"></a>Spring Boot MyBatis – 单数据源</h2><p>基于注解方式的Mybatis其实和JPA很类似，不过mybatis不提供自动创建表的操作。这点上jpa更好些。</p>
+<h2 id="5-Spring-Boot-MyBatis-–-单数据源"><a href="#5-Spring-Boot-MyBatis-–-单数据源" class="headerlink" title="5. Spring Boot MyBatis – 单数据源"></a>5. Spring Boot MyBatis – 单数据源</h2><p>基于注解方式的Mybatis其实和JPA很类似，不过mybatis不提供自动创建表的操作。这点上jpa更好些。</p>
 <blockquote>
 <p>我的demo程序，在我的github上：<a href="https://github.com/nezha/spring-boot-mybatis-mysql" target="_blank" rel="external">spring-boot-mybatis-mysql</a></p>
 <p>引用博客：<br><a href="http://www.jianshu.com/p/c2444ddd2de9" target="_blank" rel="external">Spring Boot + MyBatis + MySQL 整合</a>–简书 FlySheep_ly</p>
@@ -547,20 +555,20 @@
 <p>5.调用测试</p>
 <p>发现Restful风格真是好习惯，很好用很实用。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@EnableTransactionManagement</span></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> UserMapper userMapper;</div><div class="line"></div><div class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/test/&#123;name&#125;"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">findOne</span><span class="params">(@PathVariable(<span class="string">"name"</span>)</span>String name)</span>&#123;</div><div class="line">        <span class="keyword">return</span> userMapper.findByName(name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>###可能出现的问题：</p>
-<blockquote>
+<h3 id="可能出现的问题："><a href="#可能出现的问题：" class="headerlink" title="可能出现的问题："></a>可能出现的问题：</h3><blockquote>
 <p>mybatis+spring boot, mapper 提示Could not autowire. 一直提示不能加载</p>
 </blockquote>
-<p><img src="http://images2015.cnblogs.com/blog/977217/201607/977217-20160718164109076-508374758.png" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-320299cd5adf056b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <ul>
 <li>解决方案</li>
 </ul>
-<p>修改idea配置，将spring 的severity的值设置为”warning”, 如下：<br><img src="http://images2015.cnblogs.com/blog/977217/201607/977217-20160719183149701-931010371.jpg" alt=""></p>
+<p>修改idea配置，将spring 的severity的值设置为”warning”, 如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-dbaaf5f7c811429a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>如果想进一步缩小修改范围的话：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Alt + Enter quick fix or change settings</div><div class="line">Settings - Editor - Inspections - Spring - Spring Core - Code - Autowiring for Bean Class - warning</div></pre></td></tr></table></figure>
 <h3 id="关于多源配置的问题："><a href="#关于多源配置的问题：" class="headerlink" title="关于多源配置的问题："></a>关于多源配置的问题：</h3><p>1.<a href="http://www.jianshu.com/p/c6770b1466b8" target="_blank" rel="external">Spring Boot 整合 Mybatis 实现 Druid 多数据源详解</a></p>
 <p>2.<a href="http://www.ityouknow.com/springboot/2016/11/25/springboot(%E4%B8%83" target="_blank" rel="external">springboot+mybatis多数据源最简解决方案</a>-springboot+mybatis%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%9C%80%E7%AE%80%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html)</p>
-<h2 id="Spring-Boot-RabbitMQ"><a href="#Spring-Boot-RabbitMQ" class="headerlink" title="Spring Boot RabbitMQ"></a>Spring Boot RabbitMQ</h2><blockquote>
+<h2 id="6-Spring-Boot-RabbitMQ"><a href="#6-Spring-Boot-RabbitMQ" class="headerlink" title="6. Spring Boot RabbitMQ"></a>6. Spring Boot RabbitMQ</h2><blockquote>
 <p>我的demo程序：<a href="https://github.com/nezha/spring-boot-RabbitMQ" target="_blank" rel="external">spring-boot-RabbitMQ</a></p>
 <p><a href="http://www.jianshu.com/p/22687e6e2a38" target="_blank" rel="external">Spring Boot RabbitMQ 入门</a>–这篇文章写得不错,关于RabbitMQ的三种Exchange方式讲的很好。不过代码不是很简洁。</p>
 <p><a href="http://www.ityouknow.com/springboot/2016/11/30/springboot(八" target="_blank" rel="external">RabbitMQ详解</a>-RabbitMQ详解.html)–<a href="https://github.com/ityouknow" target="_blank" rel="external">纯洁的微笑的文章代码很简洁</a></p>
@@ -569,13 +577,13 @@
 <p><a href="http://blog.didispace.com/spring-boot-rabbitmq/" target="_blank" rel="external">翟永超-Spring boot系列教程</a></p>
 </blockquote>
 <h3 id="RabbitMQ的三种Exchange方式"><a href="#RabbitMQ的三种Exchange方式" class="headerlink" title="RabbitMQ的三种Exchange方式"></a>RabbitMQ的三种Exchange方式</h3><p><strong>1.Direct Exchange</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3239635-f350dec07f1883ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-74996a3bde35484a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>如果 routing key 匹配, 那么Message就会被传递到相应的queue中。其实在queue创建时，它会自动的以queue的名字作为routing key来绑定那个exchange。</p>
 <p><strong>2.Fanout Exchange</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3239635-6068a7de288f4e53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-b01ac2601400aaf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout交换机转发消息是最快的。</p>
 <p><strong>3.Topic Exchange</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3239635-d60da0cd0754fdfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-8900087c1ae8f3f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>将路由键和某模式进行匹配。此时队列需要绑定要一个模式上。符号“#”匹配一个或多个词，符号“<em>”匹配不多不少一个词。因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.</em>”</p>
 <h3 id="实例讲解"><a href="#实例讲解" class="headerlink" title="实例讲解"></a>实例讲解</h3><blockquote>
 <p>三种方式最主要的文件就三个：</p>
@@ -600,7 +608,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitConfig</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//1.配置一个名为hello的一对一的消息队列</span></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">helloQueue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"hello"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>5.单元测试:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</div><div class="line"><span class="meta">@SpringApplicationConfiguration</span>(classes = HelloApplication.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloApplicationTests</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> Sender sender;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        sender.send();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Spring-Boot-mongodb"><a href="#Spring-Boot-mongodb" class="headerlink" title="Spring Boot mongodb"></a>Spring Boot mongodb</h2><blockquote>
+<h2 id="7-Spring-Boot-mongodb"><a href="#7-Spring-Boot-mongodb" class="headerlink" title="7. Spring Boot mongodb"></a>7. Spring Boot mongodb</h2><blockquote>
 <p>spring boot mongodb 的demo程序:<a href="https://github.com/nezha/spring-boot-mongodb" target="_blank" rel="external">spring-boot-mongodb</a></p>
 </blockquote>
 <h3 id="安装与配置-1"><a href="#安装与配置-1" class="headerlink" title="安装与配置"></a>安装与配置</h3><ul>
@@ -641,7 +649,7 @@
 <blockquote>
 <p>主要是自己理解错误，mongodb数据库下还有collection(相当于表).然后针对每一个Database下可能有多个collection</p>
 </blockquote>
-<h2 id="Spring-Boot-redis"><a href="#Spring-Boot-redis" class="headerlink" title="Spring Boot redis"></a>Spring Boot redis</h2><blockquote>
+<h2 id="8-Spring-Boot-redis"><a href="#8-Spring-Boot-redis" class="headerlink" title="8. Spring Boot redis"></a>8. Spring Boot redis</h2><blockquote>
 <p>redis的demo程序：<a href="https://github.com/nezha/spring-boot-redis" target="_blank" rel="external">nezha/spring-boot-redis</a></p>
 </blockquote>
 <ul>
@@ -655,7 +663,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># REDIS (RedisProperties)</div><div class="line"># Redis数据库索引（默认为0）</div><div class="line">spring.redis.database=0</div><div class="line"># Redis服务器地址</div><div class="line">spring.redis.host=123.206.xxx.xxx</div><div class="line"># Redis服务器连接端口</div><div class="line">spring.redis.port=6379</div><div class="line"># Redis服务器连接密码（默认为空）</div><div class="line">spring.redis.password=</div><div class="line"># 连接池最大连接数（使用负值表示没有限制）</div><div class="line">spring.redis.pool.max-active=-1</div><div class="line"># 连接池最大阻塞等待时间（使用负值表示没有限制）</div><div class="line">spring.redis.pool.max-wait=-1</div><div class="line"># 连接池中的最大空闲连接</div><div class="line">spring.redis.pool.max-idle=16</div><div class="line"># 连接池中的最小空闲连接</div><div class="line">spring.redis.pool.min-idle=0</div><div class="line"># 连接超时时间（毫秒）</div><div class="line">spring.redis.timeout=0</div></pre></td></tr></table></figure>
 <p>3.测试访问</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</div><div class="line"><span class="meta">@SpringBootTest</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test04ApplicationTests</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    StringRedisTemplate stringRedisTemplate;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 保存字符串</span></div><div class="line">        stringRedisTemplate.opsForValue().set(<span class="string">"aaa"</span>, <span class="string">"111"</span>);</div><div class="line">        Assert.assertEquals(<span class="string">"111"</span>, stringRedisTemplate.opsForValue().get(<span class="string">"aaa"</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Spring-Boot定时任务"><a href="#Spring-Boot定时任务" class="headerlink" title="Spring Boot定时任务"></a>Spring Boot定时任务</h2><blockquote>
+<h2 id="9-Spring-Boot定时任务"><a href="#9-Spring-Boot定时任务" class="headerlink" title="9. Spring Boot定时任务"></a>9. Spring Boot定时任务</h2><blockquote>
 <p>定时任务demo程序:<a href="https://github.com/nezha/spring-boot-schedule" target="_blank" rel="external">spring-boot-schedule</a></p>
 </blockquote>
 <p>1.pom包配置</p>
@@ -677,7 +685,7 @@
 <li><code>@Scheduled(fixedDelay = 6000)</code> ：上一次执行完毕时间点之后6秒再执行</li>
 <li><code>@Scheduled(initialDelay=1000, fixedRate=6000)</code> ：第一次延迟1秒后执行，之后按fixedRate的规则每6秒执行一次</li>
 </ul>
-<h2 id="Spring-Boot相关技术"><a href="#Spring-Boot相关技术" class="headerlink" title="Spring Boot相关技术"></a>Spring Boot相关技术</h2><h3 id="自定义图标"><a href="#自定义图标" class="headerlink" title="自定义图标"></a>自定义图标</h3><p><a href="http://www.jianshu.com/p/e719f57191d9" target="_blank" rel="external">Spring Boot自定义Banner</a>—自定义图标</p>
+<h2 id="10-Spring-Boot相关技术"><a href="#10-Spring-Boot相关技术" class="headerlink" title="10. Spring Boot相关技术"></a>10. Spring Boot相关技术</h2><h3 id="自定义图标"><a href="#自定义图标" class="headerlink" title="自定义图标"></a>自定义图标</h3><p><a href="http://www.jianshu.com/p/e719f57191d9" target="_blank" rel="external">Spring Boot自定义Banner</a>—自定义图标</p>
 <h3 id="部署spring项目"><a href="#部署spring项目" class="headerlink" title="部署spring项目"></a>部署spring项目</h3><p>1.IntelliJ Idea中直接运行</p>
 <p>2.mvn spring-boot:run</p>
 <p>3.mvn install &gt;&gt;&gt; 会生成jar文件，执行jar文件。</p>
@@ -688,10 +696,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> CustomerRepository repository;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        repository.deleteAll();</div><div class="line">        <span class="comment">// save a couple of customers</span></div><div class="line">        repository.save(<span class="keyword">new</span> Customer(<span class="string">"Alice"</span>, <span class="string">"Smith"</span>));</div><div class="line">        repository.save(<span class="keyword">new</span> Customer(<span class="string">"Bob"</span>, <span class="string">"Smith"</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>3.使用<code>RestController</code></p>
 <p>这种方式很方便，很好用，有些时候我会用。</p>
-<h2 id="待研究学习框架"><a href="#待研究学习框架" class="headerlink" title="待研究学习框架"></a>待研究学习框架</h2><ol>
-<li>Spring Boot Dubbo</li>
-<li>Spring Boot Druid</li>
-</ol>
 
       
     </div>
@@ -992,7 +996,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot学习笔记–全注解方式"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot学习笔记–全注解方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pring-boot中文帮助文档"><span class="nav-number"></span> <span class="nav-text"># pring boot中文帮助文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用注解"><span class="nav-number">1.</span> <span class="nav-text">常用注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-data-JPA-–-单数据源"><span class="nav-number">2.</span> <span class="nav-text">spring data JPA  – 单数据源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-MyBatis-–-单数据源"><span class="nav-number">3.</span> <span class="nav-text">Spring Boot MyBatis – 单数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于多源配置的问题："><span class="nav-number">3.1.</span> <span class="nav-text">关于多源配置的问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-RabbitMQ"><span class="nav-number">4.</span> <span class="nav-text">Spring Boot RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置"><span class="nav-number">4.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ的三种Exchange方式"><span class="nav-number">4.2.</span> <span class="nav-text">RabbitMQ的三种Exchange方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例讲解"><span class="nav-number">4.3.</span> <span class="nav-text">实例讲解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-mongodb"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot-集成-mongodb"><span class="nav-number">5.2.</span> <span class="nav-text">spring boot 集成 mongodb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">5.3.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-redis"><span class="nav-number">6.</span> <span class="nav-text">Spring Boot redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot定时任务"><span class="nav-number">7.</span> <span class="nav-text">Spring Boot定时任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot相关技术"><span class="nav-number">8.</span> <span class="nav-text">Spring Boot相关技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义图标"><span class="nav-number">8.1.</span> <span class="nav-text">自定义图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署spring项目"><span class="nav-number">8.2.</span> <span class="nav-text">部署spring项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot测试的时候，怎么单元测试"><span class="nav-number">8.3.</span> <span class="nav-text">spring boot测试的时候，怎么单元测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待研究学习框架"><span class="nav-number">9.</span> <span class="nav-text">待研究学习框架</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spring-Boot学习笔记–全注解方式"><span class="nav-number">1.</span> <span class="nav-text">1. Spring Boot学习笔记–全注解方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-pring-boot中文帮助文档"><span class="nav-number">2.</span> <span class="nav-text">2. pring boot中文帮助文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-常用注解"><span class="nav-number">3.</span> <span class="nav-text">3. 常用注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-spring-data-JPA-–-单数据源"><span class="nav-number">4.</span> <span class="nav-text">4. spring data JPA  – 单数据源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Spring-Boot-MyBatis-–-单数据源"><span class="nav-number">5.</span> <span class="nav-text">5. Spring Boot MyBatis – 单数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可能出现的问题："><span class="nav-number">5.1.</span> <span class="nav-text">可能出现的问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于多源配置的问题："><span class="nav-number">5.2.</span> <span class="nav-text">关于多源配置的问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Spring-Boot-RabbitMQ"><span class="nav-number">6.</span> <span class="nav-text">6. Spring Boot RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置"><span class="nav-number">6.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ的三种Exchange方式"><span class="nav-number">6.2.</span> <span class="nav-text">RabbitMQ的三种Exchange方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例讲解"><span class="nav-number">6.3.</span> <span class="nav-text">实例讲解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Spring-Boot-mongodb"><span class="nav-number">7.</span> <span class="nav-text">7. Spring Boot mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与配置-1"><span class="nav-number">7.1.</span> <span class="nav-text">安装与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot-集成-mongodb"><span class="nav-number">7.2.</span> <span class="nav-text">spring boot 集成 mongodb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">7.3.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Spring-Boot-redis"><span class="nav-number">8.</span> <span class="nav-text">8. Spring Boot redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Spring-Boot定时任务"><span class="nav-number">9.</span> <span class="nav-text">9. Spring Boot定时任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Spring-Boot相关技术"><span class="nav-number">10.</span> <span class="nav-text">10. Spring Boot相关技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义图标"><span class="nav-number">10.1.</span> <span class="nav-text">自定义图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署spring项目"><span class="nav-number">10.2.</span> <span class="nav-text">部署spring项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot测试的时候，怎么单元测试"><span class="nav-number">10.3.</span> <span class="nav-text">spring boot测试的时候，怎么单元测试</span></a></li></ol></li></ol></div>
             
 
           </div>
