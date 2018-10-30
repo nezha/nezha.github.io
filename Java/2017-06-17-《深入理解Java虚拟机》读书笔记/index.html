@@ -94,13 +94,13 @@
 
 
 
-<meta name="description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#x65;&amp;#x7a;&amp;#x68;&amp;#x61;&amp;#x78;&amp;#105;&amp;#x61;&amp;#x6f;&amp;#x7a;&amp;#x69;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#109;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域">
+<meta name="description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#101;&amp;#122;&amp;#104;&amp;#x61;&amp;#120;&amp;#x69;&amp;#97;&amp;#111;&amp;#122;&amp;#105;&amp;#x40;&amp;#x71;&amp;#113;&amp;#x2e;&amp;#x63;&amp;#x6f;&amp;#109;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存">
 <meta name="keywords" content="Java,JVM,深入理解Java虚拟机,GC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解Java虚拟机》读书笔记">
 <meta property="og:url" content="https://nezha.github.io/Java/2017-06-17-《深入理解Java虚拟机》读书笔记/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#x65;&amp;#x7a;&amp;#x68;&amp;#x61;&amp;#x78;&amp;#105;&amp;#x61;&amp;#x6f;&amp;#x7a;&amp;#x69;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#109;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域">
+<meta property="og:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#101;&amp;#122;&amp;#104;&amp;#x61;&amp;#120;&amp;#x69;&amp;#97;&amp;#111;&amp;#122;&amp;#105;&amp;#x40;&amp;#x71;&amp;#113;&amp;#x2e;&amp;#x63;&amp;#x6f;&amp;#109;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-e2f5fecca5220198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2843224-f692a4b1c13b2158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -141,7 +141,7 @@
 <meta property="og:updated_time" content="2017-12-12T12:02:02.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解Java虚拟机》读书笔记">
-<meta name="twitter:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#x65;&amp;#x7a;&amp;#x68;&amp;#x61;&amp;#x78;&amp;#105;&amp;#x61;&amp;#x6f;&amp;#x7a;&amp;#x69;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#109;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域">
+<meta name="twitter:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#101;&amp;#122;&amp;#104;&amp;#x61;&amp;#120;&amp;#x69;&amp;#97;&amp;#111;&amp;#122;&amp;#105;&amp;#x40;&amp;#x71;&amp;#113;&amp;#x2e;&amp;#x63;&amp;#x6f;&amp;#109;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5354563-e2f5fecca5220198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -467,7 +467,7 @@
       
         <p><img src="http://upload-images.jianshu.io/upload_images/5354563-e2f5fecca5220198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：<a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#110;&#x65;&#x7a;&#x68;&#x61;&#x78;&#105;&#x61;&#x6f;&#x7a;&#x69;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#110;&#x65;&#x7a;&#x68;&#x61;&#x78;&#105;&#x61;&#x6f;&#x7a;&#x69;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a></p>
+<p>自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：<a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#110;&#101;&#122;&#104;&#x61;&#120;&#x69;&#97;&#111;&#122;&#105;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;">&#110;&#101;&#122;&#104;&#x61;&#120;&#x69;&#97;&#111;&#122;&#105;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;</a></p>
 </blockquote>
 <p>本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是</p>
 <ul>
@@ -1145,7 +1145,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1156,7 +1156,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1167,7 +1167,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-count">86</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
