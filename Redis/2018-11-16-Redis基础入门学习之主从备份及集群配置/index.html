@@ -1,0 +1,1058 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redis,主从备份,集群," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
+<meta name="keywords" content="Redis,主从备份,集群">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis基础入门学习-主从备份及集群配置">
+<meta property="og:url" content="https://nezha.github.io/Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-16T15:30:01.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis基础入门学习-主从备份及集群配置">
+<meta name="twitter:description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/"/>
+
+
+
+
+
+  <title>Redis基础入门学习-主从备份及集群配置 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802895-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e36a5f1b7fce2cdc801ec7f34a839055";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62065685";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Coding是件有趣的事！</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Redis基础入门学习-主从备份及集群配置</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-16T15:56:02+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>人次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Redis基础入门学习-主从备份及集群配置"><a href="#Redis基础入门学习-主从备份及集群配置" class="headerlink" title="Redis基础入门学习-主从备份及集群配置"></a>Redis基础入门学习-主从备份及集群配置</h1><h2 id="Redis主从备份"><a href="#Redis主从备份" class="headerlink" title="Redis主从备份"></a>Redis主从备份</h2><h3 id="1-创建Redis节点"><a href="#1-创建Redis节点" class="headerlink" title="1.创建Redis节点"></a>1.创建Redis节点</h3><blockquote>
+<p>我们在<code>redis-3.2/redis_cluster/</code>下分别创建三个文件夹<code>/6000/</code>,<code>/6001/</code>和<code>/6002/</code>，这种方式用于放置配置文件，模拟创建3个节点。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp ./etc/redis.conf ./redis_cluster/6000/</div><div class="line">cp ./etc/redis.conf ./redis_cluster/6001/</div><div class="line">cp ./etc/redis.conf ./redis_cluster/6002/</div></pre></td></tr></table></figure>
+<blockquote>
+<p>假设master节点是6000端口</p>
+</blockquote>
+<h3 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2.修改配置文件"></a>2.修改配置文件</h3><ul>
+<li><code>master</code>节点 &gt; <code>6000</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">port 6000</div><div class="line">pidfile /var/run/redis_6000.pid</div><div class="line">requirepass 123456</div></pre></td></tr></table></figure>
+<ul>
+<li><code>Slave1</code>节点 &gt; <code>6001</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6001</div><div class="line">pidfile /var/run/redis_6001.pid</div><div class="line">slaveof 47.101.55.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
+<ul>
+<li><code>Slave2</code>节点 &gt; <code>6002</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6002</div><div class="line">pidfile /var/run/redis_6002.pid</div><div class="line">slaveof 47.101.55.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
+<h3 id="3-启动主节点和从节点"><a href="#3-启动主节点和从节点" class="headerlink" title="3.启动主节点和从节点"></a>3.启动主节点和从节点</h3><blockquote>
+<p>启动节点并且验证服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">./bin/redis-server ./redis_cluster/6000/redis.conf</div><div class="line">./bin/redis-server ./redis_cluster/6001/redis.conf</div><div class="line">./bin/redis-server ./redis_cluster/6002/redis.conf</div><div class="line">ps -ef |grep redis</div><div class="line"></div><div class="line"><span class="comment"># 关闭的话</span></div><div class="line">./bin/redis-cli -p 6000 <span class="_">-a</span> 123456 shutdown</div><div class="line">./bin/redis-cli -p 6001 <span class="_">-a</span> 123456 shutdown</div><div class="line">./bin/redis-cli -p 6002 <span class="_">-a</span> 123456 shutdown</div><div class="line"></div><div class="line"><span class="comment"># 批量关闭</span></div><div class="line">pkill -9 redis</div></pre></td></tr></table></figure>
+<h3 id="4-验证主从复制"><a href="#4-验证主从复制" class="headerlink" title="4.验证主从复制"></a>4.验证主从复制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 登录Redis服务</span></div><div class="line">./bin/redis-cli -h 127.0.0.1 -p 6000 <span class="_">-a</span> 123456</div><div class="line"><span class="comment"># 可以使用info查看主从关系</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在主节点中插入，在从节点看一下</p>
+</blockquote>
+<h2 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h2><blockquote>
+<p>参考文献：<br>Redis 集群部署及踩过的坑：<a href="http://blog.jobbole.com/113760/" target="_blank" rel="external">http://blog.jobbole.com/113760/</a><br>玩转Redis集群(上)：<a href="https://www.jianshu.com/p/dbc62ed27f03" target="_blank" rel="external">https://www.jianshu.com/p/dbc62ed27f03</a><br>要是您还有解决不了的，来看我这里的问题排坑。</p>
+</blockquote>
+<h3 id="启动Redis多个实例"><a href="#启动Redis多个实例" class="headerlink" title="启动Redis多个实例"></a>启动Redis多个实例</h3><p>我们在<code>Redis</code>安装目录下创建目录<code>redis_cluster</code>，并编写<code>6000.conf~6005.conf</code> 6个配置文件，这6个配置文件用来启动6个实例，后面将使用这6个实例组成集群。</p>
+<p>以6000.conf为例，配置文件需要填写如下几项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">port  6000                                        //端口6000-6005        </div><div class="line"><span class="built_in">bind</span> 0.0.0.0                                     //默认ip为127.0.0.1 需要改为其他节点机器可访问的ip 否则创建集群时无法访问对应的端口，无法创建集群, 我用的阿里云ECS，就是公网IP</div><div class="line">daemonize    yes                               //redis后台运行</div><div class="line">pidfile  ./redis_6000.pid          //pidfile文件对应6000-6005 </div><div class="line">cluster-enabled  yes                           //开启集群 </div><div class="line">cluster-config-file  nodes_6000.conf   //集群的配置  配置文件首次启动自动生成 6000-6005 </div><div class="line">cluster-node-timeout  5000                //请求超时</div><div class="line">appendonly  yes                           //aof日志开启  有需要就开启，它会每次写操作都记录一条日志</div></pre></td></tr></table></figure>
+<h3 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h3><p>由于我们集群需要用到6000-6005的端口，所以如果是ECS的话需要将这些端口打开，而且打开Redis的集群总线端口，不然会有很多问题的！</p>
+<p>网上很多文章居然让关防火墙，也是够了。。。</p>
+<blockquote>
+<p><code>redis集群总线端口为redis客户端端口加上10000，比如说你的redis 6379端口为客户端通讯端口，那么16379端口为集群总线端口</code></p>
+</blockquote>
+<h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><blockquote>
+<p>这一步问题也是比较多的，一定要注意</p>
+</blockquote>
+<p>这一步可以参考本文中的<code>问题一</code></p>
+<h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><ul>
+<li>gem 这个命令来安装 redis接口    gem是ruby的一个工具包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install redis</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>redis-trib.rb</code>来建立集群</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./src/redis-trib.rb  create  --replicas  1 47.1xx.xx.66:6000 47.1xx.xx.66:6001 47.1xx.xx.66:6002 47.1xx.xx.66:6003 47.1xx.xx.66:6004 47.1xx.xx.66:6005</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>--replicas  1</code>  表示 自动为每一个master节点分配一个slave节点    上面有6个节点，程序会按照一定规则生成 3个master（主）3个slave(从)</p>
+</blockquote>
+<h3 id="登录验证"><a href="#登录验证" class="headerlink" title="登录验证"></a>登录验证</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">redis-cli -c -h 47.1xx.xx.66 -p 6000 -a 123456</div><div class="line"></div><div class="line">47.1xx.xx.66:6000&gt; cluster nodes</div><div class="line">04b7ed3ea70b9f3b038a4ffcaff691acaa9ceb59 47.1xx.xx.66:6005 slave 306004e971e0a66b9bbb5c9524609680eeaa81f9 0 1542379253546 6 connected</div><div class="line">f39cc13f88ec3ce74be94817e688294320327556 47.1xx.xx.66:6003 slave d5d84a1e573c89be2ada38f30be0cecaeeddbe04 0 1542379254046 4 connected</div><div class="line">afaa57622d52240ca7be573bc574b6096e0aa0c0 47.1xx.xx.66:6001 master - 0 1542379254547 2 connected 5461-10922</div><div class="line">306004e971e0a66b9bbb5c9524609680eeaa81f9 47.1xx.xx.66:6002 master - 0 1542379255048 3 connected 10923-16383</div><div class="line">7e941c80b075aee07305a58193d0e47bbc3cc5af 47.1xx.xx.66:6004 slave afaa57622d52240ca7be573bc574b6096e0aa0c0 0 1542379253546 5 connected</div><div class="line">d5d84a1e573c89be2ada38f30be0cecaeeddbe04 172.19.91.173:6000 myself,master - 0 0 1 connected 0-5460</div></pre></td></tr></table></figure>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="问题一-redis-requires-ruby-version-2-2-2"><a href="#问题一-redis-requires-ruby-version-2-2-2" class="headerlink" title="问题一:redis requires ruby version 2.2.2"></a>问题一:<code>redis requires ruby version 2.2.2</code></h4><blockquote>
+<p>参考文献：redis requires ruby version 2.2.2的解决方案：<a href="https://www.jianshu.com/p/72443fef9554" target="_blank" rel="external">https://www.jianshu.com/p/72443fef9554</a></p>
+</blockquote>
+<p>做<code>Redis</code>的<code>Cluster</code>集群的时候，在执行<code>gem install redis</code>时，提示如下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem install redis</div><div class="line">    ERROR:  Error installing redis:</div><div class="line">     redis requires Ruby version &gt;= 2.2.2.</div></pre></td></tr></table></figure>
+<h5 id="1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><a href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）：" class="headerlink" title="1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）："></a>1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gpg --keyserver hkp://keys.gnupg.net --recv-keys </div><div class="line">curl <span class="_">-s</span>SL https://get.rvm.io | bash <span class="_">-s</span> stable</div><div class="line">find / -name rvm -print</div><div class="line"><span class="built_in">source</span> /usr/<span class="built_in">local</span>/rvm/scripts/rvm</div></pre></td></tr></table></figure>
+<h5 id="2-查看rvm库中已知的ruby版本"><a href="#2-查看rvm库中已知的ruby版本" class="headerlink" title="2.查看rvm库中已知的ruby版本"></a>2.查看rvm库中已知的ruby版本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@linux ~]# rvm list known</div><div class="line">　　　　MRI Rubies</div><div class="line">　　　　[ruby-]1.8.6[-p420]</div><div class="line">　　　　[ruby-]1.8.7[-head] # security released on head</div><div class="line">　　　　[ruby-]1.9.1[-p431]</div><div class="line">　　　　[ruby-]1.9.2[-p330]</div><div class="line">　　　　[ruby-]1.9.3[-p551]</div><div class="line">　　　　[ruby-]2.0.0[-p648]</div><div class="line">      ....</div></pre></td></tr></table></figure>
+<h5 id="3-安装使用一个ruby版本"><a href="#3-安装使用一个ruby版本" class="headerlink" title="3.安装使用一个ruby版本"></a>3.安装使用一个ruby版本</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rvm install 2.4.1</div><div class="line">rvm use 2.4.1</div></pre></td></tr></table></figure>
+<h5 id="4-常用操作命令"><a href="#4-常用操作命令" class="headerlink" title="4.常用操作命令"></a>4.常用操作命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置默认版本</span></div><div class="line">rvm use 2.4.1 --default</div><div class="line"><span class="comment"># 卸载一个已知版本：</span></div><div class="line">rvm remove 2.3.4</div><div class="line"><span class="comment"># 查看ruby版本：</span></div><div class="line">ruby --version</div><div class="line"><span class="comment"># 安装redis：</span></div><div class="line">gem install redis</div></pre></td></tr></table></figure>
+<h4 id="问题二：create-ERR-Slot-9838-is-already-busy错误"><a href="#问题二：create-ERR-Slot-9838-is-already-busy错误" class="headerlink" title="问题二：create ERR Slot 9838 is already busy错误"></a>问题二：create ERR Slot 9838 is already busy错误</h4><p><a href="https://www.oschina.net/question/1031396_246716" target="_blank" rel="external">https://www.oschina.net/question/1031396_246716</a></p>
+<blockquote>
+<p><code>用redis-cli登录到每个节点执行flushall和cluster reset就可以了</code></p>
+</blockquote>
+<h4 id="问题三：redis集群报错Node-is-not-empty"><a href="#问题三：redis集群报错Node-is-not-empty" class="headerlink" title="问题三：redis集群报错Node is not empty"></a>问题三：redis集群报错Node is not empty</h4><p><a href="https://www.jianshu.com/p/338bc2a74300" target="_blank" rel="external">https://www.jianshu.com/p/338bc2a74300</a></p>
+<blockquote>
+<p><code>1)将每个节点下aof、rdb、nodes.conf本地备份文件删除；</code><br><code>2)172.168.63.201:7001&gt; flushdb #清空当前数据库(可省略)</code><br><code>3)之后再执行脚本，成功执行；</code></p>
+</blockquote>
+<h4 id="问题四：Sorry-can’t-connect-to-node"><a href="#问题四：Sorry-can’t-connect-to-node" class="headerlink" title="问题四：Sorry, can’t connect to node"></a>问题四：Sorry, can’t connect to node</h4><p><a href="https://blog.csdn.net/xiaobo060/article/details/80616718" target="_blank" rel="external">https://blog.csdn.net/xiaobo060/article/details/80616718</a></p>
+<blockquote>
+<p><code>因为redis设置了密码</code><br>需要修改<code>/usr/local/rvm/gems/ruby-2.4.1/gems/redis-4.0.1/lib/redis/client.rb</code></p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">DEFAULTS = &#123;</div><div class="line">  <span class="symbol">:url</span> =&gt; lambda &#123; ENV[<span class="string">"REDIS_URL"</span>] &#125;,</div><div class="line">  <span class="symbol">:scheme</span> =&gt; <span class="string">"redis"</span>,</div><div class="line">  <span class="symbol">:host</span> =&gt; <span class="string">"127.0.0.1"</span>,</div><div class="line">  <span class="symbol">:port</span> =&gt; <span class="number">6379</span>,</div><div class="line">  <span class="symbol">:path</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:timeout</span> =&gt; <span class="number">5.0</span>,</div><div class="line">  <span class="symbol">:password</span> =&gt; <span class="string">"xxxxxx"</span>,</div><div class="line">  <span class="symbol">:db</span> =&gt; <span class="number">0</span>,</div><div class="line">  <span class="symbol">:driver</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:id</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:tcp_keepalive</span> =&gt; <span class="number">0</span>,</div><div class="line">  <span class="symbol">:reconnect_attempts</span> =&gt; <span class="number">1</span>,</div><div class="line">  <span class="symbol">:inherit_socket</span> =&gt; <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><a href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……" class="headerlink" title="问题五：redis集群部署一直卡在Waiting for the cluster to join ……"></a>问题五：redis集群部署一直卡在Waiting for the cluster to join ……</h4><p>在集群的时候<code>redis-trib.rb  create  --replicas  1</code>一直在等待，网上的那些好多都不靠谱！<strong>使用cluster meet ip port命令根本是无效的</strong></p>
+<p>同时，很少有博客提到redis集群总线的内容，都是叫你关闭防火墙，实际生产中谁会这么做？最后，感慨一句，还是官方文档最有用！</p>
+<blockquote>
+<p><code>redis集群总线端口为redis客户端端口加上10000，比如说你的redis 6379端口为客户端通讯端口，那么16379端口为集群总线端口</code></p>
+</blockquote>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li>阿里云Redis开发规范：<a href="https://yq.aliyun.com/articles/531067?spm=a2c4e.11163080.searchblog.9.38e22ec1b4kcwD" target="_blank" rel="external">https://yq.aliyun.com/articles/531067?spm=a2c4e.11163080.searchblog.9.38e22ec1b4kcwD</a></li>
+<li>为什么我们做分布式要用 Redis ？：<a href="https://mp.weixin.qq.com/s/1TXICDZ_BoJ7FeAFqiZa5A" target="_blank" rel="external">https://mp.weixin.qq.com/s/1TXICDZ_BoJ7FeAFqiZa5A</a></li>
+<li>为什么要用Redis：<a href="https://mp.weixin.qq.com/s/XU6k7T7H6TyM9kurDxoGRw" target="_blank" rel="external">https://mp.weixin.qq.com/s/XU6k7T7H6TyM9kurDxoGRw</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/Wechatpay.jpeg" alt="Jack·Joney WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpeg" alt="Jack·Joney Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+            <a href="/tags/主从备份/" rel="tag"># 主从备份</a>
+          
+            <a href="/tags/集群/" rel="tag"># 集群</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Redis/2018-11-14-Redis基础入门学习之安装环境/" rel="next" title="Redis基础入门学习-安装环境">
+                <i class="fa fa-chevron-left"></i> Redis基础入门学习-安装环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nezha" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/coder_chang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yi.zhang.12935756" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/businezha" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezhaxiaozi.coding.me" title="国内访问路径" target="_blank">国内访问路径</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezha.github.io" title="国外访问路径" target="_blank">国外访问路径</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis基础入门学习-主从备份及集群配置"><span class="nav-number">1.</span> <span class="nav-text">Redis基础入门学习-主从备份及集群配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis主从备份"><span class="nav-number">1.1.</span> <span class="nav-text">Redis主从备份</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建Redis节点"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.创建Redis节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-修改配置文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-启动主节点和从节点"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.启动主节点和从节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-验证主从复制"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.验证主从复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis集群"><span class="nav-number">1.2.</span> <span class="nav-text">Redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Redis多个实例"><span class="nav-number">1.2.1.</span> <span class="nav-text">启动Redis多个实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启端口"><span class="nav-number">1.2.2.</span> <span class="nav-text">开启端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Ruby"><span class="nav-number">1.2.3.</span> <span class="nav-text">安装Ruby</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建集群"><span class="nav-number">1.2.4.</span> <span class="nav-text">创建集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录验证"><span class="nav-number">1.2.5.</span> <span class="nav-text">登录验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.2.6.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题一-redis-requires-ruby-version-2-2-2"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">问题一:redis requires ruby version 2.2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><span class="nav-number">1.2.6.1.1.</span> <span class="nav-text">1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-查看rvm库中已知的ruby版本"><span class="nav-number">1.2.6.1.2.</span> <span class="nav-text">2.查看rvm库中已知的ruby版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-安装使用一个ruby版本"><span class="nav-number">1.2.6.1.3.</span> <span class="nav-text">3.安装使用一个ruby版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-常用操作命令"><span class="nav-number">1.2.6.1.4.</span> <span class="nav-text">4.常用操作命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题二：create-ERR-Slot-9838-is-already-busy错误"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">问题二：create ERR Slot 9838 is already busy错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题三：redis集群报错Node-is-not-empty"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">问题三：redis集群报错Node is not empty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题四：Sorry-can’t-connect-to-node"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">问题四：Sorry, can’t connect to node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><span class="nav-number">1.2.6.5.</span> <span class="nav-text">问题五：redis集群部署一直卡在Waiting for the cluster to join ……</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.3.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2011 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://nezha.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://nezha.github.io/Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/';
+          this.page.identifier = 'Redis/2018-11-16-Redis基础入门学习之主从备份及集群配置/';
+          this.page.title = 'Redis基础入门学习-主从备份及集群配置';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://nezha.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
