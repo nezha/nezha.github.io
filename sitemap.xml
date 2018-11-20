@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nezha.github.io/Redis/2018-11-16-Redis%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%B8%BB%E4%BB%8E%E5%A4%87%E4%BB%BD%E5%8F%8A%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2018-11-20T12:16:53.842Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nezha.github.io/about/index.html</loc>
     
     <lastmod>2018-11-16T18:10:42.901Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://nezha.github.io/Redis/2018-11-14-Redis%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2018-11-16T15:33:45.598Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nezha.github.io/Redis/2018-11-16-Redis%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%B8%BB%E4%BB%8E%E5%A4%87%E4%BB%BD%E5%8F%8A%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2018-11-16T15:30:01.728Z</lastmod>
     
   </url>
   

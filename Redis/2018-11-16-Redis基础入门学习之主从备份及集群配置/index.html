@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="NEZHA的博客">
 <meta property="og:description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-16T15:30:01.728Z">
+<meta property="og:updated_time" content="2018-11-20T12:16:53.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis基础入门学习-主从备份及集群配置">
 <meta name="twitter:description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
@@ -482,11 +482,11 @@
 <ul>
 <li><code>Slave1</code>节点 &gt; <code>6001</code></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6001</div><div class="line">pidfile /var/run/redis_6001.pid</div><div class="line">slaveof 47.101.55.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6001</div><div class="line">pidfile /var/run/redis_6001.pid</div><div class="line">slaveof 47.1xx.xx.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
 <ul>
 <li><code>Slave2</code>节点 &gt; <code>6002</code></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6002</div><div class="line">pidfile /var/run/redis_6002.pid</div><div class="line">slaveof 47.101.55.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6002</div><div class="line">pidfile /var/run/redis_6002.pid</div><div class="line">slaveof 47.1xx.xx.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
 <h3 id="3-启动主节点和从节点"><a href="#3-启动主节点和从节点" class="headerlink" title="3.启动主节点和从节点"></a>3.启动主节点和从节点</h3><blockquote>
 <p>启动节点并且验证服务</p>
 </blockquote>
