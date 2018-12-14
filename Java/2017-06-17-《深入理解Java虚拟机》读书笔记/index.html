@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,JVM,深入理解Java虚拟机,GC," />
+  <meta name="keywords" content="深入理解Java虚拟机,Java,JVM,GC," />
 
 
 
@@ -94,13 +94,13 @@
 
 
 
-<meta name="description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#101;&amp;#x7a;&amp;#104;&amp;#97;&amp;#x78;&amp;#105;&amp;#97;&amp;#111;&amp;#122;&amp;#105;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域与">
-<meta name="keywords" content="Java,JVM,深入理解Java虚拟机,GC">
+<meta name="description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#x6e;&amp;#101;&amp;#x7a;&amp;#104;&amp;#97;&amp;#120;&amp;#x69;&amp;#97;&amp;#111;&amp;#x7a;&amp;#x69;&amp;#x40;&amp;#x71;&amp;#x71;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域">
+<meta name="keywords" content="深入理解Java虚拟机,Java,JVM,GC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解Java虚拟机》读书笔记">
 <meta property="og:url" content="https://nezha.github.io/Java/2017-06-17-《深入理解Java虚拟机》读书笔记/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#101;&amp;#x7a;&amp;#104;&amp;#97;&amp;#x78;&amp;#105;&amp;#97;&amp;#111;&amp;#122;&amp;#105;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域与">
+<meta property="og:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#x6e;&amp;#101;&amp;#x7a;&amp;#104;&amp;#97;&amp;#120;&amp;#x69;&amp;#97;&amp;#111;&amp;#x7a;&amp;#x69;&amp;#x40;&amp;#x71;&amp;#x71;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-e2f5fecca5220198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2843224-f692a4b1c13b2158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -141,7 +141,7 @@
 <meta property="og:updated_time" content="2017-12-12T12:02:02.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解Java虚拟机》读书笔记">
-<meta name="twitter:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#110;&amp;#101;&amp;#x7a;&amp;#104;&amp;#97;&amp;#x78;&amp;#105;&amp;#97;&amp;#111;&amp;#122;&amp;#105;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域与">
+<meta name="twitter:description" content="前言 自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&amp;#x6e;&amp;#101;&amp;#x7a;&amp;#104;&amp;#97;&amp;#120;&amp;#x69;&amp;#97;&amp;#111;&amp;#x7a;&amp;#x69;&amp;#x40;&amp;#x71;&amp;#x71;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d;  本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是  第2章 Java内存区域">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5354563-e2f5fecca5220198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -507,7 +507,7 @@
       
         <p><img src="http://upload-images.jianshu.io/upload_images/5354563-e2f5fecca5220198.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#110;&#101;&#x7a;&#104;&#97;&#x78;&#105;&#97;&#111;&#122;&#105;&#64;&#113;&#113;&#46;&#x63;&#111;&#x6d;">&#110;&#101;&#x7a;&#104;&#97;&#x78;&#105;&#97;&#111;&#122;&#105;&#64;&#113;&#113;&#46;&#x63;&#111;&#x6d;</a></p>
+<p>自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x6e;&#101;&#x7a;&#104;&#97;&#120;&#x69;&#97;&#111;&#x7a;&#x69;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#x6e;&#101;&#x7a;&#104;&#97;&#120;&#x69;&#97;&#111;&#x7a;&#x69;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;</a></p>
 </blockquote>
 <p>本书第一次阅读，所以并没有全篇通读，主要的阅读的章节是</p>
 <ul>
@@ -1052,11 +1052,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/深入理解Java虚拟机/" rel="tag"># 深入理解Java虚拟机</a>
+          
             <a href="/tags/Java/" rel="tag"># Java</a>
           
             <a href="/tags/JVM/" rel="tag"># JVM</a>
-          
-            <a href="/tags/深入理解Java虚拟机/" rel="tag"># 深入理解Java虚拟机</a>
           
             <a href="/tags/GC/" rel="tag"># GC</a>
           
