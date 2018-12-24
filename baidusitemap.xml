@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>https://nezha.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E7%BC%93%E5%AD%98/2018-11-18-Redis%E8%BF%9B%E9%98%B6%E4%B9%8B%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96RDF%E5%92%8CAOF/</loc>
+    <lastmod>2018-12-24T15:10:10.505Z</lastmod>
+    <data>
+        <display>
+        <title>Redis进阶之数据持久化RDF和AOF</title>
+        <pubTime>2018-11-18T07:56:02.000Z</pubTime>
+        
+        <tag>Redis</tag>
+         
+        <tag>RDF</tag>
+         
+        <tag>AOF</tag>
+         
+        <tag>持久化</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库及缓存" url="https://nezha.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E7%BC%93%E5%AD%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://nezha.github.io/Dubbo/2018-12-08-Dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
     <lastmod>2018-12-24T15:05:21.229Z</lastmod>
     <data>
