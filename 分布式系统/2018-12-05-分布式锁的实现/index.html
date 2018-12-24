@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ping,win10访问受限," />
+  <meta name="keywords" content="分布式锁,乐观锁,Redis锁,zookeeper锁," />
 
 
 
@@ -94,25 +94,18 @@
 
 
 
-<meta name="description" content="如何Ping通主机 先Ping一下win10的主机    打开控制面板，进入系统和安全    进入Window防火墙    点击高级设置    选择入站规则    向下拉，找到文件与打印机共享（回显请求-ICMPv4），启用规则">
-<meta name="keywords" content="ping,win10访问受限">
+<meta name="description" content="使用数据库乐观锁 乐观锁通常实现基于数据版本(version)的记录机制实现的，比如有一张红包表（t_bonus），有一个字段(left_count)记录礼物的剩余个数，用户每领取一个奖品，对应的left_count减1，在并发的情况下如何要保证left_count不为负数，乐观锁的实现方式为在红包表上添加一个版本号字段（version），默认为0。   异常实现流程  1234567891011">
+<meta name="keywords" content="分布式锁,乐观锁,Redis锁,zookeeper锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决问题：手机ping不通主机win10">
-<meta property="og:url" content="https://nezha.github.io/疑难解惑/2015-11-25-手机ping不通主机win10/index.html">
+<meta property="og:title" content="分布式锁的实现">
+<meta property="og:url" content="https://nezha.github.io/分布式系统/2018-12-05-分布式锁的实现/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="如何Ping通主机 先Ping一下win10的主机    打开控制面板，进入系统和安全    进入Window防火墙    点击高级设置    选择入站规则    向下拉，找到文件与打印机共享（回显请求-ICMPv4），启用规则">
+<meta property="og:description" content="使用数据库乐观锁 乐观锁通常实现基于数据版本(version)的记录机制实现的，比如有一张红包表（t_bonus），有一个字段(left_count)记录礼物的剩余个数，用户每领取一个奖品，对应的left_count减1，在并发的情况下如何要保证left_count不为负数，乐观锁的实现方式为在红包表上添加一个版本号字段（version），默认为0。   异常实现流程  1234567891011">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarltf06j20ld08v3zp.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1eydarmi27aj20q30hx0x3.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarn4jkyj20q30hx444.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarnomi5j20q30hx0z2.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarokvqej21070hsjvp.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eydarp3k59j210f0hfqch.jpg">
-<meta property="og:updated_time" content="2017-05-05T11:21:04.000Z">
+<meta property="og:updated_time" content="2018-12-24T15:04:09.171Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决问题：手机ping不通主机win10">
-<meta name="twitter:description" content="如何Ping通主机 先Ping一下win10的主机    打开控制面板，进入系统和安全    进入Window防火墙    点击高级设置    选择入站规则    向下拉，找到文件与打印机共享（回显请求-ICMPv4），启用规则">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarltf06j20ld08v3zp.jpg">
+<meta name="twitter:title" content="分布式锁的实现">
+<meta name="twitter:description" content="使用数据库乐观锁 乐观锁通常实现基于数据版本(version)的记录机制实现的，比如有一张红包表（t_bonus），有一个字段(left_count)记录礼物的剩余个数，用户每领取一个奖品，对应的left_count减1，在并发的情况下如何要保证left_count不为负数，乐观锁的实现方式为在红包表上添加一个版本号字段（version），默认为0。   异常实现流程  1234567891011">
 
 
 
@@ -140,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://nezha.github.io/疑难解惑/2015-11-25-手机ping不通主机win10/"/>
+  <link rel="canonical" href="https://nezha.github.io/分布式系统/2018-12-05-分布式锁的实现/"/>
 
 
 
 
 
-  <title>解决问题：手机ping不通主机win10 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>分布式锁的实现 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -373,7 +366,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/疑难解惑/2015-11-25-手机ping不通主机win10/">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/分布式系统/2018-12-05-分布式锁的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack·Joney">
@@ -390,7 +383,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">解决问题：手机ping不通主机win10</h2>
+          <h2 class="post-title" itemprop="name headline">分布式锁的实现</h2>
         
 
         <div class="post-meta">
@@ -402,8 +395,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-25T00:00:00+08:00">
-                2015-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T15:56:02+08:00">
+                2018-12-05
               </time>
             
 
@@ -425,8 +418,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/疑难解惑/" itemprop="url" rel="index">
-                    <span itemprop="name">疑难解惑</span>
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
                   </a>
                 </span>
 
@@ -443,9 +436,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/疑难解惑/2015-11-25-手机ping不通主机win10/#comments" itemprop="discussionUrl">
+                <a href="/分布式系统/2018-12-05-分布式锁的实现/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="疑难解惑/2015-11-25-手机ping不通主机win10/" itemprop="commentCount"></span>
+                        data-disqus-identifier="分布式系统/2018-12-05-分布式锁的实现/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -475,26 +468,47 @@
       
 
       
-        <h1 id="如何Ping通主机"><a href="#如何Ping通主机" class="headerlink" title="如何Ping通主机"></a>如何Ping通主机</h1><ol>
-<li><p><strong>先Ping一下win10的主机</strong></p>
-<p> <img src="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarltf06j20ld08v3zp.jpg" alt="win10是ping不通的"></p>
-</li>
-<li><p><strong>打开控制面板，进入系统和安全</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/mw1024/9d2c4511gw1eydarmi27aj20q30hx0x3.jpg" alt="进入系统和安全"></p>
-</li>
-<li><p><strong>进入Window防火墙</strong></p>
-<p> <img src="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarn4jkyj20q30hx444.jpg" alt="win10是ping不通的"></p>
-</li>
-<li><p><strong>点击高级设置</strong></p>
-<p> <img src="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarnomi5j20q30hx0z2.jpg" alt="进入Window防火墙"></p>
-</li>
-<li><p><strong>选择入站规则</strong></p>
-<p> <img src="http://ww2.sinaimg.cn/mw1024/9d2c4511gw1eydarokvqej21070hsjvp.jpg" alt="选择入站规则"></p>
-</li>
-<li><p><strong>向下拉，找到文件与打印机共享（回显请求-ICMPv4），启用规则</strong></p>
-<p> <img src="http://ww3.sinaimg.cn/mw1024/9d2c4511gw1eydarp3k59j210f0hfqch.jpg" alt="启用规则"></p>
-</li>
-</ol>
+        <h2 id="使用数据库乐观锁"><a href="#使用数据库乐观锁" class="headerlink" title="使用数据库乐观锁"></a>使用数据库乐观锁</h2><blockquote>
+<p>乐观锁通常实现基于数据版本(version)的记录机制实现的，比如有一张红包表（t_bonus），有一个字段(left_count)记录礼物的剩余个数，用户每领取一个奖品，对应的left_count减1，在并发的情况下如何要保证left_count不为负数，乐观锁的实现方式为在红包表上添加一个版本号字段（version），默认为0。</p>
+</blockquote>
+<ul>
+<li><code>异常实现流程</code></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 可能会发生的异常情况</span></div><div class="line"><span class="comment">-- 线程1查询，当前left_count为1，则有记录</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_bonus <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span> <span class="keyword">and</span> left_count &gt; <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">-- 线程2查询，当前left_count为1，也有记录</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_bonus <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span> <span class="keyword">and</span> left_count &gt; <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">-- 线程1完成领取记录，修改left_count为0,</span></div><div class="line"><span class="keyword">update</span> t_bonus <span class="keyword">set</span> left_count = left_count - <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span></div><div class="line"></div><div class="line"><span class="comment">-- 线程2完成领取记录，修改left_count为-1，产生脏数据</span></div><div class="line"><span class="keyword">update</span> t_bonus <span class="keyword">set</span> left_count = left_count - <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>通过乐观锁实现</code></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 添加版本号控制字段</span></div><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> <span class="keyword">version</span> <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">AFTER</span> t_bonus;</div><div class="line"></div><div class="line"><span class="comment">-- 线程1查询，当前left_count为1，则有记录，当前版本号为1234</span></div><div class="line"><span class="keyword">select</span> left_count, <span class="keyword">version</span> <span class="keyword">from</span> t_bonus <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span> <span class="keyword">and</span> left_count &gt; <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">-- 线程2查询，当前left_count为1，有记录，当前版本号为1234</span></div><div class="line"><span class="keyword">select</span> left_count, <span class="keyword">version</span> <span class="keyword">from</span> t_bonus <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span> <span class="keyword">and</span> left_count &gt; <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">-- 线程1,更新完成后当前的version为1235，update状态为1，更新成功</span></div><div class="line"><span class="keyword">update</span> t_bonus <span class="keyword">set</span> <span class="keyword">version</span> = <span class="number">1235</span>, left_count = left_count<span class="number">-1</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span> <span class="keyword">and</span> <span class="keyword">version</span> = <span class="number">1234</span></div><div class="line"></div><div class="line"><span class="comment">-- 线程2,更新由于当前的version为1235，udpate状态为0，更新失败，再针对相关业务做异常处理</span></div><div class="line"><span class="keyword">update</span> t_bonus <span class="keyword">set</span> <span class="keyword">version</span> = <span class="number">1235</span>, left_count = left_count<span class="number">-1</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10001</span> <span class="keyword">and</span> <span class="keyword">version</span> = <span class="number">1234</span></div></pre></td></tr></table></figure>
+<h2 id="Redis-Lua-脚本-实现分布式锁"><a href="#Redis-Lua-脚本-实现分布式锁" class="headerlink" title="Redis Lua 脚本 实现分布式锁"></a><code>Redis Lua</code> 脚本 实现分布式锁</h2><blockquote>
+<p>获取锁,采用的是<code>lua</code>脚本,这样可以保证加锁 和 设置失效时间的原子性。<br>避免获取锁成功后,异常退出,造成锁无法释放的问题。</p>
+</blockquote>
+<h3 id="1-首先在application-properties中配置"><a href="#1-首先在application-properties中配置" class="headerlink" title="1.首先在application.properties中配置"></a><code>1.首先在application.properties中配置</code></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">lua.lockScript=if</span> <span class="string">redis.call('setnx',KEYS[1],ARGV[1])</span> <span class="string">==</span> <span class="number">1</span> <span class="string">then</span>  <span class="string">return</span> <span class="string">redis.call('expire',KEYS[1],ARGV[2])</span>  <span class="string">else</span> <span class="string">return</span> <span class="number">0</span> <span class="string">end</span></div><div class="line"><span class="string">lua.releaseLockScript=if</span> <span class="string">redis.call('get',KEYS[1])</span> <span class="string">==</span> <span class="string">ARGV[1]</span> <span class="string">then</span> <span class="string">return</span> <span class="string">redis.call('del',KEYS[1])</span> <span class="string">else</span> <span class="string">return</span> <span class="number">0</span> <span class="string">end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>关于如何读取自定义的配置属性</li>
+</ul>
+<blockquote>
+<p>咱们可以参考读取<code>application.properties</code>的三种方式：<a href="https://blog.csdn.net/qq_37171353/article/details/78005845" target="_blank" rel="external">https://blog.csdn.net/qq_37171353/article/details/78005845</a></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Autowired</span></div><div class="line"><span class="keyword">private</span> Environment env;</div><div class="line"></div><div class="line"><span class="comment">//然后读取</span></div><div class="line">env.getProperty(<span class="string">"lua.lockScript"</span>);</div></pre></td></tr></table></figure>
+<h3 id="2-加锁和释放锁的实现"><a href="#2-加锁和释放锁的实现" class="headerlink" title="2. 加锁和释放锁的实现"></a><code>2. 加锁和释放锁的实现</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.nezha.learn.demo.util;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.core.env.Environment;</div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.core.StringRedisTemplate;</div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.core.script.DefaultRedisScript;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Collections;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisTool</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">getLock</span><span class="params">(StringRedisTemplate stringRedisTemplate, Environment env, String key, String requestId, Long expiresTime)</span> </span>&#123;</div><div class="line">        DefaultRedisScript&lt;Long&gt; longDefaultRedisScript = <span class="keyword">new</span> DefaultRedisScript&lt;&gt;(env.getProperty(<span class="string">"lua.lockScript"</span>), Long.class);</div><div class="line">        Long result = stringRedisTemplate.execute(longDefaultRedisScript, Collections.singletonList(key), requestId,String.valueOf(expiresTime));</div><div class="line">        <span class="keyword">return</span> result == <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">releaseLock</span><span class="params">(StringRedisTemplate stringRedisTemplate, Environment env, String key, String requestId)</span> </span>&#123;</div><div class="line">        DefaultRedisScript&lt;Long&gt; longDefaultRedisScript = <span class="keyword">new</span> DefaultRedisScript&lt;&gt;(env.getProperty(<span class="string">"lua.releaseLockScript"</span>), Long.class);</div><div class="line">        Long result = stringRedisTemplate.execute(longDefaultRedisScript, Collections.singletonList(key), requestId);</div><div class="line">        <span class="keyword">return</span> result == <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-使用该工具类"><a href="#3-使用该工具类" class="headerlink" title="3. 使用该工具类"></a><code>3. 使用该工具类</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getLock</span><span class="params">(String name)</span></span>&#123;</div><div class="line">    String key = <span class="string">"demo:"</span>+name;</div><div class="line">    <span class="keyword">boolean</span> lock = RedisTool.getLock(redisTemplate,env,key,name,<span class="number">20L</span>);</div><div class="line">    <span class="keyword">if</span> (lock)&#123;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            logger.info(<span class="string">"执行睡眠..."</span>);</div><div class="line">            Thread.sleep(<span class="number">10000</span>);</div><div class="line">        &#125;<span class="keyword">catch</span> (InterruptedException e)&#123;</div><div class="line">            logger.info(<span class="string">"发生错误&#123;&#125;"</span>,e);</div><div class="line">        &#125;<span class="keyword">finally</span> &#123;</div><div class="line">            RedisTool.releaseLock(redisTemplate,env,key,name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Zookeeper实现分布式锁"><a href="#Zookeeper实现分布式锁" class="headerlink" title="Zookeeper实现分布式锁"></a><code>Zookeeper实现分布式锁</code></h2><blockquote>
+<p>参考文献:<br><a href="https://www.jianshu.com/p/d8bbed558ec7" target="_blank" rel="external">分布式利器Zookeeper（二）:分布式锁</a><br><code>!!!!</code><a href="https://www.jianshu.com/p/6618471f6e75" target="_blank" rel="external">curator笔记-分布式锁的实现与原理</a> —<code>这篇源码分析的还是不错的。</code></p>
+</blockquote>
+<h3 id="zookeeper的分布式锁实现原理"><a href="#zookeeper的分布式锁实现原理" class="headerlink" title="zookeeper的分布式锁实现原理"></a><code>zookeeper</code>的分布式锁实现原理</h3><blockquote>
+<p><code>ZooKeeper</code>机制规定同一个目录下只能有一个唯一的文件名，<code>zookeeper</code>上的一个<code>znode</code>看作是一把锁，通过<code>createznode</code>的方式来实现。所有客户端都去创建<code>/lock/${lock_name}_lock</code>节点，最终成功创建的那个客户端也即拥有了这把锁，创建失败的可以选择监听继续等待，还是放弃抛出异常实现独占锁。</p>
+</blockquote>
+<h3 id="InterProcessMutex原理总结"><a href="#InterProcessMutex原理总结" class="headerlink" title="InterProcessMutex原理总结"></a><code>InterProcessMutex</code>原理总结</h3><blockquote>
+<p><code>InterProcessMutex</code>通过在<code>zookeeper</code>的某路径节点下创建临时序列节点来实现分布式锁，即每个线程（跨进程的线程）获取同一把锁前，都需要在同样的路径下创建一个节点，节点名字由<code>uuid + 递增序列</code>组成。而通过对比自身的序列数是否在所有子节点的第一位，来判断是否成功获取到了锁。当获取锁失败时，它会<code>添加watcher来监听前一个节点</code>的变动情况，然后进行等待状态。直到<code>watcher</code>的事件生效将自己唤醒，或者超时时间异常返回。</p>
+</blockquote>
+<h3 id="基于Curator实现"><a href="#基于Curator实现" class="headerlink" title="基于Curator实现"></a>基于<code>Curator</code>实现</h3><p><code>上代码：</code></p>
+<p>首先引入<code>pom</code>依赖：<code>curator-recipes</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockServiceZK</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(LockServiceZK.class);</div><div class="line">    <span class="keyword">private</span> CuratorFramework zk;</div><div class="line">    <span class="keyword">private</span> InterProcessMutex lock;</div><div class="line"></div><div class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;zookeeper.connect&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> String hosts;</div><div class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;zookeeper.retry&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> Integer retry = <span class="number">3</span>;</div><div class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;zookeeper.timeout.connect&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> Integer connectTimeout = <span class="number">30</span>;</div><div class="line">    <span class="meta">@Value</span>((<span class="string">"$&#123;zookeeper.timeout.session&#125;"</span>))</div><div class="line">    <span class="keyword">private</span> Integer sessionTimeout = <span class="number">300</span>;</div><div class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;zookeeper.root&#125;"</span>)</div><div class="line">    <span class="keyword">private</span> String root;</div><div class="line"></div><div class="line">    <span class="meta">@PostConstruct</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        ExponentialBackoffRetry retryPolicy = <span class="keyword">new</span> ExponentialBackoffRetry(<span class="number">1000</span>, retry);</div><div class="line">        zk = CuratorFrameworkFactory.builder()</div><div class="line">                .connectString(hosts)</div><div class="line">                .connectionTimeoutMs(connectTimeout)</div><div class="line">                .sessionTimeoutMs(sessionTimeout)</div><div class="line">                .retryPolicy(retryPolicy)</div><div class="line">                .build();</div><div class="line">        zk.start();</div><div class="line">        lock = <span class="keyword">new</span> InterProcessMutex(zk, Paths.get(root, <span class="string">"/lock"</span>).toString());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@PreDestroy</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">if</span>(zk != <span class="keyword">null</span>) &#123;</div><div class="line">            zk.close();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">acquire</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">return</span> lock.acquire(<span class="number">1</span>,TimeUnit.SECONDS);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        lock.release();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后是测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestApi</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(RestApi.class);</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> LockServiceZK zkLockService;</div><div class="line"></div><div class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/lock1"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">boolean</span> getLock = zkLockService.acquire();</div><div class="line">            <span class="keyword">if</span> (getLock)&#123;</div><div class="line">                <span class="comment">//Do something</span></div><div class="line">                logger.info(<span class="string">"&#123;&#125;,拿到zk锁并且睡眠了20秒"</span>,<span class="keyword">this</span>.getClass().getName());</div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                logger.info(<span class="string">"获取锁失败"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">            logger.info(<span class="string">"1,并发竞争锁失败"</span>);</div><div class="line">        &#125;<span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                zkLockService.release();</div><div class="line">                logger.info(<span class="string">"1,释放锁成功了。。。"</span>);</div><div class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">                logger.info(<span class="string">"1,释放锁失败"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Hello World"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
+<p>参考文献：Java分布式锁三种实现方案—<a href="https://www.jianshu.com/p/535efcab356d" target="_blank" rel="external">https://www.jianshu.com/p/535efcab356d</a><br>实践基于Redis的分布式锁：<a href="https://www.jianshu.com/p/e72baf5e5617" target="_blank" rel="external">https://www.jianshu.com/p/e72baf5e5617</a><br>Redis Lua脚本 实现分布式锁：<a href="https://www.jianshu.com/p/1add6858f687" target="_blank" rel="external">https://www.jianshu.com/p/1add6858f687</a></p>
+</blockquote>
 
       
     </div>
@@ -545,9 +559,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ping/" rel="tag"># ping</a>
+            <a href="/tags/分布式锁/" rel="tag"># 分布式锁</a>
           
-            <a href="/tags/win10访问受限/" rel="tag"># win10访问受限</a>
+            <a href="/tags/乐观锁/" rel="tag"># 乐观锁</a>
+          
+            <a href="/tags/Redis锁/" rel="tag"># Redis锁</a>
+          
+            <a href="/tags/zookeeper锁/" rel="tag"># zookeeper锁</a>
           
         </div>
       
@@ -560,8 +578,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/课程研究/2015-11-25-空域增强技术/" rel="next" title="数字图像分析-第四章空域增强技术">
-                <i class="fa fa-chevron-left"></i> 数字图像分析-第四章空域增强技术
+              <a href="/数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/" rel="next" title="Redis基础入门学习-主从备份及集群配置">
+                <i class="fa fa-chevron-left"></i> Redis基础入门学习-主从备份及集群配置
               </a>
             
           </div>
@@ -570,8 +588,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/疑难解惑/2015-11-26-Jekyll支持Latex公式/" rel="prev" title="Jekyll使用MathJax来显示数学式">
-                Jekyll使用MathJax来显示数学式 <i class="fa fa-chevron-right"></i>
+              <a href="/Dubbo/2018-12-08-Dubbo学习笔记一/" rel="prev" title="Dubbo入门学习一（Spring Boot下构建基于多模块的Dubbo项目）">
+                Dubbo入门学习一（Spring Boot下构建基于多模块的Dubbo项目） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -787,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何Ping通主机"><span class="nav-number">1.</span> <span class="nav-text">如何Ping通主机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用数据库乐观锁"><span class="nav-number">1.</span> <span class="nav-text">使用数据库乐观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-Lua-脚本-实现分布式锁"><span class="nav-number">2.</span> <span class="nav-text">Redis Lua 脚本 实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-首先在application-properties中配置"><span class="nav-number">2.1.</span> <span class="nav-text">1.首先在application.properties中配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-加锁和释放锁的实现"><span class="nav-number">2.2.</span> <span class="nav-text">2. 加锁和释放锁的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用该工具类"><span class="nav-number">2.3.</span> <span class="nav-text">3. 使用该工具类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper实现分布式锁"><span class="nav-number">3.</span> <span class="nav-text">Zookeeper实现分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper的分布式锁实现原理"><span class="nav-number">3.1.</span> <span class="nav-text">zookeeper的分布式锁实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InterProcessMutex原理总结"><span class="nav-number">3.2.</span> <span class="nav-text">InterProcessMutex原理总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Curator实现"><span class="nav-number">3.3.</span> <span class="nav-text">基于Curator实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -950,9 +968,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nezha.github.io/疑难解惑/2015-11-25-手机ping不通主机win10/';
-          this.page.identifier = '疑难解惑/2015-11-25-手机ping不通主机win10/';
-          this.page.title = '解决问题：手机ping不通主机win10';
+          this.page.url = 'https://nezha.github.io/分布式系统/2018-12-05-分布式锁的实现/';
+          this.page.identifier = '分布式系统/2018-12-05-分布式锁的实现/';
+          this.page.title = '分布式锁的实现';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://nezha.disqus.com/embed.js';

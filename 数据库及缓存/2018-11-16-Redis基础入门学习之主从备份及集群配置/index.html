@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="开发问题,问题解决,百宝箱," />
+  <meta name="keywords" content="Redis,主从备份,集群," />
 
 
 
@@ -94,20 +94,18 @@
 
 
 
-<meta name="description" content="开发过程中出现的各类问题整理一：IDEA开发中的问题及注意项1.IDEA console出现乱码 1.修改IDEA的配置文件   打开Intellij的安装的bin目录，找到idea.exe.vmoptions和idea64.exe.vmoptions两个文件（根据你的系统是32位或64位选择其中一个配置文件），在配置文件中添加：  1-Dfile.encoding=UTF-8  2.配置项目编码">
-<meta name="keywords" content="开发问题,问题解决,百宝箱">
+<meta name="description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
+<meta name="keywords" content="Redis,主从备份,集群">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发过程中出现的各类问题整理">
-<meta property="og:url" content="https://nezha.github.io/疑难解惑/2018-10-15-开发过程中出现的各类问题整理/index.html">
+<meta property="og:title" content="Redis基础入门学习-主从备份及集群配置">
+<meta property="og:url" content="https://nezha.github.io/数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="开发过程中出现的各类问题整理一：IDEA开发中的问题及注意项1.IDEA console出现乱码 1.修改IDEA的配置文件   打开Intellij的安装的bin目录，找到idea.exe.vmoptions和idea64.exe.vmoptions两个文件（根据你的系统是32位或64位选择其中一个配置文件），在配置文件中添加：  1-Dfile.encoding=UTF-8  2.配置项目编码">
+<meta property="og:description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/1072889/201703/1072889-20170329113230061-1048865608.png">
-<meta property="og:updated_time" content="2018-12-03T11:32:54.759Z">
+<meta property="og:updated_time" content="2018-12-24T15:03:09.896Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开发过程中出现的各类问题整理">
-<meta name="twitter:description" content="开发过程中出现的各类问题整理一：IDEA开发中的问题及注意项1.IDEA console出现乱码 1.修改IDEA的配置文件   打开Intellij的安装的bin目录，找到idea.exe.vmoptions和idea64.exe.vmoptions两个文件（根据你的系统是32位或64位选择其中一个配置文件），在配置文件中添加：  1-Dfile.encoding=UTF-8  2.配置项目编码">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1072889/201703/1072889-20170329113230061-1048865608.png">
+<meta name="twitter:title" content="Redis基础入门学习-主从备份及集群配置">
+<meta name="twitter:description" content="Redis基础入门学习-主从备份及集群配置Redis主从备份1.创建Redis节点 我们在redis-3.2/redis_cluster/下分别创建三个文件夹/6000/,/6001/和/6002/，这种方式用于放置配置文件，模拟创建3个节点。  123cp ./etc/redis.conf ./redis_cluster/6000/cp ./etc/redis.conf ./redis_clus">
 
 
 
@@ -135,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://nezha.github.io/疑难解惑/2018-10-15-开发过程中出现的各类问题整理/"/>
+  <link rel="canonical" href="https://nezha.github.io/数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/"/>
 
 
 
 
 
-  <title>开发过程中出现的各类问题整理 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Redis基础入门学习-主从备份及集群配置 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -368,7 +366,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/疑难解惑/2018-10-15-开发过程中出现的各类问题整理/">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack·Joney">
@@ -385,7 +383,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">开发过程中出现的各类问题整理</h2>
+          <h2 class="post-title" itemprop="name headline">Redis基础入门学习-主从备份及集群配置</h2>
         
 
         <div class="post-meta">
@@ -397,8 +395,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T15:56:02+08:00">
-                2018-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-16T15:56:02+08:00">
+                2018-11-16
               </time>
             
 
@@ -420,8 +418,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/疑难解惑/" itemprop="url" rel="index">
-                    <span itemprop="name">疑难解惑</span>
+                  <a href="/categories/数据库及缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库及缓存</span>
                   </a>
                 </span>
 
@@ -438,9 +436,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/疑难解惑/2018-10-15-开发过程中出现的各类问题整理/#comments" itemprop="discussionUrl">
+                <a href="/数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="疑难解惑/2018-10-15-开发过程中出现的各类问题整理/" itemprop="commentCount"></span>
+                        data-disqus-identifier="数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -470,113 +468,92 @@
       
 
       
-        <h1 id="开发过程中出现的各类问题整理"><a href="#开发过程中出现的各类问题整理" class="headerlink" title="开发过程中出现的各类问题整理"></a>开发过程中出现的各类问题整理</h1><h2 id="一：IDEA开发中的问题及注意项"><a href="#一：IDEA开发中的问题及注意项" class="headerlink" title="一：IDEA开发中的问题及注意项"></a>一：IDEA开发中的问题及注意项</h2><h3 id="1-IDEA-console出现乱码"><a href="#1-IDEA-console出现乱码" class="headerlink" title="1.IDEA console出现乱码"></a>1.IDEA console出现乱码</h3><ul>
-<li>1.修改IDEA的配置文件</li>
-</ul>
+        <h1 id="Redis基础入门学习-主从备份及集群配置"><a href="#Redis基础入门学习-主从备份及集群配置" class="headerlink" title="Redis基础入门学习-主从备份及集群配置"></a>Redis基础入门学习-主从备份及集群配置</h1><h2 id="Redis主从备份"><a href="#Redis主从备份" class="headerlink" title="Redis主从备份"></a>Redis主从备份</h2><h3 id="1-创建Redis节点"><a href="#1-创建Redis节点" class="headerlink" title="1.创建Redis节点"></a>1.创建Redis节点</h3><blockquote>
+<p>我们在<code>redis-3.2/redis_cluster/</code>下分别创建三个文件夹<code>/6000/</code>,<code>/6001/</code>和<code>/6002/</code>，这种方式用于放置配置文件，模拟创建3个节点。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp ./etc/redis.conf ./redis_cluster/6000/</div><div class="line">cp ./etc/redis.conf ./redis_cluster/6001/</div><div class="line">cp ./etc/redis.conf ./redis_cluster/6002/</div></pre></td></tr></table></figure>
 <blockquote>
-<p>打开Intellij的安装的bin目录，找到<code>idea.exe.vmoptions</code>和<code>idea64.exe.vmoptions</code>两个文件（根据你的系统是32位或64位选择其中一个配置文件），在配置文件中添加：</p>
+<p>假设master节点是6000端口</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Dfile.encoding=UTF-8</div></pre></td></tr></table></figure>
-<ul>
-<li>2.配置项目编码及IDE编码</li>
+<h3 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2.修改配置文件"></a>2.修改配置文件</h3><ul>
+<li><code>master</code>节点 &gt; <code>6000</code></li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">port 6000</div><div class="line">pidfile /var/run/redis_6000.pid</div><div class="line">requirepass 123456</div></pre></td></tr></table></figure>
+<ul>
+<li><code>Slave1</code>节点 &gt; <code>6001</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6001</div><div class="line">pidfile /var/run/redis_6001.pid</div><div class="line">slaveof 47.1xx.xx.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
+<ul>
+<li><code>Slave2</code>节点 &gt; <code>6002</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port 6002</div><div class="line">pidfile /var/run/redis_6002.pid</div><div class="line">slaveof 47.1xx.xx.66 6000</div><div class="line">requirepass 123456</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure>
+<h3 id="3-启动主节点和从节点"><a href="#3-启动主节点和从节点" class="headerlink" title="3.启动主节点和从节点"></a>3.启动主节点和从节点</h3><blockquote>
+<p>启动节点并且验证服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">./bin/redis-server ./redis_cluster/6000/redis.conf</div><div class="line">./bin/redis-server ./redis_cluster/6001/redis.conf</div><div class="line">./bin/redis-server ./redis_cluster/6002/redis.conf</div><div class="line">ps -ef |grep redis</div><div class="line"></div><div class="line"><span class="comment"># 关闭的话</span></div><div class="line">./bin/redis-cli -p 6000 <span class="_">-a</span> 123456 shutdown</div><div class="line">./bin/redis-cli -p 6001 <span class="_">-a</span> 123456 shutdown</div><div class="line">./bin/redis-cli -p 6002 <span class="_">-a</span> 123456 shutdown</div><div class="line"></div><div class="line"><span class="comment"># 批量关闭</span></div><div class="line">pkill -9 redis</div></pre></td></tr></table></figure>
+<h3 id="4-验证主从复制"><a href="#4-验证主从复制" class="headerlink" title="4.验证主从复制"></a>4.验证主从复制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 登录Redis服务</span></div><div class="line">./bin/redis-cli -h 127.0.0.1 -p 6000 <span class="_">-a</span> 123456</div><div class="line"><span class="comment"># 可以使用info查看主从关系</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>进入settings，选择File Encodings，把IDE Encoding和Project Encoding配置为UTF-8，同时将下面的Default encoding for properties files也配置为UTF-8。</p>
+<p>在主节点中插入，在从节点看一下</p>
 </blockquote>
-<p><img src="https://images2015.cnblogs.com/blog/1072889/201703/1072889-20170329113230061-1048865608.png" alt=""></p>
-<ul>
-<li>3.配置项目启动服务器参数，在tomcat配置中</li>
-</ul>
-<p>在VM options 项中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Dfile.encoding=UTF-8</div></pre></td></tr></table></figure>
-<h3 id="2-IDEA-中spring-boot-多模块项目"><a href="#2-IDEA-中spring-boot-多模块项目" class="headerlink" title="2.IDEA 中spring boot 多模块项目"></a>2.IDEA 中spring boot 多模块项目</h3><p>SpringBoot多模块项目实践（Multi-Module）-<a href="https://segmentfault.com/a/1190000011367492" target="_blank" rel="external">https://segmentfault.com/a/1190000011367492</a></p>
-<h2 id="二：maven"><a href="#二：maven" class="headerlink" title="二：maven"></a>二：maven</h2><h3 id="1-maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中-project-version-指代的什么版本？"><a href="#1-maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中-project-version-指代的什么版本？" class="headerlink" title="1.maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中${project.version}指代的什么版本？"></a>1.maven中引用父类<code>pom</code>时，怎么在子模块中引入父类包？还有子模块中${project.version}指代的什么版本？</h3><p>这个可以参考我的博客，[<strong>关于多模块项目中的依赖管理</strong>]<a href="https://nezhaxiaozi.coding.me/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2018-11-07-Maven%E4%B8%AD%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/" target="_blank" rel="external">https://nezhaxiaozi.coding.me/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2018-11-07-Maven%E4%B8%AD%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/</a></p>
-<h3 id="2-maven中怎么将一个空项目编程Spring-Boot项目"><a href="#2-maven中怎么将一个空项目编程Spring-Boot项目" class="headerlink" title="2.maven中怎么将一个空项目编程Spring Boot项目"></a>2.maven中怎么将一个空项目编程Spring Boot项目</h3><ul>
-<li>1.首先是增加依赖包，主要是<code>spring-boot-starter</code></li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>2.在<code>resources</code>的文件夹中增加配置文件<code>application.properties</code></li>
-</ul>
+<h2 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h2><blockquote>
+<p>参考文献：<br>Redis 集群部署及踩过的坑：<a href="http://blog.jobbole.com/113760/" target="_blank" rel="external">http://blog.jobbole.com/113760/</a><br>玩转Redis集群(上)：<a href="https://www.jianshu.com/p/dbc62ed27f03" target="_blank" rel="external">https://www.jianshu.com/p/dbc62ed27f03</a><br>要是您还有解决不了的，来看我这里的问题排坑。</p>
+</blockquote>
+<h3 id="启动Redis多个实例"><a href="#启动Redis多个实例" class="headerlink" title="启动Redis多个实例"></a>启动Redis多个实例</h3><p>我们在<code>Redis</code>安装目录下创建目录<code>redis_cluster</code>，并编写<code>6000.conf~6005.conf</code> 6个配置文件，这6个配置文件用来启动6个实例，后面将使用这6个实例组成集群。</p>
+<p>以6000.conf为例，配置文件需要填写如下几项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">port  6000                                        //端口6000-6005        </div><div class="line"><span class="built_in">bind</span> 0.0.0.0                                     //默认ip为127.0.0.1 需要改为其他节点机器可访问的ip 否则创建集群时无法访问对应的端口，无法创建集群, 我用的阿里云ECS，就是公网IP</div><div class="line">daemonize    yes                               //redis后台运行</div><div class="line">pidfile  ./redis_6000.pid          //pidfile文件对应6000-6005 </div><div class="line">cluster-enabled  yes                           //开启集群 </div><div class="line">cluster-config-file  nodes_6000.conf   //集群的配置  配置文件首次启动自动生成 6000-6005 </div><div class="line">cluster-node-timeout  5000                //请求超时</div><div class="line">appendonly  yes                           //aof日志开启  有需要就开启，它会每次写操作都记录一条日志</div></pre></td></tr></table></figure>
+<h3 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h3><p>由于我们集群需要用到6000-6005的端口，所以如果是ECS的话需要将这些端口打开，而且打开Redis的集群总线端口，不然会有很多问题的！</p>
+<p>网上很多文章居然让关防火墙，也是够了。。。</p>
 <blockquote>
-<p>这个一般是spring boot有默认的文件名</p>
+<p><code>redis集群总线端口为redis客户端端口加上10000，比如说你的redis 6379端口为客户端通讯端口，那么16379端口为集群总线端口</code></p>
 </blockquote>
-<ul>
-<li>3.在包路径根目录下增加Spring Boot启动类</li>
+<h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><blockquote>
+<p>这一步问题也是比较多的，一定要注意</p>
+</blockquote>
+<p>这一步可以参考本文中的<code>问题一</code></p>
+<h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><ul>
+<li>gem 这个命令来安装 redis接口    gem是ruby的一个工具包</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.nezha.learn.demo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</div><div class="line"></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoRedisApplication</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(DemoRedisApplication.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install redis</div></pre></td></tr></table></figure>
 <ul>
-<li>4.如果需要使用测试类，可以增加同样的包路径和注解</li>
+<li>使用<code>redis-trib.rb</code>来建立集群</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.nezha.learn.demo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</div><div class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</div><div class="line"></div><div class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</div><div class="line"><span class="meta">@SpringBootTest</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoRedisApplicationTest</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="三：Java"><a href="#三：Java" class="headerlink" title="三：Java"></a>三：Java</h2><h3 id="1-为什么Java的实体类需要实现Serializable接口"><a href="#1-为什么Java的实体类需要实现Serializable接口" class="headerlink" title="1.为什么Java的实体类需要实现Serializable接口"></a>1.为什么Java的实体类需要实现Serializable接口</h3><p><strong>参考文献：Java类中serialversionuid 作用 是什么?举个例子说明<a href="https://www.cnblogs.com/duanxz/p/3511695.html" target="_blank" rel="external">https://www.cnblogs.com/duanxz/p/3511695.html</a></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./src/redis-trib.rb  create  --replicas  1 47.1xx.xx.66:6000 47.1xx.xx.66:6001 47.1xx.xx.66:6002 47.1xx.xx.66:6003 47.1xx.xx.66:6004 47.1xx.xx.66:6005</div></pre></td></tr></table></figure>
 <blockquote>
-<p>Java的序列化机制是通过判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体类的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常，即是InvalidCastException。</p>
+<p><code>--replicas  1</code>  表示 自动为每一个master节点分配一个slave节点    上面有6个节点，程序会按照一定规则生成 3个master（主）3个slave(从)</p>
 </blockquote>
-<h2 id="四：Spring"><a href="#四：Spring" class="headerlink" title="四：Spring"></a>四：Spring</h2><h3 id="1-为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）"><a href="#1-为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）" class="headerlink" title="1.为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）"></a>1.为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）</h3><blockquote>
-<p>Spring Boot 注入接口 @Autowired interface:<a href="https://www.jianshu.com/p/3942cce05f71" target="_blank" rel="external">https://www.jianshu.com/p/3942cce05f71</a></p>
-</blockquote>
-<h3 id="2-如果spring的版本修改后，和pom的其他依赖不一样，可不可以"><a href="#2-如果spring的版本修改后，和pom的其他依赖不一样，可不可以" class="headerlink" title="2.如果spring的版本修改后，和pom的其他依赖不一样，可不可以"></a>2.如果spring的版本修改后，和pom的其他依赖不一样，可不可以</h3><blockquote>
-<p>这个一般都是统一管理依赖版本的，依赖版本不一致很有可能出现各种错误的</p>
-</blockquote>
-<h3 id="3-Spring-boot中自定义的配置怎么加载和读取"><a href="#3-Spring-boot中自定义的配置怎么加载和读取" class="headerlink" title="3.Spring boot中自定义的配置怎么加载和读取"></a>3.Spring boot中自定义的配置怎么加载和读取</h3><h3 id="4-Spring项目中classpath指代哪个路径"><a href="#4-Spring项目中classpath指代哪个路径" class="headerlink" title="4.Spring项目中classpath指代哪个路径"></a>4.Spring项目中classpath指代哪个路径</h3><p>[Java][MyBatis]mapperLocations属性通配符的使用- <a href="https://blog.csdn.net/szwangdf/article/details/23432783" target="_blank" rel="external">https://blog.csdn.net/szwangdf/article/details/23432783</a></p>
-<h3 id="5-Junit集成测试–Mock"><a href="#5-Junit集成测试–Mock" class="headerlink" title="5.Junit集成测试–Mock"></a>5.<strong>Junit集成测试–Mock</strong></h3><ol>
-<li><a href="http://sishuok.com/forum/blogPost/list/7981.html" target="_blank" rel="external">http://sishuok.com/forum/blogPost/list/7981.html</a></li>
-<li><a href="http://www.cnblogs.com/0201zcr/p/5756642.html" target="_blank" rel="external">http://www.cnblogs.com/0201zcr/p/5756642.html</a></li>
-</ol>
-<p><strong>Junit 按顺序排序</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@FixMethodOrder(MethodSorters.DEFAULT)</div></pre></td></tr></table></figure>
-<h3 id="6-SpringBoot-多模块项目（module）Service自动注入（-Autowired）"><a href="#6-SpringBoot-多模块项目（module）Service自动注入（-Autowired）" class="headerlink" title="6.SpringBoot 多模块项目（module）Service自动注入（@Autowired）"></a>6.SpringBoot 多模块项目（module）Service自动注入（<code>@Autowired</code>）</h3><blockquote>
-<p>SpringBoot 多模块项目（module）Service自动注入（@Autowired）<a href="https://blog.csdn.net/machuang30508/article/details/78616501" target="_blank" rel="external">https://blog.csdn.net/machuang30508/article/details/78616501</a><br>SpringBoot中Service自动注入很方便，例：</p>
-</blockquote>
-<ul>
-<li><code>Service.class</code>（接口类）</li>
-<li><code>ServiceImpl.class</code>（实现类）</li>
-<li><code>Controller.class</code>（使用类）<br>用以上三个类来说一下自动注入：</li>
-</ul>
-<p><strong>单项目：分别<code>ServiceImpl</code>头上<code>@Service</code>，<code>Controller</code>中<code>Service</code>对象<code>@Autowired</code>即可享用；</strong></p>
-<p>Multi modules 场景，三个（种）类分别在三个module下：</p>
-<ul>
-<li><code>moduleA</code> : <code>Service.class</code>（com.example.moduleA ）</li>
-<li><code>moduleB</code> : <code>ServiceImpl.class</code> ( com.example.moduleB )</li>
-<li><code>moduleC</code> : <code>Controller.class</code> ( com.example.moduleC )</li>
-</ul>
-<blockquote>
-<p>此时B依赖A，C依赖A、B，添加好依赖关系。</p>
-</blockquote>
-<p>如何自动注入？接口、实现、使用类，姿势不变,按单项目方式写即可;</p>
-<p>如果你已经试过<code>scanBasePackages</code>，无论是在<code>@SpringBootApplication</code>方式还是<code>@ComponentScan</code>；<br>抑或试过<code>@SpringBootApplication</code>、<code>@ComponentScan</code>同时用，当你这么做时，一定是绝望的。</p>
-<p>解决办法:<strong><code>@SpringBootApplictaion(scanBasePackages=&quot;com.example&quot;)</code></strong><br>核心就是：<br><strong><code>Service</code> 及 <code>ServiceImpl</code>均需在<code>com.example</code>包下</strong></p>
-<p>因为<code>Service</code>、<code>ServiceImpl</code>同在<code>com.example</code>下（C可以不在），所以我看作是同一次scan过程；<br>当然（<code>@ComponentScan=&quot;com.example&quot;</code>）也是可以的，因为前者<code>@SpringBootApplication</code>已经包含<code>@ComponentScan</code>；</p>
-<h3 id="7-SpringBoot如何快速运行Service中的方法"><a href="#7-SpringBoot如何快速运行Service中的方法" class="headerlink" title="7.SpringBoot如何快速运行Service中的方法"></a>7.SpringBoot如何快速运行<code>Service</code>中的方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoRedisApplication</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        ApplicationContext ctx = SpringApplication.run(DemoRedisApplication.class, args);</div><div class="line">        UseRedisDemo useRedisDemo = ctx.getBean(UseRedisDemo.class);</div><div class="line">        useRedisDemo.say(<span class="string">"nezha"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="五：MySQL"><a href="#五：MySQL" class="headerlink" title="五：MySQL"></a>五：MySQL</h2><h2 id="六：Redis"><a href="#六：Redis" class="headerlink" title="六：Redis"></a>六：Redis</h2><h3 id="问题一-redis-requires-ruby-version-2-2-2"><a href="#问题一-redis-requires-ruby-version-2-2-2" class="headerlink" title="问题一:redis requires ruby version 2.2.2"></a>问题一:<code>redis requires ruby version 2.2.2</code></h3><blockquote>
+<h3 id="登录验证"><a href="#登录验证" class="headerlink" title="登录验证"></a>登录验证</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">redis-cli -c -h 47.1xx.xx.66 -p 6000 -a 123456</div><div class="line"></div><div class="line">47.1xx.xx.66:6000&gt; cluster nodes</div><div class="line">04b7ed3ea70b9f3b038a4ffcaff691acaa9ceb59 47.1xx.xx.66:6005 slave 306004e971e0a66b9bbb5c9524609680eeaa81f9 0 1542379253546 6 connected</div><div class="line">f39cc13f88ec3ce74be94817e688294320327556 47.1xx.xx.66:6003 slave d5d84a1e573c89be2ada38f30be0cecaeeddbe04 0 1542379254046 4 connected</div><div class="line">afaa57622d52240ca7be573bc574b6096e0aa0c0 47.1xx.xx.66:6001 master - 0 1542379254547 2 connected 5461-10922</div><div class="line">306004e971e0a66b9bbb5c9524609680eeaa81f9 47.1xx.xx.66:6002 master - 0 1542379255048 3 connected 10923-16383</div><div class="line">7e941c80b075aee07305a58193d0e47bbc3cc5af 47.1xx.xx.66:6004 slave afaa57622d52240ca7be573bc574b6096e0aa0c0 0 1542379253546 5 connected</div><div class="line">d5d84a1e573c89be2ada38f30be0cecaeeddbe04 172.19.91.173:6000 myself,master - 0 0 1 connected 0-5460</div></pre></td></tr></table></figure>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="问题一-redis-requires-ruby-version-2-2-2"><a href="#问题一-redis-requires-ruby-version-2-2-2" class="headerlink" title="问题一:redis requires ruby version 2.2.2"></a>问题一:<code>redis requires ruby version 2.2.2</code></h4><blockquote>
 <p>参考文献：redis requires ruby version 2.2.2的解决方案：<a href="https://www.jianshu.com/p/72443fef9554" target="_blank" rel="external">https://www.jianshu.com/p/72443fef9554</a></p>
 </blockquote>
 <p>做<code>Redis</code>的<code>Cluster</code>集群的时候，在执行<code>gem install redis</code>时，提示如下错误：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem install redis</div><div class="line">    ERROR:  Error installing redis:</div><div class="line">     redis requires Ruby version &gt;= 2.2.2.</div></pre></td></tr></table></figure>
-<h4 id="1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><a href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）：" class="headerlink" title="1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）："></a>1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gpg --keyserver hkp://keys.gnupg.net --recv-keys </div><div class="line">curl <span class="_">-s</span>SL https://get.rvm.io | bash <span class="_">-s</span> stable</div><div class="line">find / -name rvm -print</div><div class="line"><span class="built_in">source</span> /usr/<span class="built_in">local</span>/rvm/scripts/rvm</div></pre></td></tr></table></figure>
-<h4 id="2-查看rvm库中已知的ruby版本"><a href="#2-查看rvm库中已知的ruby版本" class="headerlink" title="2.查看rvm库中已知的ruby版本"></a>2.查看rvm库中已知的ruby版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@linux ~]# rvm list known</div><div class="line">　　　　MRI Rubies</div><div class="line">　　　　[ruby-]1.8.6[-p420]</div><div class="line">　　　　[ruby-]1.8.7[-head] # security released on head</div><div class="line">　　　　[ruby-]1.9.1[-p431]</div><div class="line">　　　　[ruby-]1.9.2[-p330]</div><div class="line">　　　　[ruby-]1.9.3[-p551]</div><div class="line">　　　　[ruby-]2.0.0[-p648]</div><div class="line">      ....</div></pre></td></tr></table></figure>
-<h4 id="3-安装使用一个ruby版本"><a href="#3-安装使用一个ruby版本" class="headerlink" title="3.安装使用一个ruby版本"></a>3.安装使用一个ruby版本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rvm install 2.4.1</div><div class="line">rvm use 2.4.1</div></pre></td></tr></table></figure>
-<h4 id="4-常用操作命令"><a href="#4-常用操作命令" class="headerlink" title="4.常用操作命令"></a>4.常用操作命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置默认版本</span></div><div class="line">rvm use 2.4.1 --default</div><div class="line"><span class="comment"># 卸载一个已知版本：</span></div><div class="line">rvm remove 2.3.4</div><div class="line"><span class="comment"># 查看ruby版本：</span></div><div class="line">ruby --version</div><div class="line"><span class="comment"># 安装redis：</span></div><div class="line">gem install redis</div></pre></td></tr></table></figure>
-<h3 id="问题二：create-ERR-Slot-9838-is-already-busy错误"><a href="#问题二：create-ERR-Slot-9838-is-already-busy错误" class="headerlink" title="问题二：create ERR Slot 9838 is already busy错误"></a>问题二：create ERR Slot 9838 is already busy错误</h3><p><a href="https://www.oschina.net/question/1031396_246716" target="_blank" rel="external">https://www.oschina.net/question/1031396_246716</a></p>
+<h5 id="1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><a href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）：" class="headerlink" title="1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）："></a>1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gpg --keyserver hkp://keys.gnupg.net --recv-keys </div><div class="line">curl <span class="_">-s</span>SL https://get.rvm.io | bash <span class="_">-s</span> stable</div><div class="line">find / -name rvm -print</div><div class="line"><span class="built_in">source</span> /usr/<span class="built_in">local</span>/rvm/scripts/rvm</div></pre></td></tr></table></figure>
+<h5 id="2-查看rvm库中已知的ruby版本"><a href="#2-查看rvm库中已知的ruby版本" class="headerlink" title="2.查看rvm库中已知的ruby版本"></a>2.查看rvm库中已知的ruby版本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@linux ~]# rvm list known</div><div class="line">　　　　MRI Rubies</div><div class="line">　　　　[ruby-]1.8.6[-p420]</div><div class="line">　　　　[ruby-]1.8.7[-head] # security released on head</div><div class="line">　　　　[ruby-]1.9.1[-p431]</div><div class="line">　　　　[ruby-]1.9.2[-p330]</div><div class="line">　　　　[ruby-]1.9.3[-p551]</div><div class="line">　　　　[ruby-]2.0.0[-p648]</div><div class="line">      ....</div></pre></td></tr></table></figure>
+<h5 id="3-安装使用一个ruby版本"><a href="#3-安装使用一个ruby版本" class="headerlink" title="3.安装使用一个ruby版本"></a>3.安装使用一个ruby版本</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rvm install 2.4.1</div><div class="line">rvm use 2.4.1</div></pre></td></tr></table></figure>
+<h5 id="4-常用操作命令"><a href="#4-常用操作命令" class="headerlink" title="4.常用操作命令"></a>4.常用操作命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置默认版本</span></div><div class="line">rvm use 2.4.1 --default</div><div class="line"><span class="comment"># 卸载一个已知版本：</span></div><div class="line">rvm remove 2.3.4</div><div class="line"><span class="comment"># 查看ruby版本：</span></div><div class="line">ruby --version</div><div class="line"><span class="comment"># 安装redis：</span></div><div class="line">gem install redis</div></pre></td></tr></table></figure>
+<h4 id="问题二：create-ERR-Slot-9838-is-already-busy错误"><a href="#问题二：create-ERR-Slot-9838-is-already-busy错误" class="headerlink" title="问题二：create ERR Slot 9838 is already busy错误"></a>问题二：create ERR Slot 9838 is already busy错误</h4><p><a href="https://www.oschina.net/question/1031396_246716" target="_blank" rel="external">https://www.oschina.net/question/1031396_246716</a></p>
 <blockquote>
 <p><code>用redis-cli登录到每个节点执行flushall和cluster reset就可以了</code></p>
 </blockquote>
-<h3 id="问题三：redis集群报错Node-is-not-empty"><a href="#问题三：redis集群报错Node-is-not-empty" class="headerlink" title="问题三：redis集群报错Node is not empty"></a>问题三：redis集群报错Node is not empty</h3><p><a href="https://www.jianshu.com/p/338bc2a74300" target="_blank" rel="external">https://www.jianshu.com/p/338bc2a74300</a></p>
+<h4 id="问题三：redis集群报错Node-is-not-empty"><a href="#问题三：redis集群报错Node-is-not-empty" class="headerlink" title="问题三：redis集群报错Node is not empty"></a>问题三：redis集群报错Node is not empty</h4><p><a href="https://www.jianshu.com/p/338bc2a74300" target="_blank" rel="external">https://www.jianshu.com/p/338bc2a74300</a></p>
 <blockquote>
 <p><code>1)将每个节点下aof、rdb、nodes.conf本地备份文件删除；</code><br><code>2)172.168.63.201:7001&gt; flushdb #清空当前数据库(可省略)</code><br><code>3)之后再执行脚本，成功执行；</code></p>
 </blockquote>
-<h3 id="问题四：Sorry-can’t-connect-to-node"><a href="#问题四：Sorry-can’t-connect-to-node" class="headerlink" title="问题四：Sorry, can’t connect to node"></a>问题四：Sorry, can’t connect to node</h3><p><a href="https://blog.csdn.net/xiaobo060/article/details/80616718" target="_blank" rel="external">https://blog.csdn.net/xiaobo060/article/details/80616718</a></p>
+<h4 id="问题四：Sorry-can’t-connect-to-node"><a href="#问题四：Sorry-can’t-connect-to-node" class="headerlink" title="问题四：Sorry, can’t connect to node"></a>问题四：Sorry, can’t connect to node</h4><p><a href="https://blog.csdn.net/xiaobo060/article/details/80616718" target="_blank" rel="external">https://blog.csdn.net/xiaobo060/article/details/80616718</a></p>
 <blockquote>
 <p><code>因为redis设置了密码</code><br>需要修改<code>/usr/local/rvm/gems/ruby-2.4.1/gems/redis-4.0.1/lib/redis/client.rb</code></p>
 </blockquote>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">DEFAULTS = &#123;</div><div class="line">  <span class="symbol">:url</span> =&gt; lambda &#123; ENV[<span class="string">"REDIS_URL"</span>] &#125;,</div><div class="line">  <span class="symbol">:scheme</span> =&gt; <span class="string">"redis"</span>,</div><div class="line">  <span class="symbol">:host</span> =&gt; <span class="string">"127.0.0.1"</span>,</div><div class="line">  <span class="symbol">:port</span> =&gt; <span class="number">6379</span>,</div><div class="line">  <span class="symbol">:path</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:timeout</span> =&gt; <span class="number">5.0</span>,</div><div class="line">  <span class="symbol">:password</span> =&gt; <span class="string">"xxxxxx"</span>,</div><div class="line">  <span class="symbol">:db</span> =&gt; <span class="number">0</span>,</div><div class="line">  <span class="symbol">:driver</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:id</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:tcp_keepalive</span> =&gt; <span class="number">0</span>,</div><div class="line">  <span class="symbol">:reconnect_attempts</span> =&gt; <span class="number">1</span>,</div><div class="line">  <span class="symbol">:inherit_socket</span> =&gt; <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><a href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……" class="headerlink" title="问题五：redis集群部署一直卡在Waiting for the cluster to join ……"></a>问题五：redis集群部署一直卡在Waiting for the cluster to join ……</h3><p>在集群的时候<code>redis-trib.rb  create  --replicas  1</code>一直在等待，网上的那些好多都不靠谱！<strong>使用cluster meet ip port命令根本是无效的</strong></p>
+<h4 id="问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><a href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……" class="headerlink" title="问题五：redis集群部署一直卡在Waiting for the cluster to join ……"></a>问题五：redis集群部署一直卡在Waiting for the cluster to join ……</h4><p>在集群的时候<code>redis-trib.rb  create  --replicas  1</code>一直在等待，网上的那些好多都不靠谱！<strong>使用cluster meet ip port命令根本是无效的</strong></p>
 <p>同时，很少有博客提到redis集群总线的内容，都是叫你关闭防火墙，实际生产中谁会这么做？最后，感慨一句，还是官方文档最有用！</p>
 <blockquote>
 <p><code>redis集群总线端口为redis客户端端口加上10000，比如说你的redis 6379端口为客户端通讯端口，那么16379端口为集群总线端口</code></p>
 </blockquote>
-<h2 id="七：VSCode"><a href="#七：VSCode" class="headerlink" title="七：VSCode"></a>七：VSCode</h2><h3 id="1-如何快速折叠代码，如何展开代码"><a href="#1-如何快速折叠代码，如何展开代码" class="headerlink" title="1.如何快速折叠代码，如何展开代码"></a>1.如何快速折叠代码，如何展开代码</h3><p><code>折叠</code> –&gt;&gt;  <code>command+k+0</code><br><code>展开</code> –&gt;&gt;  <code>command+k+j</code></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li>阿里云Redis开发规范：<a href="https://yq.aliyun.com/articles/531067?spm=a2c4e.11163080.searchblog.9.38e22ec1b4kcwD" target="_blank" rel="external">https://yq.aliyun.com/articles/531067?spm=a2c4e.11163080.searchblog.9.38e22ec1b4kcwD</a></li>
+<li>为什么我们做分布式要用 Redis ？：<a href="https://mp.weixin.qq.com/s/1TXICDZ_BoJ7FeAFqiZa5A" target="_blank" rel="external">https://mp.weixin.qq.com/s/1TXICDZ_BoJ7FeAFqiZa5A</a></li>
+<li>为什么要用Redis：<a href="https://mp.weixin.qq.com/s/XU6k7T7H6TyM9kurDxoGRw" target="_blank" rel="external">https://mp.weixin.qq.com/s/XU6k7T7H6TyM9kurDxoGRw</a></li>
+</ol>
 
       
     </div>
@@ -627,11 +604,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/开发问题/" rel="tag"># 开发问题</a>
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
           
-            <a href="/tags/问题解决/" rel="tag"># 问题解决</a>
+            <a href="/tags/主从备份/" rel="tag"># 主从备份</a>
           
-            <a href="/tags/百宝箱/" rel="tag"># 百宝箱</a>
+            <a href="/tags/集群/" rel="tag"># 集群</a>
           
         </div>
       
@@ -644,8 +621,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Java/2017-12-14-Java序列化与反序列化（原生方式与Jackson方式）/" rel="next" title="Java序列化与反序列化-原生方式与Jackson方式">
-                <i class="fa fa-chevron-left"></i> Java序列化与反序列化-原生方式与Jackson方式
+              <a href="/数据库及缓存/2018-11-14-Redis基础入门学习之安装环境/" rel="next" title="Redis基础入门学习-安装环境">
+                <i class="fa fa-chevron-left"></i> Redis基础入门学习-安装环境
               </a>
             
           </div>
@@ -654,8 +631,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/开发工具/2018-11-07-Maven中如何管理多模块项目的依赖关系/" rel="prev" title="Maven 中如何管理多模块项目的依赖关系">
-                Maven 中如何管理多模块项目的依赖关系 <i class="fa fa-chevron-right"></i>
+              <a href="/分布式系统/2018-12-05-分布式锁的实现/" rel="prev" title="分布式锁的实现">
+                分布式锁的实现 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -871,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发过程中出现的各类问题整理"><span class="nav-number">1.</span> <span class="nav-text">开发过程中出现的各类问题整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一：IDEA开发中的问题及注意项"><span class="nav-number">1.1.</span> <span class="nav-text">一：IDEA开发中的问题及注意项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IDEA-console出现乱码"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.IDEA console出现乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-IDEA-中spring-boot-多模块项目"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.IDEA 中spring boot 多模块项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二：maven"><span class="nav-number">1.2.</span> <span class="nav-text">二：maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中-project-version-指代的什么版本？"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中${project.version}指代的什么版本？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-maven中怎么将一个空项目编程Spring-Boot项目"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.maven中怎么将一个空项目编程Spring Boot项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三：Java"><span class="nav-number">1.3.</span> <span class="nav-text">三：Java</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么Java的实体类需要实现Serializable接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.为什么Java的实体类需要实现Serializable接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四：Spring"><span class="nav-number">1.4.</span> <span class="nav-text">四：Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-如果spring的版本修改后，和pom的其他依赖不一样，可不可以"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.如果spring的版本修改后，和pom的其他依赖不一样，可不可以</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Spring-boot中自定义的配置怎么加载和读取"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.Spring boot中自定义的配置怎么加载和读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Spring项目中classpath指代哪个路径"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.Spring项目中classpath指代哪个路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Junit集成测试–Mock"><span class="nav-number">1.4.5.</span> <span class="nav-text">5.Junit集成测试–Mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-SpringBoot-多模块项目（module）Service自动注入（-Autowired）"><span class="nav-number">1.4.6.</span> <span class="nav-text">6.SpringBoot 多模块项目（module）Service自动注入（@Autowired）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-SpringBoot如何快速运行Service中的方法"><span class="nav-number">1.4.7.</span> <span class="nav-text">7.SpringBoot如何快速运行Service中的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五：MySQL"><span class="nav-number">1.5.</span> <span class="nav-text">五：MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六：Redis"><span class="nav-number">1.6.</span> <span class="nav-text">六：Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题一-redis-requires-ruby-version-2-2-2"><span class="nav-number">1.6.1.</span> <span class="nav-text">问题一:redis requires ruby version 2.2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><span class="nav-number">1.6.1.1.</span> <span class="nav-text">1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查看rvm库中已知的ruby版本"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">2.查看rvm库中已知的ruby版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装使用一个ruby版本"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">3.安装使用一个ruby版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-常用操作命令"><span class="nav-number">1.6.1.4.</span> <span class="nav-text">4.常用操作命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题二：create-ERR-Slot-9838-is-already-busy错误"><span class="nav-number">1.6.2.</span> <span class="nav-text">问题二：create ERR Slot 9838 is already busy错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题三：redis集群报错Node-is-not-empty"><span class="nav-number">1.6.3.</span> <span class="nav-text">问题三：redis集群报错Node is not empty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题四：Sorry-can’t-connect-to-node"><span class="nav-number">1.6.4.</span> <span class="nav-text">问题四：Sorry, can’t connect to node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><span class="nav-number">1.6.5.</span> <span class="nav-text">问题五：redis集群部署一直卡在Waiting for the cluster to join ……</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七：VSCode"><span class="nav-number">1.7.</span> <span class="nav-text">七：VSCode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-如何快速折叠代码，如何展开代码"><span class="nav-number">1.7.1.</span> <span class="nav-text">1.如何快速折叠代码，如何展开代码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis基础入门学习-主从备份及集群配置"><span class="nav-number">1.</span> <span class="nav-text">Redis基础入门学习-主从备份及集群配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis主从备份"><span class="nav-number">1.1.</span> <span class="nav-text">Redis主从备份</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建Redis节点"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.创建Redis节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-修改配置文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-启动主节点和从节点"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.启动主节点和从节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-验证主从复制"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.验证主从复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis集群"><span class="nav-number">1.2.</span> <span class="nav-text">Redis集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动Redis多个实例"><span class="nav-number">1.2.1.</span> <span class="nav-text">启动Redis多个实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启端口"><span class="nav-number">1.2.2.</span> <span class="nav-text">开启端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Ruby"><span class="nav-number">1.2.3.</span> <span class="nav-text">安装Ruby</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建集群"><span class="nav-number">1.2.4.</span> <span class="nav-text">创建集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录验证"><span class="nav-number">1.2.5.</span> <span class="nav-text">登录验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.2.6.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题一-redis-requires-ruby-version-2-2-2"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">问题一:redis requires ruby version 2.2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><span class="nav-number">1.2.6.1.1.</span> <span class="nav-text">1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-查看rvm库中已知的ruby版本"><span class="nav-number">1.2.6.1.2.</span> <span class="nav-text">2.查看rvm库中已知的ruby版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-安装使用一个ruby版本"><span class="nav-number">1.2.6.1.3.</span> <span class="nav-text">3.安装使用一个ruby版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-常用操作命令"><span class="nav-number">1.2.6.1.4.</span> <span class="nav-text">4.常用操作命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题二：create-ERR-Slot-9838-is-already-busy错误"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">问题二：create ERR Slot 9838 is already busy错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题三：redis集群报错Node-is-not-empty"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">问题三：redis集群报错Node is not empty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题四：Sorry-can’t-connect-to-node"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">问题四：Sorry, can’t connect to node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><span class="nav-number">1.2.6.5.</span> <span class="nav-text">问题五：redis集群部署一直卡在Waiting for the cluster to join ……</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.3.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1034,9 +1011,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nezha.github.io/疑难解惑/2018-10-15-开发过程中出现的各类问题整理/';
-          this.page.identifier = '疑难解惑/2018-10-15-开发过程中出现的各类问题整理/';
-          this.page.title = '开发过程中出现的各类问题整理';
+          this.page.url = 'https://nezha.github.io/数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/';
+          this.page.identifier = '数据库及缓存/2018-11-16-Redis基础入门学习之主从备份及集群配置/';
+          this.page.title = 'Redis基础入门学习-主从备份及集群配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://nezha.disqus.com/embed.js';
