@@ -1448,7 +1448,7 @@ SpringBoot 多模块项
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-11-explain的正确使用方式/">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack·Joney">
@@ -1467,7 +1467,159 @@ SpringBoot 多模块项
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/数据库及缓存/2018-11-11-explain的正确使用方式/" itemprop="url">MySQL优化之-explain的正确使用方式</a></h2>
+                <a class="post-title-link" href="/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/" itemprop="url">MySQL学习笔记—大表优化方案</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T15:56:02+08:00">
+                2018-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库及缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库及缓存</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          当MySQL单表记录数过大时，增删改查性能都会急剧下降，可以参考以下步骤来优化：
+单表优化除非单表数据未来会一直不断上涨，否则不要一开始就考虑拆分，拆分会带来逻辑、部署、运维的各种复杂度，一般以整型值为主的表在千万级以下，字符串为主的表在五百万以下是没有太大问题的。而事实上很多时候MySQL单表的性
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/" itemprop="url">MySQL学习笔记—explain的正确使用方式</a></h2>
         
 
         <div class="post-meta">
@@ -1520,9 +1672,9 @@ SpringBoot 多模块项
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/数据库及缓存/2018-11-11-explain的正确使用方式/#comments" itemprop="discussionUrl">
+                <a href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="数据库及缓存/2018-11-11-explain的正确使用方式/" itemprop="commentCount"></span>
+                        data-disqus-identifier="数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1556,7 +1708,7 @@ SpringBoot 多模块项
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/数据库及缓存/2018-11-11-explain的正确使用方式/#more" rel="contents">
+            <a class="btn" href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1755,160 +1907,6 @@ SpringBoot 多模块项
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/开发工具/2018-11-07-Maven中如何管理多模块项目的依赖关系/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jack·Joney">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NEZHA的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/开发工具/2018-11-07-Maven中如何管理多模块项目的依赖关系/" itemprop="url">Maven 中如何管理多模块项目的依赖关系</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T15:56:02+08:00">
-                2018-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/开发工具/2018-11-07-Maven中如何管理多模块项目的依赖关系/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="开发工具/2018-11-07-Maven中如何管理多模块项目的依赖关系/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Maven 中如何管理多模块项目的依赖关系
-平时在查看项目的过程中，发现包的依赖关系及其随便，在各个子模块中都各自引入相应的依赖包，有些时候重复导入了也不会发觉。在参考alibaba dubbo的源码之后，做出如下总结（别人家的代码 ==！）
-
-12groupId：组织标识，一般为：公司网址的反写+
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/开发工具/2018-11-07-Maven中如何管理多模块项目的依赖关系/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1958,7 +1956,7 @@ SpringBoot 多模块项
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

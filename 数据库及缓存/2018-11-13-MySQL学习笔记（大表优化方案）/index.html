@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="MySQL,数据库优化," />
 
 
 
@@ -94,33 +94,23 @@
 
 
 
-<meta name="description" content="设计模式概括创建型模式 抽象工厂模式(Abstract factory pattern): 提供一个接口, 用于创建相关或依赖对象的家族, 而不需要指定具体类. 生成器模式(Builder pattern): 使用生成器模式封装一个产品的构造过程, 并允许按步骤构造. 将一个复杂对象的构建与它的表示分离, 使得同样的构建过程可以创建不同的表示. 工厂模式(factory method patter">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="当MySQL单表记录数过大时，增删改查性能都会急剧下降，可以参考以下步骤来优化： 单表优化除非单表数据未来会一直不断上涨，否则不要一开始就考虑拆分，拆分会带来逻辑、部署、运维的各种复杂度，一般以整型值为主的表在千万级以下，字符串为主的表在五百万以下是没有太大问题的。而事实上很多时候MySQL单表的性能依然有不少优化空间，甚至能正常支撑千万级以上的数据量 字段1、尽量使用TINYINT、SMALLI">
+<meta name="keywords" content="MySQL,数据库优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式学习笔记-常用设计模式">
-<meta property="og:url" content="https://nezha.github.io/设计模式/2017-05-07-设计模式学习笔记-常用设计模式/index.html">
+<meta property="og:title" content="MySQL学习笔记—大表优化方案">
+<meta property="og:url" content="https://nezha.github.io/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="设计模式概括创建型模式 抽象工厂模式(Abstract factory pattern): 提供一个接口, 用于创建相关或依赖对象的家族, 而不需要指定具体类. 生成器模式(Builder pattern): 使用生成器模式封装一个产品的构造过程, 并允许按步骤构造. 将一个复杂对象的构建与它的表示分离, 使得同样的构建过程可以创建不同的表示. 工厂模式(factory method patter">
+<meta property="og:description" content="当MySQL单表记录数过大时，增删改查性能都会急剧下降，可以参考以下步骤来优化： 单表优化除非单表数据未来会一直不断上涨，否则不要一开始就考虑拆分，拆分会带来逻辑、部署、运维的各种复杂度，一般以整型值为主的表在千万级以下，字符串为主的表在五百万以下是没有太大问题的。而事实上很多时候MySQL单表的性能依然有不少优化空间，甚至能正常支撑千万级以上的数据量 字段1、尽量使用TINYINT、SMALLI">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57j45fqj20px09paa2.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57jh8k3j20pw09m0sr.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57jtpx5j20rd098t8p.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57kb3vcj20ra09st8t.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/9d2c4511gy1fff57kragxj20pu07y3yh.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/9d2c4511gy1fff57l56kkj20pz09ndfu.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fff57lepoxj20pu08gaa2.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57ly7epj20pu08bt8n.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57mi8cjj20pv06s3yi.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57mk30dj20px087gll.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fff57myc97j20pz08gaa6.jpg">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57nmcbdj20q008d74b.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57ntv3oj20pu095aa0.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/9d2c4511gy1fff57o6p4uj20pv0a2mx6.jpg">
-<meta property="og:updated_time" content="2017-05-10T12:22:10.000Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-bee3f155a680ef42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-74cba5b68313b3f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-c59040591f9b4930.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-e13ee5a43b0a4bba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-25T05:29:42.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式学习笔记-常用设计模式">
-<meta name="twitter:description" content="设计模式概括创建型模式 抽象工厂模式(Abstract factory pattern): 提供一个接口, 用于创建相关或依赖对象的家族, 而不需要指定具体类. 生成器模式(Builder pattern): 使用生成器模式封装一个产品的构造过程, 并允许按步骤构造. 将一个复杂对象的构建与它的表示分离, 使得同样的构建过程可以创建不同的表示. 工厂模式(factory method patter">
-<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57j45fqj20px09paa2.jpg">
+<meta name="twitter:title" content="MySQL学习笔记—大表优化方案">
+<meta name="twitter:description" content="当MySQL单表记录数过大时，增删改查性能都会急剧下降，可以参考以下步骤来优化： 单表优化除非单表数据未来会一直不断上涨，否则不要一开始就考虑拆分，拆分会带来逻辑、部署、运维的各种复杂度，一般以整型值为主的表在千万级以下，字符串为主的表在五百万以下是没有太大问题的。而事实上很多时候MySQL单表的性能依然有不少优化空间，甚至能正常支撑千万级以上的数据量 字段1、尽量使用TINYINT、SMALLI">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5354563-bee3f155a680ef42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -148,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="https://nezha.github.io/设计模式/2017-05-07-设计模式学习笔记-常用设计模式/"/>
+  <link rel="canonical" href="https://nezha.github.io/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/"/>
 
 
 
 
 
-  <title>设计模式学习笔记-常用设计模式 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>MySQL学习笔记—大表优化方案 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -381,7 +371,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/设计模式/2017-05-07-设计模式学习笔记-常用设计模式/">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack·Joney">
@@ -398,7 +388,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">设计模式学习笔记-常用设计模式</h2>
+          <h2 class="post-title" itemprop="name headline">MySQL学习笔记—大表优化方案</h2>
         
 
         <div class="post-meta">
@@ -410,8 +400,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-07T15:56:02+08:00">
-                2017-05-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T15:56:02+08:00">
+                2018-11-13
               </time>
             
 
@@ -433,8 +423,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/数据库及缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库及缓存</span>
                   </a>
                 </span>
 
@@ -451,9 +441,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/设计模式/2017-05-07-设计模式学习笔记-常用设计模式/#comments" itemprop="discussionUrl">
+                <a href="/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="设计模式/2017-05-07-设计模式学习笔记-常用设计模式/" itemprop="commentCount"></span>
+                        data-disqus-identifier="数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -483,103 +473,156 @@
       
 
       
-        <h1 id="设计模式概括"><a href="#设计模式概括" class="headerlink" title="设计模式概括"></a>设计模式概括</h1><h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><ol>
-<li><code>抽象工厂模式(Abstract factory pattern)</code>: 提供一个接口, 用于创建相关或依赖对象的家族, 而不需要指定具体类.</li>
-<li><code>生成器模式(Builder pattern)</code>: 使用生成器模式封装一个产品的构造过程, 并允许按步骤构造. 将一个复杂对象的构建与它的表示分离, 使得同样的构建过程可以创建不同的表示.</li>
-<li><code>工厂模式(factory method pattern)</code>: 定义了一个创建对象的接口, 但由子类决定要实例化的类是哪一个. 工厂方法让类把实例化推迟到子类.</li>
-<li><code>原型模式(prototype pattern)</code>: 当创建给定类的实例过程很昂贵或很复杂时, 就使用原形模式.</li>
-<li><code>单例了模式(Singleton pattern)</code>: 确保一个类只有一个实例, 并提供全局访问点.</li>
-<li><code>多例模式(Multition pattern)</code>: 在一个解决方案中结合两个或多个模式, 以解决一般或重复发生的问题.</li>
-</ol>
-<h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><ol>
-<li><code>适配器模式(Adapter pattern)</code>: 将一个类的接口, 转换成客户期望的另一个接口. 适配器让原本接口不兼容的类可以合作无间. 对象适配器使用组合, 类适配器使用多重继承.</li>
-<li><code>桥接模式(Bridge pattern)</code>: 使用桥接模式通过将实现和抽象放在两个不同的类层次中而使它们可以独立改变.</li>
-<li><code>组合模式(composite pattern)</code>: 允许你将对象组合成树形结构来表现”整体/部分”层次结构. 组合能让客户以一致的方式处理个别对象以及对象组合.</li>
-<li><code>装饰者模式(decorator pattern)</code>: 动态地将责任附加到对象上, 若要扩展功能, 装饰者提供了比继承更有弹性的替代方案.</li>
-<li><code>外观模式(facade pattern)</code>: 提供了一个统一的接口, 用来访问子系统中的一群接口. 外观定义了一个高层接口, 让子系统更容易使用.</li>
-<li><code>亨元模式(Flyweight Pattern)</code>: 如想让某个类的一个实例能用来提供许多”虚拟实例”, 就使用蝇量模式.</li>
-<li><code>代理模式(Proxy pattern)</code>: 为另一个对象提供一个替身或占位符以控制对这个对象的访问.</li>
-</ol>
-<h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><ol>
-<li><code>责任链模式(Chain of responsibility pattern)</code>: 通过责任链模式, 你可以为某个请求创建一个对象链. 每个对象依序检查此请求并对其进行处理或者将它传给链中的下一个对象.</li>
-<li><code>命令模式(Command pattern)</code>: 将”请求”封闭成对象, 以便使用不同的请求,队列或者日志来参数化其他对象. 命令模式也支持可撤销的操作.</li>
-<li><code>解释器模式(Interpreter pattern)</code>: 使用解释器模式为语言创建解释器.</li>
-<li><code>迭代器模式(iterator pattern)</code>: 提供一种方法顺序访问一个聚合对象中的各个元素, 而又不暴露其内部的表示.</li>
-<li><code>中介者模式(Mediator pattern)</code> : 使用中介者模式来集中相关对象之间复杂的沟通和控制方式.</li>
-<li><code>备忘录模式(Memento pattern)</code>: 当你需要让对象返回之前的状态时(例如, 你的用户请求”撤销”), 你使用备忘录模式.</li>
-<li><code>观察者模式(observer pattern)</code>: 在对象之间定义一对多的依赖, 这样一来, 当一个对象改变状态, 依赖它的对象都会收到通知, 并自动更新.</li>
-<li><code>状态模式(State pattern)</code>: 允许对象在内部状态改变时改变它的行为, 对象看起来好象改了它的类.</li>
-<li><code>策略模式(strategy pattern)</code>: 定义了算法族, 分别封闭起来, 让它们之间可以互相替换, 此模式让算法的变化独立于使用算法的客户.</li>
-<li><code>模板方法模式(Template pattern)</code>: 在一个方法中定义一个算法的骨架, 而将一些步骤延迟到子类中. 模板方法使得子类可以在不改变算法结构的情况下, 重新定义算法中的某些步骤.</li>
-<li><code>访问者模式(visitor pattern)</code>: 当你想要为一个对象的组合增加新的能力, 且封装并不重要时, 就使用访问者模式.</li>
-</ol>
-<h2 id="七大设计原则："><a href="#七大设计原则：" class="headerlink" title="七大设计原则："></a>七大设计原则：</h2><ol>
-<li>单一职责原则【SINGLE RESPONSIBILITY PRINCIPLE】：一个类负责一项职责.</li>
-<li>里氏替换原则【LISKOV SUBSTITUTION PRINCIPLE】：继承与派生的规则.</li>
-<li>依赖倒置原则【DEPENDENCE INVERSION PRINCIPLE】：高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。即针对接口编程，不要针对实现编程.</li>
-<li>接口隔离原则【INTERFACE SEGREGATION PRINCIPLE】：建立单一接口，不要建立庞大臃肿的接口，尽量细化接口，接口中的方法尽量少.</li>
-<li>迪米特法则【LOW OF DEMETER】：低耦合，高内聚.</li>
-<li>开闭原则【OPEN CLOSE PRINCIPLE】：一个软件实体如类、模块和函数应该对扩展开放，对修改关闭.</li>
-<li>组合/聚合复用原则【Composition/Aggregation Reuse Principle(CARP) 】：尽量使用组合和聚合少使用继承的关系来达到复用的原则.</li>
-</ol>
-<h1 id="常用设计模式总结"><a href="#常用设计模式总结" class="headerlink" title="常用设计模式总结"></a>常用设计模式总结</h1><h2 id="1-策略模式-Strategy"><a href="#1-策略模式-Strategy" class="headerlink" title="1. 策略模式( Strategy )"></a>1. 策略模式( Strategy )</h2><p>定义个策略接口，不同的实现类提供不同的具体策略算法, 同时它们之间可以互相替换.</p>
-<blockquote>
-<p>IStrategy 接口定义了策略方法，Strategy1 和 Strategy2 通过实现 IStrategy 提供不同的策略，而 User 组合了 IStrategy ，可以通过给 User 对象设置不同具体实现类来让其获得不同的策略<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57j45fqj20px09paa2.jpg" alt=""></p>
-</blockquote>
-<h2 id="2-简单工厂模式-Simple-Factory"><a href="#2-简单工厂模式-Simple-Factory" class="headerlink" title="2. 简单工厂模式( Simple Factory )"></a>2. 简单工厂模式( Simple Factory )</h2><p>定义一个用以创建对象的工厂, 根据不同的条件生成不同的对象</p>
-<blockquote>
-<p>注意简单工厂模式与策略模式是不同的，工厂模式是根据给定的条件返回相应的对象，而策略模式是将不同的策略对象传递给使用者以实现不同策略<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57jh8k3j20pw09m0sr.jpg" alt=""></p>
-</blockquote>
-<h2 id="3-工厂模式-Factory"><a href="#3-工厂模式-Factory" class="headerlink" title="3. 工厂模式( Factory )"></a>3. 工厂模式( Factory )</h2><p>针对每一种产品提供一个工厂类，通过不同的工厂实例来创建不同的产品实例</p>
-<blockquote>
-<p>与简单工厂模式不同点是它要为每一种产品提供一个工厂类，不同工厂类实现同一个工厂接口，返回不同产品<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57jtpx5j20rd098t8p.jpg" alt=""></p>
-</blockquote>
-<h2 id="4-抽象工厂模式-Abstract-Factory"><a href="#4-抽象工厂模式-Abstract-Factory" class="headerlink" title="4. 抽象工厂模式( Abstract Factory )"></a>4. 抽象工厂模式( Abstract Factory )</h2><p>应对产品族概念而生</p>
-<blockquote>
-<p>与工厂模式相比，抽象工厂模式是为了应对产品族<br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57kb3vcj20ra09st8t.jpg" alt=""></p>
-</blockquote>
-<h2 id="5-装饰者模式-Decorator"><a href="#5-装饰者模式-Decorator" class="headerlink" title="5. 装饰者模式( Decorator )"></a>5. 装饰者模式( Decorator )</h2><p>动态的给一个对象添加一些额外的功能</p>
-<blockquote>
-<p>ComponentImpl 和 Decorator 类都实现了 IComponent 接口，不同的是 ComponentImpl 提供了具体实现，而 Decorator 是先聚合 ComponentImpl 接着在自己的实现方法即 operation() 方法中做些处理（即装饰）后再调用 ComponentImpl 对象的具体实现<br><img src="http://wx2.sinaimg.cn/mw690/9d2c4511gy1fff57kragxj20pu07y3yh.jpg" alt=""></p>
-</blockquote>
-<h2 id="6-代理模式-Proxy"><a href="#6-代理模式-Proxy" class="headerlink" title="6. 代理模式( Proxy )"></a>6. 代理模式( Proxy )</h2><p>封装被代理对象并限制外界对被代理对象的访问</p>
-<blockquote>
-<p>注意区分<code>装饰者模式</code>和<code>代理模式</code>的区别。在代理模式中，ComponentImpl 和 Proxy 类都实现了 IComponent 接口，Proxy 对象中虽然也维护着一个 ComponentImpl 对象，但一般情况下它是代理类自己初始化的，不像装饰者模式是通过 set 进去的，同时在接口方法即 operation() 中代理对象会限制外界对被代理对象的访问，而装饰者模式是装饰者给被装饰者添加额外的行为<br><img src="http://wx2.sinaimg.cn/mw690/9d2c4511gy1fff57l56kkj20pz09ndfu.jpg" alt=""></p>
-</blockquote>
-<h2 id="7-模板方法模式-Template"><a href="#7-模板方法模式-Template" class="headerlink" title="7. 模板方法模式( Template )"></a>7. 模板方法模式( Template )</h2><p>定义一个操作的算法骨架, 并将一些步骤延迟到子类中</p>
-<blockquote>
-<p>AbsTemplate 抽象类中定义了一系列的方法，其中外界唯一能调用的 <code>operation()</code> 方法是 final 的（即不可重写），在该方法中分别调用了 <code>first()</code> 、<code>second()</code> 、<code>third()</code> 方法（即搭好算法框架），子类通过继承抽象类重写不同的方法来添加各自的行为<br><img src="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fff57lepoxj20pu08gaa2.jpg" alt=""></p>
-</blockquote>
-<h2 id="8-外观模式-Facade"><a href="#8-外观模式-Facade" class="headerlink" title="8. 外观模式( Facade )"></a>8. 外观模式( Facade )</h2><p>为系统向外界提供一个统一的接口</p>
-<blockquote>
-<p>Fracade 为 ComponentA 、ComponentB 、ComponentC 向外即 ClientA 、ClientB 提供统一的接口<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57ly7epj20pu08bt8n.jpg" alt=""></p>
-</blockquote>
-<h2 id="9-适配器模式-Adapter"><a href="#9-适配器模式-Adapter" class="headerlink" title="9. 适配器模式( Adapter )"></a>9. 适配器模式( Adapter )</h2><p>将一个类的接口转换成客户希望的另一个接口</p>
-<blockquote>
-<p>比如项目引入第三方类库后应该先封装起来转换成自己需要的接口再使用，防止以后类库出现变更。AdapterA 先将 LibraryClass 封装起来，其对外提供的 <code>operation()</code> 方法中调用 <code>LibraryClass</code> 对象的方法，若以后换类库，只需改 AdapterA 类或者创建新的 Adapter 实现类即可<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57mi8cjj20pv06s3yi.jpg" alt=""></p>
-</blockquote>
-<h2 id="10-桥接模式-Bridge"><a href="#10-桥接模式-Bridge" class="headerlink" title="10. 桥接模式( Bridge )"></a>10. 桥接模式( Bridge )</h2><p>将抽象部分与实现部分分离，使它们都可以独立的变化</p>
-<blockquote>
-<p>将原本要耦合的上下层抽象出来，上层和下层以组合的方式连接，然后上下层抽象可派生出许多不同方向的子类。<code>AbsShape</code> 封装了 <code>IDrawProgram</code> 接口，这样它的子类想从 DPA 切换到 DPB 或者别的，只需 <code>set</code> 进去就行啦（你看，这 UML 图多像座桥）<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57mk30dj20px087gll.jpg" alt=""></p>
-<p><strong>注:</strong> <a href="http://blog.itpub.net/7243794/viewspace-837018/" target="_blank" rel="external">适配器、桥接与外观三模式之间关系</a></p>
-</blockquote>
-<h2 id="11-建造者模式-Builder"><a href="#11-建造者模式-Builder" class="headerlink" title="11. 建造者模式( Builder )"></a>11. 建造者模式( Builder )</h2><p>将一个复杂对象的构建与它的表示分离.</p>
-<blockquote>
-<p>作为 Product 的内部类，Builder 统一了 Product 的整个构建过程，同时在 build 过程中，可以由于 <code>set</code> 值顺序不同等原因产生不同的效果<br><img src="http://wx3.sinaimg.cn/mw690/9d2c4511gy1fff57myc97j20pz08gaa6.jpg" alt=""></p>
-</blockquote>
-<h2 id="12-观察者模式-Observer"><a href="#12-观察者模式-Observer" class="headerlink" title="12. 观察者模式( Observer )"></a>12. 观察者模式( Observer )</h2><p>定义了一种一对多的依赖关系,让多个观察者对象同时监听某一主题对象,在它的状态发生变化时,会通知所有的观察者.</p>
-<blockquote>
-<p>先将 <code>Observer</code> 注册到 <code>Observable</code> ，那么当 <code>Observable</code> 状态改变时会通知它持有的所有 <code>Observer</code> ,对了，最好 <code>Observable</code> 中的 <code>mList</code> 的泛型是 <code>WeakReference&lt;Observer&gt;</code> ,防止内存泄漏<br><img src="http://wx4.sinaimg.cn/mw690/9d2c4511gy1fff57nmcbdj20q008d74b.jpg" alt=""></p>
-</blockquote>
-<h2 id="13-单例模式-Singleton"><a href="#13-单例模式-Singleton" class="headerlink" title="13. 单例模式( Singleton )"></a>13. 单例模式( Singleton )</h2><p>保证一个类仅有一个实例,并提供一个访问它的全局控制点.</p>
-<blockquote>
-<p>下图是利用 Java 的语言特性实现的线程安全且能延迟初始化的单例模式，Singleton 中维护着静态私有的 SingleHolder 类， SingleHolder 类中持有个静态常量 sHolder ，Client 若通过 getSingleInstance 方法获取 Singleton 对象则直接返回 SingleHolder 类的 sHolder ，详细分析可转我的博客-<a href="https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016-12-17-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">设计模式学习笔记-单例模式</a><br><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1fff57ntv3oj20pu095aa0.jpg" alt=""></p>
-</blockquote>
-<h2 id="14-命令模式-Command"><a href="#14-命令模式-Command" class="headerlink" title="14. 命令模式( Command )"></a>14. 命令模式( Command )</h2><p>将一个请求封装成为一个对象, 使可以用不同的请求对客户进行参数化</p>
-<blockquote>
-<p>Action 封装了具体行为，Command 封装了 Action 并提供空方法 execute() ，它的子类通过重写该方法可在方法里调用 mAction 不同行为达到封装命令的目的，最后 Client 封装了一系列的 Command 对象，并可以通过 notify() 方法一个接着一个调用所持有 Command 对象们的 execute() 方法达到给 Action 传达命令的目的<br><img src="http://wx2.sinaimg.cn/mw690/9d2c4511gy1fff57o6p4uj20pv0a2mx6.jpg" alt=""></p>
-</blockquote>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="http://www.jianshu.com/p/bdf65e4afbb0" target="_blank" rel="external">14种常用设计模式</a><br><a href="http://www.jianshu.com/p/61b67ca754a3" target="_blank" rel="external">java 常用十种设计模式示例归纳</a></p>
+        <p>当MySQL单表记录数过大时，增删改查性能都会急剧下降，可以参考以下步骤来优化：</p>
+<h2 id="单表优化"><a href="#单表优化" class="headerlink" title="单表优化"></a>单表优化</h2><p>除非单表数据未来会一直不断上涨，否则不要一开始就考虑拆分，拆分会带来逻辑、部署、运维的各种复杂度，一般以整型值为主的表在千万级以下，字符串为主的表在五百万以下是没有太大问题的。而事实上很多时候MySQL单表的性能依然有不少优化空间，甚至能正常支撑千万级以上的数据量</p>
+<h2 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h2><p>1、尽量使用TINYINT、SMALLINT、MEDIUM_INT作为整数类型而非INT，如果非负则加上UNSIGNED<br>2、VARCHAR的长度只分配真正需要的空间<br>3、使用枚举或整数代替字符串类型<br>4、尽量使用TIMESTAMP而非DATETIME，<br>5、单表不要有太多字段，建议在20以内<br>6、避免使用NULL字段，很难查询优化且占用额外索引空间<br>7、用整型来存IP</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>1、索引并不是越多越好，要根据查询有针对性的创建，考虑在WHERE和ORDER BY命令上涉及的列建立索引，可根据EXPLAIN来查看是否用了索引还是全表扫描<br>2、应尽量避免在WHERE子句中对字段进行NULL值判断，否则将导致引擎放弃使用索引而进行全表扫描<br>3、值分布很稀少的字段不适合建索引，例如”性别”这种只有两三个值的字段<br>4、字符字段只建前缀索引<br>5、字符字段最好不要做主键<br>6、不用外键，由程序保证约束<br>7、尽量不用UNIQUE，由程序保证约束<br>8、使用多列索引时主意顺序和查询条件保持一致，同时删除不必要的单列索引</p>
+<h2 id="查询SQL"><a href="#查询SQL" class="headerlink" title="查询SQL"></a>查询SQL</h2><p>1、可通过开启慢查询日志来找出较慢的SQL<br>2、不做列运算：SELECT id WHERE age + 1 = 10，任何对列的操作都将导致表扫描，它包括数据库教程函数、计算表达式等等，查询时要尽可能将操作移至等号右边<br>3、sql语句尽可能简单：一条sql只能在一个cpu运算；大语句拆小语句，减少锁时间；一条大sql可以堵死整个库<br>4、不用SELECT *<br>5、OR改写成IN：OR的效率是n级别，IN的效率是log(n)级别，in的个数建议控制在200以内<br>6、不用函数和触发器，在应用程序实现<br>7、避免%xxx式查询<br>8、少用JOIN<br>9、使用同类型进行比较，比如用’123’和’123’比，123和123比<br>10、尽量避免在WHERE子句中使用 != 或 &lt;&gt; 操作符，否则将引擎放弃使用索引而进行全表扫描<br>11、对于连续数值，使用BETWEEN不用IN：SELECT id FROM t WHERE num BETWEEN 1 AND 5<br>12、列表数据不要拿全表，要使用LIMIT来分页，每页数量也不要太大</p>
+<h2 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h2><p>目前广泛使用的是MyISAM和InnoDB两种引擎：</p>
+<p>MyISAM<br>MyISAM引擎是MySQL 5.1及之前版本的默认引擎，它的特点是：</p>
+<p>1、不支持行锁，读取时对需要读到的所有表加锁，写入时则对表加排它锁<br>2、不支持事务<br>3、不支持外键<br>4、不支持崩溃后的安全恢复<br>5、在表有读取查询的同时，支持往表中插入新纪录<br>6、支持BLOB和TEXT的前500个字符索引，支持全文索引<br>7、支持延迟更新索引，极大提升写入性能<br>8、对于不会进行修改的表，支持压缩表，极大减少磁盘空间占用</p>
+<p>InnoDB<br>InnoDB在MySQL 5.5后成为默认索引，它的特点是：</p>
+<p>1、支持行锁，采用MVCC来支持高并发<br>2、支持事务<br>3、支持外键<br>4、支持崩溃后的安全恢复<br>5、不支持全文索引</p>
+<p>总体来讲，MyISAM适合SELECT密集型的表，而InnoDB适合INSERT和UPDATE密集型的表</p>
+<h2 id="系统调优参数"><a href="#系统调优参数" class="headerlink" title="系统调优参数"></a>系统调优参数</h2><p><code>sysbench</code>：一个模块化，跨平台以及多线程的性能测试工具</p>
+<p><code>iibench-mysql</code>：基于 Java 的 MySQL/Percona/MariaDB 索引进行插入性能测试工具</p>
+<p><code>tpcc-mysql</code>：Percona开发的TPC-C测试工具</p>
+<p>具体的调优参数内容较多，具体可参考官方文档，这里介绍一些比较重要的参数：</p>
+<p><code>back_log</code>：<code>back_log</code>值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。也就是说，如果MySql的连接数据达到max_connections时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。可以从默认的50升至500</p>
+<p><code>wait_timeout</code>：数据库连接闲置时间，闲置连接会占用内存资源。可以从默认的8小时减到半小时</p>
+<p><code>max_user_connection</code>:最大连接数，默认为0无上限，最好设一个合理上限thread_concurrency：并发线程数，设为CPU核数的两倍</p>
+<p><code>skip_name_resolve</code>：禁止对外部连接进行DNS解析，消除DNS解析时间，但需要所有远程主机用IP访问</p>
+<p><code>key_buffer_size</code>：索引块的缓存大小，增加会提升索引处理速度，对MyISAM表性能影响最大。对于内存4G左右，可设为256M或384M，通过查询show status like’key_read%’，保证key_reads / key_read_requests在0.1%以下最好</p>
+<p><code>innodb_buffer_pool_size</code>：缓存数据块和索引块，对InnoDB表性能影响最大。通过查询show status like ‘Innodb_buffer_pool_read%’，保证 (Innodb_buffer_pool_read_requests– Innodb_buffer_pool_reads)/ Innodb_buffer_pool_read_requests越高越好</p>
+<p><code>innodb_additional_mem_pool_size</code>：InnoDB存储引擎用来存放数据字典信息以及一些内部数据结构的内存空间大小，当数据库对象非常多的时候，适当调整该参数的大小以确保所有数据都能存放在内存中提高访问效率，当过小的时候，MySQL会记录Warning信息到数据库的错误日志中，这时就需要该调整这个参数大小</p>
+<p><code>innodb_log_buffer_size</code>：InnoDB存储引擎的事务日志所使用的缓冲区，一般来说不建议超过32MB</p>
+<p><code>query_cache_size</code>：缓存MySQL中的ResultSet，也就是一条SQL语句执行的结果集，所以仅仅只能针对select语句。当某个表的数据有任何任何变化，都会导致所有引用了该表的select语句在Query Cache中的缓存数据失效。所以，当我们的数据变化非常频繁的情况下，使用Query Cache可能会得不偿失。根据命中率(Qcache_hits/(Qcache_hits+Qcache_inserts)*100))进行调整，一般不建议太大，256MB可能已经差不多了，大型的配置型静态数据可适当调大.</p>
+<p>可以通过命令<code>show status like &#39;Qcache_%&#39;</code>查看目前系统Query catch使用大小</p>
+<p><code>read_buffer_size</code>：MySql读入缓冲区大小。对表进行顺序扫描的请求将分配一个读入缓冲区，MySql会为它分配一段内存缓冲区。如果对表的顺序扫描请求非常频繁，可以通过增加该变量值以及内存缓冲区大小提高其性能</p>
+<p><code>sort_buffer_size</code>：MySql执行排序使用的缓冲大小。如果想要增加ORDER BY的速度，首先看是否可以让MySQL使用索引而不是额外的排序阶段。如果不能，可以尝试增加sort_buffer_size变量的大小</p>
+<p><code>read_rnd_buffer_size</code>：MySql的随机读缓冲区大小。当按任意顺序读取行时(例如，按照排序顺序)，将分配一个随机读缓存区。进行排序查询时，MySql会首先扫描一遍该缓冲，以避免磁盘搜索，提高查询速度，如果需要排序大量数据，可适当调高该值。但MySql会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大。</p>
+<p><code>record_buffer</code>：每个进行一个顺序扫描的线程为其扫描的每张表分配这个大小的一个缓冲区。如果你做很多顺序扫描，可能想要增加该值</p>
+<p><code>thread_cache_size</code>：保存当前没有与连接关联但是准备为后面新的连接服务的线程，可以快速响应连接的线程请求而无需创建新的</p>
+<p><code>table_cache</code>：类似于thread_cache_size，但用来缓存表文件，对InnoDB效果不大，主要用于MyISAM</p>
+<h2 id="升级硬件"><a href="#升级硬件" class="headerlink" title="升级硬件"></a>升级硬件</h2><p><code>Scale up</code>，这个不多说了，根据MySQL是CPU密集型还是I/O密集型，通过提升CPU和内存、使用SSD，都能显著提升MySQL性能</p>
+<h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><p>也是目前常用的优化，从库读主库写，一般不要采用双主或多主引入很多复杂性，尽量采用文中的其他方案来提高性能。同时目前很多拆分的解决方案同时也兼顾考虑了读写分离</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>缓存可以发生在这些层次：</p>
+<p>MySQL内部：在系统调优参数介绍了相关设置</p>
+<p>数据访问层：比如MyBatis针对SQL语句做缓存，而Hibernate可以精确到单个记录，这里缓存的对象主要是持久化对象Persistence Object</p>
+<p>应用服务层：这里可以通过编程手段对缓存做到更精准的控制和更多的实现策略，这里缓存的对象是数据传输对象Data Transfer Object</p>
+<p>Web层：针对web页面做缓存</p>
+<p>浏览器客户端：用户端的缓存</p>
+<p>可以根据实际情况在一个层次或多个层次结合加入缓存。这里重点介绍下服务层的缓存实现，目前主要有两种方式：</p>
+<p>直写式（Write Through）：在数据写入数据库后，同时更新缓存，维持数据库与缓存的一致性。这也是当前大多数应用缓存框架如Spring Cache的工作方式。这种实现非常简单，同步好，但效率一般。</p>
+<p>回写式（Write Back）：当有数据要写入数据库时，只会更新缓存，然后异步批量的将缓存数据同步到数据库上。这种实现比较复杂，需要较多的应用逻辑，同时可能会产生数据库与缓存的不同步，但效率非常高。</p>
+<h2 id="表分区"><a href="#表分区" class="headerlink" title="表分区"></a>表分区</h2><p>MySQL在5.1版引入的分区是一种简单的水平拆分，用户需要在建表的时候加上分区参数，对应用是透明的无需修改代码</p>
+<p>对用户来说，分区表是一个独立的逻辑表，但是底层由多个物理子表组成，实现分区的代码实际上是通过对一组底层表的对象封装，但对SQL层来说是一个完全封装底层的黑盒子。MySQL实现分区的方式也意味着索引也是按照分区的子表定义，没有全局索引</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-bee3f155a680ef42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>用户的SQL语句是需要针对分区表做优化，SQL条件中要带上分区条件的列，从而使查询定位到少量的分区上，否则就会扫描全部分区，可以通过EXPLAIN PARTITIONS来查看某条SQL语句会落在那些分区上，从而进行SQL优化，如下图5条记录落在两个分区上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; explain partitions select count(1) from user_partition where id in (1,2,3,4,5);</div><div class="line">+----+-------------+----------------+------------+-------+---------------+---------+---------+------+------+--------------------------+</div><div class="line">| id | select_type | table          | partitions | type  | possible_keys | key     | key_len | ref  | rows | Extra                    |</div><div class="line">+----+-------------+----------------+------------+-------+---------------+---------+---------+------+------+--------------------------+</div><div class="line">|  1 | SIMPLE      | user_partition | p1,p4      | range | PRIMARY       | PRIMARY | 8       | NULL |    5 | Using where; Using index |</div><div class="line">+----+-------------+----------------+------------+-------+---------------+---------+---------+------+------+--------------------------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<p>分区的好处是：</p>
+<ul>
+<li><p>可以让单表存储更多的数据</p>
+</li>
+<li><p>分区表的数据更容易维护，可以通过清楚整个分区批量删除大量数据，也可以增加新的分区来支持新插入的数据。另外，还可以对一个独立分区进行优化、检查、修复等操作</p>
+</li>
+<li><p>部分查询能够从查询条件确定只落在少数分区上，速度会很快</p>
+</li>
+<li><p>分区表的数据还可以分布在不同的物理设备上，从而搞笑利用多个硬件设备</p>
+</li>
+<li><p>可以使用分区表赖避免某些特殊瓶颈，例如InnoDB单个索引的互斥访问、ext3文件系统的inode锁竞争</p>
+</li>
+<li><p>可以备份和恢复单个分区</p>
+</li>
+</ul>
+<p>分区的限制和缺点：</p>
+<ul>
+<li><p>一个表最多只能有1024个分区</p>
+</li>
+<li><p>如果分区字段中有主键或者唯一索引的列，那么所有主键列和唯一索引列都必须包含进来</p>
+</li>
+<li><p>分区表无法使用外键约束</p>
+</li>
+<li><p>NULL值会使分区过滤无效</p>
+</li>
+<li><p>所有分区必须使用相同的存储引擎</p>
+</li>
+</ul>
+<p>分区的类型：</p>
+<ul>
+<li><p>RANGE分区：基于属于一个给定连续区间的列值，把多行分配给分区</p>
+</li>
+<li><p>LIST分区：类似于按RANGE分区，区别在于LIST分区是基于列值匹配一个离散值集合中的某个值来进行选择</p>
+</li>
+<li><p>HASH分区：基于用户定义的表达式的返回值来进行选择的分区，该表达式使用将要插入到表中的这些行的列值进行计算。这个函数可以包含MySQL中有效的、产生非负整数值的任何表达式</p>
+</li>
+<li><p>KEY分区：类似于按HASH分区，区别在于KEY分区只支持计算一列或多列，且MySQL服务器提供其自身的哈希函数。必须有一列或多列包含整数值</p>
+</li>
+</ul>
+<p>分区适合的场景有：</p>
+<ul>
+<li>最适合的场景数据的时间序列性比较强，则可以按时间来分区，如下所示：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">CREATE TABLE members (</div><div class="line">    firstname VARCHAR(25) NOT NULL,</div><div class="line">    lastname VARCHAR(25) NOT NULL,</div><div class="line">    username VARCHAR(16) NOT NULL,</div><div class="line">    email VARCHAR(35),</div><div class="line">    joined DATE NOT NULL</div><div class="line">)</div><div class="line">PARTITION BY RANGE( YEAR(joined) ) (</div><div class="line">    PARTITION p0 VALUES LESS THAN (1960),</div><div class="line">    PARTITION p1 VALUES LESS THAN (1970),</div><div class="line">    PARTITION p2 VALUES LESS THAN (1980),</div><div class="line">    PARTITION p3 VALUES LESS THAN (1990),</div><div class="line">    PARTITION p4 VALUES LESS THAN MAXVALUE</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>查询时加上时间范围条件效率会非常高，同时对于不需要的历史数据能很容的批量删除。</p>
+<ul>
+<li>如果数据有明显的热点，而且除了这部分数据，其他数据很少被访问到，那么可以将热点数据单独放在一个分区，让这个分区的数据能够有机会都缓存在内存中，查询时只访问一个很小的分区表，能够有效使用索引和缓存</li>
+</ul>
+<p>另外MySQL有一种早期的简单的分区实现 - 合并表（merge table），限制较多且缺乏优化，不建议使用，应该用新的分区机制来替代</p>
+<h2 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h2><p>垂直分库是根据数据库里面的数据表的相关性进行拆分，比如：一个数据库里面既存在用户数据，又存在订单数据，那么垂直拆分可以把用户数据放到用户库、把订单数据放到订单库。垂直分表是对数据表进行垂直拆分的一种方式，常见的是把一个多字段的大表按常用字段和非常用字段进行拆分，每个表里面的数据记录数一般情况下是相同的，只是字段不一样，使用主键关联</p>
+<p>比如原始的用户表是：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-74cba5b68313b3f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>垂直拆分后是：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5354563-c59040591f9b4930.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>垂直拆分的优点是：</p>
+<ul>
+<li><p>可以使得行数据变小，一个数据块(Block)就能存放更多的数据，在查询时就会减少I/O次数(每次查询时读取的Block 就少)</p>
+</li>
+<li><p>可以达到最大化利用Cache的目的，具体在垂直拆分的时候可以将不常变的字段放一起，将经常改变的放一起</p>
+</li>
+<li><p>数据维护简单</p>
+</li>
+</ul>
+<p>缺点是：</p>
+<ul>
+<li><p>主键出现冗余，需要管理冗余列</p>
+</li>
+<li><p>会引起表连接JOIN操作（增加CPU开销）可以通过在业务服务器上进行join来减少数据库压力</p>
+</li>
+<li><p>依然存在单表数据量过大的问题（需要水平拆分）</p>
+</li>
+<li><p>事务处理复杂</p>
+</li>
+</ul>
+<h2 id="水平拆分"><a href="#水平拆分" class="headerlink" title="水平拆分"></a>水平拆分</h2><p>概述<br>水平拆分是通过某种策略将数据分片来存储，分库内分表和分库两部分，每片数据会分散到不同的MySQL表或库，达到分布式的效果，能够支持非常大的数据量。前面的表分区本质上也是一种特殊的库内分表</p>
+<p>库内分表，仅仅是单纯的解决了单一表数据过大的问题，由于没有把表的数据分布到不同的机器上，因此对于减轻MySQL服务器的压力来说，并没有太大的作用，大家还是竞争同一个物理机上的IO、CPU、网络，这个就要通过分库来解决</p>
+<p>前面垂直拆分的用户表如果进行水平拆分，结果是：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-e13ee5a43b0a4bba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>实际情况中往往会是垂直拆分和水平拆分的结合，即将Users_A_M和Users_N_Z再拆成Users和UserExtras，这样一共四张表</p>
+<p>水平拆分的优点是:</p>
+<ul>
+<li><p>不存在单库大数据和高并发的性能瓶颈</p>
+</li>
+<li><p>应用端改造较少</p>
+</li>
+<li><p>提高了系统的稳定性和负载能力</p>
+</li>
+</ul>
+<p>缺点是：</p>
+<ul>
+<li><p>分片事务一致性难以解决</p>
+</li>
+<li><p>跨节点Join性能差，逻辑复杂</p>
+</li>
+<li><p>数据多次扩展难度跟维护量极大</p>
+</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><p><a href="https://mp.weixin.qq.com/s/Z5jqnl_VnCDvbnYdboLw2A" target="_blank" rel="external">MySQL大表优化方案</a></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000006158186" target="_blank" rel="external">https://segmentfault.com/a/1190000006158186</a></p>
+</li>
+</ul>
 
       
     </div>
@@ -630,7 +673,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/数据库优化/" rel="tag"># 数据库优化</a>
           
         </div>
       
@@ -643,8 +688,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/笔记/2017-05-05-Hexo部署笔记/" rel="next" title="从Jekyll到Hexo">
-                <i class="fa fa-chevron-left"></i> 从Jekyll到Hexo
+              <a href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/" rel="next" title="MySQL学习笔记—explain的正确使用方式">
+                <i class="fa fa-chevron-left"></i> MySQL学习笔记—explain的正确使用方式
               </a>
             
           </div>
@@ -653,8 +698,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/设计模式/2017-05-08-设计模式学习笔记-策略模式/" rel="prev" title="设计模式学习笔记-策略模式">
-                设计模式学习笔记-策略模式 <i class="fa fa-chevron-right"></i>
+              <a href="/数据库及缓存/2018-11-14-Redis基础入门学习之安装环境/" rel="prev" title="Redis基础入门学习-安装环境">
+                Redis基础入门学习-安装环境 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -870,7 +915,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式概括"><span class="nav-number">1.</span> <span class="nav-text">设计模式概括</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建型模式"><span class="nav-number">1.1.</span> <span class="nav-text">创建型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构型模式"><span class="nav-number">1.2.</span> <span class="nav-text">结构型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行为型模式"><span class="nav-number">1.3.</span> <span class="nav-text">行为型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七大设计原则："><span class="nav-number">1.4.</span> <span class="nav-text">七大设计原则：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用设计模式总结"><span class="nav-number">2.</span> <span class="nav-text">常用设计模式总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-策略模式-Strategy"><span class="nav-number">2.1.</span> <span class="nav-text">1. 策略模式( Strategy )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-简单工厂模式-Simple-Factory"><span class="nav-number">2.2.</span> <span class="nav-text">2. 简单工厂模式( Simple Factory )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-工厂模式-Factory"><span class="nav-number">2.3.</span> <span class="nav-text">3. 工厂模式( Factory )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-抽象工厂模式-Abstract-Factory"><span class="nav-number">2.4.</span> <span class="nav-text">4. 抽象工厂模式( Abstract Factory )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-装饰者模式-Decorator"><span class="nav-number">2.5.</span> <span class="nav-text">5. 装饰者模式( Decorator )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-代理模式-Proxy"><span class="nav-number">2.6.</span> <span class="nav-text">6. 代理模式( Proxy )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-模板方法模式-Template"><span class="nav-number">2.7.</span> <span class="nav-text">7. 模板方法模式( Template )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-外观模式-Facade"><span class="nav-number">2.8.</span> <span class="nav-text">8. 外观模式( Facade )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-适配器模式-Adapter"><span class="nav-number">2.9.</span> <span class="nav-text">9. 适配器模式( Adapter )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-桥接模式-Bridge"><span class="nav-number">2.10.</span> <span class="nav-text">10. 桥接模式( Bridge )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-建造者模式-Builder"><span class="nav-number">2.11.</span> <span class="nav-text">11. 建造者模式( Builder )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-观察者模式-Observer"><span class="nav-number">2.12.</span> <span class="nav-text">12. 观察者模式( Observer )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-单例模式-Singleton"><span class="nav-number">2.13.</span> <span class="nav-text">13. 单例模式( Singleton )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-命令模式-Command"><span class="nav-number">2.14.</span> <span class="nav-text">14. 命令模式( Command )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">2.15.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单表优化"><span class="nav-number">1.</span> <span class="nav-text">单表优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段"><span class="nav-number">2.</span> <span class="nav-text">字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">3.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询SQL"><span class="nav-number">4.</span> <span class="nav-text">查询SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引擎"><span class="nav-number">5.</span> <span class="nav-text">引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统调优参数"><span class="nav-number">6.</span> <span class="nav-text">系统调优参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级硬件"><span class="nav-number">7.</span> <span class="nav-text">升级硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写分离"><span class="nav-number">8.</span> <span class="nav-text">读写分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">9.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表分区"><span class="nav-number">10.</span> <span class="nav-text">表分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直拆分"><span class="nav-number">11.</span> <span class="nav-text">垂直拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平拆分"><span class="nav-number">12.</span> <span class="nav-text">水平拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">13.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -1033,9 +1078,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nezha.github.io/设计模式/2017-05-07-设计模式学习笔记-常用设计模式/';
-          this.page.identifier = '设计模式/2017-05-07-设计模式学习笔记-常用设计模式/';
-          this.page.title = '设计模式学习笔记-常用设计模式';
+          this.page.url = 'https://nezha.github.io/数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/';
+          this.page.identifier = '数据库及缓存/2018-11-13-MySQL学习笔记（大表优化方案）/';
+          this.page.title = 'MySQL学习笔记—大表优化方案';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://nezha.disqus.com/embed.js';
