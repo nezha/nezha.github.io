@@ -1,0 +1,1459 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开发问题,问题解决,百宝箱," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="开发过程中出现的各类问题整理  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/u/a5153fbb0434  一：IDEA开发中的问题及注意项1.IDEA console出现乱码 1.修改IDEA的配置文件   打开Intellij的安装的bin目录，找到ide">
+<meta name="keywords" content="开发问题,问题解决,百宝箱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发过程中出现的各类问题整理">
+<meta property="og:url" content="https://nezha.github.io/疑难解惑/2018-12-06-开发过程中出现的各类问题整理/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="开发过程中出现的各类问题整理  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/u/a5153fbb0434  一：IDEA开发中的问题及注意项1.IDEA console出现乱码 1.修改IDEA的配置文件   打开Intellij的安装的bin目录，找到ide">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1072889/201703/1072889-20170329113230061-1048865608.png">
+<meta property="og:updated_time" content="2019-01-06T14:40:49.180Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开发过程中出现的各类问题整理">
+<meta name="twitter:description" content="开发过程中出现的各类问题整理  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/u/a5153fbb0434  一：IDEA开发中的问题及注意项1.IDEA console出现乱码 1.修改IDEA的配置文件   打开Intellij的安装的bin目录，找到ide">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1072889/201703/1072889-20170329113230061-1048865608.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/疑难解惑/2018-12-06-开发过程中出现的各类问题整理/"/>
+
+
+
+
+
+  <title>开发过程中出现的各类问题整理 | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802895-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e36a5f1b7fce2cdc801ec7f34a839055";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62065685";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1275379034&web_id=1275379034" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Coding是件有趣的事！</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/疑难解惑/2018-12-06-开发过程中出现的各类问题整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">开发过程中出现的各类问题整理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T15:56:02+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/疑难解惑/" itemprop="url" rel="index">
+                    <span itemprop="name">疑难解惑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/疑难解惑/2018-12-06-开发过程中出现的各类问题整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="疑难解惑/2018-12-06-开发过程中出现的各类问题整理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>人次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>开发过程中出现的各类问题整理</code></p>
+<ul>
+<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a>，<a href="https://nezhaxiaozi.coding.me" target="_blank" rel="external">https://nezhaxiaozi.coding.me</a></li>
+<li>我的简书地址：<a href="https://www.jianshu.com/u/a5153fbb0434" target="_blank" rel="external">https://www.jianshu.com/u/a5153fbb0434</a></li>
+</ul>
+<h2 id="一：IDEA开发中的问题及注意项"><a href="#一：IDEA开发中的问题及注意项" class="headerlink" title="一：IDEA开发中的问题及注意项"></a>一：IDEA开发中的问题及注意项</h2><h3 id="1-IDEA-console出现乱码"><a href="#1-IDEA-console出现乱码" class="headerlink" title="1.IDEA console出现乱码"></a>1.IDEA console出现乱码</h3><ul>
+<li>1.修改IDEA的配置文件</li>
+</ul>
+<blockquote>
+<p>打开Intellij的安装的bin目录，找到<code>idea.exe.vmoptions</code>和<code>idea64.exe.vmoptions</code>两个文件（根据你的系统是32位或64位选择其中一个配置文件），在配置文件中添加：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Dfile.encoding=UTF-8</div></pre></td></tr></table></figure>
+<ul>
+<li>2.配置项目编码及IDE编码</li>
+</ul>
+<blockquote>
+<p>进入settings，选择File Encodings，把IDE Encoding和Project Encoding配置为UTF-8，同时将下面的Default encoding for properties files也配置为UTF-8。</p>
+</blockquote>
+<p><img src="https://images2015.cnblogs.com/blog/1072889/201703/1072889-20170329113230061-1048865608.png" alt=""></p>
+<ul>
+<li>3.配置项目启动服务器参数，在tomcat配置中</li>
+</ul>
+<p>在VM options 项中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Dfile.encoding=UTF-8</div></pre></td></tr></table></figure>
+<h3 id="2-IDEA-中spring-boot-多模块项目"><a href="#2-IDEA-中spring-boot-多模块项目" class="headerlink" title="2.IDEA 中spring boot 多模块项目"></a>2.IDEA 中spring boot 多模块项目</h3><p>SpringBoot多模块项目实践（Multi-Module）-<a href="https://segmentfault.com/a/1190000011367492" target="_blank" rel="external">https://segmentfault.com/a/1190000011367492</a></p>
+<h2 id="二：maven"><a href="#二：maven" class="headerlink" title="二：maven"></a>二：maven</h2><h3 id="1-maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中-project-version-指代的什么版本？"><a href="#1-maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中-project-version-指代的什么版本？" class="headerlink" title="1.maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中${project.version}指代的什么版本？"></a>1.maven中引用父类<code>pom</code>时，怎么在子模块中引入父类包？还有子模块中${project.version}指代的什么版本？</h3><p>这个可以参考我的博客，[<strong>关于多模块项目中的依赖管理</strong>]<a href="https://nezhaxiaozi.coding.me/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2018-11-07-Maven%E4%B8%AD%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/" target="_blank" rel="external">https://nezhaxiaozi.coding.me/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2018-11-07-Maven%E4%B8%AD%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%A4%9A%E6%A8%A1%E5%9D%97%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB/</a></p>
+<h3 id="2-maven中怎么将一个空项目编程Spring-Boot项目"><a href="#2-maven中怎么将一个空项目编程Spring-Boot项目" class="headerlink" title="2.maven中怎么将一个空项目编程Spring Boot项目"></a>2.maven中怎么将一个空项目编程Spring Boot项目</h3><ul>
+<li>1.首先是增加依赖包，主要是<code>spring-boot-starter</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>2.在<code>resources</code>的文件夹中增加配置文件<code>application.properties</code></li>
+</ul>
+<blockquote>
+<p>这个一般是spring boot有默认的文件名</p>
+</blockquote>
+<ul>
+<li>3.在包路径根目录下增加Spring Boot启动类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.nezha.learn.demo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</div><div class="line"></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoRedisApplication</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(DemoRedisApplication.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>4.如果需要使用测试类，可以增加同样的包路径和注解</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.nezha.learn.demo;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</div><div class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</div><div class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</div><div class="line"></div><div class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</div><div class="line"><span class="meta">@SpringBootTest</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoRedisApplicationTest</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="三：Java"><a href="#三：Java" class="headerlink" title="三：Java"></a>三：Java</h2><h3 id="1-为什么Java的实体类需要实现Serializable接口"><a href="#1-为什么Java的实体类需要实现Serializable接口" class="headerlink" title="1.为什么Java的实体类需要实现Serializable接口"></a>1.为什么Java的实体类需要实现Serializable接口</h3><p><strong>参考文献：Java类中serialversionuid 作用 是什么?举个例子说明<a href="https://www.cnblogs.com/duanxz/p/3511695.html" target="_blank" rel="external">https://www.cnblogs.com/duanxz/p/3511695.html</a></strong></p>
+<blockquote>
+<p>Java的序列化机制是通过判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体类的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常，即是InvalidCastException。</p>
+</blockquote>
+<h2 id="四：Spring"><a href="#四：Spring" class="headerlink" title="四：Spring"></a>四：Spring</h2><h3 id="1-为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）"><a href="#1-为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）" class="headerlink" title="1.为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）"></a>1.为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）</h3><blockquote>
+<p>Spring Boot 注入接口 @Autowired interface:<a href="https://www.jianshu.com/p/3942cce05f71" target="_blank" rel="external">https://www.jianshu.com/p/3942cce05f71</a></p>
+</blockquote>
+<h3 id="2-如果spring的版本修改后，和pom的其他依赖不一样，可不可以"><a href="#2-如果spring的版本修改后，和pom的其他依赖不一样，可不可以" class="headerlink" title="2.如果spring的版本修改后，和pom的其他依赖不一样，可不可以"></a>2.如果spring的版本修改后，和pom的其他依赖不一样，可不可以</h3><blockquote>
+<p>这个一般都是统一管理依赖版本的，依赖版本不一致很有可能出现各种错误的</p>
+</blockquote>
+<h3 id="3-Spring-boot中自定义的配置怎么加载和读取"><a href="#3-Spring-boot中自定义的配置怎么加载和读取" class="headerlink" title="3.Spring boot中自定义的配置怎么加载和读取"></a>3.Spring boot中自定义的配置怎么加载和读取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.第一种方式，如果直接使用xml方式的话</span></div><div class="line"><span class="meta">@ImportResource</span>(<span class="string">"classpath:dubbo/consumer.xml"</span>)</div><div class="line"><span class="comment">//2.第二种方式</span></div><div class="line"><span class="meta">@Configuration</span></div><div class="line"><span class="meta">@PropertySource</span>(<span class="string">"classpath:dubbo.properties"</span>)</div><div class="line"><span class="meta">@ImportResource</span>(&#123;<span class="string">"classpath:dubbo/*.xml"</span>&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertiesConfig</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-Spring项目中classpath指代哪个路径"><a href="#4-Spring项目中classpath指代哪个路径" class="headerlink" title="4.Spring项目中classpath指代哪个路径"></a>4.Spring项目中classpath指代哪个路径</h3><p>[Java][MyBatis]mapperLocations属性通配符的使用- <a href="https://blog.csdn.net/szwangdf/article/details/23432783" target="_blank" rel="external">https://blog.csdn.net/szwangdf/article/details/23432783</a></p>
+<h3 id="5-Junit集成测试–Mock"><a href="#5-Junit集成测试–Mock" class="headerlink" title="5.Junit集成测试–Mock"></a>5.<strong>Junit集成测试–Mock</strong></h3><ol>
+<li><a href="http://sishuok.com/forum/blogPost/list/7981.html" target="_blank" rel="external">http://sishuok.com/forum/blogPost/list/7981.html</a></li>
+<li><a href="http://www.cnblogs.com/0201zcr/p/5756642.html" target="_blank" rel="external">http://www.cnblogs.com/0201zcr/p/5756642.html</a></li>
+</ol>
+<p><strong>Junit 按顺序排序</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@FixMethodOrder(MethodSorters.DEFAULT)</div></pre></td></tr></table></figure>
+<h3 id="6-SpringBoot-多模块项目（module）Service自动注入（-Autowired）"><a href="#6-SpringBoot-多模块项目（module）Service自动注入（-Autowired）" class="headerlink" title="6.SpringBoot 多模块项目（module）Service自动注入（@Autowired）"></a>6.SpringBoot 多模块项目（module）Service自动注入（<code>@Autowired</code>）</h3><blockquote>
+<p>SpringBoot 多模块项目（module）Service自动注入（@Autowired）<a href="https://blog.csdn.net/machuang30508/article/details/78616501" target="_blank" rel="external">https://blog.csdn.net/machuang30508/article/details/78616501</a><br>SpringBoot中Service自动注入很方便，例：</p>
+</blockquote>
+<ul>
+<li><code>Service.class</code>（接口类）</li>
+<li><code>ServiceImpl.class</code>（实现类）</li>
+<li><code>Controller.class</code>（使用类）<br>用以上三个类来说一下自动注入：</li>
+</ul>
+<p><strong>单项目：分别<code>ServiceImpl</code>头上<code>@Service</code>，<code>Controller</code>中<code>Service</code>对象<code>@Autowired</code>即可享用；</strong></p>
+<p>Multi modules 场景，三个（种）类分别在三个module下：</p>
+<ul>
+<li><code>moduleA</code> : <code>Service.class</code>（com.example.moduleA ）</li>
+<li><code>moduleB</code> : <code>ServiceImpl.class</code> ( com.example.moduleB )</li>
+<li><code>moduleC</code> : <code>Controller.class</code> ( com.example.moduleC )</li>
+</ul>
+<blockquote>
+<p>此时B依赖A，C依赖A、B，添加好依赖关系。</p>
+</blockquote>
+<p>如何自动注入？接口、实现、使用类，姿势不变,按单项目方式写即可;</p>
+<p>如果你已经试过<code>scanBasePackages</code>，无论是在<code>@SpringBootApplication</code>方式还是<code>@ComponentScan</code>；<br>抑或试过<code>@SpringBootApplication</code>、<code>@ComponentScan</code>同时用，当你这么做时，一定是绝望的。</p>
+<p>解决办法:<strong><code>@SpringBootApplictaion(scanBasePackages=&quot;com.example&quot;)</code></strong><br>核心就是：<br><strong><code>Service</code> 及 <code>ServiceImpl</code>均需在<code>com.example</code>包下</strong></p>
+<p>因为<code>Service</code>、<code>ServiceImpl</code>同在<code>com.example</code>下（C可以不在），所以我看作是同一次scan过程；<br>当然（<code>@ComponentScan=&quot;com.example&quot;</code>）也是可以的，因为前者<code>@SpringBootApplication</code>已经包含<code>@ComponentScan</code>；</p>
+<h3 id="7-SpringBoot如何快速运行Service中的方法"><a href="#7-SpringBoot如何快速运行Service中的方法" class="headerlink" title="7.SpringBoot如何快速运行Service中的方法"></a>7.SpringBoot如何快速运行<code>Service</code>中的方法</h3><blockquote>
+<p><code>ApplicationContext</code>的主要实现类是<code>ClassPathXmlApplicationContext</code>和<code>FileSystemXmlApplicationContext</code>,前者默认从类路径加载配置文件，后者默认从文件系统加载文件。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoRedisApplication</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        ApplicationContext ctx = SpringApplication.run(DemoRedisApplication.class, args);</div><div class="line">        UseRedisDemo useRedisDemo = ctx.getBean(UseRedisDemo.class);</div><div class="line">        useRedisDemo.say(<span class="string">"nezha"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="8-Spring中关于如何读取自定义的配置属性"><a href="#8-Spring中关于如何读取自定义的配置属性" class="headerlink" title="8.Spring中关于如何读取自定义的配置属性"></a>8.Spring中关于如何读取自定义的配置属性</h3><blockquote>
+<p>咱们可以参考读取<code>application.properties</code>的三种方式：<a href="https://blog.csdn.net/qq_37171353/article/details/78005845" target="_blank" rel="external">https://blog.csdn.net/qq_37171353/article/details/78005845</a></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Autowired</span></div><div class="line"><span class="keyword">private</span> Environment env;</div><div class="line"></div><div class="line"><span class="comment">//然后读取</span></div><div class="line">env.getProperty(<span class="string">"lua.lockScript"</span>);</div></pre></td></tr></table></figure>
+<h3 id="9-Spring中如何获取上下文信息"><a href="#9-Spring中如何获取上下文信息" class="headerlink" title="9.Spring中如何获取上下文信息"></a>9.Spring中如何获取上下文信息</h3><blockquote>
+<p>可以通过实现<code>ApplicationContextAware</code>接口的方式获取<code>ApplicationContext</code>.</p>
+</blockquote>
+<p>参考文献：<a href="第三十二章：如何获取SpringBoot项目的applicationContext对象">https://www.jianshu.com/p/3cd2d4e73eb7</a></p>
+<h2 id="五：MySQL"><a href="#五：MySQL" class="headerlink" title="五：MySQL"></a>五：MySQL</h2><h2 id="六：Redis"><a href="#六：Redis" class="headerlink" title="六：Redis"></a>六：Redis</h2><h3 id="问题一-redis-requires-ruby-version-2-2-2"><a href="#问题一-redis-requires-ruby-version-2-2-2" class="headerlink" title="问题一:redis requires ruby version 2.2.2"></a>问题一:<code>redis requires ruby version 2.2.2</code></h3><blockquote>
+<p>参考文献：redis requires ruby version 2.2.2的解决方案：<a href="https://www.jianshu.com/p/72443fef9554" target="_blank" rel="external">https://www.jianshu.com/p/72443fef9554</a></p>
+</blockquote>
+<p>做<code>Redis</code>的<code>Cluster</code>集群的时候，在执行<code>gem install redis</code>时，提示如下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem install redis</div><div class="line">    ERROR:  Error installing redis:</div><div class="line">     redis requires Ruby version &gt;= 2.2.2.</div></pre></td></tr></table></figure>
+<h4 id="1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><a href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）：" class="headerlink" title="1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）："></a>1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gpg --keyserver hkp://keys.gnupg.net --recv-keys </div><div class="line">curl <span class="_">-s</span>SL https://get.rvm.io | bash <span class="_">-s</span> stable</div><div class="line">find / -name rvm -print</div><div class="line"><span class="built_in">source</span> /usr/<span class="built_in">local</span>/rvm/scripts/rvm</div></pre></td></tr></table></figure>
+<h4 id="2-查看rvm库中已知的ruby版本"><a href="#2-查看rvm库中已知的ruby版本" class="headerlink" title="2.查看rvm库中已知的ruby版本"></a>2.查看rvm库中已知的ruby版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@linux ~]# rvm list known</div><div class="line">　　　　MRI Rubies</div><div class="line">　　　　[ruby-]1.8.6[-p420]</div><div class="line">　　　　[ruby-]1.8.7[-head] # security released on head</div><div class="line">　　　　[ruby-]1.9.1[-p431]</div><div class="line">　　　　[ruby-]1.9.2[-p330]</div><div class="line">　　　　[ruby-]1.9.3[-p551]</div><div class="line">　　　　[ruby-]2.0.0[-p648]</div><div class="line">      ....</div></pre></td></tr></table></figure>
+<h4 id="3-安装使用一个ruby版本"><a href="#3-安装使用一个ruby版本" class="headerlink" title="3.安装使用一个ruby版本"></a>3.安装使用一个ruby版本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rvm install 2.4.1</div><div class="line">rvm use 2.4.1</div></pre></td></tr></table></figure>
+<h4 id="4-常用操作命令"><a href="#4-常用操作命令" class="headerlink" title="4.常用操作命令"></a>4.常用操作命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置默认版本</span></div><div class="line">rvm use 2.4.1 --default</div><div class="line"><span class="comment"># 卸载一个已知版本：</span></div><div class="line">rvm remove 2.3.4</div><div class="line"><span class="comment"># 查看ruby版本：</span></div><div class="line">ruby --version</div><div class="line"><span class="comment"># 安装redis：</span></div><div class="line">gem install redis</div></pre></td></tr></table></figure>
+<h3 id="问题二：create-ERR-Slot-9838-is-already-busy错误"><a href="#问题二：create-ERR-Slot-9838-is-already-busy错误" class="headerlink" title="问题二：create ERR Slot 9838 is already busy错误"></a>问题二：create ERR Slot 9838 is already busy错误</h3><p><a href="https://www.oschina.net/question/1031396_246716" target="_blank" rel="external">https://www.oschina.net/question/1031396_246716</a></p>
+<blockquote>
+<p><code>用redis-cli登录到每个节点执行flushall和cluster reset就可以了</code></p>
+</blockquote>
+<h3 id="问题三：redis集群报错Node-is-not-empty"><a href="#问题三：redis集群报错Node-is-not-empty" class="headerlink" title="问题三：redis集群报错Node is not empty"></a>问题三：redis集群报错Node is not empty</h3><p><a href="https://www.jianshu.com/p/338bc2a74300" target="_blank" rel="external">https://www.jianshu.com/p/338bc2a74300</a></p>
+<blockquote>
+<p><code>1)将每个节点下aof、rdb、nodes.conf本地备份文件删除；</code><br><code>2)172.168.63.201:7001&gt; flushdb #清空当前数据库(可省略)</code><br><code>3)之后再执行脚本，成功执行；</code></p>
+</blockquote>
+<h3 id="问题四：Sorry-can’t-connect-to-node"><a href="#问题四：Sorry-can’t-connect-to-node" class="headerlink" title="问题四：Sorry, can’t connect to node"></a>问题四：Sorry, can’t connect to node</h3><p><a href="https://blog.csdn.net/xiaobo060/article/details/80616718" target="_blank" rel="external">https://blog.csdn.net/xiaobo060/article/details/80616718</a></p>
+<blockquote>
+<p><code>因为redis设置了密码</code><br>需要修改<code>/usr/local/rvm/gems/ruby-2.4.1/gems/redis-4.0.1/lib/redis/client.rb</code></p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">DEFAULTS = &#123;</div><div class="line">  <span class="symbol">:url</span> =&gt; lambda &#123; ENV[<span class="string">"REDIS_URL"</span>] &#125;,</div><div class="line">  <span class="symbol">:scheme</span> =&gt; <span class="string">"redis"</span>,</div><div class="line">  <span class="symbol">:host</span> =&gt; <span class="string">"127.0.0.1"</span>,</div><div class="line">  <span class="symbol">:port</span> =&gt; <span class="number">6379</span>,</div><div class="line">  <span class="symbol">:path</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:timeout</span> =&gt; <span class="number">5.0</span>,</div><div class="line">  <span class="symbol">:password</span> =&gt; <span class="string">"xxxxxx"</span>,</div><div class="line">  <span class="symbol">:db</span> =&gt; <span class="number">0</span>,</div><div class="line">  <span class="symbol">:driver</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:id</span> =&gt; <span class="literal">nil</span>,</div><div class="line">  <span class="symbol">:tcp_keepalive</span> =&gt; <span class="number">0</span>,</div><div class="line">  <span class="symbol">:reconnect_attempts</span> =&gt; <span class="number">1</span>,</div><div class="line">  <span class="symbol">:inherit_socket</span> =&gt; <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><a href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……" class="headerlink" title="问题五：redis集群部署一直卡在Waiting for the cluster to join ……"></a>问题五：redis集群部署一直卡在Waiting for the cluster to join ……</h3><p>在集群的时候<code>redis-trib.rb  create  --replicas  1</code>一直在等待，网上的那些好多都不靠谱！<strong>使用cluster meet ip port命令根本是无效的</strong></p>
+<p>同时，很少有博客提到redis集群总线的内容，都是叫你关闭防火墙，实际生产中谁会这么做？最后，感慨一句，还是官方文档最有用！</p>
+<blockquote>
+<p><code>redis集群总线端口为redis客户端端口加上10000，比如说你的redis 6379端口为客户端通讯端口，那么16379端口为集群总线端口</code></p>
+</blockquote>
+<h2 id="七：VSCode"><a href="#七：VSCode" class="headerlink" title="七：VSCode"></a>七：VSCode</h2><h3 id="1-如何快速折叠代码，如何展开代码"><a href="#1-如何快速折叠代码，如何展开代码" class="headerlink" title="1.如何快速折叠代码，如何展开代码"></a>1.如何快速折叠代码，如何展开代码</h3><p><code>折叠</code> –&gt;&gt;  <code>command+k+0</code><br><code>展开</code> –&gt;&gt;  <code>command+k+j</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/Wechatpay.jpeg" alt="Jack·Joney WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpeg" alt="Jack·Joney Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发问题/" rel="tag"># 开发问题</a>
+          
+            <a href="/tags/问题解决/" rel="tag"># 问题解决</a>
+          
+            <a href="/tags/百宝箱/" rel="tag"># 百宝箱</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/分布式系统/2018-12-05-分布式锁的实现/" rel="next" title="分布式锁的实现">
+                <i class="fa fa-chevron-left"></i> 分布式锁的实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Dubbo/2018-12-08-Dubbo学习笔记一/" rel="prev" title="Dubbo入门学习一（Spring Boot下构建基于多模块的Dubbo项目）">
+                Dubbo入门学习一（Spring Boot下构建基于多模块的Dubbo项目） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">113</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nezha" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/coder_chang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yi.zhang.12935756" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/businezha" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezhaxiaozi.coding.me" title="国内访问路径" target="_blank">国内访问路径</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezha.github.io" title="国外访问路径" target="_blank">国外访问路径</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一：IDEA开发中的问题及注意项"><span class="nav-number">1.</span> <span class="nav-text">一：IDEA开发中的问题及注意项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IDEA-console出现乱码"><span class="nav-number">1.1.</span> <span class="nav-text">1.IDEA console出现乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-IDEA-中spring-boot-多模块项目"><span class="nav-number">1.2.</span> <span class="nav-text">2.IDEA 中spring boot 多模块项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二：maven"><span class="nav-number">2.</span> <span class="nav-text">二：maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中-project-version-指代的什么版本？"><span class="nav-number">2.1.</span> <span class="nav-text">1.maven中引用父类pom时，怎么在子模块中引入父类包？还有子模块中${project.version}指代的什么版本？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-maven中怎么将一个空项目编程Spring-Boot项目"><span class="nav-number">2.2.</span> <span class="nav-text">2.maven中怎么将一个空项目编程Spring Boot项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三：Java"><span class="nav-number">3.</span> <span class="nav-text">三：Java</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么Java的实体类需要实现Serializable接口"><span class="nav-number">3.1.</span> <span class="nav-text">1.为什么Java的实体类需要实现Serializable接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四：Spring"><span class="nav-number">4.</span> <span class="nav-text">四：Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）"><span class="nav-number">4.1.</span> <span class="nav-text">1.为什么Spring使用接口注入，而不是实现类（而且不是显示的指代接口的实现类）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-如果spring的版本修改后，和pom的其他依赖不一样，可不可以"><span class="nav-number">4.2.</span> <span class="nav-text">2.如果spring的版本修改后，和pom的其他依赖不一样，可不可以</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Spring-boot中自定义的配置怎么加载和读取"><span class="nav-number">4.3.</span> <span class="nav-text">3.Spring boot中自定义的配置怎么加载和读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Spring项目中classpath指代哪个路径"><span class="nav-number">4.4.</span> <span class="nav-text">4.Spring项目中classpath指代哪个路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Junit集成测试–Mock"><span class="nav-number">4.5.</span> <span class="nav-text">5.Junit集成测试–Mock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-SpringBoot-多模块项目（module）Service自动注入（-Autowired）"><span class="nav-number">4.6.</span> <span class="nav-text">6.SpringBoot 多模块项目（module）Service自动注入（@Autowired）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-SpringBoot如何快速运行Service中的方法"><span class="nav-number">4.7.</span> <span class="nav-text">7.SpringBoot如何快速运行Service中的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-Spring中关于如何读取自定义的配置属性"><span class="nav-number">4.8.</span> <span class="nav-text">8.Spring中关于如何读取自定义的配置属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Spring中如何获取上下文信息"><span class="nav-number">4.9.</span> <span class="nav-text">9.Spring中如何获取上下文信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五：MySQL"><span class="nav-number">5.</span> <span class="nav-text">五：MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六：Redis"><span class="nav-number">6.</span> <span class="nav-text">六：Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题一-redis-requires-ruby-version-2-2-2"><span class="nav-number">6.1.</span> <span class="nav-text">问题一:redis requires ruby version 2.2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装RVM（具体命令可以查看官网，Ruby官网地址-和-Ruby官网安装教程）："><span class="nav-number">6.1.1.</span> <span class="nav-text">1.安装RVM（具体命令可以查看官网，Ruby官网地址 和 Ruby官网安装教程）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查看rvm库中已知的ruby版本"><span class="nav-number">6.1.2.</span> <span class="nav-text">2.查看rvm库中已知的ruby版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装使用一个ruby版本"><span class="nav-number">6.1.3.</span> <span class="nav-text">3.安装使用一个ruby版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-常用操作命令"><span class="nav-number">6.1.4.</span> <span class="nav-text">4.常用操作命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题二：create-ERR-Slot-9838-is-already-busy错误"><span class="nav-number">6.2.</span> <span class="nav-text">问题二：create ERR Slot 9838 is already busy错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题三：redis集群报错Node-is-not-empty"><span class="nav-number">6.3.</span> <span class="nav-text">问题三：redis集群报错Node is not empty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题四：Sorry-can’t-connect-to-node"><span class="nav-number">6.4.</span> <span class="nav-text">问题四：Sorry, can’t connect to node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题五：redis集群部署一直卡在Waiting-for-the-cluster-to-join-……"><span class="nav-number">6.5.</span> <span class="nav-text">问题五：redis集群部署一直卡在Waiting for the cluster to join ……</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七：VSCode"><span class="nav-number">7.</span> <span class="nav-text">七：VSCode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-如何快速折叠代码，如何展开代码"><span class="nav-number">7.1.</span> <span class="nav-text">1.如何快速折叠代码，如何展开代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2011 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://nezha.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://nezha.github.io/疑难解惑/2018-12-06-开发过程中出现的各类问题整理/';
+          this.page.identifier = '疑难解惑/2018-12-06-开发过程中出现的各类问题整理/';
+          this.page.title = '开发过程中出现的各类问题整理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://nezha.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
