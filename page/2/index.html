@@ -366,6 +366,160 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/" itemprop="url">MySQL学习笔记—explain的正确使用方式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T15:56:02+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库及缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库及缓存</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          使用Explain优化SQL语句
+原文出处：https://my.oschina.net/liughDevelop/blog/1788148
+
+索引类似大学图书馆建书目索引，可以提高数据检索的效率，降低数据库的IO成本。MySQL在300万条记录左右性能开始逐渐下降，虽然官方文档说500~800w记
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/数据库及缓存/2018-11-11-MySQL学习笔记（explain的正确使用方式）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://nezha.github.io/数据库及缓存/2018-11-09-Redis开发规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1718,166 +1872,11 @@ Java序列化与反序列化
           
           
 前言
-自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&#110;&#101;&#122;&#x68;&#97;&#x78;&#105;&#x61;&#x6f;&#x7a;&#105;&#64;&#x71;&#113;&#x2e;&#x63;&#11
+自己在阅读《深入理解Java虚拟机》后做了部分的整理，内容有些是来自网络，如有侵权，请联系邮箱：&#110;&#101;&#x7a;&#104;&#97;&#120;&#x69;&#97;&#111;&#122;&#105;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/Java/2017-06-17-《深入理解Java虚拟机》读书笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/疑难解惑/2017-06-17-IntelliJ_IDEA通过maven构建的项目默认是Java5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jack·Joney">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NEZHA的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/疑难解惑/2017-06-17-IntelliJ_IDEA通过maven构建的项目默认是Java5/" itemprop="url">完美解决：IntelliJ IDEA通过maven构建的项目默认是Java5,改成Java8编译会出错</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-17T00:00:00+08:00">
-                2017-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/疑难解惑/" itemprop="url" rel="index">
-                    <span itemprop="name">疑难解惑</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/疑难解惑/2017-06-17-IntelliJ_IDEA通过maven构建的项目默认是Java5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="疑难解惑/2017-06-17-IntelliJ_IDEA通过maven构建的项目默认是Java5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          问题是什么当我使用maven构建项目的时候，系统给项目分配的api自动会设置成Java5.0 的版本，这个版本下Java8的好多功能都不支持的，甚至连@override都不支持。
-
-那我改成Java8不就行了于是我在上图中改成了Java8,于是乎就出现了下面的问题….连编译都不能通过了。
-
-完美解决
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/疑难解惑/2017-06-17-IntelliJ_IDEA通过maven构建的项目默认是Java5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1963,7 +1962,7 @@ Java序列化与反序列化
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1985,7 +1984,7 @@ Java序列化与反序列化
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">112</span>
+                <span class="site-state-item-count">113</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
