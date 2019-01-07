@@ -1,0 +1,1373 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式,适配器模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="适配器模式(Adapter Pattern)：将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/">
+<meta name="keywords" content="设计模式,适配器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习笔记-适配器模式-Adapter Pattern">
+<meta property="og:url" content="https://nezha.github.io/设计模式/2019-01-01-设计模式学习笔记-适配器模式/index.html">
+<meta property="og:site_name" content="NEZHA的博客">
+<meta property="og:description" content="适配器模式(Adapter Pattern)：将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-a3538f3afdd6989e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-da69811310e43487.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-07T16:05:03.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式学习笔记-适配器模式-Adapter Pattern">
+<meta name="twitter:description" content="适配器模式(Adapter Pattern)：将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5354563-a3538f3afdd6989e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nezha.github.io/设计模式/2019-01-01-设计模式学习笔记-适配器模式/"/>
+
+
+
+
+
+  <title>设计模式学习笔记-适配器模式-Adapter Pattern | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-98802895-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e36a5f1b7fce2cdc801ec7f34a839055";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62065685";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1275379034&web_id=1275379034" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NEZHA的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Coding是件有趣的事！</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/设计模式/2019-01-01-设计模式学习笔记-适配器模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jack·Joney">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NEZHA的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记-适配器模式-Adapter Pattern</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-01T15:56:02+08:00">
+                2019-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/设计模式/2019-01-01-设计模式学习笔记-适配器模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="设计模式/2019-01-01-设计模式学习笔记-适配器模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>人次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>适配器模式(Adapter Pattern)：将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p>
+<ul>
+<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a>，<a href="https://nezhaxiaozi.coding.me" target="_blank" rel="external">https://nezhaxiaozi.coding.me</a></li>
+<li>我的简书地址：<a href="https://www.jianshu.com/u/a5153fbb0434" target="_blank" rel="external">https://www.jianshu.com/u/a5153fbb0434</a></li>
+<li>本文的demo地址：<a href="https://github.com/nezha/DesignPatterns/tree/master/src/main/java/com/nezha/dp/AdapterPattern" target="_blank" rel="external">DesignPatterns/AdapterPattern</a></li>
+</ul>
+<p>适配器模式主要有两种模式：<code>1.类适配器模式</code>；<code>2.对象适配器模式</code></p>
+<blockquote>
+<p>其中：<code>类适配器模式</code>主要使用的是<code>继承</code>的思想；<code>对象适配器模式</code>使用的<code>组合引用</code>的思想。<br>不管哪种模式下，适配者模式的主要组成部分有三部分：</p>
+<ol>
+<li><code>目标（Target）角色</code>：这就是所期待得到的接口。注意，由于这里讨论的是类适配器模式，因此目标不可以是类。</li>
+<li><code>源（Adaptee）角色</code>：有<code>目标（Target）角色</code>的部分功能，但是还是不满足或者是源（Adaptee）直接不满足目标的接口功能，需要配置它。</li>
+<li><code>适配器（Adapter）角色</code>：适配器类是本模式的核心。适配器把源接口转换成目标接口。显然，这一叫色不可以是接口，而必须是具体类。</li>
+</ol>
+</blockquote>
+<h2 id="UML图解读"><a href="#UML图解读" class="headerlink" title="UML图解读"></a>UML图解读</h2><p>下图是类适配器的UML图，其中<code>Target</code>是目标接口，含有两个待实现的方法；<code>Adaptee</code>是源接口（需要被改造或者扩展），它有一个实现方法<code>operateA</code>；然后适配器<code>Adapter</code>类<code>implements</code>了<code>Target</code>接口，并且集成了<code>Adaptee</code>源接口。所以通过适配器类就可以有完整的<code>Target</code>接口功能了。最后在客户端使用中就可以将<code>Target</code>接口的实例化指向<code>Adapter</code>类了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-a3538f3afdd6989e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="类适配器模型"></p>
+<hr>
+<p>还有一种比较常见的适配器就是对象适配器了。<code>Target</code>接口和<code>Adaptee</code>源接口都没有变化；最大的变化还是适配器类了，首先<code>Adapter</code>类放弃使用继承而是使用引用的方式来引入源接口，然后<code>Adaptee</code>的实例对象也是通过构造方法延迟注入了；最后还是需要实现<code>Target</code>接口的两个方法，只不过<code>operateA</code>是通过<code>Adaptee</code>源的实例对象执行的。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-da69811310e43487.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="对象适配器模型"></p>
+<h2 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 目标接口 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</div><div class="line">    <span class="comment">//1.operateA是在源(Adaptee)中有实现的</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operateA</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//2.operateB在源(Adaptee)中没有实现，需要使用适配器</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operateB</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 源（Adaptee）角色 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operateA</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是已经实现的operateA"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 适配器（Adapter）角色 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">extends</span> <span class="title">Adaptee</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</div><div class="line">    <span class="comment">//其中operateA通过继承的方式已经集成到Adapter中了</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operateB</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是通过适配器实现的operateB"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 类适配器模式 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterClient</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//目标Target是通过适配器Adapter获得的</span></div><div class="line">        Target adapter = <span class="keyword">new</span> Adapter();</div><div class="line">        adapter.operateA();</div><div class="line">        adapter.operateB();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">结果：</div><div class="line">我是已经实现的operateA</div><div class="line">我是通过适配器实现的operateB</div></pre></td></tr></table></figure>
+<h2 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</div><div class="line">    <span class="comment">//1.operateA是在源(Adaptee)中有实现的</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operateA</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//2.operateB在源(Adaptee)中没有实现，需要使用适配器</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operateB</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operateA</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"在源（Adaptee）中实现的operateA"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Adaptee adaptee;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(Adaptee adaptee)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.adaptee = adaptee;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operateA</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//通过传入的源对象实现operateA</span></div><div class="line">        <span class="keyword">this</span>.adaptee.operateA();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operateB</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"我是通过适配器的实现接口实现的operateB"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterClient</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//1.实例化源 Adaptee</span></div><div class="line">        Adaptee adaptee = <span class="keyword">new</span> Adaptee();</div><div class="line">        <span class="comment">//2.创建适配者对象，并且传入源</span></div><div class="line">        Target target = <span class="keyword">new</span> Adapter(adaptee);</div><div class="line">        target.operateA();</div><div class="line">        target.operateB();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">结果：</div><div class="line">在源（Adaptee）中实现的operateA</div><div class="line">我是通过适配器的实现接口实现的operateB</div></pre></td></tr></table></figure>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><blockquote>
+<p><code>Spring</code> 中也有适配器模式的典型应用。 </p>
+</blockquote>
+<p>在 <code>Spring</code> 的 <code>AOP</code> 中，使用的 <code>Advice</code> （通知）来增强被代理类的功能。<code>Spring</code> 实现这一 <code>AOP</code> 功能的原理就使用代理模式（<code>1、JDK动态代理。2、CGLib字节码生成技术代理。</code>）对类进行方法级别的切面增强，即，生成被代理类的代理类， 并在代理类的方法前，设置拦截器，通过执行拦截器的内容增强了代理方法的功能，实现的面向切面编程。</p>
+<p><code>Advice</code>（通知）的类型有：<code>MethodBeforeAdvice</code>、<code>AfterReturningAdvice</code>、<code>ThrowsAdvice</code>的。</p>
+<p>在每个类型<code>Advice</code>（通知）都有对应的拦截器，<code>MethodBeforeAdviceInterceptor</code>、<code>AfterReturningAdviceInterceptor</code>、<code>ThrowsAdviceInterceptor</code>。</p>
+<p><code>Spring</code> 需要将每个<code>Advice</code>（通知）都封装成对应的拦截器类型，返回给容器，所以需要使用适配器模式对<code>Advice</code>进行转换。下面我们看看具体的代码。</p>
+<p>MethodBeforeAdvice类：<code>Adaptee</code></p>
+<p>Adapter类接口：<code>Target</code></p>
+<p>MethodBeforeAdviceAdapter类，<code>Adapter</code></p>
+<p>DefaultAdvisorAdapterRegistry类，<code>Client</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultAdvisorAdapterRegistry</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapterRegistry</span>, <span class="title">Serializable</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="keyword">private</span> <span class="keyword">final</span> List&lt;AdvisorAdapter&gt; adapters = <span class="keyword">new</span> ArrayList&lt;AdvisorAdapter&gt;(<span class="number">3</span>);</div><div class="line"> </div><div class="line"> </div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * Create a new DefaultAdvisorAdapterRegistry, registering well-known adapters.</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DefaultAdvisorAdapterRegistry</span><span class="params">()</span> </span>&#123;<span class="comment">//这里注册了适配器</span></div><div class="line">		registerAdvisorAdapter(<span class="keyword">new</span> MethodBeforeAdviceAdapter());</div><div class="line">		registerAdvisorAdapter(<span class="keyword">new</span> AfterReturningAdviceAdapter());</div><div class="line">		registerAdvisorAdapter(<span class="keyword">new</span> ThrowsAdviceAdapter());</div><div class="line">	&#125;</div><div class="line"> </div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> Advisor <span class="title">wrap</span><span class="params">(Object adviceObject)</span> <span class="keyword">throws</span> UnknownAdviceTypeException </span>&#123;</div><div class="line">		<span class="keyword">if</span> (adviceObject <span class="keyword">instanceof</span> Advisor) &#123;</div><div class="line">			<span class="keyword">return</span> (Advisor) adviceObject;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (!(adviceObject <span class="keyword">instanceof</span> Advice)) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> UnknownAdviceTypeException(adviceObject);</div><div class="line">		&#125;</div><div class="line">		Advice advice = (Advice) adviceObject;</div><div class="line">		<span class="keyword">if</span> (advice <span class="keyword">instanceof</span> MethodInterceptor) &#123;</div><div class="line">			<span class="comment">// So well-known it doesn't even need an adapter.</span></div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> DefaultPointcutAdvisor(advice);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (AdvisorAdapter adapter : <span class="keyword">this</span>.adapters) &#123;</div><div class="line">			<span class="comment">// Check that it is supported.</span></div><div class="line">			<span class="keyword">if</span> (adapter.supportsAdvice(advice)) &#123;<span class="comment">//这里调用了适配器的方法</span></div><div class="line">				<span class="keyword">return</span> <span class="keyword">new</span> DefaultPointcutAdvisor(advice);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnknownAdviceTypeException(advice);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="keyword">public</span> MethodInterceptor[] getInterceptors(Advisor advisor) <span class="keyword">throws</span> UnknownAdviceTypeException &#123;</div><div class="line">		List&lt;MethodInterceptor&gt; interceptors = <span class="keyword">new</span> ArrayList&lt;MethodInterceptor&gt;(<span class="number">3</span>);</div><div class="line">		Advice advice = advisor.getAdvice();</div><div class="line">		<span class="keyword">if</span> (advice <span class="keyword">instanceof</span> MethodInterceptor) &#123;</div><div class="line">			interceptors.add((MethodInterceptor) advice);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (AdvisorAdapter adapter : <span class="keyword">this</span>.adapters) &#123;</div><div class="line">			<span class="keyword">if</span> (adapter.supportsAdvice(advice)) &#123;<span class="comment">//这里调用了适配器的方法</span></div><div class="line">				interceptors.add(adapter.getInterceptor(advisor));</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (interceptors.isEmpty()) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> UnknownAdviceTypeException(advisor.getAdvice());</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> interceptors.toArray(<span class="keyword">new</span> MethodInterceptor[interceptors.size()]);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerAdvisorAdapter</span><span class="params">(AdvisorAdapter adapter)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.adapters.add(adapter);</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://www.jianshu.com/p/e27e9e9c0a29" target="_blank" rel="external">设计模式干货系列：（七）适配器模式【学习难度：★★☆☆☆，使用频率：★★★★☆】</a></li>
+<li><a href="https://blog.csdn.net/adoocoke/article/details/8286902#" target="_blank" rel="external">Spring中的设计模式-适配器模式</a></li>
+<li><a href="https://www.jianshu.com/p/c52794e4edc0" target="_blank" rel="external">设计模式(二) 三种适配器模式 总结和使用场景</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/Wechatpay.jpeg" alt="Jack·Joney WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpeg" alt="Jack·Joney Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/适配器模式/" rel="tag"># 适配器模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/中间件/2018-12-18-Nginx学习笔记一/" rel="next" title="Nginx学习笔记一">
+                <i class="fa fa-chevron-left"></i> Nginx学习笔记一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/设计模式/2019-01-02-设计模式学习笔记-代理模式/" rel="prev" title="设计模式学习笔记-代理模式-Proxy Pattern">
+                设计模式学习笔记-代理模式-Proxy Pattern <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack·Joney" />
+          <p class="site-author-name" itemprop="name">Jack·Joney</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">115</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nezha" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/coder_chang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yi.zhang.12935756" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/businezha" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezhaxiaozi.coding.me" title="国内访问路径" target="_blank">国内访问路径</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nezha.github.io" title="国外访问路径" target="_blank">国外访问路径</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UML图解读"><span class="nav-number">1.</span> <span class="nav-text">UML图解读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类适配器"><span class="nav-number">2.</span> <span class="nav-text">类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器"><span class="nav-number">3.</span> <span class="nav-text">对象适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">4.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2011 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack·Joney</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://nezha.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://nezha.github.io/设计模式/2019-01-01-设计模式学习笔记-适配器模式/';
+          this.page.identifier = '设计模式/2019-01-01-设计模式学习笔记-适配器模式/';
+          this.page.title = '设计模式学习笔记-适配器模式-Adapter Pattern';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://nezha.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

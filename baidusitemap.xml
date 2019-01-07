@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2019-01-02-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2019-01-07T16:06:47.136Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-代理模式-Proxy Pattern</title>
+        <pubTime>2019-01-02T07:56:02.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>代理模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://nezha.github.io/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2019-01-01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2019-01-07T16:05:03.126Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式学习笔记-适配器模式-Adapter Pattern</title>
+        <pubTime>2019-01-01T07:56:02.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+        <tag>适配器模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="https://nezha.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://nezha.github.io/%E7%96%91%E9%9A%BE%E8%A7%A3%E6%83%91/2018-12-06-%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E5%90%84%E7%B1%BB%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/</loc>
     <lastmod>2019-01-06T14:40:49.180Z</lastmod>
     <data>
@@ -108,9 +152,9 @@
         
         <tag>MySQL</tag>
          
-        <tag>EXPLAIN</tag>
-         
         <tag>数据库优化</tag>
+         
+        <tag>EXPLAIN</tag>
          
          
            
@@ -232,9 +276,9 @@
         
         <tag>Redis</tag>
          
-        <tag>数据库</tag>
-         
         <tag>远程登录</tag>
+         
+        <tag>数据库</tag>
          
          
            
@@ -256,9 +300,9 @@
         
         <tag>Redis</tag>
          
-        <tag>缓存</tag>
-         
         <tag>数据库</tag>
+         
+        <tag>缓存</tag>
          
          
            
