@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式,装饰者模式," />
+  <meta name="keywords" content="设计模式,命令模式," />
 
 
 
@@ -94,21 +94,21 @@
 
 
 
-<meta name="description" content="定义 装饰者模式：在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。 设计原则 要使用装饰者模式，需要满足以下设计原则：  多用组合，少用继承 开放-关闭原则：类应该对拓展开放，对修改关闭  UML类图 我们先来看看装饰者模式的类图，再来详细讲述：  由上自下：1、Girl是基类。通常是一个抽象类">
-<meta name="keywords" content="设计模式,装饰者模式">
+<meta name="description" content="命令模式(Command)，将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化；对请求队列或记录请求日志，以及支持可撤销的操作。  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/u/a5153fbb0434  前言命令模式主要有四大块：Receiv">
+<meta name="keywords" content="设计模式,命令模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式学习笔记-装饰者模式-Decorator Pattern">
-<meta property="og:url" content="https://nezha.github.io/设计模式/2017-05-09-设计模式学习笔记-装饰者模式/index.html">
+<meta property="og:title" content="设计模式学习笔记：命令模式-Command Pattern">
+<meta property="og:url" content="https://nezha.github.io/设计模式/2019-01-03-设计模式学习笔记-命令模式/index.html">
 <meta property="og:site_name" content="NEZHA的博客">
-<meta property="og:description" content="定义 装饰者模式：在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。 设计原则 要使用装饰者模式，需要满足以下设计原则：  多用组合，少用继承 开放-关闭原则：类应该对拓展开放，对修改关闭  UML类图 我们先来看看装饰者模式的类图，再来详细讲述：  由上自下：1、Girl是基类。通常是一个抽象类">
+<meta property="og:description" content="命令模式(Command)，将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化；对请求队列或记录请求日志，以及支持可撤销的操作。  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/u/a5153fbb0434  前言命令模式主要有四大块：Receiv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffg3q3y6d8j20qg0my40s.jpg">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-09T05:02:35.000Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-b02098df3f4036ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5354563-b9f1454082383975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-08T03:10:46.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式学习笔记-装饰者模式-Decorator Pattern">
-<meta name="twitter:description" content="定义 装饰者模式：在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。 设计原则 要使用装饰者模式，需要满足以下设计原则：  多用组合，少用继承 开放-关闭原则：类应该对拓展开放，对修改关闭  UML类图 我们先来看看装饰者模式的类图，再来详细讲述：  由上自下：1、Girl是基类。通常是一个抽象类">
-<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffg3q3y6d8j20qg0my40s.jpg">
+<meta name="twitter:title" content="设计模式学习笔记：命令模式-Command Pattern">
+<meta name="twitter:description" content="命令模式(Command)，将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化；对请求队列或记录请求日志，以及支持可撤销的操作。  我的技术博客：https://nezha.github.io，https://nezhaxiaozi.coding.me 我的简书地址：https://www.jianshu.com/u/a5153fbb0434  前言命令模式主要有四大块：Receiv">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5354563-b02098df3f4036ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://nezha.github.io/设计模式/2017-05-09-设计模式学习笔记-装饰者模式/"/>
+  <link rel="canonical" href="https://nezha.github.io/设计模式/2019-01-03-设计模式学习笔记-命令模式/"/>
 
 
 
 
 
-  <title>设计模式学习笔记-装饰者模式-Decorator Pattern | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>设计模式学习笔记：命令模式-Command Pattern | NEZHA的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -369,7 +369,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/设计模式/2017-05-09-设计模式学习笔记-装饰者模式/">
+    <link itemprop="mainEntityOfPage" href="https://nezha.github.io/设计模式/2019-01-03-设计模式学习笔记-命令模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jack·Joney">
@@ -386,7 +386,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">设计模式学习笔记-装饰者模式-Decorator Pattern</h2>
+          <h2 class="post-title" itemprop="name headline">设计模式学习笔记：命令模式-Command Pattern</h2>
         
 
         <div class="post-meta">
@@ -398,8 +398,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-09T15:56:02+08:00">
-                2017-05-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T15:56:02+08:00">
+                2019-01-03
               </time>
             
 
@@ -439,9 +439,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/设计模式/2017-05-09-设计模式学习笔记-装饰者模式/#comments" itemprop="discussionUrl">
+                <a href="/设计模式/2019-01-03-设计模式学习笔记-命令模式/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="设计模式/2017-05-09-设计模式学习笔记-装饰者模式/" itemprop="commentCount"></span>
+                        data-disqus-identifier="设计模式/2019-01-03-设计模式学习笔记-命令模式/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -471,47 +471,22 @@
       
 
       
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><hr>
-<p><strong>装饰者模式</strong>：在不改变原类文件以及不使用继承的情况下，动态地将责任附加到对象上，从而实现动态拓展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。</p>
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><hr>
-<p>要使用装饰者模式，需要满足以下设计原则：</p>
-<ol>
-<li>多用组合，少用继承</li>
-<li>开放-关闭原则：类应该对拓展开放，对修改关闭</li>
-</ol>
-<h2 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h2><hr>
-<p>我们先来看看装饰者模式的类图，再来详细讲述：</p>
-<p><img src="http://wx1.sinaimg.cn/mw690/9d2c4511gy1ffg3q3y6d8j20qg0my40s.jpg" alt=""></p>
-<p>由上自下：<br>1、<strong>Girl是基类</strong>。通常是一个抽象类或者一个接口，定义了属性或者方法，方法的实现可以由子类实现或者自己实现。通常不会直接使用该类，而是通过继承该类来实现特定的功能，它约束了整个继承树的行为。比如说，如果Girl代表人，即使通过装饰也不会使人变成别的动物。<br>2、AmericanGirl是Girl的子类，实现了相应的方法，它充当了<u><b>“被装饰者”</b></u>的角色。<br>3、GirlDecorator也是Girl的子类，它是装饰者共同实现的抽象类（也可以是接口）。比如说，GirlDecorator代表学习课程或兴趣这一类装饰者，那么它的子类应该是科学、艺术课这样的具体的装饰者。<br>4、Science是GirlDecorator的子类，是具体的装饰者，由于它同时也是Girl的子类，因此它能方便地拓展Girl的状态（比如添加新的方法）。<strong>每个装饰者都应该有一个实例变量用以保存某个Girl(Component也可以理解为抽象组件)的引用，这也是利用了组合的特性</strong>。在持有Girl的引用后，由于其自身也是Girl的子类，那么，相当于Science(ConcreteDecorator)具体的装饰者包裹了Girl(Component)抽象对象，不但有Girl的特性，同时自身也可以有别的特性，也就是所谓的装饰。</p>
-<h2 id="Java-实例"><a href="#Java-实例" class="headerlink" title="Java 实例"></a>Java 实例</h2><hr>
-<p>为了更加深刻地理解装饰者模式，我们来看一个简单的栗子。首先，我们假设现在有这样一个需求：你是一个教育培训机构，这边女孩有来自各个国家的，然后针对某个国家的女孩学习不同课程需要继续和描述。此时，某个国家的女孩就是被装饰着，某个课程就是装饰者。</p>
-<h3 id="Step-1、创建Component基类"><a href="#Step-1、创建Component基类" class="headerlink" title="Step 1、创建Component基类"></a>Step 1、创建Component基类</h3><p>因为总体对象是女孩，所以我们可以把人抽象为基类，新建Girl.java:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> </span>&#123;</div><div class="line">    String description = <span class="string">"no particular"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> description;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">cost</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Step-2、创建被装饰者——ConcreteComponent"><a href="#Step-2、创建被装饰者——ConcreteComponent" class="headerlink" title="Step 2、创建被装饰者——ConcreteComponent"></a>Step 2、创建被装饰者——ConcreteComponent</h3><p>具体的客户有来自各个国家的，美国的，加拿大等。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AmericanGirl</span> <span class="keyword">extends</span> <span class="title">Girl</span> </span>&#123;</div><div class="line">    <span class="comment">//一个实例，相当于被装饰者。</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AmericanGirl</span><span class="params">()</span></span>&#123;</div><div class="line">        description = description + <span class="string">"+American"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Step-3、创建Decorator"><a href="#Step-3、创建Decorator" class="headerlink" title="Step 3、创建Decorator"></a>Step 3、创建Decorator</h3><p>创建装饰者类GirlDecorator.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">GirlDecorator</span> <span class="keyword">extends</span> <span class="title">Girl</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Step-4、创建ConcreteDecorator"><a href="#Step-4、创建ConcreteDecorator" class="headerlink" title="Step 4、创建ConcreteDecorator"></a>Step 4、创建ConcreteDecorator</h3><p>创建Science.java和Art.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Science</span> <span class="keyword">extends</span> <span class="title">GirlDecorator</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Girl girl;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Science</span><span class="params">(Girl girl)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.girl = girl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//其中this.girl.getDescription()可能是原始被装饰者</span></div><div class="line">        <span class="comment">//或者已经装饰过的girl了</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.girl.getDescription() + <span class="string">"+Like Science"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//装饰者附加上的功能</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">caltulateStuff</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"scientific calculation!"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//装饰者，去装饰girl对象，然后加上装饰的新属性和任务</span></div><div class="line">        <span class="keyword">return</span> girl.cost() + <span class="number">100</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Art</span> <span class="keyword">extends</span> <span class="title">GirlDecorator</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Girl girl;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Art</span><span class="params">(Girl girl)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.girl = girl;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.girl.getDescription() + <span class="string">"+Like Art"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> girl.cost() + <span class="number">200</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="最后我们在测试类内测试我们的代码"><a href="#最后我们在测试类内测试我们的代码" class="headerlink" title="最后我们在测试类内测试我们的代码"></a>最后我们在测试类内测试我们的代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//普通美国女孩</span></div><div class="line">        Girl g1 = <span class="keyword">new</span> AmericanGirl();</div><div class="line">        System.out.println(g1.getDescription());</div><div class="line"></div><div class="line">        <span class="comment">//喜欢科学的</span></div><div class="line">        Science g2 = <span class="keyword">new</span> Science(g1);</div><div class="line">        System.out.println(g2.getDescription());</div><div class="line"></div><div class="line">        <span class="comment">//喜欢艺术的</span></div><div class="line">        Art g3 = <span class="keyword">new</span> Art(g2);</div><div class="line">        System.out.println(g3.getDescription());</div><div class="line"></div><div class="line">        <span class="comment">//喜欢体育</span></div><div class="line">        Sports g4 = <span class="keyword">new</span> Sports(g3);</div><div class="line">        System.out.println(g4.getDescription());</div><div class="line">        System.out.println(<span class="string">"g1,g2,g3,g4包装后的费用:"</span>+g4.cost());</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="最终的结果"><a href="#最终的结果" class="headerlink" title="最终的结果"></a>最终的结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">no particular+American</div><div class="line">no particular+American+Like Science</div><div class="line">no particular+American+Like Science+Like Art</div><div class="line">no particular+American+Like Science+Like Art; also learn Sports</div><div class="line">g1,g2,g3,g4包装后的费用:600</div></pre></td></tr></table></figure>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><hr>
-<p>以上就是装饰者模式的一个小栗子，讲述了装饰者的基本用法。通过上述的例子，我们可以总结一下装饰者模式的特点。<br>（1）装饰者和被装饰者有相同的接口（或有相同的父类）。<br>（2）装饰者保存了一个被装饰者的引用。<br>（3）装饰者接受所有客户端的请求，并且这些请求最终都会返回给被装饰者。<br>（4）在运行时动态地为对象添加属性，不必改变对象的结构。</p>
-<p>使用装饰者模式的最大好处就是其拓展性十分良好，通过使用不同的装饰类来使得对象具有多种多样的属性，灵活性比直接继承好。然而它也有缺点，那就是会出现很多小类，即装饰类，使程序变得复杂。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><hr>
-<p>学习了装饰者模式用法、特点以及优缺点后，我们再来看看装饰者模式在实际开发过程的应用。装饰者模式在Java中经常出现的地方就是<code>JavaIO</code>。提到<code>JavaIO</code>，脑海中就冒出了大量的类：<code>InputStream</code>、<code>FileInputStream</code>、<code>BufferedInputStream</code>……等，真是头都大了，其实，这里面大部分都是装饰类，只要弄清楚这一点就容易理解了。我们来看看JavaIO是怎样使用装饰者模式的。<br>从字符流来分析，我们知道，有两个基类，分别是<code>InputStream</code>和<code>OutputStream</code>，它们也就是我们上面所述的<code>Component</code>基类。接着，它有如下子类：<code>FileInputStream</code>、<code>StringBufferInputStream</code>等，它们就代表了上面所述的<code>ConcreteComponent</code>，即装饰对象。此外，<code>InputStream</code>还有<code>FilterInputStream</code>这个子类，它就是一个抽象装饰者，即Decorator，那么它的子类：BufferedInputStream、DataInputStream等就是具体的装饰者了。那么，从装饰者模式的角度来看JavaIO，是不是更加容易理解了呢？</p>
-<p>下面，我们来自己实现自己的JavaIO的装饰者。要实现的功能是：把一段话里面的每个单词的首字母大写。我们先新建一个类：<code>UpperFirstWordInputStream.java</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpperFirstWordInputStream</span> <span class="keyword">extends</span> <span class="title">FilterInputStream</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cBefore = <span class="number">32</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UpperFirstWordInputStream</span><span class="params">(InputStream in)</span></span>&#123;</div><div class="line">        <span class="comment">//由于FilterInputStream已经保存了装饰对象的引用，这里直接调用super即可</span></div><div class="line">        <span class="keyword">super</span>(in);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="comment">//根据前一个字符是否是空格来判断是否要大写</span></div><div class="line">        <span class="keyword">int</span> c = <span class="keyword">super</span>.read();</div><div class="line">        <span class="keyword">if</span>(cBefore == <span class="number">32</span>)</div><div class="line">        &#123;</div><div class="line">            cBefore = c;</div><div class="line">            <span class="keyword">return</span> (c == -<span class="number">1</span> ? c: Character.toUpperCase((<span class="keyword">char</span>) c));</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            cBefore = c;</div><div class="line">            <span class="keyword">return</span> c;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>接着编写一个测试类：<strong>InputTest.java</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">int</span> c;</div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//这里用了两个装饰者，分别是BufferedInputStream和我们的UpperFirstWordInputStream</span></div><div class="line">            InputStream in = <span class="keyword">new</span> UpperFirstWordInputStream(<span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"/Users/nezha/Desktop/test.txt"</span>)));</div><div class="line">            <span class="keyword">while</span>((c = in.read()) &gt;= <span class="number">0</span>)</div><div class="line">            &#123;</div><div class="line">                sb.append((<span class="keyword">char</span>) c);</div><div class="line">            &#125;</div><div class="line">            System.out.println(sb);</div><div class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><hr>
-<p><a href="http://www.jianshu.com/p/eb1606dfc0ac" target="_blank" rel="external">学习、探究Java设计模式——装饰者模式</a></p>
-<hr>
+        <p>命令模式(Command)，将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化；对请求队列或记录请求日志，以及支持可撤销的操作。</p>
 <ul>
-<li>交流或更多内容请关注我的公众号：<strong>nezha_blog</strong></li>
-<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a></li>
+<li>我的技术博客：<a href="https://nezha.github.io">https://nezha.github.io</a>，<a href="https://nezhaxiaozi.coding.me" target="_blank" rel="external">https://nezhaxiaozi.coding.me</a></li>
+<li>我的简书地址：<a href="https://www.jianshu.com/u/a5153fbb0434" target="_blank" rel="external">https://www.jianshu.com/u/a5153fbb0434</a></li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/5354563-3e8e9f300f349b60.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信公众号"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>命令模式主要有四大块：<code>Receiver</code> , <code>Command</code> , <code>ConcreteCommand</code> , <code>Invoker</code></p>
+<blockquote>
+<p><code>Receiver：</code><br>接收者，真正执行命令的对象。任何类都可能成为一个接收者，只要它能够实现命令要求实现的相应功能。<br><code>Command：</code><br>定义命令的接口，声明执行的方法。<br><code>ConcreteCommand：</code><br>命令接口实现对象，是“虚”的实现；通常会持有接收者，并调用接收者的功能来完成命令要执行的操作。<br><code>Invoker：</code><br>要求命令对象执行请求，通常会持有命令对象，可以持有很多的命令对象。这个是客户端真正触发命令并要求命令执行相应操作的地方，也就是说相当于使用命令对象的入口。<br><code>Client：</code><br>创建具体的命令对象，并且设置命令对象的接收者。注意这个不是我们常规意义上的客户端，而是在组装命令对象和接收者，或许，把这个Client称为装配者会更好理解，因为真正使用命令的客户端是从Invoker来触发执行。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-b02098df3f4036ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="命令模式模型"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 接受者 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">action</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//真正的业务逻辑</span></div><div class="line">        System.out.println(<span class="string">"执行操作"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 抽象命令 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 具体命令 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Receiver receiver;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteCommand</span><span class="params">(Receiver receiver)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.receiver = receiver;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"ConcreteCommand,开始执行接受者Receiver"</span>);</div><div class="line">        receiver.action();</div><div class="line">        System.out.println(<span class="string">"ConcreteCommand,结束执行接受者Receiver"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 调用者 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Invoker</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Command command;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommand</span><span class="params">(Command command)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"调用者Invoker，注入具体命令："</span>+command.getClass().getName());</div><div class="line">        <span class="keyword">this</span>.command = command;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">executeCommand</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"调用者执行命令"</span>);</div><div class="line">        command.execute();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Description</span>: 命令模式客户端 &lt;br&gt;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommandClient</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">//1.创建接受者（会执行具体的业务逻辑)</span></div><div class="line">        Receiver receiver = <span class="keyword">new</span> Receiver();</div><div class="line">        <span class="comment">//2.创建具体的命令，然后注入相应的接受者</span></div><div class="line">        Command command = <span class="keyword">new</span> ConcreteCommand(receiver);</div><div class="line">        <span class="comment">//3.创建调用者</span></div><div class="line">        Invoker invoker = <span class="keyword">new</span> Invoker();</div><div class="line">        <span class="comment">//4.为调用者设置项目的命令</span></div><div class="line">        invoker.setCommand(command);</div><div class="line">        <span class="comment">//5.调用者执行命令</span></div><div class="line">        invoker.executeCommand();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5354563-b9f1454082383975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="类UML图"></p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>最为常见的就是NetFlix公司开源的<code>Hystrix</code>项目了，其中熔断机制中最为主要的就是<code>HystrixCommand</code>类了，如果需要自定义一些熔断策略的话一般首先会继承自<code>HystrixCommand</code>创建一个具体的<code>Command</code>类，然后会往<code>Command</code>类中注入具体的<code>Receiver-HystrixProperties和FallbackMethod</code></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://www.jianshu.com/p/ec970bdcad81" target="_blank" rel="external">【行为型模式十七】命令模式-1（Command）</a></li>
+</ol>
 
       
     </div>
@@ -564,7 +539,7 @@
           
             <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
-            <a href="/tags/装饰者模式/" rel="tag"># 装饰者模式</a>
+            <a href="/tags/命令模式/" rel="tag"># 命令模式</a>
           
         </div>
       
@@ -577,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/设计模式/2017-05-08-设计模式学习笔记-策略模式/" rel="next" title="设计模式学习笔记-策略模式">
-                <i class="fa fa-chevron-left"></i> 设计模式学习笔记-策略模式
+              <a href="/设计模式/2019-01-02-设计模式学习笔记-代理模式/" rel="next" title="设计模式学习笔记-代理模式-Proxy Pattern">
+                <i class="fa fa-chevron-left"></i> 设计模式学习笔记-代理模式-Proxy Pattern
               </a>
             
           </div>
@@ -586,10 +561,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/疑难解惑/2017-06-17-IntelliJ_IDEA通过maven构建的项目默认是Java5/" rel="prev" title="完美解决：IntelliJ IDEA通过maven构建的项目默认是Java5,改成Java8编译会出错">
-                完美解决：IntelliJ IDEA通过maven构建的项目默认是Java5,改成Java8编译会出错 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -804,7 +775,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML类图"><span class="nav-number">3.</span> <span class="nav-text">UML类图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-实例"><span class="nav-number">4.</span> <span class="nav-text">Java 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1、创建Component基类"><span class="nav-number">4.1.</span> <span class="nav-text">Step 1、创建Component基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2、创建被装饰者——ConcreteComponent"><span class="nav-number">4.2.</span> <span class="nav-text">Step 2、创建被装饰者——ConcreteComponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3、创建Decorator"><span class="nav-number">4.3.</span> <span class="nav-text">Step 3、创建Decorator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4、创建ConcreteDecorator"><span class="nav-number">4.4.</span> <span class="nav-text">Step 4、创建ConcreteDecorator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后我们在测试类内测试我们的代码"><span class="nav-number">4.5.</span> <span class="nav-text">最后我们在测试类内测试我们的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终的结果"><span class="nav-number">4.6.</span> <span class="nav-text">最终的结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">5.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">6.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献："><span class="nav-number">7.</span> <span class="nav-text">参考文献：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">3.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -967,9 +938,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://nezha.github.io/设计模式/2017-05-09-设计模式学习笔记-装饰者模式/';
-          this.page.identifier = '设计模式/2017-05-09-设计模式学习笔记-装饰者模式/';
-          this.page.title = '设计模式学习笔记-装饰者模式-Decorator Pattern';
+          this.page.url = 'https://nezha.github.io/设计模式/2019-01-03-设计模式学习笔记-命令模式/';
+          this.page.identifier = '设计模式/2019-01-03-设计模式学习笔记-命令模式/';
+          this.page.title = '设计模式学习笔记：命令模式-Command Pattern';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://nezha.disqus.com/embed.js';
